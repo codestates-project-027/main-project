@@ -1,6 +1,23 @@
+@font-face {
+  font-family: 'Bazzi';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0; padding: 0;
+  transition: all 0.3s ease-in-out;
+
+  /* color code : var(--...) */
+  --main-yellow: #FFEB3B;
+  --logo-yellow: #fae316;
+  --light-yellow: #ffff72;
+  --dark-yellow: #c8b900;
+  --main-navy: #37474f;
+  --light-navy: #62727b;
+  --dark-navy: #102027;
 }
 
 .App {
