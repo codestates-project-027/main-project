@@ -16,7 +16,7 @@ public class DailyCheckDto {
     @Getter
     public static class response {
         private String username;
-        private String location;
+        private String facilityName;
         private Boolean check;
     }
 }

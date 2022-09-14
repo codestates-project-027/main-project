@@ -40,9 +40,8 @@ public class DailyCheckTests {
         String facilityName = "파워헬스장";
         DailyCheckDto.request request = new DailyCheckDto.request(username,location,facilityName);
         String content = gson.toJson(request);
-
-        DailyCheckDto.response response = new DailyCheckDto.response(username,location,true);
-        given(dailyCheckService.checkDaily(Mockito.any())).willReturn(response);
+        DailyCheckDto.response response = new DailyCheckDto.response(username, facilityName, true);
+        given(dailyCheckService.postCheck(Mockito.any(DailyCheckDto.request.class))).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
                 get("/dailyCheck")
@@ -50,9 +49,9 @@ public class DailyCheckTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
         );
-        actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value(response.getUsername()))
-                .andExpect(jsonPath("$.score").value(response.getScore()));
-    }
+        actions.andExpect(status().isCreated())
+                .andExpect(jsonPath(".username").value(username))
+                .andExpect(jsonPath(".facilityName").value(facilityName))
+                .andExpect(jsonPath(".check").value(true));
     }
 }
