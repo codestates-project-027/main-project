@@ -1,18 +1,17 @@
 import axios from 'axios';
 
-// const BASE_URL = `http://ec2-43-200-169-36.ap-northeast-2.compute.amazonaws.com:8080`;
-const BASE_URL = `http://localhost:8080`;
+const BASE_URL = `https://minimi-place.duckdns.org`;
 
 // url
 const API = {
-  TEST: `${BASE_URL}/home`,
+  HOME: `${BASE_URL}/home`,
 };
 
 // axios
 const Test = {
   get: async () => {
     try {
-      const { data } = await axios(API.TEST);
+      const { data } = await axios(API.HOME);
       return data;
     } catch (err) {
       if (err.response) {
