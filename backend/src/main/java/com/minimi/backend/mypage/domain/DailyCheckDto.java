@@ -3,6 +3,9 @@ package com.minimi.backend.mypage.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class DailyCheckDto {
     @AllArgsConstructor
     @Getter
@@ -18,5 +21,11 @@ public class DailyCheckDto {
         private String username;
         private String facilityName;
         private Boolean check;
+    }
+    @AllArgsConstructor
+    @Getter
+    public static class ResponseCalendar {
+        private String username;
+        private List<LocalDate> localDateList;
     }
 }

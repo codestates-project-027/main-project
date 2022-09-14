@@ -15,8 +15,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,7 +48,7 @@ public class DailyCheckTests {
         given(dailyCheckService.postCheck(Mockito.any(DailyCheckDto.request.class))).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
-                get("/dailyCheck")
+                post("/dailyCheck")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
@@ -53,5 +57,27 @@ public class DailyCheckTests {
                 .andExpect(jsonPath(".username").value(username))
                 .andExpect(jsonPath(".facilityName").value(facilityName))
                 .andExpect(jsonPath(".check").value(true));
+    }
+
+    @Test
+    public void getDailyChecks() throws Exception {
+        String username = "미니미회원";
+        List<LocalDate> localDateList = new ArrayList<>();
+        localDateList.add(LocalDate.of(2022,8,11));
+        localDateList.add(LocalDate.of(2022,8,15));
+        localDateList.add(LocalDate.of(2022,9,13));
+        DailyCheckDto.ResponseCalendar responseCalendar = new DailyCheckDto.ResponseCalendar(username,localDateList);
+        given(dailyCheckService.getDailyChecks(Mockito.anyString())).willReturn(responseCalendar);
+
+        ResultActions actions = mockMvc.perform(
+                get("/dailyCheck/{username}", username)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isOk())
+                .andExpect(jsonPath(".username").value(username))
+                .andExpect(jsonPath(".localDateList[0]").value(String.valueOf(localDateList.get(0))))
+                .andExpect(jsonPath(".localDateList[1]").value(String.valueOf(localDateList.get(1))))
+                .andExpect(jsonPath(".localDateList[2]").value(String.valueOf(localDateList.get(2))));
     }
 }
