@@ -1,0 +1,23 @@
+= MINIMI API 명세서
+
+
+
+== 조회
+=== [GET] /question/{question-id}
+
+.curl-request
+include::{snippets}/get-myFacilityList/curl-request.adoc[]
+.http-request
+include::{snippets}/get-myFacilityList/http-request.adoc[]
+.http-response
+include::{snippets}/get-myFacilityList/http-response.adoc[]
+.httpie-request
+include::{snippets}/get-myFacilityList/httpie-request.adoc[]
+.path-parameters
+include::{snippets}/get-myFacilityList/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-myFacilityList/request-body.adoc[]
+.response-body
+include::{snippets}/get-myFacilityList/response-body.adoc[]
+.response-fields
+include::{snippets}/get-myFacilityList/response-fields.adoc[]

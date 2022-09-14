@@ -39,7 +39,7 @@ public class DailyCheckTests {
 
     @Test
     public void postDailyCheck() throws Exception{
-        String username = "미니미회원";
+        String username = "MiniMiUser";
         String location = "36.12345, 121.324235";
         String facilityName = "파워헬스장";
         DailyCheckDto.request request = new DailyCheckDto.request(username,location,facilityName);
@@ -61,7 +61,7 @@ public class DailyCheckTests {
 
     @Test
     public void getDailyChecks() throws Exception {
-        String username = "미니미회원";
+        String username = "MiniMiUser";
         List<LocalDate> localDateList = new ArrayList<>();
         localDateList.add(LocalDate.of(2022,8,11));
         localDateList.add(LocalDate.of(2022,8,15));

@@ -36,7 +36,7 @@ public class MiracleScoreTests {
     @Test
     public void getScore() throws Exception{
 
-        String username = "미니미회원";
+        String username = "MiniMiUser";
         MiracleScoreDto.response response = new MiracleScoreDto.response(username,575);
         given(miracleScoreService.getScore(Mockito.anyString())).willReturn(response);
 
