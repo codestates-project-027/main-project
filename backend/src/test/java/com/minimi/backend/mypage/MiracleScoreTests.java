@@ -12,11 +12,20 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.http.StreamingHttpOutputMessage;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.List;
+
+import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -47,6 +56,19 @@ public class MiracleScoreTests {
         );
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath(".username").value(response.getUsername()))
-                .andExpect(jsonPath(".score").value(response.getScore()));
+                .andExpect(jsonPath(".score").value(response.getScore()))
+                .andDo(document(
+                        "get-miracleScore",
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("username").description("회원 닉네임")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("username").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("score").type(JsonFieldType.NUMBER).description("미라클 스코어")
+                                )
+                        )
+                ));
     }
 }
