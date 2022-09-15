@@ -46,6 +46,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/facility" element={<FacilityDetailPage />} />
               <Route path="/facilityList" element={<FacilityListPage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </RoutesWrapper>
           <NavbarWrapper>
@@ -84,7 +85,7 @@ const RoutesWrapper = styled.div`
   /* background-color: var(--main-yellow-color); */
 `;
 
-const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
