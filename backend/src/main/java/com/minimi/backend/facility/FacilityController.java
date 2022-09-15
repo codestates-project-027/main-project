@@ -34,5 +34,11 @@ public class FacilityController {
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete facility
+    @DeleteMapping("/{facilityId}")
+    public ResponseEntity deleteFacility(@PathVariable Long facilityId) {
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
     //get nearFacilityList
 }

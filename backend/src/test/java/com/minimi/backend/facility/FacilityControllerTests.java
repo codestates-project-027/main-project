@@ -225,4 +225,20 @@ public class FacilityControllerTests {
                                 ))
                 ));
     }
+    @Test
+    public void deleteFacility() throws Exception {
+        Long facilityId = 1L;
+        ResultActions actions = mockMvc.perform(
+                delete("/facility/{facilityId}",facilityId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-facility",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("facilityId").description("운동시설 ID")
+                        )));
+    }
 }
