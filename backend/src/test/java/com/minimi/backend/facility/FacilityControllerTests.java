@@ -179,7 +179,50 @@ public class FacilityControllerTests {
                                 ))
                 ));
     }
-
-
-
+    @Test
+    public void patchFacility() throws Exception {
+        Long facilityId = 1L;
+        List<String> photoList = new ArrayList<>();
+        photoList.add("이미지");
+        List<String> categoryList = new ArrayList<>();
+        categoryList.add("헬스");
+        categoryList.add("PT");
+        FacilityDto.request facilityReq = new FacilityDto.request(
+                "미니미헬스장",
+                "대표이미지",
+                photoList,
+                "미니미 헬스장 입니다.",
+                "서울특별시 강남구",
+                "www.minimi-health.kr",
+                "010-0000-0000",
+                "36.123456, 119.123456",
+                categoryList);
+        String content = gson.toJson(facilityReq);
+        ResultActions actions = mockMvc.perform(
+                patch("/facility/{facilityId}",facilityId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content)
+        );
+        actions.andExpect(status().isResetContent())
+                .andDo(document(
+                        "patch-facility",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("facilityId").description("운동시설 ID")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("facilityName").description("(Optional)운동시설 이름"),
+                                        fieldWithPath("facilityPhoto").description("(Optional)운동시설 대표이미지"),
+                                        fieldWithPath("facilityPhotoList").description("(Optional)운동시설 이미지 리스트"),
+                                        fieldWithPath("facilityInfo").description("(Optional)운동시설 상세안내"),
+                                        fieldWithPath("address").description("(Optional)운동시설 주소"),
+                                        fieldWithPath("website").description("(Optional)운동시설 웹사이트"),
+                                        fieldWithPath("phone").description("(Optional)운동시설 연락처"),
+                                        fieldWithPath("location").description("(Optional)운동시설 좌표"),
+                                        fieldWithPath("categoryList").description("(Optional)운동시설 카테고리 리스트")
+                                ))
+                ));
+    }
 }

@@ -49,5 +49,18 @@ public class FacilityDto {
         private String location;
         private List<String> categoryList;
     }
+    @Getter
+    @AllArgsConstructor
+    public static class patch{
+        private String facilityName;
+        private String facilityPhoto;
+        private List<String> facilityPhotoList;
+        private String facilityInfo;
+        private String address;
+        private String website;
+        private String phone;
+        private String location;
+        private List<String> categoryList;
+    }
 
 }

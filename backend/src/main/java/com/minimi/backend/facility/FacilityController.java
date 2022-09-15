@@ -28,6 +28,11 @@ public class FacilityController {
     }
 
     //patch facility
+    @PatchMapping("/{facilityId}")
+    public ResponseEntity patchFacility(@PathVariable Long facilityId,
+                                        @RequestBody FacilityDto.patch facilityPatch){
+        return new ResponseEntity(HttpStatus.RESET_CONTENT);
+    }
     //delete facility
     //get nearFacilityList
 }
