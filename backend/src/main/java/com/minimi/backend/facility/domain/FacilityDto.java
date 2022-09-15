@@ -19,4 +19,21 @@ public class FacilityDto {
         private String status;
     }
 
+    @AllArgsConstructor
+    @Getter
+    public static class response{
+        private Long facilityId;
+        private String facilityName;
+        private List<String> facilityPhotoList;
+        private String facilityInfo;
+        private String address;
+        private String website;
+        private String phone;
+        private int reviewCount;
+        private String location;
+        private List<String> categoryList;
+        private String status;
+        private List<ReviewDto.response> reviews;
+    }
+
 }
