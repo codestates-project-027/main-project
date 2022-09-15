@@ -2,7 +2,6 @@ package com.minimi.backend.mypage;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
 import com.minimi.backend.mypage.domain.MyFacilityDto;
 import com.minimi.backend.mypage.service.MyFacilityService;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
 import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -35,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MyFacilityController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class MyFacilityTests {
+public class MyFacilityControllerTests {
     @Autowired
     private MockMvc mockMvc;
 

@@ -2,7 +2,6 @@ package com.minimi.backend.mypage;
 
 import com.google.gson.Gson;
 import com.minimi.backend.mypage.domain.DailyCheckDto;
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
 import com.minimi.backend.mypage.service.DailyCheckService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -34,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(DailyCheckController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class DailyCheckTests {
+public class DailyCheckControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
