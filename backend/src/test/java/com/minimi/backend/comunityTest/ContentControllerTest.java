@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.delete;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
@@ -65,10 +66,10 @@ public class ContentControllerTest {
     public void patchContent() throws Exception {
         ContentDTO.request request = new ContentDTO.request(
                 "제목","내용","작성자");
-        Long contentId = 1L;
+
         String content =gson.toJson(request);
         ResultActions actions = mockMvc.perform(
-                patch("/content/{contentId}",contentId)
+                patch("/content/{contentId}",1L)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
@@ -84,8 +85,26 @@ public class ContentControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("title").description("제목 수정"),
-                                        fieldWithPath("content").description("내용 수정")
+                                        fieldWithPath("content").description("내용 수정"),
+                                        fieldWithPath("username").description("작성자")
                                 ))
                 ));
     }
+    @Test
+    public void deleteContent() throws Exception {
+        ResultActions actions = mockMvc.perform(
+                delete("/content/{contentId}",1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-content",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("contentId").description("게시글번호")
+                        )));
+    }
+
+
 }
