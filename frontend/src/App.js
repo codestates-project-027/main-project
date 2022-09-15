@@ -6,10 +6,12 @@ import styled from 'styled-components';
 import Navbar from './LandingPage/Navbar';
 
 import LandingPage from './LandingPage/LandingPage';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './LoginPage/LoginPage';
 
 // API Call
 import api from './api/api.js';
+import FacilityDetailPage from './FacilityDetailPage/FacilityDetailPage';
+import AppNavBar from './LandingPage/AppNavBar';
 
 function App() {
   const [test, setTest] = useState('');
@@ -34,10 +36,14 @@ function App() {
     <>
       <div className="App">
         <GlobalStyle>
+          <AppNavBarWrapper>
+            <AppNavBar />
+          </AppNavBarWrapper>
           <RoutesWrapper>
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/facility" element={<FacilityDetailPage />} />
             </Routes>
           </RoutesWrapper>
           <NavbarWrapper>
@@ -59,12 +65,10 @@ const GlobalStyle = styled.div`
 
   @media screen and (max-width: 900px) {
     //pad
-    color: bisque;
   }
 
   @media screen and (max-width: 400px) {
     //mobile
-    color: red;
   }
 `;
 
@@ -85,4 +89,16 @@ const NavbarWrapper = styled.div`
   height: 8vh;
   width: 100%;
   background-color: var(--main-yellow);
+`;
+
+const AppNavBarWrapper = styled(NavbarWrapper)`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  width: 100%;
+  background-color: var(--main-yellow);
+  @media screen and (max-width: 790px) {
+    display: flex;
+  }
 `;

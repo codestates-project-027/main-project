@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-// import { FcReddit } from 'react-icons/fc';
 import { FcReddit } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
+
 const Logo = () => {
   return (
     <>
-      <LogoIcon>
-        <FcReddit size="30px" />
-      </LogoIcon>
+      <Link to="/" style={LinkStyle}>
+        <LogoIcon>
+          <FcReddit size="30px" />
+        </LogoIcon>
 
-      <LogoStyle>미니미</LogoStyle>
+        <LogoStyle>미니미</LogoStyle>
+      </Link>
     </>
   );
 };
@@ -16,10 +19,12 @@ const Logo = () => {
 export default Logo;
 
 const LogoStyle = styled.div`
+  /* background-color: red; */
   font-family: 'Bazzi';
   font-size: 50px;
   color: var(--logo-yellow);
   cursor: pointer;
+  margin-left: -20px;
 
   @media screen and (max-width: 1097px) {
     font-size: 37px;
@@ -35,10 +40,14 @@ const LogoStyle = styled.div`
 `;
 
 const LogoIcon = styled.div`
-  @media screen and (max-width: 1526px) {
+  @media screen and (max-width: 3000px) {
     display: none;
   }
   @media screen and (max-width: 790px) {
     display: flex;
   }
 `;
+
+export const LinkStyle = {
+  textDecoration: 'none',
+};

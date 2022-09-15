@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BiSearch } from 'react-icons/bi';
+import { BiSearch, BiMap } from 'react-icons/bi';
 import SquareBtn from './SquareBtn';
 
 const Searchbar = () => {
@@ -9,11 +9,13 @@ const Searchbar = () => {
         <input
           type="text"
           className="searchbar"
-          placeholder="무슨 운동을 찾으세요?"
+          placeholder="어떤 운동을 찾으세요?"
         />
         <BiSearch style={IconStyle} size="20" />
       </SearchbarStyle>
-      <SquareBtn></SquareBtn>
+      <SquareBtn>
+        <BiMap size="20" />
+      </SquareBtn>
     </>
   );
 };
