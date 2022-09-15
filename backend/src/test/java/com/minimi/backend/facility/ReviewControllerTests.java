@@ -91,4 +91,20 @@ public class ReviewControllerTests {
                                 ))
                 ));
     }
+    @Test
+    public void deleteReview() throws Exception{
+        Long reviewId = 1L;
+        ResultActions actions = mockMvc.perform(
+                delete("/review/{reviewId}",reviewId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-review",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("reviewId").description("리뷰 ID")
+                        )));
+    }
 }

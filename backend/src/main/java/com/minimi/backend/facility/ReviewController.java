@@ -23,8 +23,14 @@ public class ReviewController {
 
     //patch review
     @PatchMapping("/{reviewId}")
-    public ResponseEntity patchReview(@RequestBody ReviewDto.patch reviewPatch){
+    public ResponseEntity patchReview(@PathVariable String reviewId,
+                                      @RequestBody ReviewDto.patch reviewPatch){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
+
     //delete review
+    @DeleteMapping("/{reviewId}")
+    public ResponseEntity deleteReview(@PathVariable String reviewId) {
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
