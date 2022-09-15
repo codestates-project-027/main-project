@@ -12,6 +12,7 @@ import LoginPage from './LoginPage/LoginPage';
 import api from './api/api.js';
 import FacilityDetailPage from './FacilityDetailPage/FacilityDetailPage';
 import AppNavBar from './LandingPage/AppNavBar';
+import FacilityListPage from './FacilityListPage/FacilityListPage';
 
 function App() {
   const [test, setTest] = useState('');
@@ -44,6 +45,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/facility" element={<FacilityDetailPage />} />
+              <Route path="/facilityList" element={<FacilityListPage />} />
             </Routes>
           </RoutesWrapper>
           <NavbarWrapper>

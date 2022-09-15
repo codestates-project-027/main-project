@@ -8,7 +8,10 @@ const AppNavBar = () => {
       <AppNavBarStyle>
         <div className="tab--wrapper">
           우리 동네 주소
-          <IoIosArrowDown size="23" style={{ marginLeft: '10px' }} />
+          <IoIosArrowDown
+            size="23"
+            style={{ marginLeft: '10px', cursor: 'pointer' }}
+          />
         </div>
         <div className="icon--wrapper">
           {/* <BiMap size="23" /> */}
@@ -30,5 +33,6 @@ const AppNavBarStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 `;
