@@ -1,13 +1,9 @@
 package com.minimi.backend.auth.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,7 +23,6 @@ public class AuthDTO {
         private String username;
         private String password;
         private String userProfile;
-        private String role;
     }
     @Getter
     @AllArgsConstructor
@@ -35,11 +30,25 @@ public class AuthDTO {
         @NotBlank
         @Email
         private String email;
-
         @NotBlank(message = "이름은 공백이 아니어야 합니다.")
         private String username;
-
         private String userProfile;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class loginRequest {
+        private String email;
+        private String password;
+    }
+    @Getter
+    @AllArgsConstructor
+    public static class loginResponse {
+        private String email;
+        private String password;
+        private String username;
+        private String userProfile;
+        private String role;
     }
 
 }

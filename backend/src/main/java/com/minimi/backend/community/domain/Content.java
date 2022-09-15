@@ -1,9 +1,18 @@
 package com.minimi.backend.community.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
-public class Post {
-    private Long postId;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Content {
+    private Long contentId;
     private String title;
     private String contents;
     private String username;
