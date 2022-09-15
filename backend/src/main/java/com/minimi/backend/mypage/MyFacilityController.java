@@ -1,8 +1,8 @@
 package com.minimi.backend.mypage;
 
 
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
-import com.minimi.backend.mypage.service.MiracleScoreService;
+import com.minimi.backend.mypage.domain.MyFacilityDto;
+import com.minimi.backend.mypage.service.MyFacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/miracleScore")
+@RequestMapping("/myFacility")
 @RequiredArgsConstructor
-public class MiracleScoreController {
+public class MyFacilityController {
 
-    private final MiracleScoreService miracleScoreService;
+    private final MyFacilityService myFacilityService;
 
-    //get miracleScore
+    //get myfailitys
     @GetMapping("{username}")
-    public ResponseEntity<MiracleScoreDto.response> getScore(@PathVariable String username){
-
-        return new ResponseEntity<>(miracleScoreService.getScore(username), HttpStatus.OK);
+    public ResponseEntity<MyFacilityDto.response> getMyFacilitys(@PathVariable String username) {
+        return new ResponseEntity<>(myFacilityService.getMyFacilitys(username), HttpStatus.OK);
     }
+
 }

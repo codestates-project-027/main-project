@@ -1,0 +1,42 @@
+= MINIMI API 명세서
+
+
+
+== 조회
+=== [GET] /question/{question-id}
+
+.curl-request
+include::{snippets}/get-myFacilityList/curl-request.adoc[]
+.http-request
+include::{snippets}/get-myFacilityList/http-request.adoc[]
+.http-response
+include::{snippets}/get-myFacilityList/http-response.adoc[]
+.httpie-request
+include::{snippets}/get-myFacilityList/httpie-request.adoc[]
+.path-parameters
+include::{snippets}/get-myFacilityList/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-myFacilityList/request-body.adoc[]
+.response-body
+include::{snippets}/get-myFacilityList/response-body.adoc[]
+.response-fields
+include::{snippets}/get-myFacilityList/response-fields.adoc[]
+
+== 조회
+=== [POST] /daily/{question-id}
+.curl-request
+include::{snippets}/post-dailyCheck/curl-request.adoc[]
+.http-request
+include::{snippets}/post-dailyCheck/http-request.adoc[]
+.http-response
+include::{snippets}/post-dailyCheck/http-response.adoc[]
+.httpie-request
+include::{snippets}/post-dailyCheck/httpie-request.adoc[]
+.request-body
+include::{snippets}/post-dailyCheck/request-body.adoc[]
+.request-fields
+include::{snippets}/post-dailyCheck/request-fields.adoc[]
+.response-body
+include::{snippets}/post-dailyCheck/response-body.adoc[]
+.response-fields
+include::{snippets}/post-dailyCheck/response-fields.adoc[]
