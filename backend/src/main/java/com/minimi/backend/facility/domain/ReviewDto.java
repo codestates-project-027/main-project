@@ -25,4 +25,12 @@ public class ReviewDto {
         private String userProfile;
         private String contents;
     }
+
+    @AllArgsConstructor
+    @Getter
+    public static class patch{
+        private String user;
+        private String userProfile;
+        private String contents;
+    }
 }

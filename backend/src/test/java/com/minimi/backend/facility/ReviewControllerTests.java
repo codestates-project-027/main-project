@@ -64,4 +64,31 @@ public class ReviewControllerTests {
                                 ))
                 ));
     }
+
+    @Test
+    public void patchReview() throws Exception {
+        Long reviewId = 1L;
+        ReviewDto.patch reviewPatch = new ReviewDto.patch("미니미","프로필이미지", "여기 좋은 운동시설이네요");
+        String content = gson.toJson(reviewPatch);
+        ResultActions actions = mockMvc.perform(
+                patch("/review/{reviewId}", reviewId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content)
+        );
+        actions.andExpect(status().isResetContent())
+                .andDo(document(
+                        "patch-review",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("reviewId").description("리뷰 ID")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("user").description("리뷰 유저 네임"),
+                                        fieldWithPath("userProfile").description("리뷰 유저 프로필"),
+                                        fieldWithPath("contents").description("리뷰 내용")
+                                ))
+                ));
+    }
 }
