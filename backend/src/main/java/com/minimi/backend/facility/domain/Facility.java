@@ -5,12 +5,13 @@ import java.util.List;
 public class Facility {
     private Long facilityId;
     private String facilityName;
-    private List<String> facilityPhoto;
+    private String facilityPhoto;
+    private List<String> facilityPhotoList;
     private String facilityInfo;
     private String address;
     private String website;
     private String phone;
-    private String reviewCount;
+    private int reviewCount;
     private String location;
     private Long categoryId;
     private String status;
