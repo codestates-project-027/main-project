@@ -6,11 +6,14 @@
       "author": "typicode"
     }
   ],
-  "comments": [
+  "facilities": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "body": "Facility A"
+    },
+    {
+      "id": 2,
+      "body": "Facility B"
     }
   ],
   "profile": {
