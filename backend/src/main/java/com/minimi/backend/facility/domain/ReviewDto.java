@@ -16,4 +16,13 @@ public class ReviewDto {
         private String contents;
         private LocalDate createdAt;
     }
+
+    @AllArgsConstructor
+    @Getter
+    public static class request{
+        private Long facilityId;
+        private String user;
+        private String userProfile;
+        private String contents;
+    }
 }
