@@ -36,4 +36,18 @@ public class FacilityDto {
         private List<ReviewDto.response> reviews;
     }
 
+    @Getter
+    @AllArgsConstructor
+    public static class request{
+        private String facilityName;
+        private String facilityPhoto;
+        private List<String> facilityPhotoList;
+        private String facilityInfo;
+        private String address;
+        private String website;
+        private String phone;
+        private String location;
+        private List<String> categoryList;
+    }
+
 }

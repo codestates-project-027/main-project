@@ -137,5 +137,49 @@ public class FacilityControllerTests {
                 ));
     }
 
+    @Test
+    public void postFacility() throws Exception{
+        List<String> photoList = new ArrayList<>();
+        photoList.add("이미지");
+        List<String> categoryList = new ArrayList<>();
+        categoryList.add("헬스");
+        categoryList.add("PT");
+        FacilityDto.request facilityReq = new FacilityDto.request(
+                "미니미헬스장",
+                "대표이미지",
+                photoList,
+                "미니미 헬스장 입니다.",
+                "서울특별시 강남구",
+                "www.minimi-health.kr",
+                "010-0000-0000",
+                "36.123456, 119.123456",
+                categoryList);
+        String content = gson.toJson(facilityReq);
+        ResultActions actions = mockMvc.perform(
+                post("/facility")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content)
+        );
+        actions.andExpect(status().isCreated())
+                .andDo(document(
+                        "post-facility",
+                        getRequestPreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("facilityName").description("운동시설 이름"),
+                                        fieldWithPath("facilityPhoto").description("운동시설 대표이미지"),
+                                        fieldWithPath("facilityPhotoList").description("운동시설 이미지 리스트"),
+                                        fieldWithPath("facilityInfo").description("운동시설 상세안내"),
+                                        fieldWithPath("address").description("운동시설 주소"),
+                                        fieldWithPath("website").description("운동시설 웹사이트"),
+                                        fieldWithPath("phone").description("운동시설 연락처"),
+                                        fieldWithPath("location").description("운동시설 좌표"),
+                                        fieldWithPath("categoryList").description("운동시설 카테고리 리스트")
+                                ))
+                ));
+    }
+
+
 
 }

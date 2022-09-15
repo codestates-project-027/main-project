@@ -7,10 +7,7 @@ import com.minimi.backend.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/facility")
@@ -24,9 +21,13 @@ public class FacilityController {
     public ResponseEntity<FacilityDto.response> getFacility(@PathVariable Long facilityId){
         return new ResponseEntity<>(facilityService.getFacility(facilityId), HttpStatus.OK);
     }
-
-    //get facilitys
     //post facility
+    @PostMapping("")
+    public ResponseEntity postFacility(@RequestBody FacilityDto.request facilityReq){
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
     //patch facility
     //delete facility
+    //get nearFacilityList
 }
