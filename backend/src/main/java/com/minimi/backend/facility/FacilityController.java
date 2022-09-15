@@ -4,10 +4,14 @@ package com.minimi.backend.facility;
 import com.minimi.backend.facility.domain.Facility;
 import com.minimi.backend.facility.domain.FacilityDto;
 import com.minimi.backend.facility.service.FacilityService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/facility")
@@ -41,4 +45,8 @@ public class FacilityController {
     }
 
     //get nearFacilityList
+    @GetMapping("")
+    public ResponseEntity<Slice<FacilityDto.responsePage>> getNearFacilityList(@RequestParam String location, int page){
+        return new ResponseEntity<>(facilityService.getNearFacilityList(location, page), HttpStatus.OK);
+    }
 }
