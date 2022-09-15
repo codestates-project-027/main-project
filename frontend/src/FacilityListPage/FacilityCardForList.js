@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const FacilityCard = () => {
+const FacilityCardForList = () => {
   return (
     <>
       <FCardStyle to="/facility">
@@ -26,7 +26,7 @@ const FacilityCard = () => {
   );
 };
 
-export default FacilityCard;
+export default FacilityCardForList;
 
 export const FCardStyle = styled(Link)`
   display: flex;
@@ -42,7 +42,8 @@ export const FCardStyle = styled(Link)`
   }
 
   @media screen and (max-width: 790px) {
-    display: none;
+    display: flex;
+    width: 55%;
   }
 `;
 
@@ -73,6 +74,7 @@ export const FacilityCardStyle = styled.div`
     background-color: bisque;
     border-radius: 3px;
     padding: 15px;
+
     .name--wrapper {
       display: flex;
       justify-content: space-between;
@@ -94,7 +96,7 @@ export const FacilityCardStyle = styled.div`
   }
 
   @media screen and (max-width: 790px) {
-    display: none;
+    display: flex;
   }
 `;
 

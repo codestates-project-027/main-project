@@ -13,8 +13,11 @@ const Navbar = () => {
 
       <BsPeople />
       <AiOutlineHeart />
-      <BsPerson />
+      <Link to="/login">
+        <BsPerson />
+      </Link>
     </NavIconStyle>
+    //마이페이지 아이콘 -> 로그인 되어있으면 마이페이지, 안되어있으면 로그인페이지
   );
 };
 

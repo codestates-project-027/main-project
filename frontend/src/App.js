@@ -12,6 +12,7 @@ import LoginPage from './LoginPage/LoginPage';
 import api from './api/api.js';
 import FacilityDetailPage from './FacilityDetailPage/FacilityDetailPage';
 import AppNavBar from './LandingPage/AppNavBar';
+import FacilityListPage from './FacilityListPage/FacilityListPage';
 
 function App() {
   const [test, setTest] = useState('');
@@ -44,6 +45,8 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/facility" element={<FacilityDetailPage />} />
+              <Route path="/facilityList" element={<FacilityListPage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </RoutesWrapper>
           <NavbarWrapper>
@@ -82,7 +85,7 @@ const RoutesWrapper = styled.div`
   /* background-color: var(--main-yellow-color); */
 `;
 
-const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -103,7 +103,7 @@ const LandingPage = () => {
 
 export default LandingPage;
 
-const LogoAndSearchStyle = styled.div`
+export const LogoAndSearchStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
