@@ -252,3 +252,22 @@ include::{snippets}/delete-bookmark/http-response.adoc[]
 .response-body
 include::{snippets}/delete-bookmark/response-body.adoc[]
 
+== 나의 운동시설
+=== 나의 운동시설 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-myFacilityList/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-myFacilityList/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-myFacilityList/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-myFacilityList/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-myFacilityList/http-response.adoc[]
+.response-body
+include::{snippets}/get-myFacilityList/response-body.adoc[]
+.response-fields
+include::{snippets}/get-myFacilityList/response-fields.adoc[]
+
