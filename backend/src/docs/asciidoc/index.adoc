@@ -1,42 +1,83 @@
-= MINIMI API 명세서
+= MINIMI API Docs
+:sectnums:
+:doctype: book
+:icons: font
+:toc: left
+:toclevels: 2
+:toc-title: 목차
+:source-highlighter: highlightjs
 
-
-
-== 조회
-=== [GET] /question/{question-id}
-
-.curl-request
-include::{snippets}/get-myFacilityList/curl-request.adoc[]
-.http-request
-include::{snippets}/get-myFacilityList/http-request.adoc[]
-.http-response
-include::{snippets}/get-myFacilityList/http-response.adoc[]
+***
+== 운동시설 카테고리
+=== 카테고리 목록 조회 [GET]
+==== Request
 .httpie-request
-include::{snippets}/get-myFacilityList/httpie-request.adoc[]
+include::{snippets}/get-categoryTitles/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-categoryTitles/http-request.adoc[]
+.request-body
+include::{snippets}/get-categoryTitles/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-categoryTitles/http-response.adoc[]
+.response-body
+include::{snippets}/get-categoryTitles/response-body.adoc[]
+.response-fields
+include::{snippets}/get-categoryTitles/response-fields.adoc[]
+
+=== 카테고리 상세 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-category/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-category/http-request.adoc[]
 .path-parameters
-include::{snippets}/get-myFacilityList/path-parameters.adoc[]
+include::{snippets}/get-category/path-parameters.adoc[]
+.request-parameters
+include::{snippets}/get-category/request-parameters.adoc[]
 .request-body
-include::{snippets}/get-myFacilityList/request-body.adoc[]
-.response-body
-include::{snippets}/get-myFacilityList/response-body.adoc[]
-.response-fields
-include::{snippets}/get-myFacilityList/response-fields.adoc[]
-
-== 조회
-=== [POST] /daily/{question-id}
-.curl-request
-include::{snippets}/post-dailyCheck/curl-request.adoc[]
-.http-request
-include::{snippets}/post-dailyCheck/http-request.adoc[]
+include::{snippets}/get-category/request-body.adoc[]
+==== Response
 .http-response
-include::{snippets}/post-dailyCheck/http-response.adoc[]
-.httpie-request
-include::{snippets}/post-dailyCheck/httpie-request.adoc[]
-.request-body
-include::{snippets}/post-dailyCheck/request-body.adoc[]
-.request-fields
-include::{snippets}/post-dailyCheck/request-fields.adoc[]
+include::{snippets}/get-category/http-response.adoc[]
 .response-body
-include::{snippets}/post-dailyCheck/response-body.adoc[]
+include::{snippets}/get-category/response-body.adoc[]
 .response-fields
-include::{snippets}/post-dailyCheck/response-fields.adoc[]
+include::{snippets}/get-category/response-fields.adoc[]
+
+=== 카테고리 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-category/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-category/http-request.adoc[]
+.request-body
+include::{snippets}/post-category/request-body.adoc[]
+.request-fields
+include::{snippets}/post-category/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-category/http-response.adoc[]
+.response-body
+include::{snippets}/post-category/response-body.adoc[]
+
+=== 카테고리 수정 [PATCH]
+==== Request
+.httpie-request
+include::{snippets}/patch-category/httpie-request.adoc[]
+.http-request
+include::{snippets}/patch-category/http-request.adoc[]
+.path-parameters
+include::{snippets}/patch-category/path-parameters.adoc[]
+.request-body
+include::{snippets}/patch-category/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-category/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/patch-category/http-response.adoc[]
+.response-body
+include::{snippets}/patch-category/response-body.adoc[]
+.response-fields
+include::{snippets}/patch-category/response-fields.adoc[]
+
