@@ -40,4 +40,4 @@ out/
 **/application*.*
 
 ##api-docs
-**/index.html/
+**/index.html
