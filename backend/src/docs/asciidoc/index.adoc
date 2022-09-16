@@ -271,3 +271,40 @@ include::{snippets}/get-myFacilityList/response-body.adoc[]
 .response-fields
 include::{snippets}/get-myFacilityList/response-fields.adoc[]
 
+== 출석체크
+=== 출석체크 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-dailyChecks/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-dailyChecks/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-dailyChecks/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-dailyChecks/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-dailyChecks/http-response.adoc[]
+.response-body
+include::{snippets}/get-dailyChecks/response-body.adoc[]
+.response-fields
+include::{snippets}/get-dailyChecks/response-fields.adoc[]
+
+=== 출석체크 제출 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-dailyCheck/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-dailyCheck/http-request.adoc[]
+.request-body
+include::{snippets}/post-dailyCheck/request-body.adoc[]
+.request-fields
+include::{snippets}/post-dailyCheck/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-dailyCheck/http-response.adoc[]
+.response-body
+include::{snippets}/post-dailyCheck/response-body.adoc[]
+.response-fields
+include::{snippets}/post-dailyCheck/response-fields.adoc[]
+
