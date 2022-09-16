@@ -8,7 +8,7 @@
 :source-highlighter: highlightjs
 
 ***
-== 운동시설 카테고리
+== 카테고리
 === 카테고리 목록 조회 [GET]
 ==== Request
 .httpie-request
@@ -81,3 +81,89 @@ include::{snippets}/patch-category/response-body.adoc[]
 .response-fields
 include::{snippets}/patch-category/response-fields.adoc[]
 
+== 운동시설
+=== 운동시설 목록 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-nearFacility/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-nearFacility/http-request.adoc[]
+.request-parameters
+include::{snippets}/get-nearFacility/request-parameters.adoc[]
+.request-body
+include::{snippets}/get-nearFacility/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-nearFacility/http-response.adoc[]
+.response-body
+include::{snippets}/get-nearFacility/response-body.adoc[]
+.response-fields
+include::{snippets}/get-nearFacility/response-fields.adoc[]
+
+=== 운동시설 상세 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-facility/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-facility/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-facility/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-facility/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-facility/http-response.adoc[]
+.response-body
+include::{snippets}/get-facility/response-body.adoc[]
+.response-fields
+include::{snippets}/get-facility/response-fields.adoc[]
+
+=== 운동시설 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-facility/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-facility/http-request.adoc[]
+.request-body
+include::{snippets}/post-facility/request-body.adoc[]
+.request-fields
+include::{snippets}/post-facility/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-facility/http-response.adoc[]
+.response-body
+include::{snippets}/post-facility/response-body.adoc[]
+
+=== 운동시설 수정 [PATCH]
+==== Request
+.httpie-request
+include::{snippets}/patch-facility/httpie-request.adoc[]
+.http-request
+include::{snippets}/patch-facility/http-request.adoc[]
+.path-parameters
+include::{snippets}/patch-facility/path-parameters.adoc[]
+.request-body
+include::{snippets}/patch-facility/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-facility/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/patch-facility/http-response.adoc[]
+.response-body
+include::{snippets}/patch-facility/response-body.adoc[]
+
+=== 운동시설 삭제 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-facility/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-facility/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-facility/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-facility/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-facility/http-response.adoc[]
+.response-body
+include::{snippets}/delete-facility/response-body.adoc[]
