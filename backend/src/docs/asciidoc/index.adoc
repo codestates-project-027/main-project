@@ -167,3 +167,54 @@ include::{snippets}/delete-facility/request-body.adoc[]
 include::{snippets}/delete-facility/http-response.adoc[]
 .response-body
 include::{snippets}/delete-facility/response-body.adoc[]
+
+== 운동시설 리뷰
+=== 운동시설 리뷰 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-review/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-review/http-request.adoc[]
+.request-body
+include::{snippets}/post-review/request-body.adoc[]
+.request-fields
+include::{snippets}/post-review/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-review/http-response.adoc[]
+.response-body
+include::{snippets}/post-review/response-body.adoc[]
+
+=== 운동시설 리뷰 수정 [PATCH]
+==== Request
+.httpie-request
+include::{snippets}/patch-review/httpie-request.adoc[]
+.http-request
+include::{snippets}/patch-review/http-request.adoc[]
+.path-parameters
+include::{snippets}/patch-review/path-parameters.adoc[]
+.request-body
+include::{snippets}/patch-review/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-review/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/patch-review/http-response.adoc[]
+.response-body
+include::{snippets}/patch-review/response-body.adoc[]
+
+=== 운동시설 리뷰 삭제 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-review/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-review/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-review/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-review/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-review/http-response.adoc[]
+.response-body
+include::{snippets}/delete-review/response-body.adoc[]
