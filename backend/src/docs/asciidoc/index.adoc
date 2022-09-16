@@ -218,3 +218,37 @@ include::{snippets}/delete-review/request-body.adoc[]
 include::{snippets}/delete-review/http-response.adoc[]
 .response-body
 include::{snippets}/delete-review/response-body.adoc[]
+
+== 운동시설 북마크
+=== 운동시설 북마크 구독 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-bookmark/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-bookmark/http-request.adoc[]
+.request-body
+include::{snippets}/post-bookmark/request-body.adoc[]
+.request-fields
+include::{snippets}/post-bookmark/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-bookmark/http-response.adoc[]
+.response-body
+include::{snippets}/post-bookmark/response-body.adoc[]
+
+=== 운동시설 북마크 취소 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-bookmark/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-bookmark/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-bookmark/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-bookmark/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-bookmark/http-response.adoc[]
+.response-body
+include::{snippets}/delete-bookmark/response-body.adoc[]
+
