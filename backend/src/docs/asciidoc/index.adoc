@@ -40,3 +40,4 @@ include::{snippets}/post-dailyCheck/request-fields.adoc[]
 include::{snippets}/post-dailyCheck/response-body.adoc[]
 .response-fields
 include::{snippets}/post-dailyCheck/response-fields.adoc[]
+

@@ -24,7 +24,7 @@ public class ContentController {
     //get Content
     @GetMapping("/{contentId}")
     public ResponseEntity<ContentDTO.response> getContent(@PathVariable Long contentId){
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(contentService.getContent(contentId),HttpStatus.CREATED);
     }
 
     //get Contents

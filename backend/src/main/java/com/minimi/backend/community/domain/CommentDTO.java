@@ -15,4 +15,29 @@ public class CommentDTO {
         private String username;
         private LocalDateTime createdAt;
     }
+
+    @Getter
+    @AllArgsConstructor
+    public static class request{
+        private Long contentId;
+        private String username;
+        private String userProfile;
+        private String contents;
+    }
+
+
+    @Getter
+    @AllArgsConstructor
+    public static class response{
+        private Long commentId;
+        private String username;
+        private String userProfile;
+        private String contents;
+        private LocalDateTime createdAt;
+    }
+    @Getter
+    @AllArgsConstructor
+    public static class patch{
+        private String contents;
+    }
 }
