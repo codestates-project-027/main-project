@@ -48,15 +48,5 @@ public class ContentDTO {
         private List<Comment> comment;
 
     }
-    @Getter
-    @AllArgsConstructor
-    public static class patch{
-
-        private String title;
-        private String contents;
-        private String username;
-
-
-    }
 
 }

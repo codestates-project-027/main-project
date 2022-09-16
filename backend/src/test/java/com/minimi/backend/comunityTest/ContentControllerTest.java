@@ -106,5 +106,21 @@ public class ContentControllerTest {
                         )));
     }
 
+    @Test
+    public void getContent() throws Exception {
+        ResultActions actions = mockMvc.perform(
+                delete("/content/{contentId}",1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-content",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("contentId").description("게시글번호")
+                        )));
+    }
+
 
 }
