@@ -308,3 +308,21 @@ include::{snippets}/post-dailyCheck/response-body.adoc[]
 .response-fields
 include::{snippets}/post-dailyCheck/response-fields.adoc[]
 
+== 미라클 스코어
+=== 미라클 스코어 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-miracleScore/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-miracleScore/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-miracleScore/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-miracleScore/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-miracleScore/http-response.adoc[]
+.response-body
+include::{snippets}/get-miracleScore/response-body.adoc[]
+.response-fields
+include::{snippets}/get-miracleScore/response-fields.adoc[]
