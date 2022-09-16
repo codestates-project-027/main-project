@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class ContentDTO {
     private String userProfile;
     private int views;
     private int like;
-    private List<Comment> comment;
+    private List<CommentDTO.comment> comment;
 
     @AllArgsConstructor
     @Getter
@@ -37,7 +35,7 @@ public class ContentDTO {
     @Getter
     @AllArgsConstructor
     public static class response {
-        private Long id;
+        private Long contentId;
         private String title;
         private String content;
         private String username;
@@ -45,8 +43,18 @@ public class ContentDTO {
         private String userProfile;
         private int views;
         private int like;
-        private List<Comment> comment;
+        private List<CommentDTO.comment> comment;
 
+    }
+    @Getter
+    @AllArgsConstructor
+    public static class contents {
+        private Long contentId;
+        private String title;
+        private String username;
+        private LocalDateTime createdAt;
+        private int views;
+        private int like;
     }
 
 }

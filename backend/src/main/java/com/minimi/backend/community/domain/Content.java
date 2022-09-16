@@ -14,11 +14,11 @@ import java.util.List;
 public class Content {
     private Long contentId;
     private String title;
-    private String contents;
+    private String content;
     private String username;
     private String userProfile;
     private String createAt;
     private int views;
     private int like;
-    private List<Comment> comment;
+    private List<CommentDTO.comment> comment;
 }
