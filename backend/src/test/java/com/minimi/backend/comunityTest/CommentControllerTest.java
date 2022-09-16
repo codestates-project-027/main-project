@@ -66,30 +66,30 @@ public class CommentControllerTest {
                 ));
     }
 
-    @Test
-    public void patchReview() throws Exception {
-
-        CommentDTO.patch reviewPatch = new CommentDTO.patch("내용 수정");
-        String content = gson.toJson(reviewPatch);
-        ResultActions actions = mockMvc.perform(
-                patch("/comment/{commentId}", 1L)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(content)
-        );
-        actions.andExpect(status().isResetContent())
-                .andDo(document(
-                        "patch-comment",
-                        getRequestPreProcessor(),
-                        pathParameters(
-                                parameterWithName("commentId").description("댓글 아이디")
-                        ),
-                        requestFields(
-                                List.of(
-                                        fieldWithPath("contents").description("댓글 내용")
-                                ))
-                ));
-    }
+//    @Test
+//    public void patchReview() throws Exception {
+//
+//        CommentDTO.patch reviewPatch = new CommentDTO.patch("내용 수정");
+//        String content = gson.toJson(reviewPatch);
+//        ResultActions actions = mockMvc.perform(
+//                patch("/comment/{commentId}", 1L)
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(content)
+//        );
+//        actions.andExpect(status().isResetContent())
+//                .andDo(document(
+//                        "patch-comment",
+//                        getRequestPreProcessor(),
+//                        pathParameters(
+//                                parameterWithName("commentId").description("댓글 아이디")
+//                        ),
+//                        requestFields(
+//                                List.of(
+//                                        fieldWithPath("contents").description("댓글 내용")
+//                                ))
+//                ));
+//    }
 
     @Test
     public void deleteComment() throws Exception {
