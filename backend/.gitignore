@@ -38,3 +38,6 @@ out/
 
 ##env
 **/application*.*
+
+##api-docs
+**/static/docs/index.html/
