@@ -1,11 +1,11 @@
-import styled from 'styled-components';
 import { BiBell } from 'react-icons/bi';
 import { IoIosArrowDown } from 'react-icons/io';
+import { TopNavbarGlobal } from '../../styles/globalStyle/NavbarGlobalStyle';
 
-const AppNavBar = () => {
+const TopNavbar = () => {
   return (
     <>
-      <AppNavBarStyle>
+      <TopNavbarGlobal>
         <div className="tab--wrapper">
           우리 동네 주소
           <IoIosArrowDown
@@ -14,25 +14,11 @@ const AppNavBar = () => {
           />
         </div>
         <div className="icon--wrapper">
-          {/* <BiMap size="23" /> */}
           <BiBell size="23" style={{ marginLeft: '5px' }} />
         </div>
-      </AppNavBarStyle>
+      </TopNavbarGlobal>
     </>
   );
 };
 
-export default AppNavBar;
-
-const AppNavBarStyle = styled.div`
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  align-items: center;
-  .tab--wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-`;
+export default TopNavbar;

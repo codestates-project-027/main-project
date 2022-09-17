@@ -1,3 +1,4 @@
+//수정해야 함
 import axios from 'axios';
 
 // const BASE_URL = `https://minimi-place.duckdns.org`;

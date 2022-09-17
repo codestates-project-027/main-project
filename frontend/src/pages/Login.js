@@ -68,10 +68,11 @@ export const InputTab = styled.div`
   .input {
     display: flex;
     background: transparent;
+    text-align: start;
     align-items: center;
     border: none;
     color: var(--logo-yellow);
-    margin-left: 15px;
+    margin-left: 20px;
     &:focus {
       outline: transparent;
     }

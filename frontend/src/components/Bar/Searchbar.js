@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BiSearch, BiMap } from 'react-icons/bi';
-import SquareBtn from './SquareBtn';
+import SquareBtn from '../Button/SquareBtn';
 
 const Searchbar = () => {
   return (

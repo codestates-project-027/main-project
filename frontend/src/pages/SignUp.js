@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import icon from '../assets/icon/미니미캐릭터.png';
+import icon from '../assets/logo/minimi-char.png';
 
-const SignupPage = () => {
+const SignUpPage = () => {
   return (
     <SignupWrapper>
       <div>
@@ -21,7 +21,7 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default SignUpPage;
 
 const SignupWrapper = styled.div`
   display: flex;

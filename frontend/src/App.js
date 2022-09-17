@@ -1,29 +1,26 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
-
-import Navbar from './LandingPage/Navbar';
-
-import LandingPage from './LandingPage/LandingPage';
-import LoginPage from './LoginPage/LoginPage';
 
 // API Call
-import api from './api/api.js';
-import FacilityDetailPage from './FacilityDetailPage/FacilityDetailPage';
-import AppNavBar from './LandingPage/AppNavBar';
-import FacilityListPage from './FacilityListPage/FacilityListPage';
+import api from './api/api-toEdit';
+
+//GlobalStyles
+import GlobalStyle from './styles/globalStyle/GlobalStyle';
+
+//Layouts
+import LayoutNoTopbar from './layouts/LayoutNoTopbar';
+
+//Pages
+import LoginPage from './pages/Login';
+import SignUpPage from './pages/SignUp';
 
 function App() {
   const [test, setTest] = useState('');
 
   const getData = () => {
     api.Test.get().then((data) => {
-      // if (data.status !== 200) {
-      //   alert(data.status);
-      // } else {
       setTest(data);
-      // }
     });
   };
 
@@ -37,21 +34,12 @@ function App() {
     <>
       <div className="App">
         <GlobalStyle>
-          <AppNavBarWrapper>
-            <AppNavBar />
-          </AppNavBarWrapper>
-          <RoutesWrapper>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
+          <Routes>
+            <Route element={<LayoutNoTopbar />}>
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/facility" element={<FacilityDetailPage />} />
-              <Route path="/facilityList" element={<FacilityListPage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Routes>
-          </RoutesWrapper>
-          <NavbarWrapper>
-            <Navbar />
-          </NavbarWrapper>
+              <Route path="/signup" element={<SignUpPage />} />
+            </Route>
+          </Routes>
         </GlobalStyle>
       </div>
     </>
@@ -59,49 +47,3 @@ function App() {
 }
 
 export default App;
-
-const GlobalStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: 900px) {
-    //pad
-  }
-
-  @media screen and (max-width: 400px) {
-    //mobile
-  }
-`;
-
-const RoutesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 92vh;
-  width: 100%;
-  /* background-color: var(--main-yellow-color); */
-`;
-
-export const NavbarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 8vh;
-  width: 100%;
-  background-color: var(--main-yellow);
-`;
-
-const AppNavBarWrapper = styled(NavbarWrapper)`
-  display: none;
-  justify-content: center;
-  align-items: center;
-  height: 8vh;
-  width: 100%;
-  background-color: var(--main-yellow);
-  @media screen and (max-width: 790px) {
-    display: flex;
-  }
-`;
