@@ -1,11 +1,11 @@
-import { FCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
-import { FCardStyle } from '../../styles/components/CardStyle';
+import { FCardFlexGlobal } from '../../styles/globalStyle/CardGlobalStyle';
+import { FCardFlexStyle } from '../../styles/components/CardStyle';
 
-const FacilityCard = () => {
+const FacilityCardFlex = () => {
   return (
     <>
-      <FCardGlobal to="/facility">
-        <FCardStyle>
+      <FCardFlexGlobal to="/facility">
+        <FCardFlexStyle>
           <div className="img--wrapper">img</div>
           <div className="content--wrapper">
             <div className="name--wrapper">
@@ -20,10 +20,10 @@ const FacilityCard = () => {
               <div className="tags">tags</div>
             </div>
           </div>
-        </FCardStyle>
-      </FCardGlobal>
+        </FCardFlexStyle>
+      </FCardFlexGlobal>
     </>
   );
 };
 
-export default FacilityCard;
+export default FacilityCardFlex;

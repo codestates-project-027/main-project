@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { NavIconStyle } from '../../styles/IconStyle';
-import { BottomNavbarGlobal } from '../../styles/globalStyle/NavbarGlobalStyle';
+import { BottomNavbarGlobal } from '../../styles/globalStyle/BarGlobalStyle';
+import { BottomNavIconStyle } from '../../styles/components/IconStyles';
 
 import { HiHome } from 'react-icons/hi'; //HiOutlineHome
 import { BsPeople, BsPerson } from 'react-icons/bs'; //BsFillPeopleFill, BsFillPersonFill
@@ -9,7 +9,7 @@ import { AiOutlineHeart } from 'react-icons/ai'; //AiFillHeart
 const BottomNavbar = () => {
   return (
     <BottomNavbarGlobal>
-      <NavIconStyle>
+      <BottomNavIconStyle>
         <Link to="/">
           <HiHome />
         </Link>
@@ -19,7 +19,7 @@ const BottomNavbar = () => {
         <Link to="/login">
           <BsPerson />
         </Link>
-      </NavIconStyle>
+      </BottomNavIconStyle>
     </BottomNavbarGlobal>
     //마이페이지 아이콘 -> 로그인 되어있으면 마이페이지, 안되어있으면 로그인페이지
   );

@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Test from './Test';
 
 // API Call
 import api from './api/api-toEdit';
@@ -9,11 +10,19 @@ import api from './api/api-toEdit';
 import GlobalStyle from './styles/globalStyle/GlobalStyle';
 
 //Layouts
+import {
+  LayoutMain,
+  LayoutCurrentMenu,
+  LayoutCurrentMenuSearch,
+} from './layouts/LayoutTopbars';
 import LayoutNoTopbar from './layouts/LayoutNoTopbar';
 
 //Pages
 import LoginPage from './pages/Login';
 import SignUpPage from './pages/SignUp';
+import MainPage from './pages/Main';
+import FacilityPage from './pages/Facility';
+import FacilitiesPage from './pages/Facilities';
 
 function App() {
   const [test, setTest] = useState('');
@@ -38,6 +47,19 @@ function App() {
             <Route element={<LayoutNoTopbar />}>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/test" element={<Test />} /> {/*삭제*/}
+            </Route>
+
+            <Route element={<LayoutMain />}>
+              <Route path="/" element={<MainPage />} />
+            </Route>
+
+            <Route element={<LayoutCurrentMenu />}>
+              <Route path="/facility" element={<FacilityPage />} />
+            </Route>
+
+            <Route element={<LayoutCurrentMenuSearch />}>
+              <Route path="/facilities" element={<FacilitiesPage />} />
             </Route>
           </Routes>
         </GlobalStyle>

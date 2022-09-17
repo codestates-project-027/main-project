@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import CharLogo from '../assets/logo/minimi-char.png';
+import { LoginPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 
 const LoginPage = () => {
   return (
     <>
-      <LoginPageStyle>
-        <Logo to="/">미니미</Logo>
+      <LoginPageGlobal>
+        <Link to="/">
+          <img className="logo" alt="logo" src={CharLogo} />
+        </Link>
         <div className="desc--wrapper">miracle place near me</div>
         <div className="login--wrapper">
           <InputTab>
@@ -20,41 +24,14 @@ const LoginPage = () => {
             <Button>소셜 로그인</Button>
           </div>
         </div>
-      </LoginPageStyle>
+      </LoginPageGlobal>
     </>
   );
 };
 
 export default LoginPage;
 
-const Logo = styled(Link)`
-  font-family: 'Bazzi';
-  font-size: 60px;
-  color: var(--logo-yellow);
-  cursor: pointer;
-  margin-left: -20px;
-  text-decoration: none;
-`;
-
-const LoginPageStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  .desc--wrapper {
-    margin-top: 20%;
-    font-family: 'Bazzi';
-    font-size: 1.3rem;
-  }
-  .login--wrapper {
-    margin-top: 10%;
-  }
-  .button--wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
+//교체 예정 -> mui
 export const InputTab = styled.div`
   display: flex;
   flex-direction: column;

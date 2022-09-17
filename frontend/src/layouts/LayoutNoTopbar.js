@@ -3,7 +3,7 @@ import BottomNavbar from '../components/Bar/BottomNavbar';
 import {
   OutletPosition,
   BottomNavPosition,
-} from '../styles/position/LayoutPosition';
+} from '../styles/position/LayoutPositions';
 
 const LayoutNoTopbar = () => {
   return (

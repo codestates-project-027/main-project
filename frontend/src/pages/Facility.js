@@ -1,5 +1,11 @@
 const FacilityPage = () => {
-  return <>Facility page</>;
+  return (
+    <>
+      Facility name
+      <br />
+      Facility detail
+    </>
+  );
 };
 
 export default FacilityPage;

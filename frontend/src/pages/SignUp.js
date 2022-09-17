@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import icon from '../assets/logo/minimi-char.png';
+import CharLogo from '../assets/logo/minimi-char.png';
+import { SignUpPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 
 const SignUpPage = () => {
   return (
-    <SignupWrapper>
+    <SignUpPageGlobal>
       <div>
-        <img className="logo" alt="logo" src={icon}></img>
+        <img className="logo" alt="logo" src={CharLogo}></img>
       </div>
       <div className="signup-container">
         <div className="signup-info">
@@ -17,43 +17,8 @@ const SignUpPage = () => {
           <button>회원가입</button>
         </div>
       </div>
-    </SignupWrapper>
+    </SignUpPageGlobal>
   );
 };
 
 export default SignUpPage;
-
-const SignupWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  .logo {
-    width: 10vh;
-  }
-  .signup-container {
-    padding: 1rem;
-  }
-
-  .signup-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 15rem;
-    height: 15rem;
-  }
-
-  input {
-    margin: 1rem;
-    padding: 0.5rem;
-    width: 20rem;
-    height: 5vh;
-  }
-
-  button {
-    border: 1px solid var(--main-yellow);
-    border-radius: 0.6rem;
-    background-color: var(--main-yellow);
-    margin: 0.7rem;
-    width: 7rem;
-    height: 2.5rem;
-  }
-`;
