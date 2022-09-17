@@ -117,67 +117,68 @@ public class ContentControllerTest implements helper {
                         )));
     }
 
-//    @Test
-//    public void getContent() throws Exception {
-//
-//        List<CommentDTO.comment> commentList = new ArrayList<>();
-//        commentList.add(new CommentDTO.comment(1L, 1L, "댓글내용", "댓글작성자",
-//                LocalDateTime.of(2022, 9, 16, 12, 32,1,1)));
-//        commentList.add(new CommentDTO.comment(2L, 1L, "댓글내용2", "댓글작성자2",
-//                LocalDateTime.of(2022, 9, 16, 12, 42,1,1)));
-//
-//        ContentDTO.response response = new ContentDTO.response(1L, "제목", "내용", "작성자",
-//                LocalDateTime.of(2022, 9, 16, 12, 30,1,1),
-//                "프로필 사진", 0, 0, commentList);
-//
-//        given(contentService.getContent(Mockito.anyLong())).willReturn(response);
-//        ResultActions actions = mockMvc.perform(
-//                get("/content/{contentId}", 1L)
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//        );
-//        actions.andExpect(status().isCreated())
-//                .andExpect(jsonPath("contentId").value(response.getContentId()))
-//                .andExpect(jsonPath("title").value(response.getTitle()))
-//                .andExpect(jsonPath("content").value(response.getContent()))
-//                .andExpect(jsonPath("username").value(response.getUsername()))
-//                .andExpect(jsonPath("createdAt").value("2022-09-16T12:30:01.000000001"))
-//                .andExpect(jsonPath("userProfile").value(response.getUserProfile()))
-//                .andExpect(jsonPath("comment[0].commentId").value(1L))
-//                .andExpect(jsonPath("comment[0].contentId").value(1L))
-//                .andExpect(jsonPath("comment[0].content").value("댓글내용"))
-//                .andExpect(jsonPath("comment[0].username").value("댓글작성자"))
-//                .andExpect(jsonPath("comment[0].createdAt").value("2022-09-16T12:32:01.000000001"))
-//                .andExpect(jsonPath("comment[1].commentId").value(2L))
-//                .andExpect(jsonPath("comment[1].contentId").value(1L))
-//                .andExpect(jsonPath("comment[1].content").value("댓글내용2"))
-//                .andExpect(jsonPath("comment[1].username").value("댓글작성자2"))
-//                .andExpect(jsonPath("comment[1].createdAt").value("2022-09-16T12:42:01.000000001"))
-//                .andDo(document(
-//                        "get-content",
-//                        getResponsePreProcessor(),
-//                        pathParameters(
-//                                parameterWithName("contentId").description("게시글 아이디")
-//                        ),
-//                responseFields(
-//                        List.of(
-//                                fieldWithPath("contentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
-//                                fieldWithPath("title").type(JsonFieldType.STRING).description("게시글 제목"),
-//                                fieldWithPath("content").type(JsonFieldType.STRING).description("게시글 내용"),
-//                                fieldWithPath("username").type(JsonFieldType.STRING).description("게시글 작성자"),
-//                                fieldWithPath("createdAt").type(JsonFieldType.NUMBER).description("게시글 작성 시간"),
-//                                fieldWithPath("userProfile").type(JsonFieldType.STRING).description("작성자 프로필 사진"),
-//                                fieldWithPath("views").type(JsonFieldType.NUMBER).description("게시글 작성 시간"),
-//                                fieldWithPath("like").type(JsonFieldType.NUMBER).description("작성자 프로필 사진"),
-//                                fieldWithPath("comment[0].commentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
-//                                fieldWithPath("comment[0].content").type(JsonFieldType.NUMBER).description("댓글 내용"),
-//                                fieldWithPath("comment[0].username").type(JsonFieldType.NUMBER).description("댓글 작성자"),
-//                                fieldWithPath("comment[0].createdAt").type(JsonFieldType.NUMBER).description("댓글 작성 시간")
-//                        )
-//                )
-//                ));
-//    }
-//
+    @Test
+    public void getContent() throws Exception {
+
+        List<CommentDTO.comment> commentList = new ArrayList<>();
+        commentList.add(new CommentDTO.comment(1L, 1L, "댓글내용", "댓글작성자",
+                LocalDateTime.of(2022, 9, 16, 12, 32,1,1)));
+        commentList.add(new CommentDTO.comment(2L, 1L, "댓글내용2", "댓글작성자2",
+                LocalDateTime.of(2022, 9, 16, 12, 42,1,1)));
+
+        ContentDTO.response response = new ContentDTO.response(1L, "제목", "내용", "작성자",
+                LocalDateTime.of(2022, 9, 16, 12, 30,1,1),
+                "프로필 사진", 0, 0, commentList);
+
+        given(contentService.getContent(Mockito.anyLong())).willReturn(response);
+        ResultActions actions = mockMvc.perform(
+                get("/content/{contentId}", 1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isCreated())
+                .andExpect(jsonPath("contentId").value(response.getContentId()))
+                .andExpect(jsonPath("title").value(response.getTitle()))
+                .andExpect(jsonPath("content").value(response.getContent()))
+                .andExpect(jsonPath("username").value(response.getUsername()))
+                .andExpect(jsonPath("createdAt").value("2022-09-16T12:30:01.000000001"))
+                .andExpect(jsonPath("userProfile").value(response.getUserProfile()))
+                .andExpect(jsonPath("comment[0].commentId").value(1L))
+                .andExpect(jsonPath("comment[0].contentId").value(1L))
+                .andExpect(jsonPath("comment[0].content").value("댓글내용"))
+                .andExpect(jsonPath("comment[0].username").value("댓글작성자"))
+                .andExpect(jsonPath("comment[0].createdAt").value("2022-09-16T12:32:01.000000001"))
+                .andExpect(jsonPath("comment[1].commentId").value(2L))
+                .andExpect(jsonPath("comment[1].contentId").value(1L))
+                .andExpect(jsonPath("comment[1].content").value("댓글내용2"))
+                .andExpect(jsonPath("comment[1].username").value("댓글작성자2"))
+                .andExpect(jsonPath("comment[1].createdAt").value("2022-09-16T12:42:01.000000001"))
+                .andDo(document(
+                        "get-content",
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("contentId").description("게시글 아이디")
+                        ),
+                responseFields(
+                        List.of(
+                                fieldWithPath("contentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
+                                fieldWithPath("title").type(JsonFieldType.STRING).description("게시글 제목"),
+                                fieldWithPath("content").type(JsonFieldType.STRING).description("게시글 내용"),
+                                fieldWithPath("username").type(JsonFieldType.STRING).description("게시글 작성자"),
+                                fieldWithPath("createdAt").type(JsonFieldType.STRING).description("게시글 작성 시간"),
+                                fieldWithPath("userProfile").type(JsonFieldType.STRING).description("작성자 프로필 사진"),
+                                fieldWithPath("views").type(JsonFieldType.NUMBER).description("게시글 작성 시간"),
+                                fieldWithPath("like").type(JsonFieldType.NUMBER).description("작성자 프로필 사진"),
+                                fieldWithPath("comment[0].commentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
+                                fieldWithPath("comment[0].contentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
+                                fieldWithPath("comment[0].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                fieldWithPath("comment[0].username").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                fieldWithPath("comment[0].createdAt").type(JsonFieldType.STRING).description("댓글 작성 시간")
+                        )
+                )
+                ));
+    }
+
 //    @Test
 //    public void getContents() throws Exception{
 //        int page =1;

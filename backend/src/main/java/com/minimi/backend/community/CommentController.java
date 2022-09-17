@@ -19,7 +19,7 @@ public class CommentController {
     //patch comment
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable Long commentId,
-                                       @RequestBody DTO dto){
+                                       @RequestBody CommentDTO commentDTO){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete comment
