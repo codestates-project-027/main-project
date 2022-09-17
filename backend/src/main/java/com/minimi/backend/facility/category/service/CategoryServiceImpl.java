@@ -1,6 +1,8 @@
 package com.minimi.backend.facility.category.service;
 
+import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
+import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -15,13 +17,16 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryFacilityGetListener categoryFacilityGetListener;
+    private final CategoryRepository categoryRepository;
 
     @Override
-    public void postCategory(CategoryDto.request categoryDtoRequest) {
+    public Category postCategory(CategoryDto.request categoryDtoRequest) {
+        return null;
     }
 
     @Override
-    public void patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest) {
+    public Category patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest) {
+        return null;
     }
 
     @Override

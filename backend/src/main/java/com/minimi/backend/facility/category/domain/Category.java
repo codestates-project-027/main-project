@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.category.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -22,4 +23,10 @@ public class Category {
 
     @Column
     private String categoryStatus;
+
+    @Builder
+    public Category(String categoryTitle, String categoryStatus){
+        this.categoryTitle = categoryTitle;
+        this.categoryStatus = categoryStatus;
+    }
 }
