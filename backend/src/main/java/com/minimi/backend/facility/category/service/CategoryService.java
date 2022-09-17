@@ -9,7 +9,10 @@ import java.util.List;
 public interface CategoryService {
 
     void postCategory(CategoryDto.request categoryDtoRequest);
+
     void patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest);
+
     List<CategoryDto.responseList> getCategoryTitles();
+
     Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page);
 }

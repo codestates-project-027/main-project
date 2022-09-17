@@ -3,7 +3,6 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
@@ -14,12 +13,17 @@ import java.util.List;
 @Primary
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
+
+    private final CategoryFacilityGetListener categoryFacilityGetListener;
+
     @Override
     public void postCategory(CategoryDto.request categoryDtoRequest) {
     }
+
     @Override
     public void patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest) {
     }
+
     @Override
     public List<CategoryDto.responseList> getCategoryTitles() {
         return null;
@@ -27,6 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
+        categoryFacilityGetListener.getCategory(categoryTitle, page);
         return null;
     }
 }
