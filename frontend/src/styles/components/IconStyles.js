@@ -11,7 +11,7 @@ export const MainPageBtnIconStyle = styled.div`
     display: none;
   }
 
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1097px) {
     display: flex;
   }
 `;

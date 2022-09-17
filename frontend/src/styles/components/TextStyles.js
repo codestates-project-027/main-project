@@ -5,7 +5,7 @@ export const MainPageBtnTextStyle = styled.div`
     display: flex;
   }
 
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1097px) {
     display: none;
   }
 `;

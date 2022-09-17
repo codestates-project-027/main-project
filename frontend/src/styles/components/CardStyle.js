@@ -79,6 +79,7 @@ export const FCardFlexStyle = styled(FCardStyle)`
   @media screen and (max-width: 790px) {
     display: flex;
     width: 320px;
+    margin-left: -25px;
     background-color: red;
   }
 `;

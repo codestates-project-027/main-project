@@ -76,10 +76,12 @@ export const FacilitiesPageGlobal = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 40%;
+    width: 400px;
     margin: 15px;
+    margin-left: 85px;
     @media screen and (max-width: 790px) {
-      width: 55%;
+      margin-left: 50px;
+      width: 400px;
     }
     .title {
       margin-left: 10px;

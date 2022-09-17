@@ -11,6 +11,8 @@ import {
 } from '../styles/components/ComponentGroupStyle';
 import { MainPageBtnIconStyle } from '../styles/components/IconStyles';
 import { MainPageBtnTextStyle } from '../styles/components/TextStyles';
+
+//icons
 import { IoIosFitness } from 'react-icons/io';
 import { GrYoga } from 'react-icons/gr';
 import { MdSportsTennis } from 'react-icons/md';
