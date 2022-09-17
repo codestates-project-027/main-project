@@ -2,9 +2,14 @@ package com.minimi.backend.community.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class CommentDTO {
     @Getter
     @AllArgsConstructor
@@ -38,6 +43,6 @@ public class CommentDTO {
     @Getter
     @AllArgsConstructor
     public static class patch{
-        private String contents;
+        private String content;
     }
 }

@@ -69,7 +69,7 @@ public class CommentControllerTest {
     @Test
     public void patchComment() throws Exception {
         CommentDTO.patch commentPatch = new CommentDTO.patch(
-                "내용 수정");
+                "댓글 수정");
         String content = gson.toJson(commentPatch);
         ResultActions actions = mockMvc.perform(
                 patch("/comment/{commentId}", 1L)
@@ -86,7 +86,7 @@ public class CommentControllerTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("contents").description("댓글 내용")
+                                        fieldWithPath("content").description("댓글 수정 ")
                                 ))
                 ));
     }

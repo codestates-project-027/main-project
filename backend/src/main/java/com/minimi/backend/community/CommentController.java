@@ -1,7 +1,6 @@
 package com.minimi.backend.community;
 
 import com.minimi.backend.community.domain.CommentDTO;
-import com.minimi.backend.community.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class CommentController {
     //patch comment
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable Long commentId,
-                                      @RequestBody CommentDTO.patch patch){
+                                       @RequestBody DTO dto){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete comment

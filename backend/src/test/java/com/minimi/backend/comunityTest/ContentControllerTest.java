@@ -79,7 +79,6 @@ public class ContentControllerTest implements helper {
     public void patchContent() throws Exception {
         ContentDTO.patch patch = new ContentDTO.patch(
                 "제목", "내용");
-
         String content = gson.toJson(patch);
         ResultActions actions = mockMvc.perform(
                 patch("/content/{contentId}", 1L)
