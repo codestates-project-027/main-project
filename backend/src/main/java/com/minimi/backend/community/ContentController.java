@@ -42,7 +42,7 @@ public class ContentController {
     //patch Content
     @PatchMapping("/{contentId}")
     public ResponseEntity patchContent(@PathVariable Long contentId,
-                                        @RequestBody ContentDTO.request contentRequest){
+                                        @RequestBody ContentDTO.patch contentPatch){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete Content

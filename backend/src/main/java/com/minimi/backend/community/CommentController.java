@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 public class CommentController {
-    private final CommentService commentService;
+
     //post comment
     @PostMapping("")
     public ResponseEntity postComment(@RequestBody CommentDTO.request request){
@@ -19,13 +19,13 @@ public class CommentController {
     }
     //patch comment
     @PatchMapping("/{commentId}")
-    public ResponseEntity patchComment(@PathVariable String commentId,
+    public ResponseEntity patchComment(@PathVariable Long commentId,
                                       @RequestBody CommentDTO.patch patch){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete comment
     @DeleteMapping("/{commentId}")
-    public ResponseEntity deleteComment(@PathVariable String commentId) {
+    public ResponseEntity deleteComment(@PathVariable Long commentId) {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

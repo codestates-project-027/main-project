@@ -77,10 +77,10 @@ public class ContentControllerTest implements helper {
 
     @Test
     public void patchContent() throws Exception {
-        ContentDTO.request request = new ContentDTO.request(
-                "제목", "내용", "작성자");
+        ContentDTO.patch patch = new ContentDTO.patch(
+                "제목", "내용");
 
-        String content = gson.toJson(request);
+        String content = gson.toJson(patch);
         ResultActions actions = mockMvc.perform(
                 patch("/content/{contentId}", 1L)
                         .accept(MediaType.APPLICATION_JSON)
@@ -97,8 +97,7 @@ public class ContentControllerTest implements helper {
                         requestFields(
                                 List.of(
                                         fieldWithPath("title").description("제목 수정"),
-                                        fieldWithPath("content").description("내용 수정"),
-                                        fieldWithPath("username").description("작성자")
+                                        fieldWithPath("content").description("내용 수정")
                                 ))
                 ));
     }

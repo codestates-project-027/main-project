@@ -1,6 +1,6 @@
 package com.minimi.backend.community.domain;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +9,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class LikeDTO {
-    private Long likeId;
+    private Long contentId;
     private String username;
-    private Boolean content;
+    private Boolean like;
+    @AllArgsConstructor
+    @Getter
+    public static class request {
+
+        private Long contentId;
+        private String username;
+        private Boolean like;
+
+    }
 }
