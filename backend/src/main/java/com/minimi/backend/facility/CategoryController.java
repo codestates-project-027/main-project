@@ -30,11 +30,11 @@ public class CategoryController {
     }
     //patch category
     @PatchMapping("/{categoryTitle}")
-    public ResponseEntity<CategoryDto.response> patchCategory(
+    public ResponseEntity patchCategory(
             @PathVariable String categoryTitle,
             @RequestBody CategoryDto.request categoryDtoRequest){
-
-        return new ResponseEntity(categoryService.patchCategory(categoryTitle, categoryDtoRequest), HttpStatus.RESET_CONTENT);
+        categoryService.patchCategory(categoryTitle, categoryDtoRequest);
+        return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
 
 

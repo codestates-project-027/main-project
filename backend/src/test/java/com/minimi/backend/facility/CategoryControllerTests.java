@@ -81,8 +81,6 @@ public class CategoryControllerTests {
                         .content(content)
         );
         actions.andExpect(status().isResetContent())
-                .andExpect(jsonPath("categoryTitle").value(categoryTitle))
-                .andExpect(jsonPath("categoryStatus").value("비활성"))
                 .andDo(document(
                         "patch-category",
                         getRequestPreProcessor(),
@@ -94,11 +92,6 @@ public class CategoryControllerTests {
                                 List.of(
                                         fieldWithPath("categoryTitle").description("변경할 카테고리 이름"),
                                         fieldWithPath("categoryStatus").description("변경할 카테고리 상태")
-                                )),
-                        responseFields(
-                                List.of(
-                                        fieldWithPath("categoryTitle").type(JsonFieldType.STRING).description("변경된 카테고리 이름"),
-                                        fieldWithPath("categoryStatus").type(JsonFieldType.STRING).description("변경된 카테고리 상태")
                                 ))
                 ));
     }
