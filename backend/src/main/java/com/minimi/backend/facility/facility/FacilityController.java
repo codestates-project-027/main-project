@@ -1,17 +1,11 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.facility;
 
 
-import com.minimi.backend.facility.domain.Facility;
-import com.minimi.backend.facility.domain.FacilityDto;
-import com.minimi.backend.facility.service.FacilityService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/facility")

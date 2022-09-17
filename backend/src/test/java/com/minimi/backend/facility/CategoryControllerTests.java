@@ -2,10 +2,10 @@ package com.minimi.backend.facility;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.domain.CategoryDto;
-import com.minimi.backend.facility.domain.Facility;
-import com.minimi.backend.facility.domain.FacilityDto;
-import com.minimi.backend.facility.service.CategoryService;
+import com.minimi.backend.facility.category.CategoryController;
+import com.minimi.backend.facility.category.CategoryDto;
+import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.category.CategoryService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +81,6 @@ public class CategoryControllerTests {
                         .content(content)
         );
         actions.andExpect(status().isResetContent())
-                .andExpect(jsonPath("categoryTitle").value(categoryTitle))
-                .andExpect(jsonPath("categoryStatus").value("비활성"))
                 .andDo(document(
                         "patch-category",
                         getRequestPreProcessor(),
@@ -94,11 +92,6 @@ public class CategoryControllerTests {
                                 List.of(
                                         fieldWithPath("categoryTitle").description("변경할 카테고리 이름"),
                                         fieldWithPath("categoryStatus").description("변경할 카테고리 상태")
-                                )),
-                        responseFields(
-                                List.of(
-                                        fieldWithPath("categoryTitle").type(JsonFieldType.STRING).description("변경된 카테고리 이름"),
-                                        fieldWithPath("categoryStatus").type(JsonFieldType.STRING).description("변경된 카테고리 상태")
                                 ))
                 ));
     }

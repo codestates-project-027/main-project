@@ -2,9 +2,9 @@ package com.minimi.backend.facility;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.domain.ReviewDto;
-import com.minimi.backend.facility.service.CategoryService;
-import com.minimi.backend.facility.service.ReviewService;
+import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.ReviewController;
+import com.minimi.backend.facility.review.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -18,8 +18,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.List;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
-import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;

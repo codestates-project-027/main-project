@@ -2,9 +2,9 @@ package com.minimi.backend.facility;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.domain.BookmarkDto;
-import com.minimi.backend.facility.service.BookmarkService;
-import com.minimi.backend.facility.service.CategoryService;
+import com.minimi.backend.facility.bookmark.BookmarkController;
+import com.minimi.backend.facility.bookmark.BookmarkDto;
+import com.minimi.backend.facility.bookmark.BookmarkService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -18,8 +18,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.List;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
-import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;

@@ -1,13 +1,8 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.category;
 
 
-import com.minimi.backend.facility.domain.Category;
-import com.minimi.backend.facility.domain.CategoryDto;
-import com.minimi.backend.facility.domain.Facility;
-import com.minimi.backend.facility.domain.FacilityDto;
-import com.minimi.backend.facility.service.CategoryService;
+import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +25,11 @@ public class CategoryController {
     }
     //patch category
     @PatchMapping("/{categoryTitle}")
-    public ResponseEntity<CategoryDto.response> patchCategory(
+    public ResponseEntity patchCategory(
             @PathVariable String categoryTitle,
             @RequestBody CategoryDto.request categoryDtoRequest){
-
-        return new ResponseEntity(categoryService.patchCategory(categoryTitle, categoryDtoRequest), HttpStatus.RESET_CONTENT);
+        categoryService.patchCategory(categoryTitle, categoryDtoRequest);
+        return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
 
 
