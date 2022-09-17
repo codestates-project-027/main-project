@@ -44,13 +44,6 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
 	//gson
 	implementation 'com.google.code.gson:gson'
-	//mockito, hamcrest, junit5
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-	testImplementation 'org.hamcrest:hamcrest-library:2.2'
-	testImplementation 'org.mockito:mockito-core:3.11.2'
-	testImplementation 'org.mockito:mockito-junit-jupiter:3.11.2'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-
 }
 
 tasks.named('test') {
