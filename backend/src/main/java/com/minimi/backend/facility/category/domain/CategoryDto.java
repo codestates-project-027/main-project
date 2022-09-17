@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.category;
+package com.minimi.backend.facility.category.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

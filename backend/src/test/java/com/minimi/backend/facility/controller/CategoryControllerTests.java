@@ -1,11 +1,11 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.category.CategoryController;
-import com.minimi.backend.facility.category.CategoryDto;
+import com.minimi.backend.facility.category.controller.CategoryController;
+import com.minimi.backend.facility.category.domain.CategoryDto;
+import com.minimi.backend.facility.category.service.CategoryService;
 import com.minimi.backend.facility.facility.FacilityDto;
-import com.minimi.backend.facility.category.CategoryService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +70,8 @@ public class CategoryControllerTests {
     @Test
     public void patchCategory() throws Exception {
         String categoryTitle = "헬스장";
-        CategoryDto.response categoryRes = new CategoryDto.response(categoryTitle, "비활성");
         CategoryDto.request categoryReq = new CategoryDto.request(categoryTitle, "비활성");
         String content = gson.toJson(categoryReq);
-        given(categoryService.patchCategory(Mockito.anyString(),Mockito.any(CategoryDto.request.class))).willReturn(categoryRes);
         ResultActions actions = mockMvc.perform(
                 patch("/category/{categoryTitle}", categoryTitle)
                         .accept(MediaType.APPLICATION_JSON)

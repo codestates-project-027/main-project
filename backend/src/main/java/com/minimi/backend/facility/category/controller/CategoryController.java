@@ -1,8 +1,12 @@
-package com.minimi.backend.facility.category;
+package com.minimi.backend.facility.category.controller;
 
 
+import com.minimi.backend.facility.category.domain.CategoryDto;
+import com.minimi.backend.facility.category.service.CategoryService;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +24,7 @@ public class CategoryController {
     //post category
     @PostMapping("")
     public ResponseEntity postCategory(@RequestBody CategoryDto.request categoryDtoRequest){
-
+        categoryService.postCategory(categoryDtoRequest);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     //patch category
