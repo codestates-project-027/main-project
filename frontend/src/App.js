@@ -1,29 +1,35 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
-
-import Navbar from './LandingPage/Navbar';
-
-import LandingPage from './LandingPage/LandingPage';
-import LoginPage from './LoginPage/LoginPage';
+import Test from './Test';
 
 // API Call
-import api from './api/api.js';
-import FacilityDetailPage from './FacilityDetailPage/FacilityDetailPage';
-import AppNavBar from './LandingPage/AppNavBar';
-import FacilityListPage from './FacilityListPage/FacilityListPage';
+import api from './api/api-toEdit';
+
+//GlobalStyles
+import GlobalStyle from './styles/globalStyle/GlobalStyle';
+
+//Layouts
+import {
+  LayoutMain,
+  LayoutCurrentMenu,
+  LayoutCurrentMenuSearch,
+} from './layouts/LayoutTopbars';
+import LayoutNoTopbar from './layouts/LayoutNoTopbar';
+
+//Pages
+import LoginPage from './pages/Login';
+import SignUpPage from './pages/SignUp';
+import MainPage from './pages/Main';
+import FacilityPage from './pages/Facility';
+import FacilitiesPage from './pages/Facilities';
 
 function App() {
   const [test, setTest] = useState('');
 
   const getData = () => {
     api.Test.get().then((data) => {
-      // if (data.status !== 200) {
-      //   alert(data.status);
-      // } else {
       setTest(data);
-      // }
     });
   };
 
@@ -37,21 +43,25 @@ function App() {
     <>
       <div className="App">
         <GlobalStyle>
-          <AppNavBarWrapper>
-            <AppNavBar />
-          </AppNavBarWrapper>
-          <RoutesWrapper>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
+          <Routes>
+            <Route element={<LayoutNoTopbar />}>
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/facility" element={<FacilityDetailPage />} />
-              <Route path="/facilityList" element={<FacilityListPage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Routes>
-          </RoutesWrapper>
-          <NavbarWrapper>
-            <Navbar />
-          </NavbarWrapper>
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/test" element={<Test />} /> {/*삭제*/}
+            </Route>
+
+            <Route element={<LayoutMain />}>
+              <Route path="/" element={<MainPage />} />
+            </Route>
+
+            <Route element={<LayoutCurrentMenu />}>
+              <Route path="/facility" element={<FacilityPage />} />
+            </Route>
+
+            <Route element={<LayoutCurrentMenuSearch />}>
+              <Route path="/facilities" element={<FacilitiesPage />} />
+            </Route>
+          </Routes>
         </GlobalStyle>
       </div>
     </>
@@ -59,49 +69,3 @@ function App() {
 }
 
 export default App;
-
-const GlobalStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: 900px) {
-    //pad
-  }
-
-  @media screen and (max-width: 400px) {
-    //mobile
-  }
-`;
-
-const RoutesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 92vh;
-  width: 100%;
-  /* background-color: var(--main-yellow-color); */
-`;
-
-export const NavbarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 8vh;
-  width: 100%;
-  background-color: var(--main-yellow);
-`;
-
-const AppNavBarWrapper = styled(NavbarWrapper)`
-  display: none;
-  justify-content: center;
-  align-items: center;
-  height: 8vh;
-  width: 100%;
-  background-color: var(--main-yellow);
-  @media screen and (max-width: 790px) {
-    display: flex;
-  }
-`;
