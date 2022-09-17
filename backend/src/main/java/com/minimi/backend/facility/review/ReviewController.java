@@ -1,8 +1,6 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.review;
 
 
-import com.minimi.backend.facility.domain.ReviewDto;
-import com.minimi.backend.facility.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

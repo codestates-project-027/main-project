@@ -1,4 +1,6 @@
-package com.minimi.backend.facility.domain;
+package com.minimi.backend.facility.facility;
+
+import com.minimi.backend.facility.review.Review;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.minimi.backend.facility.domain;
+package com.minimi.backend.facility.facility;
 
+import com.minimi.backend.facility.review.ReviewDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

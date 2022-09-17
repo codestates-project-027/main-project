@@ -1,8 +1,6 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.bookmark;
 
 
-import com.minimi.backend.facility.domain.BookmarkDto;
-import com.minimi.backend.facility.service.BookmarkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.domain;
+package com.minimi.backend.facility.category;
 
 public class Category {
     private Long categoryId;

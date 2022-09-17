@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.service;
+package com.minimi.backend.facility.bookmark;
 
 
 import lombok.RequiredArgsConstructor;

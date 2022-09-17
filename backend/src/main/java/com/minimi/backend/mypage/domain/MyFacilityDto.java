@@ -1,6 +1,5 @@
 package com.minimi.backend.mypage.domain;
 
-import com.minimi.backend.facility.domain.Facility;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

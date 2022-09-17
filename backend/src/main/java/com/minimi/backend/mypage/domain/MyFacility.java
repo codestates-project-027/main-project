@@ -1,7 +1,7 @@
 package com.minimi.backend.mypage.domain;
 
 import com.minimi.backend.auth.domain.Auth;
-import com.minimi.backend.facility.domain.Bookmark;
+import com.minimi.backend.facility.bookmark.Bookmark;
 
 import java.util.List;
 

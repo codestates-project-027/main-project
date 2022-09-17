@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.domain;
+package com.minimi.backend.facility.bookmark;
 
 import com.minimi.backend.auth.domain.Auth;
 import lombok.AllArgsConstructor;
