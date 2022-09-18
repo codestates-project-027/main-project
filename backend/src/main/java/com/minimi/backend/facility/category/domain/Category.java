@@ -19,13 +19,17 @@ public class Category {
     private Long categoryId;
 
     @Column
+    private String categoryCode;
+
+    @Column
     private String categoryTitle;
 
     @Column
     private String categoryStatus;
 
     @Builder
-    public Category(String categoryTitle, String categoryStatus){
+    public Category(String categoryTitle, String categoryStatus, String categoryCode){
+        this.categoryCode = categoryCode;
         this.categoryTitle = categoryTitle;
         this.categoryStatus = categoryStatus;
     }

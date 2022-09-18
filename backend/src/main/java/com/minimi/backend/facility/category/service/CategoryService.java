@@ -11,9 +11,9 @@ public interface CategoryService {
 
     Category postCategory(CategoryDto.request categoryDtoRequest);
 
-    Category patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest);
+    Category patchCategory(String categoryCode, CategoryDto.request categoryDtoRequest);
 
-    List<CategoryDto.responseList> getCategoryTitles();
+    List<CategoryDto.response> getCategoryTitles();
 
     Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page);
 }

@@ -25,12 +25,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category patchCategory(String categoryTitle, CategoryDto.request categoryDtoRequest) {
+    public Category patchCategory(String categoryCode, CategoryDto.request categoryDtoRequest) {
         return null;
     }
 
     @Override
-    public List<CategoryDto.responseList> getCategoryTitles() {
+    public List<CategoryDto.response> getCategoryTitles() {
         return null;
     }
 

@@ -28,18 +28,18 @@ public class CategoryController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
     //patch category
-    @PatchMapping("/{categoryTitle}")
+    @PatchMapping("/{categoryCode}")
     public ResponseEntity patchCategory(
-            @PathVariable String categoryTitle,
+            @PathVariable String categoryCode,
             @RequestBody CategoryDto.request categoryDtoRequest){
-        categoryService.patchCategory(categoryTitle, categoryDtoRequest);
+        categoryService.patchCategory(categoryCode, categoryDtoRequest);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
 
 
     //getall categorys
     @GetMapping("")
-    public ResponseEntity<List<CategoryDto.responseList>> getCategoryTitles(){
+    public ResponseEntity<List<CategoryDto.response>> getCategoryTitles(){
         return new ResponseEntity<>(categoryService.getCategoryTitles(), HttpStatus.OK);
     }
 

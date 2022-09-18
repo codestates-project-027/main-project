@@ -15,13 +15,8 @@ public class CategoryDto {
     @AllArgsConstructor
     @Getter
     public static class response{
+        private String categoryCode;
         private String categoryTitle;
         private String categoryStatus;
-    }
-
-    @AllArgsConstructor
-    @Getter
-    public static class responseList{
-        private String categoryTitle;
     }
 }
