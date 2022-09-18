@@ -5,14 +5,12 @@ import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Primary
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 

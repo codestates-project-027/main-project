@@ -35,8 +35,8 @@ public class CategoryServiceTests {
         private CategoryDto.request CategoryDtoRequest;
         @BeforeEach
         public void setup(){
-            Category category = new Category(1L, "220901","헬스","활성");
-            CategoryDto.request CategoryDtoRequest = new CategoryDto.request("헬스","활성");
+            category = new Category(1L, "220901","헬스","활성");
+            CategoryDtoRequest = new CategoryDto.request("헬스","활성");
         }
 
         @Nested
@@ -65,6 +65,19 @@ public class CategoryServiceTests {
                 assertThat(result, is(nullValue()));
             }
 
+            @Test
+            @DisplayName("fail postCategory test 2 -> existsCategoryTitle")
+            public void failPostCategoryExistsTitle() throws Exception {
+                given(categoryRepository.save(Mockito.any(Category.class)))
+                        .willThrow(new RuntimeException("exists CategoryTitle"));
+
+                Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                    categoryService.postCategory(CategoryDtoRequest);
+                });
+
+                assertThat(exception.getMessage(),equalTo("exists CategoryTitle"));
+            }
+
         }
 
     }
@@ -78,9 +91,9 @@ public class CategoryServiceTests {
 
         @BeforeEach
         public void setup(){
-            Category category = new Category(1L, "220901","헬스","활성");
-            CategoryDto.request CategoryDtoRequest = new CategoryDto.request("헬스","비활성");
-            String categoryCode = "220901";
+            category = new Category(1L, "220901","헬스","활성");
+            CategoryDtoRequest = new CategoryDto.request("헬스","비활성");
+            categoryCode = "220901";
         }
         @Nested
         @DisplayName("success patchCategory case")
@@ -102,17 +115,22 @@ public class CategoryServiceTests {
         @DisplayName("fail patchCategory case")
         class failPatchCategoryCase{
             @Test
-            @DisplayName("fail patchCategory test 1 -> null")
-            public void failPatchCategoryNull() throws Exception {
-                Category result = categoryService.patchCategory(categoryCode, CategoryDtoRequest);
+            @DisplayName("fail patchCategory test 1 -> exists CategoryTitle")
+            public void failPatchCategoryExistsCategoryTitle() throws Exception {
+                given(categoryRepository.findByCategoryCode(Mockito.anyString())).willReturn(Optional.of(category));
+                given(categoryRepository.save(Mockito.any(Category.class)))
+                        .willThrow(new RuntimeException("exists CategoryTitle"));
 
-                assertThat(result, is(nullValue()));
+                RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+                    categoryService.patchCategory(categoryCode, CategoryDtoRequest);
+                });
+                assertThat(exception.getMessage(), equalTo("exists CategoryTitle"));
             }
             @Test
             @DisplayName("fail patchCategory test 2 -> noContent")
             public void failPatchCategoryNoContent() throws Exception {
-                lenient().when(categoryRepository.findByCategoryCode("undefinedCode"))
-                        .thenThrow(new NullPointerException("noContent CategoryCode"));
+                given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                        .willThrow(new NullPointerException("noContent CategoryCode"));
 
                 NullPointerException exception = Assertions.assertThrows(NullPointerException.class, () -> {
                     categoryService.patchCategory(categoryCode, CategoryDtoRequest);

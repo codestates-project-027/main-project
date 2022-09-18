@@ -1,9 +1,6 @@
 package com.minimi.backend.facility.category.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -12,16 +9,17 @@ import javax.persistence.*;
 @Setter
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long categoryId;
 
-    @Column
+    @Column(unique = true)
     private String categoryCode;
 
-    @Column
+    @Column(unique = true)
     private String categoryTitle;
 
     @Column
