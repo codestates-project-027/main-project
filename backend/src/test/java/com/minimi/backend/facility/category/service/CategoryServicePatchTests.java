@@ -69,6 +69,9 @@ public class CategoryServicePatchTests {
             RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
                 categoryService.patchCategory(categoryCode, CategoryDtoRequest);
             });
+
+            then(categoryRepository).should(times(1)).save(any());
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
             assertThat(exception.getMessage(), equalTo("exists CategoryTitle"));
         }
 
@@ -81,6 +84,8 @@ public class CategoryServicePatchTests {
             NullPointerException exception = Assertions.assertThrows(NullPointerException.class, () -> {
                 categoryService.patchCategory(categoryCode, CategoryDtoRequest);
             });
+
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
             assertThat(exception.getMessage(),equalTo("noContent CategoryCode"));
         }
     }

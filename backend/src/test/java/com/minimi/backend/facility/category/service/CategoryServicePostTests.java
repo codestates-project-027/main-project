@@ -77,6 +77,7 @@ public class CategoryServicePostTests {
                 categoryService.postCategory(CategoryDtoRequest);
             });
 
+            then(categoryRepository).should(times(1)).save(any());
             assertThat(exception.getMessage(), equalTo("exists CategoryTitle"));
         }
     }

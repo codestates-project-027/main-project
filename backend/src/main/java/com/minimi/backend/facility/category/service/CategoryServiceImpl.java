@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
@@ -16,6 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryFacilityGetListener categoryFacilityGetListener;
     private final CategoryRepository categoryRepository;
+    private final CategoryMapper categoryMapper;
 
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
