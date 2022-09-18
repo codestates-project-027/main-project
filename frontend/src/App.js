@@ -7,6 +7,7 @@ import Navbar from './LandingPage/Navbar';
 
 import LandingPage from './LandingPage/LandingPage';
 import LoginPage from './LoginPage/LoginPage';
+import SignupPage from './SignupPage/SignupPage';
 
 // API Call
 import api from './api/api.js';
@@ -47,6 +48,7 @@ function App() {
               <Route path="/facility" element={<FacilityDetailPage />} />
               <Route path="/facilityList" element={<FacilityListPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
             </Routes>
           </RoutesWrapper>
           <NavbarWrapper>
