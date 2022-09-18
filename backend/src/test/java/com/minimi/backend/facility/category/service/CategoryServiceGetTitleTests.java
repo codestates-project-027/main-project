@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
@@ -55,7 +55,7 @@ public class CategoryServiceGetTitleTests {
     }
 
     @Nested
-    @DisplayName("success patchCategory case")
+    @DisplayName("success getTitleCategory case")
     class successGetTitleCategoryCase {
 
         @Test
@@ -69,6 +69,19 @@ public class CategoryServiceGetTitleTests {
             then(categoryRepository).should(times(1)).findAll();
             then(categoryMapper).should(times(1)).categoryListToCategoryDtoResponseList(anyList());
             assertThat(result, equalTo(categoryDtoList));
+        }
+    }
+
+    @Nested
+    @DisplayName("fail getTitleCategory case")
+    class failGetTitleCategoryCase {
+
+        @Test
+        @DisplayName("fail getTitleCategory test 1 -> null")
+        public void failGetTitleCategory() throws Exception {
+            List<CategoryDto.response> result = categoryService.getCategoryTitles();
+
+            assertThat(result, is(nullValue()));
         }
     }
 }
