@@ -32,20 +32,26 @@ public class CategoryServiceTests {
 
     @InjectMocks
     private CategoryServiceImpl categoryService;
+//    @Test
+//    @DisplayName("postCategory Test")
+//    public void postCategory() throws Exception {
+//        Category category = Category.builder()
+//                .categoryTitle("헬스")
+//                .categoryStatus("활성")
+//                .build();
+//        given(categoryRepository.save(category)).willReturn(category);
+//
+//        CategoryDto.request categoryRequest = new CategoryDto.request("헬스","활성");
+//        Category result = categoryService.postCategory(categoryRequest);
+//
+//        then(categoryRepository).should(times(1)).save(any());
+//        assertThat(result, equalTo(category));
+//
+//    }
+
     @Test
-    @DisplayName("postCategory Test")
-    public void postCategory() throws Exception {
-        Category category = Category.builder()
-                .categoryTitle("헬스")
-                .categoryStatus("활성")
-                .build();
-        given(categoryRepository.save(category)).willReturn(category);
-
-        CategoryDto.request categoryRequest = new CategoryDto.request("헬스","활성");
-        Category result = categoryService.postCategory(categoryRequest);
-
-        then(categoryRepository).should(times(1)).save(any());
-        assertThat(result, equalTo(category));
+    @DisplayName("patchCategory Test")
+    public void patchCategory() throws Exception{
 
     }
 }
