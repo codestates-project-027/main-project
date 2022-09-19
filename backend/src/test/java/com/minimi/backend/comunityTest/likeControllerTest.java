@@ -38,7 +38,7 @@ public class likeControllerTest {
     private LikesService likesService;
 
     @Test
-    public void postLike() throws Exception{
+    public void postLikes() throws Exception{
         LikesDTO.request request = new LikesDTO.request(1L,"닉네임", Boolean.TRUE);
         String content = gson.toJson(request);
         ResultActions actions = mockMvc.perform(
@@ -53,7 +53,7 @@ public class likeControllerTest {
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("contentId").description("게시글 아이디"),
+                                        fieldWithPath("contentsId").description("게시글 아이디"),
                                         fieldWithPath("username").description("유저 닉네임"),
                                         fieldWithPath("likes").description("좋아요")
                                 ))

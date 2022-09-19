@@ -9,14 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class LikesDTO {
-    private Long contentId;
+    private Long contentsId;
     private String username;
     private Boolean likes;
     @AllArgsConstructor
     @Getter
     public static class request {
 
-        private Long contentId;
+        private Long contentsId;
         private String username;
         private Boolean likes;
 

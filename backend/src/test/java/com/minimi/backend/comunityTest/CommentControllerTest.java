@@ -55,7 +55,7 @@ public class CommentControllerTest {
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("contentId").description("게시글 아이디"),
+                                        fieldWithPath("contentsId").description("게시글 아이디"),
                                         fieldWithPath("username").description("댓글 작성자"),
                                         fieldWithPath("userProfile").description("프로필 사진"),
                                         fieldWithPath("contents").description("댓글 내용")
@@ -83,7 +83,7 @@ public class CommentControllerTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("content").description("댓글 수정 ")
+                                        fieldWithPath("contents").description("댓글 수정 ")
                                 ))
                 ));
     }
