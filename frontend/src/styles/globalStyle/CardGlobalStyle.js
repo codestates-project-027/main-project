@@ -48,3 +48,10 @@ export const MCardFlexGlobal = styled(MCardGlobal)`
     display: flex;
   }
 `;
+
+export const AlarmCardGlobal = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;

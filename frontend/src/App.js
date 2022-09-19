@@ -24,6 +24,7 @@ import MainPage from './pages/Main';
 import FacilityPage from './pages/Facility';
 import FacilitiesPage from './pages/Facilities';
 import MyPage from './pages/MyPage';
+import AlarmsPage from './pages/Alarms';
 
 function App() {
   const [test, setTest] = useState('');
@@ -58,6 +59,7 @@ function App() {
             <Route element={<LayoutCurrentMenu />}>
               <Route path="/facility" element={<FacilityPage />} />
               <Route path="/mypage" element={<MyPage />} />
+              <Route path="/alarms" element={<AlarmsPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

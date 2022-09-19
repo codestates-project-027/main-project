@@ -102,7 +102,7 @@ export const FDescCardStyle = styled.div`
   }
 `;
 
-export const ACardStyle = styled.div`
+export const AttendanceCardStyle = styled.div`
   display: flex;
   background-color: bisque;
   .wrapper {
@@ -126,5 +126,26 @@ export const ACardStyle = styled.div`
     width: 25px;
     height: 25px;
     border: 1px solid lightpink;
+  }
+`;
+
+export const AlarmCardStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  height: 70px;
+  background-color: var(--main-navy);
+  color: red;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  .icon--head--wrapper {
+    display: flex;
+    color: wheat;
+    padding: ${PADDING.BASIC};
+  }
+  .date {
+    color: wheat;
+    padding: ${PADDING.BASIC};
   }
 `;

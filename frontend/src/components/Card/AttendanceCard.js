@@ -1,4 +1,4 @@
-import { ACardStyle } from '../../styles/components/CardStyle';
+import { AttendanceCardStyle } from '../../styles/components/CardStyle';
 const AttendanceCard = () => {
   const data = [
     true,
@@ -41,7 +41,7 @@ const AttendanceCard = () => {
 
   return (
     <>
-      <ACardStyle>
+      <AttendanceCardStyle>
         <div className="wrapper">
           <div className="sub--wrapper">
             {date.map((el, idx) => {
@@ -69,7 +69,7 @@ const AttendanceCard = () => {
             })}
           </div>
         </div>
-      </ACardStyle>
+      </AttendanceCardStyle>
     </>
   );
 };

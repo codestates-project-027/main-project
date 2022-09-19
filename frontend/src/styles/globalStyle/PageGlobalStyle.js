@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import { PADDING } from '../../constants/style';
 
-export const MainPageGlobal = styled.div`
+export const PageGlobalBase = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const MainPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
   width: 100vw;
 `;
 
-export const LoginPageGlobal = styled.div`
-  display: flex;
-  flex-direction: column;
+export const LoginPageGlobal = styled(PageGlobalBase)`
   .logo {
     width: 80px;
   }
@@ -31,9 +32,7 @@ export const LoginPageGlobal = styled.div`
   }
 `;
 
-export const SignUpPageGlobal = styled.div`
-  display: flex;
-  flex-direction: column;
+export const SignUpPageGlobal = styled(PageGlobalBase)`
   .logo {
     width: 80px;
   }
@@ -66,11 +65,9 @@ export const SignUpPageGlobal = styled.div`
   }
 `;
 
-export const FacilitiesPageGlobal = styled.div`
-  display: flex;
+export const FacilitiesPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 100vw;
 
   .tags--wrapper {
@@ -90,9 +87,7 @@ export const FacilitiesPageGlobal = styled.div`
   }
 `;
 
-export const FacilityPageGlobal = styled.div`
-  display: flex;
-  flex-direction: column;
+export const FacilityPageGlobal = styled(PageGlobalBase)`
   background-color: bisque;
   .img--wrapper {
     display: flex;
@@ -126,9 +121,7 @@ export const FacilityPageGlobal = styled.div`
   }
 `;
 
-export const MyPageGlobal = styled.div`
-  display: flex;
-  flex-direction: column;
+export const MyPageGlobal = styled(PageGlobalBase)`
   background-color: aliceblue;
   padding: ${PADDING.BASIC};
   .title {
@@ -167,5 +160,19 @@ export const MyPageGlobal = styled.div`
     .rate {
       margin-right: 20px;
     }
+  }
+`;
+
+export const AlarmsPageGlobal = styled(PageGlobalBase)`
+  .title {
+    display: flex;
+    font-size: 1.5rem;
+  }
+  .card--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
   }
 `;
