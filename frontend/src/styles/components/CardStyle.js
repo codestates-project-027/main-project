@@ -149,3 +149,13 @@ export const AlarmCardStyle = styled.div`
     padding: ${PADDING.BASIC};
   }
 `;
+
+export const LocationViewCardStyle = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 20px;
+  min-width: 350px;
+  min-height: 150px;
+  background-color: lightgoldenrodyellow;
+`;

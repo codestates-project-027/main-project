@@ -25,6 +25,7 @@ import FacilityPage from './pages/Facility';
 import FacilitiesPage from './pages/Facilities';
 import MyPage from './pages/MyPage';
 import AlarmsPage from './pages/Alarms';
+import LocationPage from './pages/Location';
 
 function App() {
   const [test, setTest] = useState('');
@@ -60,6 +61,7 @@ function App() {
               <Route path="/facility" element={<FacilityPage />} />
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/alarms" element={<AlarmsPage />} />
+              <Route path="/location" element={<LocationPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

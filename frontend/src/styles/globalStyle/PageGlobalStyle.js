@@ -4,6 +4,7 @@ import { PADDING } from '../../constants/style';
 export const PageGlobalBase = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 30px;
 `;
 
 export const MainPageGlobal = styled(PageGlobalBase)`
