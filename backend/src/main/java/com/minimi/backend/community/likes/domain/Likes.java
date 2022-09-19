@@ -1,4 +1,4 @@
-package com.minimi.backend.community.like.domain;
+package com.minimi.backend.community.likes.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Like {
-    private Long likeId;
+public class Likes {
+    private Long likesId;
     private String username;
-    private Boolean like;
+    private Boolean likes;
 }

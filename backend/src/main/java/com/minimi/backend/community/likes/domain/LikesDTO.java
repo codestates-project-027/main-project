@@ -1,4 +1,4 @@
-package com.minimi.backend.community.like.domain;
+package com.minimi.backend.community.likes.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,17 +8,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LikeDTO {
+public class LikesDTO {
     private Long contentId;
     private String username;
-    private Boolean like;
+    private Boolean likes;
     @AllArgsConstructor
     @Getter
     public static class request {
 
         private Long contentId;
         private String username;
-        private Boolean like;
+        private Boolean likes;
 
     }
 }
