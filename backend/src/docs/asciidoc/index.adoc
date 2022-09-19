@@ -347,18 +347,18 @@ include::{snippets}/post-member/response-body.adoc[]
 === 로그인 시도 [POST]
 ==== Request
 .httpie-request
-include::{snippets}/post-member/httpie-request.adoc[]
+include::{snippets}/post-login/httpie-request.adoc[]
 .http-request
-include::{snippets}/post-member/http-request.adoc[]
+include::{snippets}/post-login/http-request.adoc[]
 .request-body
-include::{snippets}/post-member/request-body.adoc[]
+include::{snippets}/post-login/request-body.adoc[]
 .request-fields
-include::{snippets}/post-member/request-fields.adoc[]
+include::{snippets}/post-login/request-fields.adoc[]
 ==== Response
 .http-response
-include::{snippets}/post-member/http-response.adoc[]
+include::{snippets}/post-login/http-response.adoc[]
 .response-body
-include::{snippets}/post-member/response-body.adoc[]
+include::{snippets}/post-login/response-body.adoc[]
 
 
 == 게시글
