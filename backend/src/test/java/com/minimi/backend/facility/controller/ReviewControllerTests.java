@@ -56,7 +56,7 @@ public class ReviewControllerTests {
                         requestFields(
                                 List.of(
                                         fieldWithPath("facilityId").description("운동시설 Id"),
-                                        fieldWithPath("user").description("리뷰 유저 네임"),
+                                        fieldWithPath("username").description("리뷰 유저 네임"),
                                         fieldWithPath("userProfile").description("리뷰 유저 프로필"),
                                         fieldWithPath("contents").description("리뷰 내용")
                                 ))
@@ -83,7 +83,7 @@ public class ReviewControllerTests {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("user").description("리뷰 유저 네임"),
+                                        fieldWithPath("username").description("리뷰 유저 네임"),
                                         fieldWithPath("userProfile").description("리뷰 유저 프로필"),
                                         fieldWithPath("contents").description("리뷰 내용")
                                 ))

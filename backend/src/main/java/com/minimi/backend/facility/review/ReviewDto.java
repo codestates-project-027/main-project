@@ -11,7 +11,7 @@ public class ReviewDto {
     @Getter
     public static class response{
         private Long reviewId;
-        private String user;
+        private String username;
         private String userProfile;
         private String contents;
         private LocalDate createdAt;
@@ -21,7 +21,7 @@ public class ReviewDto {
     @Getter
     public static class request{
         private Long facilityId;
-        private String user;
+        private String username;
         private String userProfile;
         private String contents;
     }
@@ -29,7 +29,7 @@ public class ReviewDto {
     @AllArgsConstructor
     @Getter
     public static class patch{
-        private String user;
+        private String username;
         private String userProfile;
         private String contents;
     }
