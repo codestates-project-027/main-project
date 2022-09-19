@@ -24,4 +24,9 @@ public class BookmarkController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("{username}")
+    public ResponseEntity<BookmarkDto.response> getMyFacilitys(@PathVariable String username) {
+        return new ResponseEntity<>(bookmarkService.getMyFacilitys(username), HttpStatus.OK);
+    }
+
 }

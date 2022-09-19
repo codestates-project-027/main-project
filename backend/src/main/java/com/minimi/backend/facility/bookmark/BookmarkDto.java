@@ -1,8 +1,11 @@
 package com.minimi.backend.facility.bookmark;
 
 import com.minimi.backend.auth.domain.Auth;
+import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
 
 public class BookmarkDto {
 
@@ -11,5 +14,12 @@ public class BookmarkDto {
     public static class request{
         private String username;
         private Long facilityId;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class response {
+        private String username;
+        private List<FacilityDto.responseMyFacility> facilityList;
     }
 }
