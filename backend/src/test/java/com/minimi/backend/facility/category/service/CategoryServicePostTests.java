@@ -38,8 +38,8 @@ public class CategoryServicePostTests {
 
     @BeforeEach
     public void setup() {
-        category = new Category(1L, "220901", "헬스", CategoryStatus.활성);
-        CategoryDtoRequest = new CategoryDto.request("220901","헬스", CategoryStatus.활성);
+        category = new Category(1L, "220901", "헬스", CategoryStatus.ACTIVE);
+        CategoryDtoRequest = new CategoryDto.request("220901","헬스", CategoryStatus.ACTIVE);
     }
 
     @Nested

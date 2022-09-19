@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class CategoryController {
 
     //post category
     @PostMapping("")
-    public ResponseEntity postCategory(@RequestBody CategoryDto.request categoryDtoRequest){
+    public ResponseEntity postCategory(@RequestBody @Valid CategoryDto.request categoryDtoRequest){
         categoryService.postCategory(categoryDtoRequest);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -31,7 +33,7 @@ public class CategoryController {
     @PatchMapping("/{categoryCode}")
     public ResponseEntity patchCategory(
             @PathVariable String categoryCode,
-            @RequestBody CategoryDto.patch categoryDtoPatch){
+            @RequestBody @Valid CategoryDto.patch categoryDtoPatch){
         categoryService.patchCategory(categoryCode, categoryDtoPatch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }

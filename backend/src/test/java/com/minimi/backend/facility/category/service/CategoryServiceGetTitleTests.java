@@ -46,12 +46,12 @@ public class CategoryServiceGetTitleTests {
     @BeforeEach
     public void setup(){
         categoryList = new ArrayList<>(Arrays.asList(
-                new Category(1L,"220901","헬스", CategoryStatus.활성),
-                new Category(2L,"220902","요가", CategoryStatus.비활성)
+                new Category(1L,"220901","헬스", CategoryStatus.ACTIVE),
+                new Category(2L,"220902","요가", CategoryStatus.INACTIVE)
         ));
         categoryDtoList = new ArrayList<>(Arrays.asList(
-                new CategoryDto.response("220901","헬스",CategoryStatus.활성),
-                new CategoryDto.response("220902","요가",CategoryStatus.비활성)
+                new CategoryDto.response("220901","헬스",CategoryStatus.ACTIVE),
+                new CategoryDto.response("220902","요가",CategoryStatus.INACTIVE)
         ));
     }
 

@@ -36,8 +36,8 @@ public class CategoryServicePatchTests {
 
     @BeforeEach
     public void setup(){
-        category = new Category(1L, "220901","헬스장", CategoryStatus.활성);
-        CategoryDtoPatch = new CategoryDto.patch("헬스",CategoryStatus.비활성);
+        category = new Category(1L, "220901","헬스장", CategoryStatus.ACTIVE);
+        CategoryDtoPatch = new CategoryDto.patch("헬스",CategoryStatus.INACTIVE);
         categoryCode = "220901";
     }
 
@@ -65,7 +65,7 @@ public class CategoryServicePatchTests {
         @DisplayName("success patchCategory test 2 -> patch title null code")
         public void successPatchCategoryTitle() throws Exception{
             CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("PT").build();
-            Category categoryTitle = new Category(1L, categoryCode, "PT",CategoryStatus.활성);
+            Category categoryTitle = new Category(1L, categoryCode, "PT",CategoryStatus.ACTIVE);
 
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(Optional.of(category));
@@ -84,8 +84,8 @@ public class CategoryServicePatchTests {
         @Test
         @DisplayName("success patchCategory test 3 -> patch code null title")
         public void successPatchCategoryCodeNullTitle() throws Exception{
-            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryStatus(CategoryStatus.비활성).build();
-            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryStatus(CategoryStatus.INACTIVE).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.INACTIVE);
 
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(Optional.of(category));
@@ -101,8 +101,8 @@ public class CategoryServicePatchTests {
         @Test
         @DisplayName("success patchCategory test 4 -> patch code blank title")
         public void successPatchCategoryCodeBlankTitle() throws Exception{
-            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("").categoryStatus(CategoryStatus.비활성).build();
-            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("").categoryStatus(CategoryStatus.INACTIVE).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.INACTIVE);
 
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(Optional.of(category));
@@ -121,8 +121,8 @@ public class CategoryServicePatchTests {
         @Test
         @DisplayName("success patchCategory test 5 -> patch code same title")
         public void successPatchCategoryCodeSameTitle() throws Exception{
-            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("헬스장").categoryStatus(CategoryStatus.비활성).build();
-            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("헬스장").categoryStatus(CategoryStatus.INACTIVE).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.INACTIVE);
 
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(Optional.of(category));
