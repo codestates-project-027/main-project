@@ -16,13 +16,13 @@ public class Category {
     @Column(name = "category_id")
     private Long categoryId;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 100, nullable = false)
     private String categoryCode;
 
-    @Column(unique = true)
+    @Column(unique = true, length = 30, nullable = false)
     private String categoryTitle;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CategoryStatus categoryStatus;
 

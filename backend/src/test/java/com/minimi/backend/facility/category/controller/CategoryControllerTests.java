@@ -50,7 +50,7 @@ public class CategoryControllerTests {
 
     @Test
     public void postCategory() throws Exception{
-        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.활성);
+        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.ACTIVE);
         String content = gson.toJson(categoryDtoRequest);
         ResultActions actions = mockMvc.perform(
                 post("/category")
@@ -74,7 +74,7 @@ public class CategoryControllerTests {
     public void patchCategory() throws Exception {
         String categoryTitle = "헬스";
         String categoryCode = "220901";
-        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.비활성);
+        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.INACTIVE);
         String content = gson.toJson(categoryReq);
         ResultActions actions = mockMvc.perform(
                 patch("/category/{categoryCode}", categoryCode)
@@ -101,8 +101,8 @@ public class CategoryControllerTests {
     @Test
     public void getCategoryTitles() throws Exception{
         List<CategoryDto.response> categoryTitles = new ArrayList<>();
-        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.활성);
-        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.비활성);
+        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.ACTIVE);
+        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.INACTIVE);
         categoryTitles.add(category);
         categoryTitles.add(category1);
         given(categoryService.getCategoryTitles()).willReturn(categoryTitles);
@@ -114,10 +114,10 @@ public class CategoryControllerTests {
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath("[0].categoryCode").value("220811"))
                 .andExpect(jsonPath("[0].categoryTitle").value("헬스"))
-                .andExpect(jsonPath("[0].categoryStatus").value("활성"))
+                .andExpect(jsonPath("[0].categoryStatus").value("ACTIVE"))
                 .andExpect(jsonPath("[1].categoryCode").value("220901"))
                 .andExpect(jsonPath("[1].categoryTitle").value("요가"))
-                .andExpect(jsonPath("[1].categoryStatus").value("비활성"))
+                .andExpect(jsonPath("[1].categoryStatus").value("INACTIVE"))
                 .andDo(document(
                         "get-categoryTitles",
                         getResponsePreProcessor(),
@@ -141,10 +141,10 @@ public class CategoryControllerTests {
                 new ArrayList<>(Arrays.asList("헬스")),"영업중");
         FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
-                new ArrayList<>(Arrays.asList("헬스","PT")),"영업종료");
+                new ArrayList<>(Arrays.asList("헬스", "PT")),"영업종료");
         FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스","요가")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스", "요가")),"영업중");
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);

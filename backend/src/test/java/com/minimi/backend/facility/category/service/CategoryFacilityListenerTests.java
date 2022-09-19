@@ -2,6 +2,7 @@ package com.minimi.backend.facility.category.service;
 
 
 import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.facility.FacilityService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -21,20 +22,20 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("getSliceFacilityCategory test")
-public class CategoryServiceGetCategoryFacilityTests {
-
+@DisplayName("CategoryFacilityListener Tests")
+public class CategoryFacilityListenerTests {
     @Mock
-    private CategoryFacilityListener categoryFacilityListener;
+    private FacilityService facilityService;
 
     @InjectMocks
-    private CategoryServiceImpl categoryService;
+    private CategoryFacilityListener categoryFacilityListener;
 
     private String categoryTitle;
     private int page;
@@ -58,34 +59,34 @@ public class CategoryServiceGetCategoryFacilityTests {
     }
 
     @Nested
-    @DisplayName("success getSliceFacilityCategory case")
-    class getSliceFacilityCategorySuccess {
-
+    @DisplayName("CategoryFacilityListener Success")
+    class successCase {
         @Test
-        @DisplayName("success getSliceFacilityCategory test 1 -> getFacilitySlice")
-        public void successGetTitleCategoryTest() throws Exception {
+        @DisplayName("success 1 -> getCategorySlice")
+        public void categoryFacilityListener() throws Exception {
             Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
-            given(categoryFacilityListener.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
+            given(facilityService.getCategoryFacility(Mockito.anyString(),Mockito.anyInt()))
+                    .willReturn(categorySlice);
 
-            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryTitle,page);
+            Slice<FacilityDto.responsePage> result = categoryFacilityListener.getCategory(categoryTitle, page);
 
-            then(categoryFacilityListener).should(times(1)).getCategory(anyString(), anyInt());
+            then(facilityService).should(times(1)).getCategoryFacility(anyString(), anyInt());
             assertThat(result, equalTo(categorySlice));
         }
     }
 
     @Nested
-    @DisplayName("fail getSliceFacilityCategory case")
-    class getSliceFacilityCategoryFail {
+    @DisplayName("CategoryFacilityListener Fail")
+    class failCase {
         @Test
-        @DisplayName("fail getSliceFacilityCategory test 1 -> null")
+        @DisplayName("fail 1 -> null")
         public void categoryFacilityListener() throws Exception {
-            given(categoryFacilityListener.getCategory(Mockito.anyString(),Mockito.anyInt()))
+            given(facilityService.getCategoryFacility(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(null);
 
-            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryTitle, page);
+            Slice<FacilityDto.responsePage> result = categoryFacilityListener.getCategory(categoryTitle, page);
 
-            then(categoryFacilityListener).should(times(1)).getCategory(anyString(), anyInt());
+            then(facilityService).should(times(1)).getCategoryFacility(anyString(), anyInt());
             assertThat(result, is(nullValue()));
         }
     }

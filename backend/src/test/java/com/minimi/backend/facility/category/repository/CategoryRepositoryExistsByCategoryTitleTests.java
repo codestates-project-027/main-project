@@ -31,7 +31,7 @@ public class CategoryRepositoryExistsByCategoryTitleTests {
     public void setup(){
         category = Category.builder()
                 .categoryTitle("헬스")
-                .categoryStatus(CategoryStatus.활성)
+                .categoryStatus(CategoryStatus.ACTIVE)
                 .categoryCode("220901")
                 .build();
     }
