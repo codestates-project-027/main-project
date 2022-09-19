@@ -26,6 +26,6 @@ public class DailyCheckDto {
     @Getter
     public static class ResponseCalendar {
         private String username;
-        private List<LocalDate> localDateList;
+        private List<Boolean> dailyCheckList;
     }
 }

@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
 import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
@@ -83,11 +84,14 @@ public class DailyCheckControllerTests {
     @Test
     public void getDailyChecks() throws Exception {
         String username = "MiniMiUser";
-        List<LocalDate> localDateList = new ArrayList<>();
-        localDateList.add(LocalDate.of(2022,8,11));
-        localDateList.add(LocalDate.of(2022,8,15));
-        localDateList.add(LocalDate.of(2022,9,13));
-        DailyCheckDto.ResponseCalendar responseCalendar = new DailyCheckDto.ResponseCalendar(username,localDateList);
+        List<Boolean> dailyCheckList = new ArrayList<>();
+        for (int i=0;i<31;i++) {
+            dailyCheckList.add(false);
+        }
+        dailyCheckList.set(3, true);
+        dailyCheckList.set(4, true);
+        dailyCheckList.set(6, true);
+        DailyCheckDto.ResponseCalendar responseCalendar = new DailyCheckDto.ResponseCalendar(username,dailyCheckList);
         given(dailyCheckService.getDailyChecks(Mockito.anyString())).willReturn(responseCalendar);
 
         ResultActions actions = mockMvc.perform(
@@ -97,9 +101,14 @@ public class DailyCheckControllerTests {
         );
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath(".username").value(username))
-                .andExpect(jsonPath(".localDateList[0]").value(String.valueOf(localDateList.get(0))))
-                .andExpect(jsonPath(".localDateList[1]").value(String.valueOf(localDateList.get(1))))
-                .andExpect(jsonPath(".localDateList[2]").value(String.valueOf(localDateList.get(2))))
+                .andExpect(jsonPath(".dailyCheckList[0]").value(dailyCheckList.get(0)))
+                .andExpect(jsonPath(".dailyCheckList[1]").value(dailyCheckList.get(1)))
+                .andExpect(jsonPath(".dailyCheckList[2]").value(dailyCheckList.get(2)))
+                .andExpect(jsonPath(".dailyCheckList[3]").value(dailyCheckList.get(3)))
+                .andExpect(jsonPath(".dailyCheckList[4]").value(dailyCheckList.get(4)))
+                .andExpect(jsonPath(".dailyCheckList[5]").value(dailyCheckList.get(5)))
+                .andExpect(jsonPath(".dailyCheckList[6]").value(dailyCheckList.get(6)))
+                .andExpect(jsonPath(".dailyCheckList[30]").value(dailyCheckList.get(30)))
                 .andDo(document(
                         "get-dailyChecks",
                         getResponsePreProcessor(),
@@ -109,7 +118,7 @@ public class DailyCheckControllerTests {
                         responseFields(
                                 List.of(
                                         fieldWithPath("username").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("localDateList").type(JsonFieldType.ARRAY).description("내 출석 리스트")
+                                        fieldWithPath("dailyCheckList").type(JsonFieldType.ARRAY).description("내 출석 리스트")
                                 )
                         )
                 ));
