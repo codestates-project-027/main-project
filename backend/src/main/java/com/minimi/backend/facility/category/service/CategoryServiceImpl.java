@@ -50,7 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto.response> getCategoryTitles() {
-        return null;
+        return categoryMapper.categoryListToCategoryDtoResponseList(categoryRepository.findAll());
     }
 
     @Override

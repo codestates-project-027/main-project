@@ -82,7 +82,7 @@ public class CategoryServiceGetTitleTests {
         public void failGetTitleCategory() throws Exception {
             List<CategoryDto.response> result = categoryService.getCategoryTitles();
 
-            assertThat(result, is(nullValue()));
+            assertThat(result, equalTo(new ArrayList<>()));
         }
     }
 }
