@@ -78,8 +78,6 @@ include::{snippets}/patch-category/request-fields.adoc[]
 include::{snippets}/patch-category/http-response.adoc[]
 .response-body
 include::{snippets}/patch-category/response-body.adoc[]
-.response-fields
-include::{snippets}/patch-category/response-fields.adoc[]
 
 == 운동시설
 === 운동시설 목록 조회 [GET]
