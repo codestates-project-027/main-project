@@ -1,14 +1,12 @@
-package com.minimi.backend.facility.bookmark;
+package com.minimi.backend.mypage.myFacility;
 
-import com.minimi.backend.auth.domain.Auth;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
-public class BookmarkDto {
-
+public class MyFacilityDto {
     @AllArgsConstructor
     @Getter
     public static class request{
