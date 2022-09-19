@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.category.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 public class CategoryDto {
@@ -15,6 +16,7 @@ public class CategoryDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class patch{
         private String categoryTitle;
         private CategoryStatus categoryStatus;

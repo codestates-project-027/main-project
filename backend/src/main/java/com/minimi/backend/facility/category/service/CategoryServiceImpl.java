@@ -38,7 +38,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
         Category category = categoryRepository.findByCategoryCode(categoryCode)
                 .orElseThrow(() -> new NullPointerException("NoContent CategoryCode"));
-        checkTitle(categoryDtoPatch.getCategoryTitle());
+        if(!category.getCategoryTitle().equals(categoryDtoPatch.getCategoryTitle())){
+            checkTitle(categoryDtoPatch.getCategoryTitle());
+        }
         if(!(categoryDtoPatch.getCategoryTitle()==null||categoryDtoPatch.getCategoryTitle().isBlank())){
             category.setCategoryTitle(categoryDtoPatch.getCategoryTitle());
         }

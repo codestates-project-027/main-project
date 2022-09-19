@@ -36,7 +36,7 @@ public class CategoryServicePatchTests {
 
     @BeforeEach
     public void setup(){
-        category = new Category(1L, "220901","헬스", CategoryStatus.활성);
+        category = new Category(1L, "220901","헬스장", CategoryStatus.활성);
         CategoryDtoPatch = new CategoryDto.patch("헬스",CategoryStatus.비활성);
         categoryCode = "220901";
     }
@@ -45,8 +45,8 @@ public class CategoryServicePatchTests {
     @DisplayName("success patchCategory case")
     class successPatchCategoryCase{
         @Test
-        @DisplayName("success patchCategory test 1 -> patch")
-        public void successPatchCategory() throws Exception{
+        @DisplayName("success patchCategory test 1 -> patch all")
+        public void successPatchCategoryAll() throws Exception{
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(Optional.of(category));
             given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
@@ -61,7 +61,82 @@ public class CategoryServicePatchTests {
             then(categoryRepository).should(times(1)).save(any());
             assertThat(result, equalTo(category));
         }
+        @Test
+        @DisplayName("success patchCategory test 2 -> patch title null code")
+        public void successPatchCategoryTitle() throws Exception{
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("PT").build();
+            Category categoryTitle = new Category(1L, categoryCode, "PT",CategoryStatus.활성);
+
+            given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                    .willReturn(Optional.of(category));
+            given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
+                    .willReturn(false);
+            given(categoryRepository.save(category))
+                    .willReturn(categoryTitle);
+
+            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
+            then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
+            then(categoryRepository).should(times(1)).save(any());
+            assertThat(result, equalTo(categoryTitle));
+        }
+        @Test
+        @DisplayName("success patchCategory test 3 -> patch code null title")
+        public void successPatchCategoryCodeNullTitle() throws Exception{
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryStatus(CategoryStatus.비활성).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+
+            given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                    .willReturn(Optional.of(category));
+            given(categoryRepository.save(category))
+                    .willReturn(categoryTitle);
+
+            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
+            then(categoryRepository).should(times(1)).save(any());
+            assertThat(result, equalTo(categoryTitle));
+        }
+        @Test
+        @DisplayName("success patchCategory test 4 -> patch code blank title")
+        public void successPatchCategoryCodeBlankTitle() throws Exception{
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("").categoryStatus(CategoryStatus.비활성).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+
+            given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                    .willReturn(Optional.of(category));
+            given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
+                    .willReturn(false);
+            given(categoryRepository.save(category))
+                    .willReturn(categoryTitle);
+
+            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
+            then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
+            then(categoryRepository).should(times(1)).save(any());
+            assertThat(result, equalTo(categoryTitle));
+        }
+        @Test
+        @DisplayName("success patchCategory test 5 -> patch code same title")
+        public void successPatchCategoryCodeSameTitle() throws Exception{
+            CategoryDto.patch patchTitle = CategoryDto.patch.builder().categoryTitle("헬스장").categoryStatus(CategoryStatus.비활성).build();
+            Category categoryTitle = new Category(1L, categoryCode, "헬스장",CategoryStatus.비활성);
+
+            given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                    .willReturn(Optional.of(category));
+            given(categoryRepository.save(category))
+                    .willReturn(categoryTitle);
+
+            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+
+            then(categoryRepository).should(times(1)).findByCategoryCode(any());
+            then(categoryRepository).should(times(1)).save(any());
+            assertThat(result, equalTo(categoryTitle));
+        }
     }
+
     @Nested
     @DisplayName("fail patchCategory case")
     class failPatchCategoryCase{
