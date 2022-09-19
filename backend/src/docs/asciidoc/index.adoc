@@ -250,24 +250,28 @@ include::{snippets}/delete-bookmark/http-response.adoc[]
 .response-body
 include::{snippets}/delete-bookmark/response-body.adoc[]
 
+=== 운동시설 북마크 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-bookmark/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-bookmark/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-bookmark/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-bookmark/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-bookmark/http-response.adoc[]
+.response-body
+include::{snippets}/get-bookmark/response-body.adoc[]
+.response-fields
+include::{snippets}/get-bookmark/response-fields.adoc[]
+
 == 나의 운동시설
 === 나의 운동시설 조회 [GET]
 ==== Request
-.httpie-request
-include::{snippets}/get-myFacilityList/httpie-request.adoc[]
-.http-request
-include::{snippets}/get-myFacilityList/http-request.adoc[]
-.path-parameters
-include::{snippets}/get-myFacilityList/path-parameters.adoc[]
-.request-body
-include::{snippets}/get-myFacilityList/request-body.adoc[]
 ==== Response
-.http-response
-include::{snippets}/get-myFacilityList/http-response.adoc[]
-.response-body
-include::{snippets}/get-myFacilityList/response-body.adoc[]
-.response-fields
-include::{snippets}/get-myFacilityList/response-fields.adoc[]
 
 == 출석체크
 === 출석체크 조회 [GET]

@@ -110,7 +110,7 @@ public class BookmarkControllerTests {
                 .andExpect(jsonPath(".facilityList[0].location").value(response.getFacilityList().get(0).getLocation()))
                 .andExpect(jsonPath(".facilityList[1].location").value(response.getFacilityList().get(1).getLocation()))
                 .andDo(document(
-                        "get-myFacilityList",
+                        "get-bookmark",
                         getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("username").description("회원 닉네임")
