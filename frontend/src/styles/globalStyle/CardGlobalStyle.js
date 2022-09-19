@@ -42,3 +42,9 @@ export const MCardGlobal = styled.div`
     display: flex;
   }
 `;
+
+export const MCardFlexGlobal = styled(MCardGlobal)`
+  @media screen and (min-width: 790px) {
+    display: flex;
+  }
+`;

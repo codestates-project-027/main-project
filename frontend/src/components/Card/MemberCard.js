@@ -1,10 +1,20 @@
-import { MCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
+import {
+  MCardGlobal,
+  MCardFlexGlobal,
+} from '../../styles/globalStyle/CardGlobalStyle';
 
-const MemberCard = () => {
+export const MemberCard = () => {
   return (
     <>
       <MCardGlobal>member card</MCardGlobal>
     </>
   );
 };
-export default MemberCard;
+
+export const MemberCardFlex = () => {
+  return (
+    <>
+      <MCardFlexGlobal>member card</MCardFlexGlobal>
+    </>
+  );
+};

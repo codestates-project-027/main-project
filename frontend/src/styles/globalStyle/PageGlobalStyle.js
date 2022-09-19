@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PADDING } from '../../constants/style';
 
 export const MainPageGlobal = styled.div`
   display: flex;
@@ -85,6 +86,86 @@ export const FacilitiesPageGlobal = styled.div`
     }
     .title {
       margin-left: 10px;
+    }
+  }
+`;
+
+export const FacilityPageGlobal = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: bisque;
+  .img--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    height: 300px;
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    padding: ${PADDING.BASIC};
+  }
+  .Fname--distance--wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: ${PADDING.BASIC};
+    .Fname {
+      font-size: 1.3rem;
+    }
+  }
+  .minimi--score--wrapper {
+    display: flex;
+    align-items: center;
+    padding: ${PADDING.BASIC};
+    .score--name {
+      font-size: 1.2rem;
+    }
+    .stars {
+      margin-left: 15px;
+    }
+  }
+`;
+
+export const MyPageGlobal = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: ${PADDING.BASIC};
+  .title {
+    display: flex;
+    font-size: 1.5rem;
+  }
+  .card--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .subtitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    background-color: gainsboro;
+    .FDescCard--wrapper {
+      display: flex;
+      background-color: gold;
+      .Fname {
+        font-size: 1rem;
+        margin-left: 20px;
+      }
+      .remaining {
+        display: flex;
+        justify-content: right;
+        font-size: 1rem;
+        background-color: red;
+      }
+    }
+  }
+  .rate {
+    display: flex;
+    justify-content: space-between;
+    .rate {
+      margin-right: 20px;
     }
   }
 `;

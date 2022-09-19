@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PADDING } from '../../constants/style';
 
 export const SearchbarGroupStyle = styled.div`
   display: flex;
@@ -57,5 +58,16 @@ export const MainPageBtnsGroupStyle = styled.div`
   @media screen and (max-width: 790px) {
     margin-top: 5px;
     margin-left: -15px;
+  }
+`;
+
+export const FacilityPageDescGroupStyle = styled.div`
+  display: flex;
+  padding: ${PADDING.BASIC};
+  background-color: aliceblue;
+  flex-direction: column;
+  span {
+    color: red;
+    display: flex;
   }
 `;

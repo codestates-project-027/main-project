@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PADDING } from '../../constants/style';
 
 export const FCardStyle = styled.div`
   display: flex;
@@ -81,5 +82,49 @@ export const FCardFlexStyle = styled(FCardStyle)`
     width: 320px;
     margin-left: -25px;
     background-color: red;
+  }
+`;
+
+export const FDescCardStyle = styled.div`
+  display: flex;
+  padding: ${PADDING.BASIC};
+  background-color: lightyellow;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  .Fname {
+    font-size: 1.1rem;
+  }
+  .remaining {
+    display: flex;
+    justify-content: right;
+    font-size: 1rem;
+    color: red;
+  }
+`;
+
+export const ACardStyle = styled.div`
+  display: flex;
+  background-color: bisque;
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .sub--wrapper {
+    display: flex;
+    color: red;
+  }
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+  }
+  .day {
+    display: flex;
+    width: 25px;
+    height: 25px;
+    border: 1px solid lightpink;
   }
 `;

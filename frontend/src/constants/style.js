@@ -5,3 +5,7 @@ export const COLOR = {
 // export const Margin = '20px';
 // export const IconSize = '20px;';
 // export const InactiveColor = 'rgb(240, 240, 240)';
+
+export const PADDING = {
+  BASIC: '20px',
+};

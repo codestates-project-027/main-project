@@ -2,8 +2,8 @@ import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 import SquareBtn from '../components/Button/SquareBtn';
 import QuickBtn from '../components/Button/QuickBtn';
-import FacilityCard from '../components/Card/FacilityCard';
-import MemberCard from '../components/Card/MemberCard';
+import { FacilityCard } from '../components/Card/FacilityCard';
+import { MemberCard } from '../components/Card/MemberCard';
 import { MainPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import {
   SearchbarGroupStyle,
