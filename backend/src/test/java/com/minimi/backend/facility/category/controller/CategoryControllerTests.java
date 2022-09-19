@@ -141,10 +141,10 @@ public class CategoryControllerTests {
                 new ArrayList<>(Arrays.asList("헬스")),"영업중");
         FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
-                new ArrayList<>(Arrays.asList("헬스","PT")),"영업종료");
+                new ArrayList<>(Arrays.asList("헬스", "PT")),"영업종료");
         FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스","요가")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스", "요가")),"영업중");
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);

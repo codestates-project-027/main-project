@@ -4,6 +4,7 @@ import com.minimi.backend.facility.review.Review;
 
 import java.util.List;
 
+
 public class Facility {
     private Long facilityId;
     private String facilityName;
