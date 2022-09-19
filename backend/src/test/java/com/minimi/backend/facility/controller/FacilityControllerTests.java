@@ -1,4 +1,4 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.controller;
 
 
 import com.google.gson.Gson;

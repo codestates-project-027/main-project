@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id "org.asciidoctor.jvm.convert" version "3.3.2"
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.minimi'
@@ -72,5 +73,67 @@ bootJar {
 	dependsOn copyDocument
 	from ("${asciidoctor.outputDir}") {
 		into 'static/docs'
+	}
+}
+//jacoco
+jacoco {
+	toolVersion = "0.8.5"
+}
+test {
+	useJUnitPlatform()
+	finalizedBy 'jacocoTestReport'
+}
+jacocoTestReport {
+	reports {
+		html.required.set(true)
+		xml.required.set(false)
+		csv.required.set(false)
+//		html.destination file("src/jacoco/jacoco.html")
+		afterEvaluate {
+			classDirectories.setFrom(files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: [
+						"com/minimi/backend/auth/**",
+						"com/minimi/backend/community/**"
+				])
+			}))
+		}
+	}
+	finalizedBy 'jacocoTestCoverageVerification'
+}
+jacocoTestCoverageVerification {
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					"com/minimi/backend/auth/**",
+					"com/minimi/backend/community/**"
+			])
+		}))
+	}
+	violationRules {
+		rule {
+			excludes = [
+					"**.*Application*",
+					"**.*Config*",
+					"**.*Dto*",
+					"**.*Request*",
+					"**.*Response*",
+					"**.*Interceptor*",
+					"**.*Exception*"
+			]
+			element = 'CLASS'
+			enabled = true
+
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.00
+			}
+
+			limit {
+				counter = 'BRANCH'
+				value = 'COVEREDRATIO'
+				minimum = 0.00
+			}
+		}
 	}
 }

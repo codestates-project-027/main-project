@@ -16,4 +16,8 @@ public class FacilityService {
     public Slice<FacilityDto.responsePage> getNearFacilityList(String location, int page) {
         return null;
     }
+
+    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryTitle, int page) {
+        return null;
+    }
 }

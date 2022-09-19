@@ -1,11 +1,12 @@
-package com.minimi.backend.facility;
+package com.minimi.backend.facility.category.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.category.CategoryController;
-import com.minimi.backend.facility.category.CategoryDto;
+import com.minimi.backend.facility.category.controller.CategoryController;
+import com.minimi.backend.facility.category.domain.CategoryDto;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
+import com.minimi.backend.facility.category.service.CategoryService;
 import com.minimi.backend.facility.facility.FacilityDto;
-import com.minimi.backend.facility.category.CategoryService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class CategoryControllerTests {
 
     @Test
     public void postCategory() throws Exception{
-        CategoryDto.request categoryDtoRequest = new CategoryDto.request("헬스장", "활성");
+        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.활성);
         String content = gson.toJson(categoryDtoRequest);
         ResultActions actions = mockMvc.perform(
                 post("/category")
@@ -62,6 +63,7 @@ public class CategoryControllerTests {
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
+                                        fieldWithPath("categoryCode").description("카테고리 코드"),
                                         fieldWithPath("categoryTitle").description("카테고리 이름"),
                                         fieldWithPath("categoryStatus").description("카테고리 상태")))
                 ));
@@ -69,13 +71,12 @@ public class CategoryControllerTests {
 
     @Test
     public void patchCategory() throws Exception {
-        String categoryTitle = "헬스장";
-        CategoryDto.response categoryRes = new CategoryDto.response(categoryTitle, "비활성");
-        CategoryDto.request categoryReq = new CategoryDto.request(categoryTitle, "비활성");
+        String categoryTitle = "헬스";
+        String categoryCode = "220901";
+        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.비활성);
         String content = gson.toJson(categoryReq);
-        given(categoryService.patchCategory(Mockito.anyString(),Mockito.any(CategoryDto.request.class))).willReturn(categoryRes);
         ResultActions actions = mockMvc.perform(
-                patch("/category/{categoryTitle}", categoryTitle)
+                patch("/category/{categoryCode}", categoryCode)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
@@ -86,7 +87,7 @@ public class CategoryControllerTests {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         pathParameters(
-                                parameterWithName("categoryTitle").description("타겟 카테고리 이름")
+                                parameterWithName("categoryCode").description("타겟 카테고리 코드")
                         ),
                         requestFields(
                                 List.of(
@@ -98,13 +99,11 @@ public class CategoryControllerTests {
 
     @Test
     public void getCategoryTitles() throws Exception{
-        List<CategoryDto.responseList> categoryTitles = new ArrayList<>();
-        CategoryDto.responseList category = new CategoryDto.responseList("헬스");
-        CategoryDto.responseList category1 = new CategoryDto.responseList("복싱");
-        CategoryDto.responseList category2 = new CategoryDto.responseList("요가");
+        List<CategoryDto.response> categoryTitles = new ArrayList<>();
+        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.활성);
+        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.비활성);
         categoryTitles.add(category);
         categoryTitles.add(category1);
-        categoryTitles.add(category2);
         given(categoryService.getCategoryTitles()).willReturn(categoryTitles);
         ResultActions actions = mockMvc.perform(
                 get("/category")
@@ -112,15 +111,20 @@ public class CategoryControllerTests {
                         .contentType(MediaType.APPLICATION_JSON)
         );
         actions.andExpect(status().isOk())
+                .andExpect(jsonPath("[0].categoryCode").value("220811"))
                 .andExpect(jsonPath("[0].categoryTitle").value("헬스"))
-                .andExpect(jsonPath("[1].categoryTitle").value("복싱"))
-                .andExpect(jsonPath("[2].categoryTitle").value("요가"))
+                .andExpect(jsonPath("[0].categoryStatus").value("활성"))
+                .andExpect(jsonPath("[1].categoryCode").value("220901"))
+                .andExpect(jsonPath("[1].categoryTitle").value("요가"))
+                .andExpect(jsonPath("[1].categoryStatus").value("비활성"))
                 .andDo(document(
                         "get-categoryTitles",
                         getResponsePreProcessor(),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("[].categoryTitle").type(JsonFieldType.STRING).description("카테고리 이름")
+                                        fieldWithPath("[].categoryCode").type(JsonFieldType.STRING).description("카테고리 코드"),
+                                        fieldWithPath("[].categoryTitle").type(JsonFieldType.STRING).description("카테고리 이름"),
+                                        fieldWithPath("[].categoryStatus").type(JsonFieldType.STRING).description("카테고리 상태")
                                 )
                         )
                 ));
