@@ -1,5 +1,6 @@
 package com.minimi.backend.mypage.domain;
 
+import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,6 +12,6 @@ public class MyFacilityDto {
     @Getter
     public static class response {
         private String username;
-        private List<String> facilityList;
+        private List<FacilityDto.responseMyFacility> facilityList;
     }
 }

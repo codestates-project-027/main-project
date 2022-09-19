@@ -23,6 +23,15 @@ public class FacilityDto {
 
     @AllArgsConstructor
     @Getter
+    public static class responseMyFacility{
+        private Long facilityId;
+        private String facilityName;
+        private String location;
+        private String status;
+    }
+
+    @AllArgsConstructor
+    @Getter
     public static class response{
         private Long facilityId;
         private String facilityName;
