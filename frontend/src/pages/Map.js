@@ -9,7 +9,7 @@ import { SearchbarGroupStyle } from '../styles/components/ComponentGroupStyle';
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCardFlex } from '../components/Card/FacilityCard';
 
-const LocationPage = () => {
+const MapPage = () => {
   return (
     <>
       <FacilitiesPageGlobal>
@@ -28,4 +28,4 @@ const LocationPage = () => {
   );
 };
 
-export default LocationPage;
+export default MapPage;

@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Test from './Test';
 
-// API Call
+//API Call
 import api from './api/api-toEdit';
 
-//GlobalStyles
+//Routes
+import PATH from './routes/routePath';
+
+//GlobalStyle
 import GlobalStyle from './styles/globalStyle/GlobalStyle';
 
 //Layouts
@@ -25,7 +28,7 @@ import FacilityPage from './pages/Facility';
 import FacilitiesPage from './pages/Facilities';
 import MyPage from './pages/MyPage';
 import AlarmsPage from './pages/Alarms';
-import LocationPage from './pages/Location';
+import MapPage from './pages/Map';
 
 function App() {
   const [test, setTest] = useState('');
@@ -48,24 +51,25 @@ function App() {
         <GlobalStyle>
           <Routes>
             <Route element={<LayoutNoTopbar />}>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/test" element={<Test />} /> {/*삭제*/}
+              <Route path={PATH.TEST} element={<Test />} /> {/*삭제*/}
+              <Route path={PATH.SIGNUP} element={<SignUpPage />} />
+              <Route path={PATH.LOGIN} element={<LoginPage />} />
             </Route>
 
             <Route element={<LayoutMain />}>
-              <Route path="/" element={<MainPage />} />
+              <Route path={PATH.MAIN} element={<MainPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenu />}>
-              <Route path="/facility" element={<FacilityPage />} />
-              <Route path="/mypage" element={<MyPage />} />
-              <Route path="/alarms" element={<AlarmsPage />} />
-              <Route path="/location" element={<LocationPage />} />
+              <Route path={PATH.MYPAGE} element={<MyPage />} />
+              <Route path={PATH.FACILITY} element={<FacilityPage />} />
+              <Route path={PATH.MAP} element={<MapPage />} />
+              <Route path={PATH.ALARMS} element={<AlarmsPage />} />
+              {/* 시설 등록 페이지 */}
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>
-              <Route path="/facilities" element={<FacilitiesPage />} />
+              <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
             </Route>
           </Routes>
         </GlobalStyle>
