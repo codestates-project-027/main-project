@@ -29,19 +29,37 @@ const SignupPage = () => {
         <div className="signup-container">
           <div className="signup-info">
             <input
-              placeholder="아이디"
-              name="nickname"
-              {...register('nickname', {
+              placeholder="이메일"
+              name="email"
+              {...register('email', {
+                required: true,
+                pattern: /\S+@\S+\.\S+/,
+              })}
+            />
+            {errors.email && errors.email.type === 'pattern' && (
+              <p className="email-confirm-message">
+                올바른 이메일의 형식이 아닙니다
+              </p>
+            )}
+            <input
+              placeholder="닉네임"
+              name="username"
+              {...register('username', {
                 required: true,
                 maxLength: 10,
                 minLength: 2,
+                pattern: /^[a-zA-Z0-9]*$/,
               })}
             />
-            {errors.nickname && (
+            {errors.username && errors.username.type === 'minLength' && (
               <p className="id-message">
-                아이디는 2글자 이상, 10글자 이하이여야 합니다
+                닉네임은 2글자 이상, 10글자 이하이여야 합니다
               </p>
             )}
+            {errors.username && errors.username.type === 'pattern' && (
+              <p className="confirm-message">닉네임은 공백이 없어야 합니다</p>
+            )}
+
             <input
               placeholder="비밀번호"
               type="password"
@@ -49,6 +67,7 @@ const SignupPage = () => {
               {...register('password', {
                 required: true,
                 minLength: 8,
+                pattern: /^[a-zA-Z0-9]*$/,
               })}
             />
             {errors.password && errors.password.type === 'required' && (
@@ -57,6 +76,11 @@ const SignupPage = () => {
             {errors.password && errors.password.type === 'minLength' && (
               <p className="password-message-length">
                 비밀번호는 8자리 이상이여야 합니다
+              </p>
+            )}
+            {errors.password && errors.password.type === 'pattern' && (
+              <p className="password-message-length">
+                비밀번호는 공백이 없어야 합니다
               </p>
             )}
             <input
@@ -107,6 +131,14 @@ const SignupWrapper = styled.div`
     padding: 0.5rem;
     width: 20rem;
     height: 5vh;
+    text-align: start;
+  }
+  .email-confirm-message {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 5.5rem;
   }
 
   .password-message {
@@ -144,7 +176,8 @@ const SignupWrapper = styled.div`
     border: 1px solid var(--main-yellow);
     border-radius: 0.6rem;
     background-color: var(--main-yellow);
-    margin: 0.7rem;
+    position: relative;
+    top: 5rem;
     width: 7rem;
     height: 2.5rem;
   }
