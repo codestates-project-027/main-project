@@ -29,10 +29,12 @@ public class CategoryServiceCheckTests {
     private CategoryServiceImpl categoryService;
 
     private String title;
+    private String code;
 
     @BeforeEach
     public void setup() {
         title = "헬스";
+        code = "220909";
     }
 
     @Nested
@@ -69,6 +71,44 @@ public class CategoryServiceCheckTests {
 
                 then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
                 assertThat(exception.getMessage(), equalTo("Exists CategoryTitle"));
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("check code")
+    class checkCode {
+        @Nested
+        @DisplayName("success checkCode case")
+        class successCheckCategoryCase {
+            @Test
+            @DisplayName("success checkTitle test 1 -> codeCheck")
+            public void successCheckCodeCategory() throws Exception {
+                given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
+                        .willReturn(false);
+
+                String result = categoryService.checkCode(code);
+                String notExistsCode = "NotExistsCode";
+
+                then(categoryRepository).should(times(1)).existsByCategoryCode(any());
+                assertThat(result, equalTo(notExistsCode));
+            }
+        }
+        @Nested
+        @DisplayName("fail checkCode case")
+        class failCheckCategoryCase {
+            @Test
+            @DisplayName("fail checkCode test 1 -> codeCheck")
+            public void failCheckCodeCategory() throws Exception {
+                given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
+                        .willReturn(true);
+
+                Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                    categoryService.checkCode(code);
+                });
+
+                then(categoryRepository).should(times(1)).existsByCategoryCode(any());
+                assertThat(exception.getMessage(), equalTo("Exists CategoryCode"));
             }
         }
     }
