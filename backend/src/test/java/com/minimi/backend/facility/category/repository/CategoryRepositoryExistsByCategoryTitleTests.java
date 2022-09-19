@@ -41,7 +41,7 @@ public class CategoryRepositoryExistsByCategoryTitleTests {
     public class successCategoryRepository {
 
         @Test
-        @DisplayName("Success CategoryRepository Test 1 -> CategoryRepositoryExistsByCategoryCodeTests")
+        @DisplayName("Success CategoryRepository Test 1 -> CategoryRepositoryExistsByCategoryTitleTests")
         public void existsByCategoryCode() {
             categoryRepository.save(category);
 
@@ -57,7 +57,7 @@ public class CategoryRepositoryExistsByCategoryTitleTests {
     public class failCategoryRepository {
 
         @Test
-        @DisplayName("Fail CategoryRepository Test 1 -> CategoryRepositoryExistsByCategoryCodeTests notFound")
+        @DisplayName("Fail CategoryRepository Test 1 -> CategoryRepositoryExistsByCategoryTitleTests notFound")
         public void existsByCategoryCode() {
 
             categoryRepository.save(category);
