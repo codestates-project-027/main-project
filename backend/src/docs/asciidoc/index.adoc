@@ -269,9 +269,55 @@ include::{snippets}/get-bookmark/response-body.adoc[]
 include::{snippets}/get-bookmark/response-fields.adoc[]
 
 == 나의 운동시설
+=== 나의 운동시설 구독 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-myfacility/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-myfacility/http-request.adoc[]
+.request-body
+include::{snippets}/post-myfacility/request-body.adoc[]
+.request-fields
+include::{snippets}/post-myfacility/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-myfacility/http-response.adoc[]
+.response-body
+include::{snippets}/post-myfacility/response-body.adoc[]
+
+=== 나의 운동시설 취소 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-myfacility/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-myfacility/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-myfacility/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-myfacility/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-myfacility/http-response.adoc[]
+.response-body
+include::{snippets}/delete-myfacility/response-body.adoc[]
+
 === 나의 운동시설 조회 [GET]
 ==== Request
+.httpie-request
+include::{snippets}/get-myfacility/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-myfacility/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-myfacility/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-myfacility/request-body.adoc[]
 ==== Response
+.http-response
+include::{snippets}/get-myfacility/http-response.adoc[]
+.response-body
+include::{snippets}/get-myfacility/response-body.adoc[]
+.response-fields
+include::{snippets}/get-myfacility/response-fields.adoc[]
 
 == 출석체크
 === 출석체크 조회 [GET]

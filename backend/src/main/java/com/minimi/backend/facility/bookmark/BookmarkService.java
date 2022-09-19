@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class BookmarkService {
-    public BookmarkDto.response getMyFacilitys(String username) {
+    public BookmarkDto.response getBookmark(String username) {
         return null;
     }
 }

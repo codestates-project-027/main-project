@@ -1,11 +1,10 @@
-package com.minimi.backend.facility.controller;
-
+package com.minimi.backend.mypage;
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.bookmark.BookmarkController;
-import com.minimi.backend.facility.bookmark.BookmarkDto;
-import com.minimi.backend.facility.bookmark.BookmarkService;
 import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.mypage.myFacility.MyFacilityController;
+import com.minimi.backend.mypage.myFacility.MyFacilityDto;
+import com.minimi.backend.mypage.myFacility.MyFacilityService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +26,16 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@WebMvcTest(BookmarkController.class)
+@WebMvcTest(MyFacilityController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class BookmarkControllerTests {
+public class MyFacilityControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
@@ -43,43 +43,43 @@ public class BookmarkControllerTests {
     private Gson gson;
 
     @MockBean
-    private BookmarkService bookmarkService;
+    private MyFacilityService myFacilityService;
 
     @Test
-    public void postBookmark() throws Exception{
-        BookmarkDto.request bookmarkReq = new BookmarkDto.request("미니미회원", 1L);
-        String content = gson.toJson(bookmarkReq);
+    public void postMyFacility() throws Exception{
+        MyFacilityDto.request myFacilityReq = new MyFacilityDto.request("미니미회원", 1L);
+        String content = gson.toJson(myFacilityReq);
         ResultActions actions = mockMvc.perform(
-                post("/bookmark")
+                post("/myfacility")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
         );
         actions.andExpect(status().isCreated())
                 .andDo(document(
-                        "post-bookmark",
+                        "post-myfacility",
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
                                         fieldWithPath("username").description("유저 닉네임"),
-                                        fieldWithPath("facilityId").description("구독 시설 ID")
+                                        fieldWithPath("facilityId").description("나의 시설 ID")
                                 ))
                 ));
     }
     @Test
-    public void deleteBookmark() throws Exception {
+    public void deleteMyFacility() throws Exception {
         Long facilityId = 1L;
         ResultActions actions = mockMvc.perform(
-                delete("/bookmark/{facilityId}",facilityId)
+                delete("/myfacility/{facilityId}",facilityId)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
         actions.andExpect(status().isNoContent())
                 .andDo(document(
-                        "delete-bookmark",
+                        "delete-myfacility",
                         getRequestPreProcessor(),
                         pathParameters(
-                                parameterWithName("facilityId").description("구독취소 시설 ID")
+                                parameterWithName("facilityId").description("취소 시설 ID")
                         )));
     }
 
@@ -93,11 +93,11 @@ public class BookmarkControllerTests {
                 2L,"요가와필라테스", "35.12345, 199.12345", "활성");
         facilityList.add(facility);
         facilityList.add(facility1);
-        BookmarkDto.response response = new BookmarkDto.response(username,facilityList);
-        given(bookmarkService.getBookmark(Mockito.anyString())).willReturn(response);
+        MyFacilityDto.response response = new MyFacilityDto.response(username,facilityList);
+        given(myFacilityService.getMyFacilitys(Mockito.anyString())).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
-                get("/bookmark/{username}", username)
+                get("/myfacility/{username}", username)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -110,7 +110,7 @@ public class BookmarkControllerTests {
                 .andExpect(jsonPath(".facilityList[0].location").value(response.getFacilityList().get(0).getLocation()))
                 .andExpect(jsonPath(".facilityList[1].location").value(response.getFacilityList().get(1).getLocation()))
                 .andDo(document(
-                        "get-bookmark",
+                        "get-myfacility",
                         getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("username").description("회원 닉네임")
