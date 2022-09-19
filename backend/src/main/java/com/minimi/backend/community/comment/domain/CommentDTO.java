@@ -15,8 +15,8 @@ public class CommentDTO {
     @AllArgsConstructor
     public static class comment {
         private Long commentId;
-        private Long contentId;
-        private String content;
+        private Long contentsId;
+        private String contents;
         private String username;
         private LocalDateTime createdAt;
     }
@@ -24,7 +24,7 @@ public class CommentDTO {
     @Getter
     @AllArgsConstructor
     public static class request{
-        private Long contentId;
+        private Long contentsId;
         private String username;
         private String userProfile;
         private String contents;
@@ -43,6 +43,6 @@ public class CommentDTO {
     @Getter
     @AllArgsConstructor
     public static class patch{
-        private String content;
+        private String contents;
     }
 }

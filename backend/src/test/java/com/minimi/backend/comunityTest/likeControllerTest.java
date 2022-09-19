@@ -1,9 +1,9 @@
 package com.minimi.backend.comunityTest;
 
 import com.google.gson.Gson;
-import com.minimi.backend.community.like.controller.LikeController;
-import com.minimi.backend.community.like.domain.LikeDTO;
-import com.minimi.backend.community.like.service.LikeService;
+import com.minimi.backend.community.likes.controller.LikesController;
+import com.minimi.backend.community.likes.domain.LikesDTO;
+import com.minimi.backend.community.likes.service.LikesService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -24,7 +24,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.paramete
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(LikeController.class)
+@WebMvcTest(LikesController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 public class likeControllerTest {
@@ -35,40 +35,40 @@ public class likeControllerTest {
     private Gson gson;
 
     @MockBean
-    private LikeService likeService;
+    private LikesService likesService;
 
     @Test
-    public void postLike() throws Exception{
-        LikeDTO.request request = new LikeDTO.request(1L,"닉네임", Boolean.TRUE);
+    public void postLikes() throws Exception{
+        LikesDTO.request request = new LikesDTO.request(1L,"닉네임", Boolean.TRUE);
         String content = gson.toJson(request);
         ResultActions actions = mockMvc.perform(
-                post("/like")
+                post("/likes")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
         );
         actions.andExpect(status().isCreated())
                 .andDo(document(
-                        "post-like",
+                        "post-likes",
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("contentId").description("게시글 아이디"),
+                                        fieldWithPath("contentsId").description("게시글 아이디"),
                                         fieldWithPath("username").description("유저 닉네임"),
-                                        fieldWithPath("like").description("좋아요")
+                                        fieldWithPath("likes").description("좋아요")
                                 ))
                 ));
     }
     @Test
     public void deleteLike() throws Exception {
         ResultActions actions = mockMvc.perform(
-                delete("/like/{contentId}",1L)
+                delete("/likes/{contentId}",1L)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
         actions.andExpect(status().isNoContent())
                 .andDo(document(
-                        "delete-like",
+                        "delete-likes",
                         getRequestPreProcessor(),
                         pathParameters(
                                 parameterWithName("contentId").description("게시글 아이디")

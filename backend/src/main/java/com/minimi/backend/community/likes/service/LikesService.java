@@ -1,9 +1,9 @@
-package com.minimi.backend.community.like.service;
+package com.minimi.backend.community.likes.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LikeService {
+public class LikesService {
 }
