@@ -326,3 +326,194 @@ include::{snippets}/get-miracleScore/http-response.adoc[]
 include::{snippets}/get-miracleScore/response-body.adoc[]
 .response-fields
 include::{snippets}/get-miracleScore/response-fields.adoc[]
+
+== 회원가입
+=== 계정 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-member/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-member/http-request.adoc[]
+.request-body
+include::{snippets}/post-member/request-body.adoc[]
+.request-fields
+include::{snippets}/post-member/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-member/http-response.adoc[]
+.response-body
+include::{snippets}/post-member/response-body.adoc[]
+
+
+== 로그인
+=== 로그인 시도 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-member/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-member/http-request.adoc[]
+.request-body
+include::{snippets}/post-member/request-body.adoc[]
+.request-fields
+include::{snippets}/post-member/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-member/http-response.adoc[]
+.response-body
+include::{snippets}/post-member/response-body.adoc[]
+
+
+== 게시글
+=== 게시글 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-content/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-content/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-content/path-parameters.adoc[]
+.request-body
+include::{snippets}/get-content/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-content/http-response.adoc[]
+.response-body
+include::{snippets}/get-content/response-body.adoc[]
+.response-fields
+include::{snippets}/get-content/response-fields.adoc[]
+
+=== 게시글 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-content/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-content/http-request.adoc[]
+.request-body
+include::{snippets}/post-content/request-body.adoc[]
+.request-fields
+include::{snippets}/post-content/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-content/http-response.adoc[]
+.response-body
+include::{snippets}/post-content/response-body.adoc[]
+
+=== 게시글 수정 [PATCH]
+==== Request
+.httpie-request
+include::{snippets}/patch-content/httpie-request.adoc[]
+.http-request
+include::{snippets}/patch-content/http-request.adoc[]
+.path-parameters
+include::{snippets}/patch-content/path-parameters.adoc[]
+.request-body
+include::{snippets}/patch-content/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-content/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/patch-content/http-response.adoc[]
+.response-body
+include::{snippets}/patch-comment/response-body.adoc[]
+
+=== 게시글 삭제 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-content/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-content/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-content/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-content/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-content/http-response.adoc[]
+.response-body
+include::{snippets}/delete-content/response-body.adoc[]
+
+== 댓글
+=== 댓글 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-comment/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-comment/http-request.adoc[]
+.request-body
+include::{snippets}/post-comment/request-body.adoc[]
+.request-fields
+include::{snippets}/post-comment/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-comment/http-response.adoc[]
+.response-body
+include::{snippets}/post-comment/response-body.adoc[]
+
+=== 댓글 수정 [PATCH]
+==== Request
+.httpie-request
+include::{snippets}/patch-comment/httpie-request.adoc[]
+.http-request
+include::{snippets}/patch-comment/http-request.adoc[]
+.path-parameters
+include::{snippets}/patch-comment/path-parameters.adoc[]
+.request-body
+include::{snippets}/patch-comment/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-comment/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/patch-comment/http-response.adoc[]
+.response-body
+include::{snippets}/patch-comment/response-body.adoc[]
+
+=== 댓글 삭제 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-comment/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-comment/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-comment/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-comment/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-comment/http-response.adoc[]
+.response-body
+include::{snippets}/delete-comment/response-body.adoc[]
+
+
+
+== 좋아요
+=== 좋아요 생성 [POST]
+==== Request
+.httpie-request
+include::{snippets}/post-like/httpie-request.adoc[]
+.http-request
+include::{snippets}/post-like/http-request.adoc[]
+.request-body
+include::{snippets}/post-like/request-body.adoc[]
+.request-fields
+include::{snippets}/post-like/request-fields.adoc[]
+==== Response
+.http-response
+include::{snippets}/post-like/http-response.adoc[]
+.response-body
+include::{snippets}/post-like/response-body.adoc[]
+
+=== 좋아요 삭제 [DELETE]
+==== Request
+.httpie-request
+include::{snippets}/delete-like/httpie-request.adoc[]
+.http-request
+include::{snippets}/delete-like/http-request.adoc[]
+.path-parameters
+include::{snippets}/delete-like/path-parameters.adoc[]
+.request-body
+include::{snippets}/delete-like/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/delete-like/http-response.adoc[]
+.response-body
+include::{snippets}/delete-like/response-body.adoc[]

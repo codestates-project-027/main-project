@@ -1,12 +1,9 @@
 package com.minimi.backend.comunityTest;
 
 import com.google.gson.Gson;
-import com.minimi.backend.community.CommentController;
-import com.minimi.backend.community.ContentController;
-import com.minimi.backend.community.domain.CommentDTO;
-import com.minimi.backend.community.domain.ContentDTO;
-import com.minimi.backend.community.service.CommentService;
-import com.minimi.backend.community.service.ContentService;
+import com.minimi.backend.community.comment.controller.CommentController;
+import com.minimi.backend.community.comment.domain.CommentDTO;
+import com.minimi.backend.community.comment.service.CommentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;

@@ -1,29 +1,24 @@
 package com.minimi.backend.comunityTest;
 
 import com.google.gson.Gson;
-import com.minimi.backend.community.ContentController;
-import com.minimi.backend.community.domain.CommentDTO;
-import com.minimi.backend.community.domain.ContentDTO;
-import com.minimi.backend.community.service.ContentService;
+import com.minimi.backend.community.content.controller.ContentController;
+import com.minimi.backend.community.comment.domain.CommentDTO;
+import com.minimi.backend.community.content.domain.ContentDTO;
+import com.minimi.backend.community.content.service.ContentService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.*;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
@@ -32,8 +27,6 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.data.domain.PageRequest.of;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

@@ -1,6 +1,6 @@
-package com.minimi.backend.community;
+package com.minimi.backend.community.comment.controller;
 
-import com.minimi.backend.community.domain.CommentDTO;
+import com.minimi.backend.community.comment.domain.CommentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

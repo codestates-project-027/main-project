@@ -1,4 +1,4 @@
-package com.minimi.backend.community.domain;
+package com.minimi.backend.community.comment.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

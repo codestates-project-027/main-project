@@ -1,9 +1,9 @@
 package com.minimi.backend.comunityTest;
 
 import com.google.gson.Gson;
-import com.minimi.backend.community.LikeController;
-import com.minimi.backend.community.domain.LikeDTO;
-import com.minimi.backend.community.service.LikeService;
+import com.minimi.backend.community.like.controller.LikeController;
+import com.minimi.backend.community.like.domain.LikeDTO;
+import com.minimi.backend.community.like.service.LikeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;

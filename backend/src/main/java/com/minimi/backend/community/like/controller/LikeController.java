@@ -1,6 +1,6 @@
-package com.minimi.backend.community;
+package com.minimi.backend.community.like.controller;
 
-import com.minimi.backend.community.domain.LikeDTO;
+import com.minimi.backend.community.like.domain.LikeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
