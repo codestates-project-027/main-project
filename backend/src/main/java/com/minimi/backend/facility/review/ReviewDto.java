@@ -22,7 +22,6 @@ public class ReviewDto {
     public static class request{
         private Long facilityId;
         private String username;
-        private String userProfile;
         private String contents;
     }
 
@@ -30,7 +29,6 @@ public class ReviewDto {
     @Getter
     public static class patch{
         private String username;
-        private String userProfile;
         private String contents;
     }
 }

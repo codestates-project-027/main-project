@@ -41,7 +41,7 @@ public class ReviewControllerTests {
 
     @Test
     public void postReview() throws Exception{
-        ReviewDto.request reviewReq = new ReviewDto.request(1L, "미니미회원","프로필이미지","좋은 운동시설이에요!");
+        ReviewDto.request reviewReq = new ReviewDto.request(1L, "미니미회원","좋은 운동시설이에요!");
         String content = gson.toJson(reviewReq);
         ResultActions actions = mockMvc.perform(
                 post("/review")
@@ -57,7 +57,6 @@ public class ReviewControllerTests {
                                 List.of(
                                         fieldWithPath("facilityId").description("운동시설 Id"),
                                         fieldWithPath("username").description("리뷰 유저 네임"),
-                                        fieldWithPath("userProfile").description("리뷰 유저 프로필"),
                                         fieldWithPath("contents").description("리뷰 내용")
                                 ))
                 ));
@@ -66,7 +65,7 @@ public class ReviewControllerTests {
     @Test
     public void patchReview() throws Exception {
         Long reviewId = 1L;
-        ReviewDto.patch reviewPatch = new ReviewDto.patch("미니미","프로필이미지", "여기 좋은 운동시설이네요");
+        ReviewDto.patch reviewPatch = new ReviewDto.patch("미니미", "여기 좋은 운동시설이네요");
         String content = gson.toJson(reviewPatch);
         ResultActions actions = mockMvc.perform(
                 patch("/review/{reviewId}", reviewId)
@@ -84,7 +83,6 @@ public class ReviewControllerTests {
                         requestFields(
                                 List.of(
                                         fieldWithPath("username").description("리뷰 유저 네임"),
-                                        fieldWithPath("userProfile").description("리뷰 유저 프로필"),
                                         fieldWithPath("contents").description("리뷰 내용")
                                 ))
                 ));
