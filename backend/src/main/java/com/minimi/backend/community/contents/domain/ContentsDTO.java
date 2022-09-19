@@ -1,4 +1,4 @@
-package com.minimi.backend.community.content.domain;
+package com.minimi.backend.community.contents.domain;
 
 import com.minimi.backend.community.comment.domain.CommentDTO;
 import lombok.AllArgsConstructor;
@@ -12,15 +12,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ContentDTO {
-    private Long contentId;
+public class ContentsDTO {
+    private Long contentsId;
     private String title;
-    private String content;
+    private String contents;
     private String username;
     private LocalDateTime createdAt;
     private String userProfile;
     private int views;
-    private int like;
+    private int likes;
     private List<CommentDTO.comment> comment;
 
     @AllArgsConstructor
@@ -28,40 +28,40 @@ public class ContentDTO {
     public static class request {
 
         private String title;
-        private String content;
+        private String contents;
         private String username;
 
     }
     @Getter
     @AllArgsConstructor
     public static class response {
-        private Long contentId;
+        private Long contentsId;
         private String title;
-        private String content;
+        private String contents;
         private String username;
         private LocalDateTime createdAt;
         private String userProfile;
         private int views;
-        private int like;
+        private int likes;
         private List<CommentDTO.comment> comment;
 
     }
     @Getter
     @AllArgsConstructor
     public static class contents {
-        private Long contentId;
+        private Long contentsId;
         private String title;
         private String username;
         private LocalDateTime createdAt;
         private int views;
-        private int like;
+        private int likes;
     }
     @AllArgsConstructor
     @Getter
     public static class patch {
 
         private String title;
-        private String content;
+        private String contents;
 
     }
 

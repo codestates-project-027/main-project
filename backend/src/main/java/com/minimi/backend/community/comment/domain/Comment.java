@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Comment {
     private Long commentId;
-    private Long contentId;
-    private String content;
+    private Long contentsId;
+    private String contents;
     private String username;
     private LocalDateTime createdAt;
 

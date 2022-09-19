@@ -1,6 +1,6 @@
-package com.minimi.backend.mypage.service;
+package com.minimi.backend.mypage.myFacility;
 
-import com.minimi.backend.mypage.domain.MyFacilityDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

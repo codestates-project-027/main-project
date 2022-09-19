@@ -13,7 +13,7 @@ public class Facility {
     private String address;
     private String website;
     private String phone;
-    private int reviewCount;
+    private int starRate;
     private String location;
     private List<String> categoryList;
     private Long categoryId;

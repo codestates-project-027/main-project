@@ -6,8 +6,7 @@ import java.time.LocalDate;
 
 public class Review {
     private Long reviewId;
-    private String user;
-    private String userProfile;
+    private String username;
     private String contents;
     private Long facilityId;
     private LocalDate createdAt;
