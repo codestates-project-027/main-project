@@ -17,6 +17,7 @@ public class FacilityDto {
         private String address;
         private int reviewCount;
         private String location;
+        private List<String> categoryList;
         private String status;
     }
 

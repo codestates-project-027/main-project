@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
@@ -136,11 +137,14 @@ public class CategoryControllerTests {
         int page = 1;
         List<FacilityDto.responsePage> facilityList = new ArrayList<>();
         FacilityDto.responsePage facility = new FacilityDto.responsePage(
-                1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456", "영업중");
+                1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456",
+                new ArrayList<>(Arrays.asList("헬스")),"영업중");
         FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
-                2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456", "영업종료");
+                2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
+                new ArrayList<>(Arrays.asList("헬스","PT")),"영업종료");
         FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
-                3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456", "영업중");
+                3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
+                new ArrayList<>(Arrays.asList("헬스","요가")),"영업중");
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
@@ -170,6 +174,7 @@ public class CategoryControllerTests {
                                                 fieldWithPath("content[].address").type(JsonFieldType.STRING).description("운동시설 주소"),
                                                 fieldWithPath("content[].reviewCount").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
+                                                fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
                                                 fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),
                                                 fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
                                                 fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
