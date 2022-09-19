@@ -12,14 +12,14 @@ public class DailyCheckDto {
     public static class request {
         private String username;
         private String location;
-        private String facilityName;
+        private Long facilityId;
     }
 
     @AllArgsConstructor
     @Getter
     public static class response {
         private String username;
-        private String facilityName;
+        private Long facilityId;
         private Boolean check;
     }
     @AllArgsConstructor

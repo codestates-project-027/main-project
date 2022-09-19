@@ -47,10 +47,10 @@ public class DailyCheckControllerTests {
     public void postDailyCheck() throws Exception{
         String username = "MiniMiUser";
         String location = "36.12345, 121.324235";
-        String facilityName = "파워헬스장";
-        DailyCheckDto.request request = new DailyCheckDto.request(username,location,facilityName);
+        Long myFacilityId = 1L;
+        DailyCheckDto.request request = new DailyCheckDto.request(username,location,myFacilityId);
         String content = gson.toJson(request);
-        DailyCheckDto.response response = new DailyCheckDto.response(username, facilityName, true);
+        DailyCheckDto.response response = new DailyCheckDto.response(username, myFacilityId, true);
         given(dailyCheckService.postCheck(Mockito.any(DailyCheckDto.request.class))).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
@@ -61,7 +61,7 @@ public class DailyCheckControllerTests {
         );
         actions.andExpect(status().isCreated())
                 .andExpect(jsonPath(".username").value(username))
-                .andExpect(jsonPath(".facilityName").value(facilityName))
+                .andExpect(jsonPath(".facilityId").value(myFacilityId.intValue()))
                 .andExpect(jsonPath(".check").value(true))
                 .andDo(document(
                 "post-dailyCheck",
@@ -71,11 +71,11 @@ public class DailyCheckControllerTests {
                                 List.of(
                                 fieldWithPath("username").description("회원 닉네임"),
                                 fieldWithPath("location").description("위치 정보"),
-                                fieldWithPath("facilityName").description("시설 정보"))),
+                                fieldWithPath("facilityId").description("시설 Id"))),
                         responseFields(
                                 List.of(
                                         fieldWithPath("username").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("facilityName").type(JsonFieldType.STRING).description("시설 정보"),
+                                        fieldWithPath("facilityId").type(JsonFieldType.NUMBER).description("시설 Id"),
                                         fieldWithPath("check").type(JsonFieldType.BOOLEAN).description("출석 여부")))
         ));
     }
