@@ -1,19 +1,12 @@
-package com.minimi.backend.community;
+package com.minimi.backend.community.content.controller;
 
-import com.minimi.backend.auth.domain.AuthDTO;
-import com.minimi.backend.community.domain.Content;
-import com.minimi.backend.community.domain.ContentDTO;
-import com.minimi.backend.community.service.ContentService;
-import com.minimi.backend.mypage.domain.DailyCheckDto;
-import com.minimi.backend.mypage.service.DailyCheckService;
+import com.minimi.backend.community.content.domain.ContentDTO;
+import com.minimi.backend.community.content.service.ContentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,7 +35,7 @@ public class ContentController {
     //patch Content
     @PatchMapping("/{contentId}")
     public ResponseEntity patchContent(@PathVariable Long contentId,
-                                        @RequestBody ContentDTO.request contentRequest){
+                                        @RequestBody ContentDTO.patch contentPatch){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete Content

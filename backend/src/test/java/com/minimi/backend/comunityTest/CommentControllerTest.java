@@ -1,12 +1,9 @@
 package com.minimi.backend.comunityTest;
 
 import com.google.gson.Gson;
-import com.minimi.backend.community.CommentController;
-import com.minimi.backend.community.ContentController;
-import com.minimi.backend.community.domain.CommentDTO;
-import com.minimi.backend.community.domain.ContentDTO;
-import com.minimi.backend.community.service.CommentService;
-import com.minimi.backend.community.service.ContentService;
+import com.minimi.backend.community.comment.controller.CommentController;
+import com.minimi.backend.community.comment.domain.CommentDTO;
+import com.minimi.backend.community.comment.service.CommentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -66,30 +63,30 @@ public class CommentControllerTest {
                 ));
     }
 
-//    @Test
-//    public void patchReview() throws Exception {
-//
-//        CommentDTO.patch reviewPatch = new CommentDTO.patch("내용 수정");
-//        String content = gson.toJson(reviewPatch);
-//        ResultActions actions = mockMvc.perform(
-//                patch("/comment/{commentId}", 1L)
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(content)
-//        );
-//        actions.andExpect(status().isResetContent())
-//                .andDo(document(
-//                        "patch-comment",
-//                        getRequestPreProcessor(),
-//                        pathParameters(
-//                                parameterWithName("commentId").description("댓글 아이디")
-//                        ),
-//                        requestFields(
-//                                List.of(
-//                                        fieldWithPath("contents").description("댓글 내용")
-//                                ))
-//                ));
-//    }
+    @Test
+    public void patchComment() throws Exception {
+        CommentDTO.patch commentPatch = new CommentDTO.patch(
+                "댓글 수정");
+        String content = gson.toJson(commentPatch);
+        ResultActions actions = mockMvc.perform(
+                patch("/comment/{commentId}", 1L)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content)
+        );
+        actions.andExpect(status().isResetContent())
+                .andDo(document(
+                        "patch-comment",
+                        getRequestPreProcessor(),
+                        pathParameters(
+                                parameterWithName("commentId").description("댓글 아이디")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("content").description("댓글 수정 ")
+                                ))
+                ));
+    }
 
     @Test
     public void deleteComment() throws Exception {

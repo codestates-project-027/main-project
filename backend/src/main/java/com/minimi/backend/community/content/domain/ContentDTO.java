@@ -1,5 +1,6 @@
-package com.minimi.backend.community.domain;
+package com.minimi.backend.community.content.domain;
 
+import com.minimi.backend.community.comment.domain.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,6 @@ public class ContentDTO {
 
     @AllArgsConstructor
     @Getter
-
     public static class request {
 
         private String title;
@@ -55,6 +55,14 @@ public class ContentDTO {
         private LocalDateTime createdAt;
         private int views;
         private int like;
+    }
+    @AllArgsConstructor
+    @Getter
+    public static class patch {
+
+        private String title;
+        private String content;
+
     }
 
 }

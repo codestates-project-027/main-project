@@ -1,9 +1,7 @@
-package com.minimi.backend.community.service;
+package com.minimi.backend.community.content.service;
 
-import com.minimi.backend.auth.domain.AuthDTO;
-import com.minimi.backend.community.domain.ContentDTO;
+import com.minimi.backend.community.content.domain.ContentDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 

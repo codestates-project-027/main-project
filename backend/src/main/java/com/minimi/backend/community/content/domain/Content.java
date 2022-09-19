@@ -1,5 +1,6 @@
-package com.minimi.backend.community.domain;
+package com.minimi.backend.community.content.domain;
 
+import com.minimi.backend.community.comment.domain.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
