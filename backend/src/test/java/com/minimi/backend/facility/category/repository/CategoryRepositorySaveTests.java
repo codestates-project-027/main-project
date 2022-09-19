@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -43,6 +44,7 @@ public class CategoryRepositorySaveTests {
 
             Category result = categoryRepository.save(category);
 
+            assertNotNull(result);
             assertThat(result, equalTo(category));
         }
     }

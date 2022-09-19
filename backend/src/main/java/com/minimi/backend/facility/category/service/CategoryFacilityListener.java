@@ -13,7 +13,6 @@ public class CategoryFacilityListener implements CategoryFacilityGetListener{
     private final FacilityService facilityService;
     @Override
     public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
-        facilityService.getCategoryFacility(categoryTitle, page);
-        return null;
+        return facilityService.getCategoryFacility(categoryTitle, page);
     }
 }

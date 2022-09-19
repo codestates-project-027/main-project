@@ -36,7 +36,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
-        categoryFacilityGetListener.getCategory(categoryTitle, page);
-        return null;
+        return categoryFacilityGetListener.getCategory(categoryTitle, page);
     }
 }
