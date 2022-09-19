@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import icon from '../assets/icon/미니미캐릭터.png';
+import icon from '../assets/logo/minimi-char.png';
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
 
