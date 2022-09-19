@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -59,7 +59,7 @@ public class CategoryServiceGetCategoryFacilityTests {
 
     @Nested
     @DisplayName("success getSliceFacilityCategory case")
-    class successGetTitleCategoryCase {
+    class getSliceFacilityCategorySuccess {
 
         @Test
         @DisplayName("success getSliceFacilityCategory test 1 -> getFacilitySlice")
@@ -71,6 +71,22 @@ public class CategoryServiceGetCategoryFacilityTests {
 
             then(categoryFacilityListener).should(times(1)).getCategory(anyString(), anyInt());
             assertThat(result, equalTo(categorySlice));
+        }
+    }
+
+    @Nested
+    @DisplayName("fail getSliceFacilityCategory case")
+    class getSliceFacilityCategoryFail {
+        @Test
+        @DisplayName("fail getSliceFacilityCategory test 1 -> null")
+        public void categoryFacilityListener() throws Exception {
+            given(categoryFacilityListener.getCategory(Mockito.anyString(),Mockito.anyInt()))
+                    .willReturn(null);
+
+            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryTitle, page);
+
+            then(categoryFacilityListener).should(times(1)).getCategory(anyString(), anyInt());
+            assertThat(result, is(nullValue()));
         }
     }
 }
