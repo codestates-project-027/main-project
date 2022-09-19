@@ -172,7 +172,7 @@ public class CategoryControllerTests {
                                                 fieldWithPath("content[].facilityName").type(JsonFieldType.STRING).description("운동시설 이름"),
                                                 fieldWithPath("content[].facilityPhoto").type(JsonFieldType.STRING).description("운동시설 대표이미지"),
                                                 fieldWithPath("content[].address").type(JsonFieldType.STRING).description("운동시설 주소"),
-                                                fieldWithPath("content[].reviewCount").type(JsonFieldType.NUMBER).description("운동시설 별점"),
+                                                fieldWithPath("content[].starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                                 fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
                                                 fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),

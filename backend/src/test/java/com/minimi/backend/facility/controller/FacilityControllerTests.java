@@ -94,7 +94,7 @@ public class FacilityControllerTests {
                 .andExpect(jsonPath("address").value("서울특별시 강남구"))
                 .andExpect(jsonPath("website").value("www.minimi-health.kr"))
                 .andExpect(jsonPath("phone").value("010-0000-0000"))
-                .andExpect(jsonPath("reviewCount").value(5))
+                .andExpect(jsonPath("starRate").value(5))
                 .andExpect(jsonPath("location").value("34.123456, 119.123456"))
                 .andExpect(jsonPath("categoryList[0]").value("헬스"))
                 .andExpect(jsonPath("categoryList[1]").value("PT"))
@@ -123,7 +123,7 @@ public class FacilityControllerTests {
                                 fieldWithPath("address").type(JsonFieldType.STRING).description("운동시설 주소"),
                                 fieldWithPath("website").type(JsonFieldType.STRING).description("운동시설 웹사이트"),
                                 fieldWithPath("phone").type(JsonFieldType.STRING).description("운동시설 연락처"),
-                                fieldWithPath("reviewCount").type(JsonFieldType.NUMBER).description("운동시설 별점"),
+                                fieldWithPath("starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                 fieldWithPath("location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                 fieldWithPath("categoryList").type(JsonFieldType.ARRAY).description("운동시설 카테고리 리스트"),
                                 fieldWithPath("status").type(JsonFieldType.STRING).description("운동시설 상태"),
@@ -289,7 +289,7 @@ public class FacilityControllerTests {
                                                 fieldWithPath("content[].facilityName").type(JsonFieldType.STRING).description("운동시설 이름"),
                                                 fieldWithPath("content[].facilityPhoto").type(JsonFieldType.STRING).description("운동시설 대표이미지"),
                                                 fieldWithPath("content[].address").type(JsonFieldType.STRING).description("운동시설 주소"),
-                                                fieldWithPath("content[].reviewCount").type(JsonFieldType.NUMBER).description("운동시설 별점"),
+                                                fieldWithPath("content[].starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                                 fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
                                                 fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),

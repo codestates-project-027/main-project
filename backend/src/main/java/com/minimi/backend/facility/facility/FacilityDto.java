@@ -15,7 +15,7 @@ public class FacilityDto {
         private String facilityName;
         private String facilityPhoto;
         private String address;
-        private int reviewCount;
+        private int starRate;
         private String location;
         private List<String> categoryList;
         private String status;
@@ -31,7 +31,7 @@ public class FacilityDto {
         private String address;
         private String website;
         private String phone;
-        private int reviewCount;
+        private int starRate;
         private String location;
         private List<String> categoryList;
         private String status;
