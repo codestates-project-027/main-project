@@ -23,10 +23,11 @@ public class Category {
     private String categoryTitle;
 
     @Column
-    private String categoryStatus;
+    @Enumerated(EnumType.STRING)
+    private CategoryStatus categoryStatus;
 
     @Builder
-    public Category(String categoryTitle, String categoryStatus, String categoryCode){
+    public Category(String categoryTitle, CategoryStatus categoryStatus, String categoryCode){
         this.categoryCode = categoryCode;
         this.categoryTitle = categoryTitle;
         this.categoryStatus = categoryStatus;

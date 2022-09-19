@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,13 +31,13 @@ public class CategoryServicePatchTests {
     private CategoryServiceImpl categoryService;
 
     private Category category;
-    private CategoryDto.request CategoryDtoRequest;
+    private CategoryDto.patch CategoryDtoPatch;
     private String categoryCode;
 
     @BeforeEach
     public void setup(){
-        category = new Category(1L, "220901","헬스","활성");
-        CategoryDtoRequest = new CategoryDto.request("헬스","비활성");
+        category = new Category(1L, "220901","헬스", CategoryStatus.활성);
+        CategoryDtoPatch = new CategoryDto.patch("헬스",CategoryStatus.비활성);
         categoryCode = "220901";
     }
 
@@ -49,7 +50,7 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category)).willReturn(category);
             given(categoryRepository.findByCategoryCode(Mockito.anyString())).willReturn(Optional.of(category));
 
-            Category result = categoryService.patchCategory(categoryCode,CategoryDtoRequest);
+            Category result = categoryService.patchCategory(categoryCode,CategoryDtoPatch);
 
             then(categoryRepository).should(times(1)).save(any());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
@@ -67,7 +68,7 @@ public class CategoryServicePatchTests {
                     .willThrow(new RuntimeException("exists CategoryTitle"));
 
             RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
-                categoryService.patchCategory(categoryCode, CategoryDtoRequest);
+                categoryService.patchCategory(categoryCode, CategoryDtoPatch);
             });
 
             then(categoryRepository).should(times(1)).save(any());
@@ -82,7 +83,7 @@ public class CategoryServicePatchTests {
                     .willThrow(new NullPointerException("noContent CategoryCode"));
 
             NullPointerException exception = Assertions.assertThrows(NullPointerException.class, () -> {
-                categoryService.patchCategory(categoryCode, CategoryDtoRequest);
+                categoryService.patchCategory(categoryCode, CategoryDtoPatch);
             });
 
             then(categoryRepository).should(times(1)).findByCategoryCode(any());

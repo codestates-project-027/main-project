@@ -2,6 +2,7 @@ package com.minimi.backend.facility.category.repository;
 
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -29,7 +30,7 @@ public class CategoryRepositorySaveTests {
     public void setup(){
         category = Category.builder()
                 .categoryTitle("헬스")
-                .categoryStatus("활성")
+                .categoryStatus(CategoryStatus.활성)
                 .categoryCode("220901")
                 .build();
     }

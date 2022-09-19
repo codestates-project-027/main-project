@@ -4,6 +4,7 @@ package com.minimi.backend.facility.category.controller;
 import com.google.gson.Gson;
 import com.minimi.backend.facility.category.controller.CategoryController;
 import com.minimi.backend.facility.category.domain.CategoryDto;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.service.CategoryService;
 import com.minimi.backend.facility.facility.FacilityDto;
 import org.junit.jupiter.api.Test;
@@ -48,7 +49,7 @@ public class CategoryControllerTests {
 
     @Test
     public void postCategory() throws Exception{
-        CategoryDto.request categoryDtoRequest = new CategoryDto.request("헬스장", "활성");
+        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.활성);
         String content = gson.toJson(categoryDtoRequest);
         ResultActions actions = mockMvc.perform(
                 post("/category")
@@ -62,6 +63,7 @@ public class CategoryControllerTests {
                         getRequestPreProcessor(),
                         requestFields(
                                 List.of(
+                                        fieldWithPath("categoryCode").description("카테고리 코드"),
                                         fieldWithPath("categoryTitle").description("카테고리 이름"),
                                         fieldWithPath("categoryStatus").description("카테고리 상태")))
                 ));
@@ -71,7 +73,7 @@ public class CategoryControllerTests {
     public void patchCategory() throws Exception {
         String categoryTitle = "헬스";
         String categoryCode = "220901";
-        CategoryDto.request categoryReq = new CategoryDto.request(categoryTitle, "비활성");
+        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.비활성);
         String content = gson.toJson(categoryReq);
         ResultActions actions = mockMvc.perform(
                 patch("/category/{categoryCode}", categoryCode)
@@ -98,8 +100,8 @@ public class CategoryControllerTests {
     @Test
     public void getCategoryTitles() throws Exception{
         List<CategoryDto.response> categoryTitles = new ArrayList<>();
-        CategoryDto.response category = new CategoryDto.response("220811","헬스", "활성");
-        CategoryDto.response category1 = new CategoryDto.response("220901","요가","비활성");
+        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.활성);
+        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.비활성);
         categoryTitles.add(category);
         categoryTitles.add(category1);
         given(categoryService.getCategoryTitles()).willReturn(categoryTitles);

@@ -2,6 +2,7 @@ package com.minimi.backend.facility.category.repository;
 
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CategoryRepositoryFindByCategoryCodeTests {
     public void setup(){
         category = Category.builder()
                 .categoryTitle("헬스")
-                .categoryStatus("활성")
+                .categoryStatus(CategoryStatus.활성)
                 .categoryCode("220901")
                 .build();
     }

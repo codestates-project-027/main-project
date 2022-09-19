@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,12 +46,12 @@ public class CategoryServiceGetTitleTests {
     @BeforeEach
     public void setup(){
         categoryList = new ArrayList<>(Arrays.asList(
-                new Category(1L,"220901","헬스","활성"),
-                new Category(2L,"220902","요가","비활성")
+                new Category(1L,"220901","헬스", CategoryStatus.활성),
+                new Category(2L,"220902","요가", CategoryStatus.비활성)
         ));
         categoryDtoList = new ArrayList<>(Arrays.asList(
-                new CategoryDto.response("220901","헬스","활성"),
-                new CategoryDto.response("220902","요가","비활성")
+                new CategoryDto.response("220901","헬스",CategoryStatus.활성),
+                new CategoryDto.response("220902","요가",CategoryStatus.비활성)
         ));
     }
 

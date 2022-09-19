@@ -8,8 +8,16 @@ public class CategoryDto {
     @AllArgsConstructor
     @Getter
     public static class request{
+        private String categoryCode;
         private String categoryTitle;
-        private String categoryStatus;
+        private CategoryStatus categoryStatus;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class patch{
+        private String categoryTitle;
+        private CategoryStatus categoryStatus;
     }
 
     @AllArgsConstructor
@@ -17,6 +25,6 @@ public class CategoryDto {
     public static class response{
         private String categoryCode;
         private String categoryTitle;
-        private String categoryStatus;
+        private CategoryStatus categoryStatus;
     }
 }

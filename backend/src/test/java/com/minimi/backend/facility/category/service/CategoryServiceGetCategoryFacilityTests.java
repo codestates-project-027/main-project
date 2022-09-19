@@ -4,7 +4,6 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.facility.FacilityDto;
-import com.minimi.backend.facility.facility.FacilityRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -36,9 +35,6 @@ public class CategoryServiceGetCategoryFacilityTests {
 
     @Mock
     private CategoryRepository categoryRepository;
-
-    @Mock
-    private FacilityRepository facilityRepository;
 
     @Mock
     private CategoryFacilityListener categoryFacilityListener;

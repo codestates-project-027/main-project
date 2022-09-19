@@ -6,6 +6,7 @@ import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,20 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
-        return null;
+
+        checkTitle(categoryDtoRequest.getCategoryTitle());
+        checkCode(categoryDtoRequest.getCategoryCode());
+
+        Category category = Category.builder()
+                .categoryTitle(categoryDtoRequest.getCategoryTitle())
+                .categoryCode(categoryDtoRequest.getCategoryCode())
+                .categoryStatus(categoryDtoRequest.getCategoryStatus())
+                .build();
+        return categoryRepository.save(category);
     }
 
     @Override
-    public Category patchCategory(String categoryCode, CategoryDto.request categoryDtoRequest) {
+    public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
         return null;
     }
 
@@ -37,5 +47,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
         return categoryFacilityGetListener.getCategory(categoryTitle, page);
+    }
+
+    public String checkTitle(String categoryTitle) {
+        if (categoryRepository.existsByCategoryTitle(categoryTitle)){
+            throw new RuntimeException("Exists CategoryTitle");
+        }
+        return "NotExistsTitle";
+    }
+    public String checkCode(String categoryCode) {
+        if (categoryRepository.existsByCategoryCode(categoryCode)){
+            throw new RuntimeException("Exists CategoryCode");
+        }
+        return "NotExistsCode";
     }
 }
