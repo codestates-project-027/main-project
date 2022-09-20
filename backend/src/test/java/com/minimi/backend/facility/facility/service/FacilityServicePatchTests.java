@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -233,6 +234,37 @@ public class FacilityServicePatchTests {
             assertThat(result.getFacilityPhotoList(), equalTo(facility.getFacilityPhotoList()));
             assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
             assertThat(result.getCategoryList(), equalTo(facilityResult.getCategoryList()));
+        }
+        @Test
+        @DisplayName("success patchFacility test 6 -> contain blank patch with categoryList size == 0")
+        public void successPatchFacility6() throws Exception {
+            FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
+            facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
+            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
+            facilityDtoReqContainNull.setFacilityInfo("");
+            facilityDtoReqContainNull.setCategoryList(new ArrayList<>(List.of()));
+            given(facilityRepository.existsById(facilityId)).willReturn(true);
+            given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
+            given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
+
+            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+
+            then(facilityRepository)
+                    .should(times(1)).existsById(anyLong());
+            then(facilityRepository).should(times(1)).findById(anyLong());
+            then(facilityRepository).should(times(1)).save(any());
+            assertThat(result.getPhone(), equalTo(facility.getPhone()));
+            assertThat(result.getFacilityId(), equalTo(facilityResult.getFacilityId()));
+            assertThat(result.getFacilityInfo(), equalTo(facility.getFacilityInfo()));
+            assertThat(result.getFacilityName(), equalTo(facilityResult.getFacilityName()));
+            assertThat(result.getAddress(), equalTo(facility.getAddress()));
+            assertThat(result.getFacilityPhoto(), equalTo(facility.getFacilityPhoto()));
+            assertThat(result.getLocation(), equalTo(facility.getLocation()));
+            assertThat(result.getStarRate(), equalTo(facilityResult.getStarRate()));
+            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
+            assertThat(result.getFacilityPhotoList(), equalTo(facility.getFacilityPhotoList()));
+            assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
+            assertThat(result.getCategoryList(), equalTo(facility.getCategoryList()));
         }
     }
 
