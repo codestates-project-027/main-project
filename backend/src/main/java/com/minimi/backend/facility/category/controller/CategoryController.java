@@ -3,7 +3,7 @@ package com.minimi.backend.facility.category.controller;
 
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.service.CategoryService;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;

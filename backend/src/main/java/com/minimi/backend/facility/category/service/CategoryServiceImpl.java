@@ -7,7 +7,7 @@ import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
 import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;

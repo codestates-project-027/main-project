@@ -1,12 +1,10 @@
 package com.minimi.backend.facility.facility.service;
 
 
-import com.minimi.backend.facility.facility.domain.facility.Facility;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
-import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
-import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryCheckListener;
+import com.minimi.backend.facility.facility.domain.Facility;
+import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
+import com.minimi.backend.facility.facility.service.listener.FacilityCategoryCheckListener;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,10 +15,8 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;

@@ -1,6 +1,6 @@
 package com.minimi.backend.facility.bookmark;
 
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

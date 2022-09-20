@@ -1,7 +1,7 @@
 package com.minimi.backend.facility.facility.mapper;
 
-import com.minimi.backend.facility.facility.domain.facility.Facility;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.Facility;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

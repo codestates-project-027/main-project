@@ -1,8 +1,8 @@
 package com.minimi.backend.mypage;
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.mypage.myFacility.MyFacilityController;
 import com.minimi.backend.mypage.myFacility.MyFacilityDto;
 import com.minimi.backend.mypage.myFacility.MyFacilityService;

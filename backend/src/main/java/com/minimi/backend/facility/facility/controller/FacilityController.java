@@ -1,8 +1,8 @@
 package com.minimi.backend.facility.facility.controller;
 
 
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.service.facility.FacilityService;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;

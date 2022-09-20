@@ -3,10 +3,10 @@ package com.minimi.backend.facility.facility.controller;
 
 import com.google.gson.Gson;
 
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.review.ReviewDto;
-import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
+import com.minimi.backend.facility.facility.service.FacilityServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

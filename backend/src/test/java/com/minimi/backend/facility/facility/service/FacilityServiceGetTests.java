@@ -1,14 +1,12 @@
 package com.minimi.backend.facility.facility.service;
 
 
-import com.minimi.backend.facility.facility.domain.facility.Facility;
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
-import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
+import com.minimi.backend.facility.facility.domain.Facility;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
-import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryCheckListener;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityReviewGetListener;
+import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.review.ReviewDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,12 +15,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +28,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("getFacility test")

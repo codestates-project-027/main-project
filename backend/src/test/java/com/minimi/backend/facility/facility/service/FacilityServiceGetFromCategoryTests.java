@@ -1,13 +1,11 @@
 package com.minimi.backend.facility.facility.service;
 
 
-import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
-import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
-import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryListGetListenerImpl;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityReviewGetListener;
+import com.minimi.backend.facility.facility.service.listener.FacilityCategoryListGetListenerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -25,7 +23,6 @@ import org.springframework.data.domain.SliceImpl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

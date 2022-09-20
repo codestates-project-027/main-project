@@ -1,9 +1,8 @@
 package com.minimi.backend.facility.facility.service;
 
 
-import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
-import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
-import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryCheckListener;
+import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.facility.facility.service.listener.FacilityCategoryCheckListener;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
