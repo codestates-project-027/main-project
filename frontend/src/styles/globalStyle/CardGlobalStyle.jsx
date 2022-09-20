@@ -42,3 +42,16 @@ export const MCardGlobal = styled.div`
     display: flex;
   }
 `;
+
+export const MCardFlexGlobal = styled(MCardGlobal)`
+  @media screen and (min-width: 790px) {
+    display: flex;
+  }
+`;
+
+export const AlarmCardGlobal = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;

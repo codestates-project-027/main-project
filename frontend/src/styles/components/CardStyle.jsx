@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PADDING } from '../../constants/style';
 
 export const FCardStyle = styled.div`
   display: flex;
@@ -31,9 +32,6 @@ export const FCardStyle = styled.div`
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      .name {
-        font-size: 15px;
-      }
       .distance {
         font-size: 15px;
         margin-right: 10px;
@@ -82,4 +80,80 @@ export const FCardFlexStyle = styled(FCardStyle)`
     margin-left: -25px;
     background-color: red;
   }
+`;
+
+export const FDescCardStyle = styled.div`
+  display: flex;
+  padding: ${PADDING.BASIC};
+  background-color: lightyellow;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  .Fname {
+    font-size: 1.1rem;
+  }
+  .remaining {
+    display: flex;
+    justify-content: right;
+    font-size: 1rem;
+    color: red;
+  }
+`;
+
+export const AttendanceCardStyle = styled.div`
+  display: flex;
+  background-color: bisque;
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .sub--wrapper {
+    display: flex;
+    color: red;
+  }
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+  }
+  .day {
+    display: flex;
+    width: 25px;
+    height: 25px;
+    border: 1px solid lightpink;
+  }
+`;
+
+export const AlarmCardStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  height: 70px;
+  background-color: var(--main-navy);
+  color: red;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  .icon--head--wrapper {
+    display: flex;
+    color: wheat;
+    padding: ${PADDING.BASIC};
+  }
+  .date {
+    color: wheat;
+    padding: ${PADDING.BASIC};
+  }
+`;
+
+export const LocationViewCardStyle = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 20px;
+  min-width: 350px;
+  min-height: 150px;
+  background-color: lightgoldenrodyellow;
 `;

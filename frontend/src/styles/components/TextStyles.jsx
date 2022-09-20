@@ -9,5 +9,3 @@ export const MainPageBtnTextStyle = styled.div`
     display: none;
   }
 `;
-
-export const dummy = styled.div``;

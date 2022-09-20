@@ -4,7 +4,7 @@ import Searchbar from '../components/Bar/Searchbar';
 
 import { SearchbarGroupStyle } from '../styles/components/ComponentGroupStyle';
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import FacilityCardFlex from '../components/Card/FacilityCardFlex';
+import { FacilityCardFlex } from '../components/Card/FacilityCard';
 
 const FacilitiesPage = () => {
   return (

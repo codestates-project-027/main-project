@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PADDING } from '../../constants/style';
 
 export const SearchbarGroupStyle = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ export const MainPageBtnsGroupStyle = styled.div`
     width: 50%;
   }
   .menu--title {
-    font-size: 15px;
+    font-size: 1.2rem;
     text-align: left;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -58,4 +59,11 @@ export const MainPageBtnsGroupStyle = styled.div`
     margin-top: 5px;
     margin-left: -15px;
   }
+`;
+
+export const FacilityPageDescGroupStyle = styled.div`
+  display: flex;
+  padding: ${PADDING.BASIC};
+  background-color: aliceblue;
+  flex-direction: column;
 `;
