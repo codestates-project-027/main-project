@@ -63,11 +63,12 @@ public class FacilityServiceImpl implements FacilityService {
 
     }
 
-    public void checkCategory(List<String> categoryList) {
+    public Boolean checkCategory(List<String> categoryList) {
         categoryList.forEach(categoryCode ->{
             if (!facilityCategoryCheckListener.checkExistsByCategoryCode(categoryCode)) {
                 throw new NullPointerException("Not Found Category");
             }
         });
+        return true;
     }
 }

@@ -73,9 +73,11 @@ public class CategoryServicePostTests {
         @DisplayName("fail postCategory test 1 -> null")
         public void failPostCategoryNull() throws Exception {
 
-            Category result = categoryService.postCategory(categoryDtoRequest);
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        categoryService.postCategory(categoryDtoRequest);
+                    });
 
-            assertThat(result, is(nullValue()));
+            assertThat(exception.getMessage(), is(nullValue()));
         }
 
         @Test

@@ -91,7 +91,7 @@ public class FacilityServicePostTests {
 
         @Test
         @DisplayName("fail postFacility test 2 -> not found category")
-        public void failPostCategoryNoCategory() throws Exception {
+        public void failPostFacilityNoCategory() throws Exception {
             given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
                     .willReturn(false);
 
