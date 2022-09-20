@@ -10,6 +10,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +61,10 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void deleteFacility(Long facilityId) {
-
+        if (!facilityRepository.existsById(facilityId)){
+            throw new NullPointerException("Not Found Facility");
+        }
+        facilityRepository.deleteById(facilityId);
     }
 
     public Boolean checkCategory(List<String> categoryList) {

@@ -67,39 +67,28 @@ public class FacilityServiceDeleteTests {
         @DisplayName("success DeleteFacility test 1 -> delete")
         public void successDeleteFacility() throws Exception {
             given(facilityRepository.existsById(Mockito.anyLong())).willReturn(true);
-            given(facilityRepository.findById(Mockito.anyLong())).willReturn(Optional.ofNullable(facility));
-            doNothing().when(facilityRepository).delete(any(Facility.class));
+            doNothing().when(facilityRepository).deleteById(anyLong());
 
             facilityService.deleteFacility(facilityId);
 
-            then(facilityRepository).should(times(1)).delete(any());
-            then(facilityRepository).should(times(1)).delete(any());
-            then(facilityRepository).should(times(1)).delete(any());
+            then(facilityRepository).should(times(1)).existsById(anyLong());
+            then(facilityRepository).should(times(1)).deleteById(anyLong());
         }
     }
     @Nested
     @DisplayName("fail DeleteFacility case")
     class failDeleteFacilityCase {
         @Test
-        @DisplayName("fail DeleteFacility test 1 -> ")
+        @DisplayName("fail DeleteFacility test 1 -> not found facility")
         public void failPostFacility() throws Exception {
-//            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString())).willReturn(true);
-//            Facility result = facilityService.postFacility(facilityDtoReq);
-//
-//            assertThat(result, is(nullValue()));
-        }
+            given(facilityRepository.existsById(Mockito.anyLong())).willReturn(false);
 
-        @Test
-        @DisplayName("fail DeleteFacility test 2 -> not found facility")
-        public void failDeleteFacilityNotFound() throws Exception {
-//            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
-//                    .willReturn(false);
-//
-//            Exception exception = Assertions.assertThrows(Exception.class, () -> {
-//                facilityService.postFacility(facilityDtoReq);
-//            });
-//
-//            assertThat(exception.getMessage(), equalTo("Not Found Category"));
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        facilityService.deleteFacility(facilityId);
+                    });
+
+            then(facilityRepository).should(times(1)).existsById(anyLong());
+            assertThat(exception.getMessage(), equalTo("Not Found Facility"));
         }
     }
 }
