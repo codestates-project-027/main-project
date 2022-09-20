@@ -6,6 +6,7 @@ import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.service.CategoryService;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,13 +138,13 @@ public class CategoryControllerTests {
         List<FacilityDto.responsePage> facilityList = new ArrayList<>();
         FacilityDto.responsePage facility = new FacilityDto.responsePage(
                 1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스")), FacilityStatus.ACTIVE);
         FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
-                new ArrayList<>(Arrays.asList("헬스", "PT")),"영업종료");
+                new ArrayList<>(Arrays.asList("헬스", "PT")),FacilityStatus.INACTIVE);
         FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스", "요가")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스", "요가")),FacilityStatus.ACTIVE);
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
@@ -174,7 +175,7 @@ public class CategoryControllerTests {
                                                 fieldWithPath("content[].starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                                 fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
-                                                fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),
+                                                fieldWithPath("content[].facilityStatus").type(JsonFieldType.STRING).description("운동시설 상태"),
                                                 fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
                                                 fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
                                                 fieldWithPath("pageable.sort.empty").type(JsonFieldType.BOOLEAN).description("pageable sort empty 정보"),

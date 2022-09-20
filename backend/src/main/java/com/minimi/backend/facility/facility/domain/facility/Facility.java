@@ -1,10 +1,7 @@
 package com.minimi.backend.facility.facility.domain.facility;
 
 import com.minimi.backend.facility.review.Review;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -53,7 +50,24 @@ public class Facility {
     private List<String> categoryList;
 
     @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private FacilityStatus facilityStatus;
 
 
+    @Builder
+    public Facility(String facilityName, String facilityPhoto, List<String> facilityPhotoList,
+                    String facilityInfo, String address, String website, String phone,
+                    String location, List<String> categoryList){
+        this.facilityName=facilityName;
+        this.facilityPhoto=facilityPhoto;
+        this.facilityPhotoList=facilityPhotoList;
+        this.facilityInfo=facilityInfo;
+        this.address=address;
+        this.website=website;
+        this.phone=phone;
+        this.location=location;
+        this.categoryList=categoryList;
+        this.starRate=0;
+        this.facilityStatus=FacilityStatus.PENDING;
+    }
 }

@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facility.service;
+package com.minimi.backend.facility.facility.service.facility;
 
 import com.minimi.backend.facility.facility.domain.facility.Facility;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;

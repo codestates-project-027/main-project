@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facility.service.listener;
+package com.minimi.backend.facility.facility.service.facilitycategory.listener;
 
 
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;

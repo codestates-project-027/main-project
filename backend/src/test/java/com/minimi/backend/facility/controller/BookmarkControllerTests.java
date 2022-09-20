@@ -6,6 +6,7 @@ import com.minimi.backend.facility.bookmark.BookmarkController;
 import com.minimi.backend.facility.bookmark.BookmarkDto;
 import com.minimi.backend.facility.bookmark.BookmarkService;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,9 +89,9 @@ public class BookmarkControllerTests {
         String username = "MiniMiUser";
         List<FacilityDto.responseMyFacility> facilityList = new ArrayList<>();
         FacilityDto.responseMyFacility facility = new FacilityDto.responseMyFacility(
-                1L,"집근처GYM","34.12345, 199.12345", "활성");
+                1L,"집근처GYM","34.12345, 199.12345", FacilityStatus.ACTIVE);
         FacilityDto.responseMyFacility facility1 = new FacilityDto.responseMyFacility(
-                2L,"요가와필라테스", "35.12345, 199.12345", "활성");
+                2L,"요가와필라테스", "35.12345, 199.12345", FacilityStatus.ACTIVE);
         facilityList.add(facility);
         facilityList.add(facility1);
         BookmarkDto.response response = new BookmarkDto.response(username,facilityList);
@@ -105,8 +106,8 @@ public class BookmarkControllerTests {
                 .andExpect(jsonPath(".username").value(response.getUsername()))
                 .andExpect(jsonPath(".facilityList[0].facilityName").value(response.getFacilityList().get(0).getFacilityName()))
                 .andExpect(jsonPath(".facilityList[1].facilityName").value(response.getFacilityList().get(1).getFacilityName()))
-                .andExpect(jsonPath(".facilityList[0].status").value(response.getFacilityList().get(0).getStatus()))
-                .andExpect(jsonPath(".facilityList[1].status").value(response.getFacilityList().get(1).getStatus()))
+                .andExpect(jsonPath(".facilityList[0].facilityStatus").value(String.valueOf(response.getFacilityList().get(0).getFacilityStatus())))
+                .andExpect(jsonPath(".facilityList[1].facilityStatus").value(String.valueOf(response.getFacilityList().get(1).getFacilityStatus())))
                 .andExpect(jsonPath(".facilityList[0].location").value(response.getFacilityList().get(0).getLocation()))
                 .andExpect(jsonPath(".facilityList[1].location").value(response.getFacilityList().get(1).getLocation()))
                 .andDo(document(
@@ -123,12 +124,12 @@ public class BookmarkControllerTests {
                                         fieldWithPath("facilityList[0].facilityId").type(JsonFieldType.NUMBER).description("내 운동시설 ID"),
                                         fieldWithPath("facilityList[0].facilityName").type(JsonFieldType.STRING).description("내 운동시설 이름"),
                                         fieldWithPath("facilityList[0].location").type(JsonFieldType.STRING).description("내 운동시설 좌표"),
-                                        fieldWithPath("facilityList[0].status").type(JsonFieldType.STRING).description("내 운동시설 상태"),
+                                        fieldWithPath("facilityList[0].facilityStatus").type(JsonFieldType.STRING).description("내 운동시설 상태"),
                                         fieldWithPath("facilityList[1]").type(JsonFieldType.ARRAY).description("내 운동시설2"),
                                         fieldWithPath("facilityList[1].facilityId").type(JsonFieldType.NUMBER).description("내 운동시설 ID"),
                                         fieldWithPath("facilityList[1].facilityName").type(JsonFieldType.STRING).description("내 운동시설 이름"),
                                         fieldWithPath("facilityList[1].location").type(JsonFieldType.STRING).description("내 운동시설 좌표"),
-                                        fieldWithPath("facilityList[1].status").type(JsonFieldType.STRING).description("내 운동시설 상태")
+                                        fieldWithPath("facilityList[1].facilityStatus").type(JsonFieldType.STRING).description("내 운동시설 상태")
                                 )
                         )
                 ));

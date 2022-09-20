@@ -18,7 +18,7 @@ public class FacilityDto {
         private int starRate;
         private String location;
         private List<String> categoryList;
-        private String status;
+        private FacilityStatus facilityStatus;
     }
 
     @AllArgsConstructor
@@ -27,7 +27,7 @@ public class FacilityDto {
         private Long facilityId;
         private String facilityName;
         private String location;
-        private String status;
+        private FacilityStatus facilityStatus;
     }
 
     @AllArgsConstructor
@@ -43,7 +43,7 @@ public class FacilityDto {
         private int starRate;
         private String location;
         private List<String> categoryList;
-        private String status;
+        private FacilityStatus facilityStatus;
         private List<ReviewDto.response> reviews;
     }
 

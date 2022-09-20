@@ -3,7 +3,8 @@ package com.minimi.backend.facility.category.service;
 
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListenerImpl;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.service.FacilityServiceImpl;
+import com.minimi.backend.facility.facility.domain.facility.FacilityStatus;
+import com.minimi.backend.facility.facility.service.facility.FacilityServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -49,13 +50,13 @@ public class CategoryFacilityGetListenerImplTests {
         facilityList = new ArrayList<>(Arrays.asList(
                 new FacilityDto.responsePage(
                         1L,"파워헬스장","대표이미지","서울특별시 강남구",3,
-                        "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스")),"영업중"),
+                        "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스")), FacilityStatus.ACTIVE),
                 new FacilityDto.responsePage(
                         2L,"종국헬스장","대표이미지","서울특별시 강북구",2,
-                        "35.123456, 120.123456", new ArrayList<>(Arrays.asList("헬스", "PT")),"영업종료"),
+                        "35.123456, 120.123456", new ArrayList<>(Arrays.asList("헬스", "PT")),FacilityStatus.INACTIVE),
                 new FacilityDto.responsePage(
                         3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,
-                        "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스", "요가")),"영업중")
+                        "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스", "요가")),FacilityStatus.ACTIVE)
         ));
     }
 

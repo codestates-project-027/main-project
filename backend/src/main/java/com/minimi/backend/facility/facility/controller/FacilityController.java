@@ -2,8 +2,7 @@ package com.minimi.backend.facility.facility.controller;
 
 
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
-import com.minimi.backend.facility.facility.service.FacilityService;
-import com.minimi.backend.facility.facility.service.FacilityServiceImpl;
+import com.minimi.backend.facility.facility.service.facility.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
@@ -25,6 +24,7 @@ public class FacilityController {
     //post facility
     @PostMapping("")
     public ResponseEntity postFacility(@RequestBody FacilityDto.request facilityReq){
+        facilityService.postFacility(facilityReq);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
