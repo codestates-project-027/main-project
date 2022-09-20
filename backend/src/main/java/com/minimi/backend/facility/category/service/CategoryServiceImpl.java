@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .categoryStatus(categoryDtoRequest.getCategoryStatus())
                 .build());
 
-        eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode()));
+        eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
         return category;
     }
 

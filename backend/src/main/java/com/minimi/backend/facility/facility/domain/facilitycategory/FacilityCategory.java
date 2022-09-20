@@ -20,4 +20,7 @@ public class FacilityCategory {
 
     @Column
     private String categoryCode;
+
+    @Column
+    private String categoryTitle;
 }

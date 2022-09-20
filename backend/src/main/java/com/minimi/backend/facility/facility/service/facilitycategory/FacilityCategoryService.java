@@ -5,7 +5,7 @@ import com.minimi.backend.facility.facility.domain.facilitycategory.FacilityCate
 
 public interface FacilityCategoryService {
 
-    public FacilityCategory postFacilityCategory(String categoryCode);
+    public FacilityCategory postFacilityCategory(String categoryCode, String categoryTitle);
 
     Boolean checkExistsByCategoryCode(String categoryCode);
 

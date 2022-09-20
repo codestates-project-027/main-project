@@ -13,7 +13,7 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
 
     private final FacilityCategoryRepository facilityCategoryRepository;
     @Override
-    public FacilityCategory postFacilityCategory(String categoryCode) {
+    public FacilityCategory postFacilityCategory(String categoryCode, String categoryTitle) {
         return null;
     }
 

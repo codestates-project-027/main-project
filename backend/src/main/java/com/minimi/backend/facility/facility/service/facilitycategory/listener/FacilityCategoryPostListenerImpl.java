@@ -19,6 +19,7 @@ public class FacilityCategoryPostListenerImpl implements FacilityCategoryPostLis
     @EventListener
     @Async
     public void saveFacilityCategory(CategoryPostEvent categoryPostEvent) {
-        facilityCategoryService.postFacilityCategory(categoryPostEvent.getCategoryCode());
+        facilityCategoryService.postFacilityCategory(
+                categoryPostEvent.getCategoryCode(), categoryPostEvent.getCategoryTitle());
     }
 }
