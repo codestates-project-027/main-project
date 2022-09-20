@@ -3,6 +3,7 @@ package com.minimi.backend.facility.facility.service;
 
 import com.minimi.backend.facility.facility.domain.facility.Facility;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facilitycategory.FacilityCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class FacilityServiceImpl implements FacilityService{
 
     @Override
     public Facility postFacility(FacilityDto.request facilityDtoReq) {
+        return null;
+    }
+
+    @Override
+    public FacilityCategory postFacilityCategory(String categoryCode) {
         return null;
     }
 

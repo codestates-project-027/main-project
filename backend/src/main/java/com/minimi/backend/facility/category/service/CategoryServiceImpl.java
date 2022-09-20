@@ -5,8 +5,10 @@ import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
+import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +22,23 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
+    private final ApplicationEventPublisher eventPublisher;
+
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
 
         checkTitle(categoryDtoRequest.getCategoryTitle());
         checkCode(categoryDtoRequest.getCategoryCode());
 
-        Category category = Category.builder()
+        Category category = categoryRepository.save(Category
+                .builder()
                 .categoryTitle(categoryDtoRequest.getCategoryTitle())
                 .categoryCode(categoryDtoRequest.getCategoryCode())
                 .categoryStatus(categoryDtoRequest.getCategoryStatus())
-                .build();
-        return categoryRepository.save(category);
+                .build());
+
+        eventPublisher.publishEvent(new CategoryPostEvent(categoryDtoRequest.getCategoryCode()));
+        return category;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.minimi.backend.facility.facility.service;
 
 import com.minimi.backend.facility.facility.domain.facility.Facility;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facilitycategory.FacilityCategory;
 import org.springframework.data.domain.Slice;
 
 public interface FacilityService {
@@ -13,6 +14,9 @@ public interface FacilityService {
 
     public Facility postFacility(FacilityDto.request facilityDtoReq);
 
+    public FacilityCategory postFacilityCategory(String categoryCode);
+
     public Facility patchFacility(FacilityDto.patch facilityDtoPat);
+
 
 }
