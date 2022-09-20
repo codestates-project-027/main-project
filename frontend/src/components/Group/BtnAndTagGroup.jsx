@@ -1,5 +1,6 @@
-import { MainPageBIGroupStyle } from '../styles/components/ComponentGroupStyle';
-import { MainQuickBtn } from './Button/QuickBtn';
+import { MainPageBIGroupStyle } from '../../styles/components/ComponentGroupStyle';
+import { MainQuickBtn } from '../Button/QuickBtn';
+import { TagStyle } from '../../styles/components/TagStyle';
 
 export const MainQuickBtnGroup = ({ category }) => {
   return (
@@ -17,6 +18,16 @@ export const MainQuickBtnGroup = ({ category }) => {
           );
         })}
       </MainPageBIGroupStyle>
+    </>
+  );
+};
+
+export const TagGroup = ({ tags }) => {
+  return (
+    <>
+      {tags.map((el) => {
+        return <TagStyle>{el}</TagStyle>;
+      })}
     </>
   );
 };

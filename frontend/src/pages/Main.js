@@ -12,7 +12,7 @@ import {
 import { MainPageBtnIconStyle } from '../styles/components/IconStyles';
 import { MainPageBtnTextStyle } from '../styles/components/TextStyles';
 import { MainQuickBtn } from '../components/Button/QuickBtn';
-import { MainQuickBtnGroup } from '../components/MainQuickBtnGroup';
+import { MainQuickBtnGroup } from '../components/Group/BtnAndTagGroup';
 
 //icons
 import { IoIosFitness } from 'react-icons/io';
