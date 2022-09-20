@@ -13,7 +13,9 @@ const MyPage = () => {
           <MemberCardFlex />
         </div>
         <H3 style={{ marginBottom: '30px' }}>사용중인 시설</H3>
-        <FacilityDescCard />
+        <div className="my--wrapper" style={{ marginBottom: '20px' }}>
+          <FacilityDescCard />
+        </div>
 
         <H3
           style={{

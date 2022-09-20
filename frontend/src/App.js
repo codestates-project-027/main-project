@@ -1,7 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Test from './Test';
 
 //API Call
 import api from './api/api-toEdit';
@@ -14,11 +13,11 @@ import { AppPageGlobal } from './styles/globalStyle/PageGlobalStyle';
 
 //Layouts
 import {
+  LayoutBase,
   LayoutMain,
   LayoutCurrentMenu,
   LayoutCurrentMenuSearch,
-} from './layouts/LayoutTopbars';
-import LayoutNoTopbar from './layouts/LayoutNoTopbar';
+} from './layouts/Layouts';
 
 //Pages
 import LoginPage from './pages/Login';
@@ -29,6 +28,7 @@ import FacilitiesPage from './pages/Facilities';
 import MyPage from './pages/MyPage';
 import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
+import TestPage from './pages/Test';
 
 function App() {
   const [test, setTest] = useState('');
@@ -50,8 +50,8 @@ function App() {
       <div className="App">
         <AppPageGlobal>
           <Routes>
-            <Route element={<LayoutNoTopbar />}>
-              <Route path={PATH.TEST} element={<Test />} /> {/*삭제*/}
+            <Route element={<LayoutBase />}>
+              <Route path={PATH.TEST} element={<TestPage />} />
               <Route path={PATH.SIGNUP} element={<SignUpPage />} />
               <Route path={PATH.LOGIN} element={<LoginPage />} />
             </Route>

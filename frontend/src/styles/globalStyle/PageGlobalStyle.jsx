@@ -3,13 +3,15 @@ import { PADDING } from '../../constants/style';
 
 export const PageGlobalBase = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   padding: 30px;
+  min-height: 720px;
 `;
 
 export const AppPageGlobal = styled(PageGlobalBase)`
   align-items: center;
-  height: 100vh;
+  height: 100%;
   padding: 0;
 `;
 
@@ -69,6 +71,7 @@ export const SignUpPageGlobal = styled(PageGlobalBase)`
     margin: 0.7rem;
     width: 7rem;
     height: 2.5rem;
+    margin-top: 60px;
   }
 `;
 

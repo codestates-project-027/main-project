@@ -87,7 +87,7 @@ export const FDescCardStyle = styled.div`
   padding: ${PADDING.BASIC};
   background-color: lightyellow;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border-radius: 5px;
   .Fname {
     font-size: 1.1rem;

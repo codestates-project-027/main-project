@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import icon from '../assets/logo/minimi-char.png';
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
+import { SignUpPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 
 const SignupPage = () => {
   const {
@@ -21,7 +22,7 @@ const SignupPage = () => {
   // axios
 
   return (
-    <SignupWrapper>
+    <SignUpPageGlobal>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <img className="logo" alt="logo" src={icon}></img>
@@ -29,6 +30,7 @@ const SignupPage = () => {
         <div className="signup-container">
           <div className="signup-info">
             <input
+              style={{ textAlign: 'left' }}
               placeholder="이메일"
               name="email"
               {...register('email', {
@@ -42,6 +44,7 @@ const SignupPage = () => {
               </p>
             )}
             <input
+              style={{ textAlign: 'left' }}
               placeholder="닉네임"
               name="username"
               {...register('username', {
@@ -61,6 +64,7 @@ const SignupPage = () => {
             )}
 
             <input
+              style={{ textAlign: 'left' }}
               placeholder="비밀번호"
               type="password"
               name="password"
@@ -84,6 +88,7 @@ const SignupPage = () => {
               </p>
             )}
             <input
+              style={{ textAlign: 'left' }}
               placeholder="비밀번호 확인"
               name="password_confirm"
               type="password"
@@ -102,83 +107,8 @@ const SignupPage = () => {
           </div>
         </div>
       </form>
-    </SignupWrapper>
+    </SignUpPageGlobal>
   );
 };
 
 export default SignupPage;
-
-const SignupWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  .logo {
-    width: 10vh;
-  }
-  .signup-container {
-    padding: 1rem;
-  }
-
-  .signup-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 15rem;
-    height: 15rem;
-  }
-
-  input {
-    margin: 1rem;
-    padding: 0.5rem;
-    width: 20rem;
-    height: 5vh;
-    text-align: start;
-  }
-  .email-confirm-message {
-    color: red;
-    font-size: 10px;
-    position: relative;
-    bottom: 1vh;
-    right: 5.5rem;
-  }
-
-  .password-message {
-    color: red;
-    font-size: 10px;
-    position: relative;
-    bottom: 1vh;
-    right: 6.5rem;
-  }
-
-  .password-message-length {
-    color: red;
-    font-size: 10px;
-    position: relative;
-    bottom: 1vh;
-    right: 5rem;
-  }
-
-  .id-message {
-    color: red;
-    font-size: 10px;
-    position: relative;
-    bottom: 1vh;
-    right: 3.7rem;
-  }
-  .confirm-message {
-    color: red;
-    font-size: 10px;
-    position: relative;
-    bottom: 1vh;
-    right: 6rem;
-  }
-
-  button {
-    border: 1px solid var(--main-yellow);
-    border-radius: 0.6rem;
-    background-color: var(--main-yellow);
-    position: relative;
-    top: 5rem;
-    width: 7rem;
-    height: 2.5rem;
-  }
-`;
