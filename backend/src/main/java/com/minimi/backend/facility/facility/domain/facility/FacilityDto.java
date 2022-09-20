@@ -2,6 +2,7 @@ package com.minimi.backend.facility.facility.domain.facility;
 
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -75,6 +76,10 @@ public class FacilityDto {
         private String phone;
         private String location;
         private List<String> categoryList;
+
+        @Builder
+        public patch (){
+        }
     }
 
 }

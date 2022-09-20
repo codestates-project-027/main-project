@@ -82,7 +82,9 @@ public class FacilityServiceImpl implements FacilityService {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
 
-        checkCategory(facilityDtoPat.getCategoryList());
+        if(!(facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {
+            checkCategory(facilityDtoPat.getCategoryList());
+        }
 
         Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
 
