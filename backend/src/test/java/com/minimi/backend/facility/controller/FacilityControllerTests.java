@@ -3,10 +3,10 @@ package com.minimi.backend.facility.controller;
 
 import com.google.gson.Gson;
 
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import com.minimi.backend.facility.review.ReviewDto;
-import com.minimi.backend.facility.facility.FacilityController;
-import com.minimi.backend.facility.facility.FacilityService;
+import com.minimi.backend.facility.facility.controller.FacilityController;
+import com.minimi.backend.facility.facility.service.FacilityServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class FacilityControllerTests {
     private Gson gson;
 
     @MockBean
-    private FacilityService facilityService;
+    private FacilityServiceImpl facilityServiceImpl;
 
     @Test
     public void getFacility() throws Exception{
@@ -78,7 +78,7 @@ public class FacilityControllerTests {
                 categoryList,
                 "영업중",
                 reviews);
-        given(facilityService.getFacility(Mockito.anyLong())).willReturn(facility);
+        given(facilityServiceImpl.getFacility(Mockito.anyLong())).willReturn(facility);
 
         ResultActions actions = mockMvc.perform(
                 get("/facility/{facilityId}", facilityId)
@@ -264,7 +264,7 @@ public class FacilityControllerTests {
         facilityList.add(facility1);
         facilityList.add(facility2);
         Slice<FacilityDto.responsePage> facilitySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
-        given(facilityService.getNearFacilityList(Mockito.anyString(),Mockito.anyInt())).willReturn(facilitySlice);
+        given(facilityServiceImpl.getNearFacilityList(Mockito.anyString(),Mockito.anyInt())).willReturn(facilitySlice);
         ResultActions actions = mockMvc.perform(
                 get("/facility")
                         .param("location", location)

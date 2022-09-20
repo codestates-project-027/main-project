@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facility;
+package com.minimi.backend.facility.facility.domain.facility;
 
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.AllArgsConstructor;

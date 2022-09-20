@@ -4,9 +4,9 @@ import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
+import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
@@ -56,8 +56,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
-        return categoryFacilityGetListener.getCategory(categoryTitle, page);
+    public Slice<FacilityDto.responsePage> getCategory(String categoryCode, int page) {
+        return categoryFacilityGetListener.getCategory(categoryCode, page);
     }
 
     public String checkTitle(String categoryTitle) {

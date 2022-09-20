@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.minimi.backend.facility.bookmark.BookmarkController;
 import com.minimi.backend.facility.bookmark.BookmarkDto;
 import com.minimi.backend.facility.bookmark.BookmarkService;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

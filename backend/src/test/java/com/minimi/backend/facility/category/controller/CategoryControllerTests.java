@@ -2,11 +2,10 @@ package com.minimi.backend.facility.category.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.category.controller.CategoryController;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.service.CategoryService;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,7 +132,7 @@ public class CategoryControllerTests {
 
     @Test
     public void getCategory() throws Exception{
-        String categoryTitle = "헬스";
+        String categoryCode = "220901";
         int page = 1;
         List<FacilityDto.responsePage> facilityList = new ArrayList<>();
         FacilityDto.responsePage facility = new FacilityDto.responsePage(
@@ -151,7 +150,7 @@ public class CategoryControllerTests {
         Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
         given(categoryService.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
         ResultActions actions = mockMvc.perform(
-                get("/category/{categoryTitle}", categoryTitle)
+                get("/category/{categoryCode}", categoryCode)
                         .param("page", String.valueOf(page))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -164,7 +163,7 @@ public class CategoryControllerTests {
                                 "get-category",
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
-                                pathParameters(parameterWithName("categoryTitle").description("타겟 카테고리 이름")),
+                                pathParameters(parameterWithName("categoryCode").description("조회 카테고리 코드")),
                                 requestParameters(parameterWithName("page").description("페이지")),
                                 responseFields(
                                         List.of(
