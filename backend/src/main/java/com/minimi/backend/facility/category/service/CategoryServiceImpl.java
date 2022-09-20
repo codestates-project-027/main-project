@@ -43,8 +43,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
-        Category category = categoryRepository.findByCategoryCode(categoryCode)
-                .orElseThrow(() -> new NullPointerException("NoContent CategoryCode"));
+
+        Category category = getCategory(categoryCode);
+
         if(!category.getCategoryTitle().equals(categoryDtoPatch.getCategoryTitle())){
             checkTitle(categoryDtoPatch.getCategoryTitle());
         }
@@ -65,6 +66,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Slice<FacilityDto.responsePage> getCategory(String categoryCode, int page) {
         return categoryFacilityGetListener.getCategory(categoryCode, page);
+    }
+
+    public Category getCategory(String categoryCode) {
+        if (categoryRepository.existsByCategoryCode(categoryCode)){
+            return categoryRepository.findByCategoryCode(categoryCode);
+        }
+        throw new NullPointerException("Not Found Category");
     }
 
     public String checkTitle(String categoryTitle) {

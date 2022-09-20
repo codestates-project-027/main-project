@@ -5,12 +5,14 @@ import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -41,8 +43,7 @@ public class CategoryRepositoryFindByCategoryCodeTests {
             categoryRepository.save(category);
 
             String categoryCode = "220901";
-            Category result = categoryRepository.findByCategoryCode(categoryCode)
-                    .orElseThrow(() -> new IllegalArgumentException("Category Not Found"));
+            Category result = categoryRepository.findByCategoryCode(categoryCode);
 
             assertThat(result, equalTo(category));
         }
@@ -53,16 +54,13 @@ public class CategoryRepositoryFindByCategoryCodeTests {
     public class failCategoryRepository {
 
         @Test
-        @DisplayName("Fail CategoryRepository Test 1 -> findByCategoryCode notFound")
+        @DisplayName("Fail CategoryRepository Test 1 -> findByCategoryCode is null")
         public void findByCategoryCode() {
 
             String categoryCode = "220901";
-            IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-                Category result = categoryRepository.findByCategoryCode(categoryCode)
-                        .orElseThrow(() -> new IllegalArgumentException("Category Not Found"));
-            });
+            Category result = categoryRepository.findByCategoryCode(categoryCode);
 
-            assertThat(exception.getMessage(), equalTo("Category Not Found"));
+            assertThat(result,is(nullValue()));
         }
     }
 }
