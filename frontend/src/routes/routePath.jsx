@@ -12,6 +12,8 @@ const PATH = {
 
   MAP: '/map',
   ALARMS: '/alarms',
+
+  EDITMY: '/setting'
 };
 
 export default PATH;

@@ -29,6 +29,7 @@ import MyPage from './pages/MyPage';
 import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
 import TestPage from './pages/Test';
+import EditMyFacilityPage from './pages/EditMyFacility';
 
 function App() {
   const [test, setTest] = useState('');
@@ -65,6 +66,7 @@ function App() {
               <Route path={PATH.FACILITY} element={<FacilityPage />} />
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
+              <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
               {/* 시설 등록 페이지 */}
             </Route>
 

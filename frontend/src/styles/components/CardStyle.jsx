@@ -157,3 +157,49 @@ export const LocationViewCardStyle = styled.div`
   min-height: 150px;
   background-color: lightgoldenrodyellow;
 `;
+
+export const RCardStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .img--wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    background-color: lightblue;
+    border-radius: 4px;
+    width: 170px;
+    height: 110px;
+  }
+  .rest--wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 350px;
+    height: fit-content;
+    margin-left: 15px;
+    background-color: light;
+    border-radius: 3px;
+    padding: 15px;
+    .edit--wrapper {
+      display: flex;
+      justify-content: right;
+      margin-bottom: 20px;
+    }
+    .name--wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .createdAt {
+        font-size: 15px;
+        margin-right: 10px;
+      }
+    }
+    .content--wrapper {
+      display: flex;
+      margin-bottom: 20px;
+    }
+  }
+`;

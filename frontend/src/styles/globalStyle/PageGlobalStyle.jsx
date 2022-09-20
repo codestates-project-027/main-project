@@ -120,6 +120,22 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
     align-items: center;
     padding: ${PADDING.BASIC};
   }
+  .tags--wrapper {
+    display: flex;
+  }
+  .btns--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    .left--btn {
+      margin-right: 20px;
+    }
+  }
+  .reviews--wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const MyPageGlobal = styled(PageGlobalBase)`
@@ -130,6 +146,10 @@ export const MyPageGlobal = styled(PageGlobalBase)`
     justify-content: center;
     align-items: center;
   }
+  .facility--wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const AlarmsPageGlobal = styled(PageGlobalBase)`
@@ -139,5 +159,13 @@ export const AlarmsPageGlobal = styled(PageGlobalBase)`
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+  }
+`;
+
+export const EditMyFacilityGlobal = styled(PageGlobalBase)`
+  display: flex;
+  width: 100%;
+  .facility--wrapper {
+    width: 400px;
   }
 `;

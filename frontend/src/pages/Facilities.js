@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 
@@ -31,4 +30,3 @@ const FacilitiesPage = () => {
 };
 
 export default FacilitiesPage;
-

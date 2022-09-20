@@ -55,3 +55,9 @@ export const AlarmCardGlobal = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const ReviewCardGlobal = styled.div`
+  display: flex;
+  background: lightgreen;
+  margin-bottom: 10px;
+`;

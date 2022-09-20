@@ -3,11 +3,35 @@ import AttendanceCard from '../components/Card/AttendanceCard';
 import { MyPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescCard } from '../components/Card/FacilityCard';
 import { H1, H3 } from '../components/Text/Head';
+import { AiFillSetting } from 'react-icons/ai';
 
 const MyPage = () => {
   const days = [
     true,
-    false
+    false,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+    false,
+    false,
   ];
 
   return (
@@ -17,7 +41,11 @@ const MyPage = () => {
         <div className="card--wrapper">
           <MemberCardFlex />
         </div>
-        <H3 style={{ marginBottom: '30px' }}>사용중인 시설</H3>
+        <div className="facility--wrapper">
+          <H3 style={{ marginBottom: '30px' }}>사용중인 시설</H3>
+          <AiFillSetting style={{ marginRight: '10px' }} />
+        </div>
+
         <div className="my--wrapper" style={{ marginBottom: '20px' }}>
           <FacilityDescCard />
         </div>

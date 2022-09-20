@@ -4,10 +4,7 @@ import { FacilityPageDescGroupStyle } from '../../styles/components/ComponentGro
 import { MainQuickBtn } from '../Button/QuickBtn';
 import { H4 } from '../../components/Text/Head';
 
-import { TagStyle } from '../../styles/components/TagStyle';
-import { CgWebsite } from 'react-icons/cg';
-import { BiMap, BiBell } from 'react-icons/bi';
-import { IoCallOutline } from 'react-icons/io5';
+import { TagStyle, TagStyleInDesc } from '../../styles/components/TagStyle';
 
 export const MainQuickBtnGroup = ({ category }) => {
   return (
@@ -48,6 +45,18 @@ export const TagGroup = ({ tags }) => {
     <>
       {tags.map((el) => {
         return <TagStyle>{el}</TagStyle>;
+      })}
+    </>
+  );
+};
+
+export const TagGroupDesc = ({ tags }) => {
+  return (
+    <>
+      {tags.map((el) => {
+        return (
+          <TagStyleInDesc style={{ marginRight: '10px' }}>{el}</TagStyleInDesc>
+        );
       })}
     </>
   );
