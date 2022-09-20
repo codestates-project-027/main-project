@@ -1,6 +1,7 @@
 import { FacilityPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import { FacilityPageDescGroupStyle } from '../styles/components/ComponentGroupStyle';
+import { FacilityDescGroup } from '../components/Group/BtnAndTagGroup';
 import { H2, H3, H4 } from '../components/Text/Head';
+
 import { CgWebsite } from 'react-icons/cg';
 import { BiMap, BiBell } from 'react-icons/bi';
 import { IoCallOutline } from 'react-icons/io5';
@@ -8,6 +9,49 @@ import { IoCallOutline } from 'react-icons/io5';
 import StarsCalc from '../components/Calculator/StarsCalc';
 
 const FacilityPage = () => {
+  const facility = [
+    {
+      idx: 1,
+      value: '주소',
+      icon: (
+        <BiMap
+          size="20"
+          style={{ marginRight: '10px', marginBottom: '20px' }}
+        />
+      ),
+    },
+    {
+      idx: 2,
+      value: 'www.healthclub.com',
+      icon: (
+        <CgWebsite
+          size="20"
+          style={{ marginRight: '10px', marginBottom: '20px' }}
+        />
+      ),
+    },
+    {
+      idx: 3,
+      value: '02-1111-1111',
+      icon: (
+        <IoCallOutline
+          size="20"
+          style={{ marginRight: '10px', marginBottom: '20px' }}
+        />
+      ),
+    },
+    {
+      idx: 4,
+      value: '휴업',
+      icon: (
+        <BiBell
+          size="20"
+          style={{ marginRight: '10px' }}
+        />
+      ),
+    },
+  ];
+
   return (
     <>
       <FacilityPageGlobal>
@@ -24,28 +68,7 @@ const FacilityPage = () => {
             <StarsCalc starValue={4} />
           </H4>
         </div>
-        <FacilityPageDescGroupStyle>{/*map 해보기*/}
-          <H4>
-            <BiMap size="20" style={{ marginRight: '10px' }} /> 주소
-          </H4>
-        </FacilityPageDescGroupStyle>
-        <FacilityPageDescGroupStyle>
-          <H4>
-            <CgWebsite size="20" style={{ marginRight: '10px' }} />
-            www.healthclub.com
-          </H4>
-        </FacilityPageDescGroupStyle>
-        <FacilityPageDescGroupStyle>
-          <H4>
-            <IoCallOutline size="20" style={{ marginRight: '10px' }} />
-            02-1111-1111
-          </H4>
-        </FacilityPageDescGroupStyle>
-        <FacilityPageDescGroupStyle>
-          <H4>
-            <BiBell size="20" style={{ marginRight: '10px' }} /> 휴업
-          </H4>
-        </FacilityPageDescGroupStyle>
+        <FacilityDescGroup facility={facility} />
       </FacilityPageGlobal>
     </>
   );
