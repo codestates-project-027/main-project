@@ -5,6 +5,7 @@ import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
+import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,10 @@ public class CategoryServiceImpl implements CategoryService {
         if(!(categoryDtoPatch.getCategoryStatus()==null)){
             category.setCategoryStatus(categoryDtoPatch.getCategoryStatus());
         }
-        return categoryRepository.save(category);
+        Category patchedCategory = categoryRepository.save(category);
+        eventPublisher.publishEvent(
+                new CategoryPatchEvent(patchedCategory.getCategoryCode(), patchedCategory.getCategoryTitle()));
+        return patchedCategory;
     }
 
     @Override

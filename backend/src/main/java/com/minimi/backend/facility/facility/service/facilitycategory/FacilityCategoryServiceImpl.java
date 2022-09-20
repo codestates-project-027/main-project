@@ -18,6 +18,11 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     }
 
     @Override
+    public FacilityCategory patchFacilityCategory(String categoryCode, String categoryTitle) {
+        return null;
+    }
+
+    @Override
     public Boolean checkExistsByCategoryCode(String categoryCode) {
         return facilityCategoryRepository.existsByCategoryCode(categoryCode);
     }
