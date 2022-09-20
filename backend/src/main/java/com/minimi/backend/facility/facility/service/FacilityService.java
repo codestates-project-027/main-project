@@ -14,9 +14,9 @@ public interface FacilityService {
 
     public Facility postFacility(FacilityDto.request facilityDtoReq);
 
-    public FacilityCategory postFacilityCategory(String categoryCode);
-
     public Facility patchFacility(FacilityDto.patch facilityDtoPat);
+
+    public void deleteFacility(Long facilityId);
 
 
 }

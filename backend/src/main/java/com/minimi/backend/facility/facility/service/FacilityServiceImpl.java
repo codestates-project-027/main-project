@@ -32,12 +32,12 @@ public class FacilityServiceImpl implements FacilityService{
     }
 
     @Override
-    public FacilityCategory postFacilityCategory(String categoryCode) {
+    public Facility patchFacility(FacilityDto.patch facilityDtoPat) {
         return null;
     }
 
     @Override
-    public Facility patchFacility(FacilityDto.patch facilityDtoPat) {
-        return null;
+    public void deleteFacility(Long facilityId) {
+
     }
 }
