@@ -5,12 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Component
 @RequiredArgsConstructor
 public class FacilityReviewGetListenerImpl implements FacilityReviewGetListener {
     @Override
-    public Slice<ReviewDto.response> getReview(Long facilityId, int page) {
+    public List<ReviewDto.response> getReview(Long facilityId) {
         return null;
     }
 }

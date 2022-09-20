@@ -22,6 +22,7 @@ import java.util.Arrays;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -83,9 +84,12 @@ public class FacilityServicePostTests {
         @Test
         @DisplayName("fail postFacility test 1 -> null")
         public void failPostFacility() throws Exception {
-            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString())).willReturn(true);
+            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
+                    .willReturn(true);
             Facility result = facilityService.postFacility(facilityDtoReq);
 
+            then(facilityCategoryCheckListener)
+                    .should(times(2)).checkExistsByCategoryCode(anyString());
             assertThat(result, is(nullValue()));
         }
 
@@ -99,6 +103,8 @@ public class FacilityServicePostTests {
                 facilityService.postFacility(facilityDtoReq);
             });
 
+            then(facilityCategoryCheckListener)
+                    .should(times(1)).checkExistsByCategoryCode(anyString());
             assertThat(exception.getMessage(), equalTo("Not Found Category"));
         }
     }

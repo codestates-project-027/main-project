@@ -3,6 +3,7 @@ package com.minimi.backend.facility.facility.domain.facility;
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class FacilityDto {
 
     @AllArgsConstructor
     @Getter
+    @Setter
     public static class response{
         private Long facilityId;
         private String facilityName;
