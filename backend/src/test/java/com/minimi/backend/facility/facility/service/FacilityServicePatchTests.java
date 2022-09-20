@@ -78,10 +78,16 @@ public class FacilityServicePatchTests {
         public void successPatchFacility() throws Exception {
             given(facilityRepository.existsById(facilityId)).willReturn(true);
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
+            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult);
 
             Facility result = facilityService.patchFacility(facilityId, facilityDtoReq);
 
+            then(facilityRepository)
+                    .should(times(1)).existsById(anyLong());
+            then(facilityRepository).should(times(1)).findById(anyLong());
+            then(facilityCategoryCheckListener)
+                    .should(times(2)).checkExistsByCategoryCode(anyString());
             then(facilityRepository).should(times(1)).save(any());
             assertThat(result, equalTo(facility));
         }
@@ -100,6 +106,41 @@ public class FacilityServicePatchTests {
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
+            assertThat(exception.getMessage(), equalTo("Not Found Facility"));
+        }
+
+        @Test
+        @DisplayName("fail patchFacility test 2 -> notFoundCategory")
+        public void failPatchFacility2() throws Exception {
+            given(facilityRepository.existsById(facilityId)).willReturn(true);
+            given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
+            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString())).willReturn(false);
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                facilityService.patchFacility(facilityId, facilityDtoReq);
+            });
+
+            then(facilityRepository)
+                    .should(times(1)).existsById(anyLong());
+            then(facilityRepository).should(times(1)).findById(anyLong());
+            then(facilityCategoryCheckListener)
+                    .should(times(1)).checkExistsByCategoryCode(anyString());
+            assertThat(exception.getMessage(), equalTo("Not Found Category"));
+        }
+
+        @Test
+        @DisplayName("fail patchFacility test 3 -> undefined findById")
+        public void failPatchFacility3() throws Exception {
+            given(facilityRepository.existsById(facilityId)).willReturn(true);
+            given(facilityRepository.findById(facilityId)).willThrow(new NullPointerException("Not Found Facility"));
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                facilityService.patchFacility(facilityId, facilityDtoReq);
+            });
+
+            then(facilityRepository)
+                    .should(times(1)).existsById(anyLong());
+            then(facilityRepository).should(times(1)).findById(anyLong());
             assertThat(exception.getMessage(), equalTo("Not Found Facility"));
         }
     }

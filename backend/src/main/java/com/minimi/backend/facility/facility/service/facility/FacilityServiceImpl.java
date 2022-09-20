@@ -82,11 +82,7 @@ public class FacilityServiceImpl implements FacilityService {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
 
-
-        if(!(facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)){
-            //todo category 검사로직
-        }
-
+        checkCategory(facilityDtoPat.getCategoryList());
 
         Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
 
@@ -109,7 +105,7 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     public Facility checkedFindFacility(Long facilityId) {
-        return facilityRepository.findById(facilityId).orElseThrow(NullPointerException::new);
+        return facilityRepository.findById(facilityId).orElseThrow(() -> new NullPointerException("Not Found Facility"));
     }
 
     public void checkData(boolean repositoryExists, String Not_Found_Message) {
