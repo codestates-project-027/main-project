@@ -7,6 +7,12 @@ export const PageGlobalBase = styled.div`
   padding: 30px;
 `;
 
+export const AppPageGlobal = styled(PageGlobalBase)`
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+`;
+
 export const MainPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
@@ -105,70 +111,25 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
     align-items: center;
     justify-content: space-between;
     padding: ${PADDING.BASIC};
-    .Fname {
-      font-size: 1.3rem;
-    }
   }
   .minimi--score--wrapper {
     display: flex;
     align-items: center;
     padding: ${PADDING.BASIC};
-    .score--name {
-      font-size: 1.2rem;
-    }
-    .stars {
-      margin-left: 15px;
-    }
   }
 `;
 
 export const MyPageGlobal = styled(PageGlobalBase)`
   background-color: aliceblue;
   padding: ${PADDING.BASIC};
-  .title {
-    display: flex;
-    font-size: 1.5rem;
-  }
   .card--wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .subtitle {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    font-size: 1.2rem;
-    background-color: gainsboro;
-    .FDescCard--wrapper {
-      display: flex;
-      background-color: gold;
-      .Fname {
-        font-size: 1rem;
-        margin-left: 20px;
-      }
-      .remaining {
-        display: flex;
-        justify-content: right;
-        font-size: 1rem;
-        background-color: red;
-      }
-    }
-  }
-  .rate {
-    display: flex;
-    justify-content: space-between;
-    .rate {
-      margin-right: 20px;
-    }
-  }
 `;
 
 export const AlarmsPageGlobal = styled(PageGlobalBase)`
-  .title {
-    display: flex;
-    font-size: 1.5rem;
-  }
   .card--wrapper {
     display: flex;
     flex-direction: column;

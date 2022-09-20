@@ -7,6 +7,7 @@ import {
   FCardFlexStyle,
   FDescCardStyle,
 } from '../../styles/components/CardStyle';
+import { H4 } from '../Text/Head';
 
 export const FacilityCard = () => {
   return (
@@ -16,7 +17,7 @@ export const FacilityCard = () => {
           <div className="img--wrapper">img</div>
           <div className="content--wrapper">
             <div className="name--wrapper">
-              <div className="name">name</div>
+              <H4>name</H4>
               <div className="distance">distance</div>
             </div>
             <div className="score--wrapper">
@@ -62,8 +63,8 @@ export const FacilityDescCard = () => {
   return (
     <>
       <FDescCardStyle>
-        <div className="Fname">OO동 헬스클럽</div>
-        <div className="remaining">남은 기간</div>
+        <H4>OO동 헬스클럽</H4>
+        <H4 style={{ justifyContent: 'right' }}>남은 기간</H4>
       </FDescCardStyle>
     </>
   );

@@ -1,5 +1,5 @@
 const PATH = {
-  TEST: '/text',
+  TEST: '/test',
 
   MAIN: '/',
 

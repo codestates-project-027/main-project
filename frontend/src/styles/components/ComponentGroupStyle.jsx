@@ -22,7 +22,7 @@ export const MainPageBtnsGroupStyle = styled.div`
     width: 50%;
   }
   .menu--title {
-    font-size: 15px;
+    font-size: 1.2rem;
     text-align: left;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -66,8 +66,4 @@ export const FacilityPageDescGroupStyle = styled.div`
   padding: ${PADDING.BASIC};
   background-color: aliceblue;
   flex-direction: column;
-  span {
-    color: red;
-    display: flex;
-  }
 `;

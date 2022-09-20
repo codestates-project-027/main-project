@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const GlobalStyle = styled.div`
+export const MapViewGlobal = styled.div`
   display: flex;
-  height: 100vh;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 45vw;
+  height: 50vh;
 `;
-
-export default GlobalStyle;

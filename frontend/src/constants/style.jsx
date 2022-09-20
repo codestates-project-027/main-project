@@ -9,3 +9,8 @@ export const COLOR = {
 export const PADDING = {
   BASIC: '20px',
 };
+
+export const MAPSIZE = {
+  WIDTH: '500px',
+  HEIGHT: '400px',
+};

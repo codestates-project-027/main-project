@@ -1,11 +1,12 @@
 import { AlarmCard } from '../components/Card/AlarmCard';
 import { AlarmsPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
+import { H1 } from '../components/Text/Head';
 
 const AlarmsPage = () => {
   return (
     <>
       <AlarmsPageGlobal>
-        <div className="title">알람</div>
+        <H1>알람</H1>
         <div className="card--wrapper">
           <AlarmCard />
           <AlarmCard />

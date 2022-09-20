@@ -1,7 +1,7 @@
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 import SquareBtn from '../components/Button/SquareBtn';
-import LocationView from '../components/LocationView';
+import MapContainer from '../components/Map/MapContainer';
 
 import { BiCurrentLocation } from 'react-icons/bi';
 
@@ -20,9 +20,10 @@ const MapPage = () => {
             <BiCurrentLocation size="20" />
           </SquareBtn>
         </SearchbarGroupStyle>
-        <LocationView />
+        <MapContainer />
         <FacilityCardFlex />
-        <FacilityCardFlex />
+        {/* <FacilityCardFlex />
+        <FacilityCardFlex /> */}
       </FacilitiesPageGlobal>
     </>
   );

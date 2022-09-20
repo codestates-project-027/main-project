@@ -24,3 +24,14 @@ export const BottomNavIconStyle = styled.div`
   width: 55%;
   font-size: 1.8em;
 `;
+
+export const MarkerIconStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '150px',
+  height: '50px',
+  background: '#37474f',
+  color: '#fae316',
+  borderRadius: '3px',
+};

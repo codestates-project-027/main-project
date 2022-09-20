@@ -10,7 +10,7 @@ import api from './api/api-toEdit';
 import PATH from './routes/routePath';
 
 //GlobalStyle
-import GlobalStyle from './styles/globalStyle/GlobalStyle';
+import { AppPageGlobal } from './styles/globalStyle/PageGlobalStyle';
 
 //Layouts
 import {
@@ -48,7 +48,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <GlobalStyle>
+        <AppPageGlobal>
           <Routes>
             <Route element={<LayoutNoTopbar />}>
               <Route path={PATH.TEST} element={<Test />} /> {/*삭제*/}
@@ -72,7 +72,7 @@ function App() {
               <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
             </Route>
           </Routes>
-        </GlobalStyle>
+        </AppPageGlobal>
       </div>
     </>
   );

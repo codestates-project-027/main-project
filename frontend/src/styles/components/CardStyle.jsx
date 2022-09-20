@@ -32,9 +32,6 @@ export const FCardStyle = styled.div`
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      .name {
-        font-size: 15px;
-      }
       .distance {
         font-size: 15px;
         margin-right: 10px;
@@ -91,6 +88,7 @@ export const FDescCardStyle = styled.div`
   background-color: lightyellow;
   justify-content: space-between;
   margin-bottom: 30px;
+  border-radius: 5px;
   .Fname {
     font-size: 1.1rem;
   }

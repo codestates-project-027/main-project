@@ -22,6 +22,8 @@ import { BsEmojiSmile } from 'react-icons/bs';
 import { BiDotsHorizontalRounded, BiMap } from 'react-icons/bi';
 import { TbSoccerField } from 'react-icons/tb';
 
+import {H3} from '../components/Text/Head'
+
 const MainPage = () => {
   return (
     <>

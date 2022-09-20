@@ -3,27 +3,34 @@ import { Link } from 'react-router-dom';
 import CharLogo from '../assets/logo/minimi-char.png';
 import { LoginPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 
+//mui
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../styles/mui/theme';
+import { YellowBtn, NavyBtn } from '../components/Button/MuiBtns';
+import { BasicTextField } from '../components/Input/MuiTextFileds';
+
 const LoginPage = () => {
   return (
     <>
       <LoginPageGlobal>
-        <Link to="/">
-          <img className="logo" alt="logo" src={CharLogo} />
-        </Link>
-        <div className="desc--wrapper">miracle place near me</div>
-        <div className="login--wrapper">
-          <InputTab>
-            <input className="input" placeholder="아이디" />
-          </InputTab>
-          <InputTab>
-            <input className="input" placeholder="비밀번호" />
-          </InputTab>
-          <div className="button--wrapper">
-            <Button>로그인</Button>
-            <Button2>회원가입</Button2>
-            <Button>소셜 로그인</Button>
+        <ThemeProvider theme={theme}>
+          <Link to="/">
+            <img className="logo" alt="logo" src={CharLogo} />
+          </Link>
+          <div className="desc--wrapper">miracle place near me</div>
+          <div className="login--wrapper">
+            <BasicTextField text={'아이디'} />
+
+            <InputTab>
+              <input className="input" placeholder="비밀번호" />
+            </InputTab>
+            <div className="button--wrapper">
+              <YellowBtn text={'로그인'} />
+              <NavyBtn text={'회원가입'} />
+              <YellowBtn text={'소셜 로그인'} />
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </LoginPageGlobal>
     </>
   );
