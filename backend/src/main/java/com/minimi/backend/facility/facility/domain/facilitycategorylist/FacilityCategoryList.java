@@ -22,7 +22,7 @@ public class FacilityCategoryList {
     @Column(name = "facility_category_list_id")
     private Long facilityCategoryListId;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "facility_category_id")
     private FacilityCategory facilityCategory;
 

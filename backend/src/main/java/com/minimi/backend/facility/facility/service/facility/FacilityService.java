@@ -10,7 +10,7 @@ public interface FacilityService {
 
     public Slice<FacilityDto.responsePage> getNearFacilityList(String location, int page);
 
-    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryTitle, int page);
+    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryCode, int page);
 
     public Facility postFacility(FacilityDto.request facilityDtoReq);
 

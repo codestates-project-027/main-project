@@ -37,7 +37,7 @@ public class CategoryFacilityGetListenerImplTests {
     private FacilityServiceImpl facilityServiceImpl;
 
     @InjectMocks
-    private CategoryFacilityGetListenerImpl categoryFacilityGetListenerImpl;
+    private CategoryFacilityGetListenerImpl categoryFacilityGetListener;
 
     private String categoryTitle;
     private int page;
@@ -70,7 +70,7 @@ public class CategoryFacilityGetListenerImplTests {
             given(facilityServiceImpl.getCategoryFacility(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(categorySlice);
 
-            Slice<FacilityDto.responsePage> result = categoryFacilityGetListenerImpl.getCategory(categoryTitle, page);
+            Slice<FacilityDto.responsePage> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
 
             then(facilityServiceImpl).should(times(1)).getCategoryFacility(anyString(), anyInt());
             assertThat(result, equalTo(categorySlice));
@@ -86,7 +86,7 @@ public class CategoryFacilityGetListenerImplTests {
             given(facilityServiceImpl.getCategoryFacility(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(null);
 
-            Slice<FacilityDto.responsePage> result = categoryFacilityGetListenerImpl.getCategory(categoryTitle, page);
+            Slice<FacilityDto.responsePage> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
 
             then(facilityServiceImpl).should(times(1)).getCategoryFacility(anyString(), anyInt());
             assertThat(result, is(nullValue()));

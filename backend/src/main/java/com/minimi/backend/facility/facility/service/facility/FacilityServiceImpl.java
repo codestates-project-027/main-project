@@ -6,6 +6,7 @@ import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryCheckListener;
+import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryListGetListener;
 import com.minimi.backend.facility.facility.service.facility.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.facility.publisher.FacilityDeleteEvent;
 import com.minimi.backend.facility.facility.service.facility.publisher.FacilityPostEvent;
@@ -29,6 +30,7 @@ public class FacilityServiceImpl implements FacilityService {
     private final FacilityRepository facilityRepository;
     private final FacilityCategoryCheckListener facilityCategoryCheckListener;
     private final FacilityReviewGetListener facilityReviewGetListener;
+    private final FacilityCategoryListGetListener facilityCategoryListGetListener;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final FacilityMapper facilityMapper;
 
@@ -51,8 +53,8 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryTitle, int page) {
-        return null;
+    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryCode, int page) {
+        return facilityCategoryListGetListener.getFacilityFromCategory(categoryCode, page);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class FacilityController {
     //delete facility
     @DeleteMapping("/{facilityId}")
     public ResponseEntity deleteFacility(@PathVariable Long facilityId) {
-
+        facilityService.deleteFacility(facilityId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

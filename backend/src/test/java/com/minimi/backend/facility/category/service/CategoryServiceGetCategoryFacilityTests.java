@@ -33,18 +33,18 @@ import static org.mockito.Mockito.times;
 public class CategoryServiceGetCategoryFacilityTests {
 
     @Mock
-    private CategoryFacilityGetListenerImpl categoryFacilityGetListenerImpl;
+    private CategoryFacilityGetListenerImpl categoryFacilityGetListener;
 
     @InjectMocks
     private CategoryServiceImpl categoryService;
 
-    private String categoryTitle;
+    private String categoryCode;
     private int page;
     private List<FacilityDto.responsePage> facilityList;
 
     @BeforeEach
     public void setup(){
-        categoryTitle = "헬스";
+        categoryCode = "220901";
         page = 1;
         facilityList = new ArrayList<>(Arrays.asList(
                 new FacilityDto.responsePage(
@@ -67,11 +67,11 @@ public class CategoryServiceGetCategoryFacilityTests {
         @DisplayName("success getSliceFacilityCategory test 1 -> getFacilitySlice")
         public void successGetTitleCategoryTest() throws Exception {
             Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
-            given(categoryFacilityGetListenerImpl.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
+            given(categoryFacilityGetListener.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
 
-            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryTitle,page);
+            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryCode,page);
 
-            then(categoryFacilityGetListenerImpl).should(times(1)).getCategory(anyString(), anyInt());
+            then(categoryFacilityGetListener).should(times(1)).getCategory(anyString(), anyInt());
             assertThat(result, equalTo(categorySlice));
         }
     }
@@ -82,12 +82,12 @@ public class CategoryServiceGetCategoryFacilityTests {
         @Test
         @DisplayName("fail getSliceFacilityCategory test 1 -> null")
         public void categoryFacilityListener() throws Exception {
-            given(categoryFacilityGetListenerImpl.getCategory(Mockito.anyString(),Mockito.anyInt()))
+            given(categoryFacilityGetListener.getCategory(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(null);
 
-            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryTitle, page);
+            Slice<FacilityDto.responsePage> result = categoryService.getCategory(categoryCode, page);
 
-            then(categoryFacilityGetListenerImpl).should(times(1)).getCategory(anyString(), anyInt());
+            then(categoryFacilityGetListener).should(times(1)).getCategory(anyString(), anyInt());
             assertThat(result, is(nullValue()));
         }
     }

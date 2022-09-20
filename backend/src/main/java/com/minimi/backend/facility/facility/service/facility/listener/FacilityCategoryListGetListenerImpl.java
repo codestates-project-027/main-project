@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.category.service.listener;
+package com.minimi.backend.facility.facility.service.facility.listener;
 
 import com.minimi.backend.facility.facility.domain.facility.FacilityDto;
 import com.minimi.backend.facility.facility.service.facilitycategortlist.FacilityCategoryListService;
@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class CategoryFacilityGetListenerImpl implements CategoryFacilityGetListener {
+public class FacilityCategoryListGetListenerImpl implements FacilityCategoryListGetListener{
 
     private final FacilityCategoryListService facilityCategoryListService;
+
     @Override
-    public Slice<FacilityDto.responsePage> getCategory(String categoryCode, int page) {
+    public Slice<FacilityDto.responsePage> getFacilityFromCategory(String categoryCode, int page) {
         return facilityCategoryListService.getCategoryFacilitySlice(categoryCode, page);
     }
 }
