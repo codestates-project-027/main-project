@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -109,6 +110,47 @@ public class CategoryServiceCheckTests {
 
                 then(categoryRepository).should(times(1)).existsByCategoryCode(any());
                 assertThat(exception.getMessage(), equalTo("Exists CategoryCode"));
+            }
+        }
+    }
+    @Nested
+    @DisplayName("checkGetCategory")
+    class checkGetCategory {
+        @Nested
+        @DisplayName("success checkGetCategory case")
+        class successCheckCategoryCase {
+            @Test
+            @DisplayName("success checkGetCategory test 1 -> checkGetCategory")
+            public void successCheckGetCategory() throws Exception {
+                Category category = new Category(1L,code,title,CategoryStatus.ACTIVE);
+                given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
+                        .willReturn(true);
+                given(categoryRepository.findByCategoryCode(Mockito.anyString()))
+                        .willReturn(category);
+
+                Category result = categoryService.getCategory(code);
+
+
+                then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
+                then(categoryRepository).should(times(1)).findByCategoryCode(anyString());
+                assertThat(result, equalTo(category));
+            }
+        }
+        @Nested
+        @DisplayName("fail checkGetCategory case")
+        class failCheckCategoryCase {
+            @Test
+            @DisplayName("fail checkGetCategory test 1 -> checkGetCategory")
+            public void failCheckGetCategory() throws Exception {
+                given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
+                        .willReturn(false);
+
+                Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                    categoryService.getCategory(code);
+                });
+
+                then(categoryRepository).should(times(1)).existsByCategoryCode(any());
+                assertThat(exception.getMessage(), equalTo("Not Found Category"));
             }
         }
     }
