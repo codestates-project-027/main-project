@@ -24,9 +24,7 @@ const FacilityPage = () => {
             <StarsCalc starValue={4} />
           </H4>
         </div>
-        <FacilityPageDescGroupStyle>
-          {' '}
-          {/*map 써서  줄이기 */}
+        <FacilityPageDescGroupStyle>{/*map 해보기*/}
           <H4>
             <BiMap size="20" style={{ marginRight: '10px' }} /> 주소
           </H4>

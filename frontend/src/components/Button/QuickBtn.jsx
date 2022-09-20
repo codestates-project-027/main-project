@@ -1,7 +1,9 @@
 import SquareBtn from './SquareBtn';
 import styled from 'styled-components';
+import { MainPageBtnIconStyle } from '../../styles/components/IconStyles';
+import { MainPageBtnTextStyle } from '../../styles/components/TextStyles';
 
-const QuickBtn = styled(SquareBtn)`
+export const QuickBtn = styled(SquareBtn)`
   display: flex;
   width: 70px;
   height: 70px;
@@ -34,4 +36,15 @@ const QuickBtn = styled(SquareBtn)`
   }
 `;
 
-export default QuickBtn;
+export const MainQuickBtn = ({ iconProp, textProp }) => {
+  return (
+    <>
+      <QuickBtn>
+        <MainPageBtnIconStyle>
+          {iconProp}
+        </MainPageBtnIconStyle>
+        <MainPageBtnTextStyle>{textProp}</MainPageBtnTextStyle>
+      </QuickBtn>
+    </>
+  );
+};

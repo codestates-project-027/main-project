@@ -31,19 +31,6 @@ export const MainPageBtnsGroupStyle = styled.div`
       display: none;
     }
   }
-  .menu--icons--wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-
-    @media screen and (min-width: 1098px) {
-      height: 150px;
-    }
-    @media screen and (max-width: 1097px) {
-      height: 100px;
-    }
-  }
 
   @media screen and (max-width: 1097px) {
     margin-top: 5px;
@@ -58,6 +45,20 @@ export const MainPageBtnsGroupStyle = styled.div`
   @media screen and (max-width: 790px) {
     margin-top: 5px;
     margin-left: -15px;
+  }
+`;
+
+export const MainPageBIGroupStyle = styled.div` //button & icon group
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 1098px) {
+    height: 150px;
+  }
+  @media screen and (max-width: 1097px) {
+    height: 100px;
   }
 `;
 
