@@ -70,4 +70,6 @@ public class Facility {
         this.starRate=0;
         this.facilityStatus=FacilityStatus.PENDING;
     }
+
+
 }

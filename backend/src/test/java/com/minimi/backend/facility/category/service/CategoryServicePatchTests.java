@@ -51,13 +51,14 @@ public class CategoryServicePatchTests {
         @Test
         @DisplayName("success patchCategory test 1 -> patch all")
         public void successPatchCategoryAll() throws Exception{
+            Category categoryResult = new Category(1L, "220901","헬스", CategoryStatus.INACTIVE);
             given(categoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(true);
             given(categoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(category);
             given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(false);
             given(categoryRepository.save(category))
-                    .willReturn(category);
+                    .willReturn(categoryResult);
 
             Category result = categoryService.patchCategory(categoryCode,CategoryDtoPatch);
 
@@ -65,7 +66,10 @@ public class CategoryServicePatchTests {
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(category));
+            assertThat(result.getCategoryId(), equalTo(category.getCategoryId()));
+            assertThat(result.getCategoryCode(), equalTo(category.getCategoryCode()));
+            assertThat(result.getCategoryStatus(), equalTo(category.getCategoryStatus()));
+            assertThat(result.getCategoryTitle(), equalTo(category.getCategoryTitle()));
         }
         @Test
         @DisplayName("success patchCategory test 2 -> patch title null code")

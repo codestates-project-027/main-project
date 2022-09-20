@@ -86,11 +86,15 @@ public class FacilityServicePostTests {
         public void failPostFacility() throws Exception {
             given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
                     .willReturn(true);
-            Facility result = facilityService.postFacility(facilityDtoReq);
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                facilityService.postFacility(facilityDtoReq);
+            });
 
             then(facilityCategoryCheckListener)
                     .should(times(2)).checkExistsByCategoryCode(anyString());
-            assertThat(result, is(nullValue()));
+
+            assertThat(exception.getMessage(), is(nullValue()));
         }
 
         @Test

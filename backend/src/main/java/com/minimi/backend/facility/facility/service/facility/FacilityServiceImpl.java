@@ -7,13 +7,20 @@ import com.minimi.backend.facility.facility.domain.facility.FacilityRepository;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.facility.listener.FacilityCategoryCheckListener;
 import com.minimi.backend.facility.facility.service.facility.listener.FacilityReviewGetListener;
+import com.minimi.backend.facility.facility.service.facility.publisher.FacilityDeleteEvent;
+import com.minimi.backend.facility.facility.service.facility.publisher.FacilityPostEvent;
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +29,7 @@ public class FacilityServiceImpl implements FacilityService {
     private final FacilityRepository facilityRepository;
     private final FacilityCategoryCheckListener facilityCategoryCheckListener;
     private final FacilityReviewGetListener facilityReviewGetListener;
+    private final ApplicationEventPublisher applicationEventPublisher;
     private final FacilityMapper facilityMapper;
 
 
@@ -29,8 +37,7 @@ public class FacilityServiceImpl implements FacilityService {
     public FacilityDto.response getFacility(Long facilityId) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
 
-        Facility facility = facilityRepository.findById(facilityId)
-                .orElseThrow(() -> new RuntimeException("findById Err"));
+        Facility facility = checkedFindFacility(facilityId);
 
         FacilityDto.response facilityDtoRes = facilityMapper.facilityToFacilityDtoResponse(facility);
         List<ReviewDto.response> reviewList = facilityReviewGetListener.getReview(facilityId);
@@ -53,7 +60,7 @@ public class FacilityServiceImpl implements FacilityService {
 
         checkCategory(facilityDtoReq.getCategoryList());
 
-        Facility facility = Facility.builder()
+        Facility facility =facilityRepository.save(Facility.builder()
                 .facilityName(facilityDtoReq.getFacilityName())
                 .facilityInfo(facilityDtoReq.getFacilityInfo())
                 .facilityPhoto(facilityDtoReq.getFacilityPhoto())
@@ -63,19 +70,35 @@ public class FacilityServiceImpl implements FacilityService {
                 .phone(facilityDtoReq.getPhone())
                 .location(facilityDtoReq.getLocation())
                 .categoryList(facilityDtoReq.getCategoryList())
-                .build();
-        return facilityRepository.save(facility);
+                .build());
+
+        applicationEventPublisher.publishEvent(new FacilityPostEvent(facility.getFacilityId()));
+
+        return facility;
     }
 
     @Override
-    public Facility patchFacility(FacilityDto.patch facilityDtoPat) {
-        return null;
+    public Facility patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
+        checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
+        Facility facility  = checkedFindFacility(facilityId);
+
+
+        if(!(facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)){
+            //todo category 검사로직
+        }
+
+
+        Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
+
+        facilityRepository.save(patchedFacility);
+        return patchedFacility;
     }
 
     @Override
     public void deleteFacility(Long facilityId) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         facilityRepository.deleteById(facilityId);
+        applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
     }
 
     public Boolean checkCategory(List<String> categoryList) {
@@ -85,9 +108,25 @@ public class FacilityServiceImpl implements FacilityService {
         return true;
     }
 
-    public void checkData(boolean checkData, String Not_Found_Message) {
-        if (!checkData){
+    public Facility checkedFindFacility(Long facilityId) {
+        return facilityRepository.findById(facilityId).orElseThrow(NullPointerException::new);
+    }
+
+    public void checkData(boolean repositoryExists, String Not_Found_Message) {
+        if (!repositoryExists){
             throw new NullPointerException(Not_Found_Message);
         }
+    }
+
+    public Facility facilityBeanWrapper(FacilityDto.patch facilityDtoPat, Facility facility) {
+        final BeanWrapper patchDataBean = new BeanWrapperImpl(facilityDtoPat);
+        final BeanWrapper facilityBean = new BeanWrapperImpl(facility);
+        Arrays.stream(facilityDtoPat.getClass().getDeclaredFields()).forEach(field -> {
+            Object patchDataField = patchDataBean.getPropertyValue(field.getName());
+            if(!(patchDataField==null||patchDataField.toString().isBlank())){
+                facilityBean.setPropertyValue(field.getName(),patchDataField);
+            }
+        });
+        return facility;
     }
 }

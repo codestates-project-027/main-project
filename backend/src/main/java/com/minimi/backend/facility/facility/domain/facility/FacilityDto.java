@@ -63,6 +63,7 @@ public class FacilityDto {
         private List<String> categoryList;
     }
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class patch{
         private String facilityName;

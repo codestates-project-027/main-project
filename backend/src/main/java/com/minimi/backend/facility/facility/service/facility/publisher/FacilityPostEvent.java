@@ -1,4 +1,14 @@
 package com.minimi.backend.facility.facility.service.facility.publisher;
 
-public class FacilityPostEvent {
+import lombok.Getter;
+
+@Getter
+public class FacilityPostEvent{
+
+    private final Long facilityId;
+
+    public FacilityPostEvent(Long facilityId) {
+        this.facilityId = facilityId;
+
+    }
 }

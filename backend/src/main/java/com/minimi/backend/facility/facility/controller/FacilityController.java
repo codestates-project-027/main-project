@@ -32,6 +32,7 @@ public class FacilityController {
     @PatchMapping("/{facilityId}")
     public ResponseEntity patchFacility(@PathVariable Long facilityId,
                                         @RequestBody FacilityDto.patch facilityPatch){
+        facilityService.patchFacility(facilityId, facilityPatch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete facility
