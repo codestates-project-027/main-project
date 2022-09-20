@@ -1,7 +1,6 @@
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 import SquareBtn from '../components/Button/SquareBtn';
-import QuickBtn from '../components/Button/QuickBtn';
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { MemberCard } from '../components/Card/MemberCard';
 import { MainPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
@@ -9,9 +8,6 @@ import {
   SearchbarGroupStyle,
   MainPageBtnsGroupStyle,
 } from '../styles/components/ComponentGroupStyle';
-import { MainPageBtnIconStyle } from '../styles/components/IconStyles';
-import { MainPageBtnTextStyle } from '../styles/components/TextStyles';
-import { MainQuickBtn } from '../components/Button/QuickBtn';
 import { MainQuickBtnGroup } from '../components/Group/BtnAndTagGroup';
 
 //icons
@@ -24,7 +20,7 @@ import { BsEmojiSmile } from 'react-icons/bs';
 import { BiDotsHorizontalRounded, BiMap } from 'react-icons/bi';
 import { TbSoccerField } from 'react-icons/tb';
 
-import { H3 } from '../components/Text/Head';
+import { H3Vainish } from '../components/Text/Head';
 
 const MainPage = () => {
   const activeCategory = [
@@ -54,15 +50,15 @@ const MainPage = () => {
         </SearchbarGroupStyle>
 
         <MainPageBtnsGroupStyle>
-          <H3 style={{ marginTop: '40px' }}>바로가기</H3>
+          <H3Vainish style={{ marginTop: '40px' }}>바로가기</H3Vainish>
           <MainQuickBtnGroup category={activeCategory1} />
           <MainQuickBtnGroup category={activeCategory2} />
         </MainPageBtnsGroupStyle>
 
         <MainPageBtnsGroupStyle>
-          <H3 style={{ marginTop: '20px', marginBottom: '30px' }}>
+          <H3Vainish style={{ marginTop: '20px', marginBottom: '30px' }}>
             Miracle near me
-          </H3>
+          </H3Vainish>
         </MainPageBtnsGroupStyle>
 
         <FacilityCard />

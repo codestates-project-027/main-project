@@ -1,4 +1,3 @@
-import { RiBoxingFill } from 'react-icons/ri';
 import { IoIosFitness } from 'react-icons/io';
 
 const Test = () => {

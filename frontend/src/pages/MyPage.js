@@ -5,6 +5,11 @@ import { FacilityDescCard } from '../components/Card/FacilityCard';
 import { H1, H3 } from '../components/Text/Head';
 
 const MyPage = () => {
+  const days = [
+    true,
+    false
+  ];
+
   return (
     <>
       <MyPageGlobal>
@@ -34,7 +39,7 @@ const MyPage = () => {
           </div>
         </H3>
 
-        <AttendanceCard />
+        <AttendanceCard days={days} />
       </MyPageGlobal>
     </>
   );

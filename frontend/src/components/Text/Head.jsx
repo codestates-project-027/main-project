@@ -15,7 +15,14 @@ export const H3 = styled.div`
   font-size: 1.2rem;
 `;
 
-export const H4 = styled.div` //basic
+export const H3Vainish = styled(H3)`
+  @media screen and (max-width: 790px) {
+    display: none;
+  }
+`;
+
+export const H4 = styled.div`
+  //basic
   display: flex;
   font-size: 1rem;
 `;
