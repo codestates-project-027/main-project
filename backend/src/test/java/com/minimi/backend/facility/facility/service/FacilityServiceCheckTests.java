@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("checkFacility test")
@@ -45,10 +45,6 @@ public class FacilityServiceCheckTests {
     @Nested
     @DisplayName("checkExistsCategory")
     class checkExists {
-
-        @Nested
-        @DisplayName("success ExistsCategory")
-        class successCase {
 
             @Test
             @DisplayName("success ExistsCategory 1 -> exists")
@@ -78,6 +74,28 @@ public class FacilityServiceCheckTests {
                 then(facilityCategoryCheckListener).should(times(1)).checkExistsByCategoryCode(anyString());
                 assertThat(exception.getMessage(), equalTo("Not Found Category"));
             }
+    }
+    @Nested
+    @DisplayName("checkData")
+    class checkData {
+
+        @Test
+        @DisplayName("success checkData 1 -> passCheck")
+        public void successCaseTest1() throws Exception {
+            String errMessage = "Not Found Message";
+
+            facilityService.checkData(true, errMessage);
+        }
+
+        @Test
+        @DisplayName("fail checkFacility 1 -> exception")
+        public void failCaseTest1() throws Exception {
+            String errMessage = "Not Found Message";
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                facilityService.checkData(false, errMessage);
+            });
+            assertThat(exception.getMessage(), equalTo(errMessage));
         }
     }
 }

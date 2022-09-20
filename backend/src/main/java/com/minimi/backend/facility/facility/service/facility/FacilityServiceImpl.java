@@ -27,7 +27,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public FacilityDto.response getFacility(Long facilityId) {
-        checkFacility(facilityRepository.existsById(facilityId), "Not Found Facility");
+        checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
 
         Facility facility = facilityRepository.findById(facilityId)
                 .orElseThrow(() -> new RuntimeException("findById Err"));
@@ -74,20 +74,20 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void deleteFacility(Long facilityId) {
-        checkFacility(facilityRepository.existsById(facilityId), "Not Found Facility");
+        checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         facilityRepository.deleteById(facilityId);
     }
 
     public Boolean checkCategory(List<String> categoryList) {
         categoryList.forEach(categoryCode ->{
-            checkFacility(facilityCategoryCheckListener.checkExistsByCategoryCode(categoryCode), "Not Found Category");
+            checkData(facilityCategoryCheckListener.checkExistsByCategoryCode(categoryCode), "Not Found Category");
         });
         return true;
     }
 
-    public void checkFacility(boolean facilityRepository, String Not_Found_Facility) {
-        if (!facilityRepository){
-            throw new NullPointerException(Not_Found_Facility);
+    public void checkData(boolean checkData, String Not_Found_Message) {
+        if (!checkData){
+            throw new NullPointerException(Not_Found_Message);
         }
     }
 }
