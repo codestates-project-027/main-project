@@ -25,5 +25,4 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     public Boolean checkExistsByCategoryCode(String categoryCode) {
         return facilityCategoryRepository.existsByCategoryCode(categoryCode);
     }
-
 }

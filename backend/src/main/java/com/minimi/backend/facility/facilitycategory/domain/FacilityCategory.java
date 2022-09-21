@@ -1,9 +1,6 @@
 package com.minimi.backend.facility.facilitycategory.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -23,4 +20,11 @@ public class FacilityCategory {
 
     @Column
     private String categoryTitle;
+
+
+    @Builder
+    public FacilityCategory(String categoryCode, String categoryTitle){
+        this.categoryCode = categoryCode;
+        this.categoryTitle = categoryTitle;
+    }
 }
