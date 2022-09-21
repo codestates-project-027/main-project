@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { ImgUploaderGlobal } from '../../styles/globalStyle/UploaderGlobalStyle';
+import {
+  ImgUploaderGlobal,
+  ImgPreviewGlobal,
+} from '../../styles/globalStyle/UploaderGlobalStyle';
 
 const ImageUploader = () => {
   const [imgPreview, setImgPreview] = useState([]); //상대경로 필요
+  const [mainImg, setMainImg] = useState(''); //대표이미지 설정
+  const [isMain, setIsMain] = useState(false);
 
   const handleAddImg = (e) => {
     const uploadedImgs = e.target.files;
@@ -24,24 +29,42 @@ const ImageUploader = () => {
     setImgPreview(imgPreview.filter((_, idx) => idx !== id));
   };
 
+  const handleMainImg = (id) => {
+    setMainImg(imgPreview[id]);
+    setIsMain(true);
+    console.log(mainImg);
+  };
+
   return (
     <>
       <ImgUploaderGlobal>
-        <label
-          style={{ background: 'yellow' }}
-          htmlFor="img-input"
-          onChange={handleAddImg}
-        >
+        <label htmlFor="img-input" onChange={handleAddImg}>
           <input type="file" id="img-input" multiple />
         </label>
-        {imgPreview.map((el, id) => (
-          <div className="img--wrapper" key={id}>
-            <img src={el} alt={`facility-${id}`} />
-            <div className="remove" onClick={() => handleDeleteImg(id)}>
-              x
+        <div className="img--wrapper">
+          {imgPreview.map((el, id) => (
+            <div key={id}>
+              {isMain ? (
+                <img
+                  src={el}
+                  alt={`facility-${id}`}
+                  onClick={() => handleMainImg(id)}
+                  style={{ border: '1px solid red' }}
+                />
+              ) : (
+                <img
+                  src={el}
+                  alt={`facility-${id}`}
+                  onClick={() => handleMainImg(id)}
+                />
+              )}
+
+              <div className="remove" onClick={() => handleDeleteImg(id)}>
+                x
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </ImgUploaderGlobal>
     </>
   );
