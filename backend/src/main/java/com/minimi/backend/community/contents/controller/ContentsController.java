@@ -36,17 +36,20 @@ public class ContentsController {
     //get Content
     @GetMapping("/{contentsId}")
     public ResponseEntity<ContentsDTO.response> getContents(@PathVariable Long contentsId){
-        return new ResponseEntity(contentsService.getContents(contentsId),HttpStatus.CREATED);
+        Contents contents = contentsService.findContents(contentsId);
+        return new ResponseEntity(contents,HttpStatus.CREATED);
     }
     //get Contents
     @GetMapping("")
-    public ResponseEntity<Slice<ContentsDTO.get>> getContentsList(@RequestParam int page, @RequestParam int size){
+    public ResponseEntity<Slice<ContentsDTO.get>> getContentsList(@RequestParam int page,
+                                                                  @RequestParam int size){
 
         return new ResponseEntity<>(contentsService.getContentsList(page-1,size),HttpStatus.OK);
     }
     //delete Content
     @DeleteMapping("/{contentsId}")
     public ResponseEntity deleteContents(@PathVariable Long contentsId){
+        contentsService.deleteContents(contentsId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

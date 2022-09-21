@@ -23,7 +23,7 @@ public class ContentsService {
                 contentsMapper.contentsDTOToContents(contentsDTO));
     }
     public Contents patchContents(ContentsDTO.patch patch, Long contentsId){
-        Contents contents = findVerifiedContents(contentsId);
+        Contents contents = findContents(contentsId);
         Optional.ofNullable(patch.getTitle())
                         .ifPresent(title -> contents.setTitle(title));
         Optional.ofNullable(patch.getContents())
@@ -31,8 +31,8 @@ public class ContentsService {
 
         return contentsRepository.save(contents);
     }
-    public void deleteContents(ContentsDTO contentsDTO){
-
+    public void deleteContents(Long contentsId){
+        contentsRepository.delete(findContents(contentsId));
     }
     public ContentsDTO.response getContents(long contentsId) {
         return null;
@@ -41,7 +41,7 @@ public class ContentsService {
         return null;
     }
 
-    public Contents findVerifiedContents(Long contentsId){
+    public Contents findContents(Long contentsId){
         Optional<Contents> contents = contentsRepository.findById(contentsId);
         Contents findContents = contents.orElseThrow();
         return findContents;
