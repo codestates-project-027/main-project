@@ -8,7 +8,6 @@ import com.minimi.backend.facility.category.service.listener.CategoryFacilityGet
 import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;

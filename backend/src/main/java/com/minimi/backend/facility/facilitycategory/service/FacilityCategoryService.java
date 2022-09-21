@@ -10,6 +10,8 @@ public interface FacilityCategoryService {
 
     Boolean checkExistsByCategoryTitle(String categoryTitle);
 
+    Long getFacilityCategoryIdByCode(String categoryCode);
+
     FacilityCategory getFacilityCategoryByTitle(String categoryTitle);
 
 }

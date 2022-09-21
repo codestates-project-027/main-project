@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facamapping.service;
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
+import com.minimi.backend.facility.facamapping.service.listener.FacilityCategoryGetIdListener;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facamapping.domain.FacaMapping;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Service;
 public class FacaMappingServiceImpl implements FacaMappingService {
 
     private final FacaMappingRepository facaMappingRepository;
+    private final FacilityCategoryGetIdListener facilityCategoryGetIdListener;
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
+
         return null;
     }
 

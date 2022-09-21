@@ -20,14 +20,12 @@ import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("FacilityCategoryListServicePost test")
+@DisplayName("facaMapping post test")
 public class FacaMappingServicePostTests {
 
     @Mock
@@ -37,7 +35,7 @@ public class FacaMappingServicePostTests {
     private ApplicationEventPublisher eventPublisher;
 
     @InjectMocks
-    private FacaMappingServiceImpl facilityCategoryListService;
+    private FacaMappingServiceImpl facaMappingService;
 
     private Facility facility;
 
@@ -67,7 +65,7 @@ public class FacaMappingServicePostTests {
             given(facaMappingRepository.save(Mockito.any(FacaMapping.class))).willReturn(facaMapping);
 
 
-            FacaMapping result = facilityCategoryListService.postFacilityCategoryListEntity(facilityCategory, facility);
+            FacaMapping result = facaMappingService.postFacilityCategoryListEntity(facilityCategory, facility);
 
 
             then(facaMappingRepository).should(times(1)).save(Mockito.any(FacaMapping.class));
@@ -84,7 +82,7 @@ public class FacaMappingServicePostTests {
         public void failTest() throws Exception {
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityCategoryListService.postFacilityCategoryListEntity(null, null);
+                facaMappingService.postFacilityCategoryListEntity(null, null);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));
@@ -97,7 +95,7 @@ public class FacaMappingServicePostTests {
             Facility facility = new Facility();
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityCategoryListService.postFacilityCategoryListEntity(facilityCategory, facility);
+                facaMappingService.postFacilityCategoryListEntity(facilityCategory, facility);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));
