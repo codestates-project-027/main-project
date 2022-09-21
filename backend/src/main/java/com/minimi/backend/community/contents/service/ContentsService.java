@@ -29,8 +29,6 @@ public class ContentsService {
         Optional.ofNullable(patch.getContents())
                 .ifPresent(content -> contents.setContents(content));
 
-
-
         return contentsRepository.save(contents);
     }
     public void deleteContents(ContentsDTO contentsDTO){

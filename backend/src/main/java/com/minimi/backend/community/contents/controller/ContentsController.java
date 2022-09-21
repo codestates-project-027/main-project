@@ -20,10 +20,6 @@ public class ContentsController {
     private final ContentsService contentsService;
     private final ContentsMapper contentsMapper;
 
-//    public ContentsController(ContentsService contentsService, ContentsMapper contentsMapper){
-//        this.contentsService = contentsService;
-//        this.contentsMapper = contentsMapper;
-//    }
     //post Content
     @PostMapping("")
     public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO){
