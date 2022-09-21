@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.BDDMockito.given;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -68,6 +69,37 @@ public class FacilityCategoryServiceCheckTests {
                 });
 
                 assertThat(exception.getMessage(), equalTo("Null Value"));
+            }
+        }
+    }
+    @Nested
+    @DisplayName("checkExistsByCategoryCode")
+    class checkExistsByCategoryCode {
+        @Nested
+        @DisplayName("success case")
+        class successCase {
+            @Test
+            @DisplayName("success test 1 -> Exists")
+            public void successTest1() throws Exception {
+                given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(true);
+
+                Boolean result = facilityCategoryService.checkExistsByCategoryCode("202222");
+
+                assertThat(result, equalTo(true));
+            }
+        }
+
+        @Nested
+        @DisplayName("fail case")
+        class failCase {
+            @Test
+            @DisplayName("fail test 1 -> not Exists")
+            public void failTest1() throws Exception {
+                given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
+
+                Boolean result = facilityCategoryService.checkExistsByCategoryCode("202222");
+
+                assertThat(result, equalTo(false));
             }
         }
     }
