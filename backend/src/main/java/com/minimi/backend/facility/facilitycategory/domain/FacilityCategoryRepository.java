@@ -9,6 +9,6 @@ public interface FacilityCategoryRepository extends JpaRepository<FacilityCatego
 
     Boolean existsByCategoryTitle(String categoryTitle);
 
-    Category findByCategoryCode(String categoryCode);
+    FacilityCategory findByCategoryCode(String categoryCode);
 
 }

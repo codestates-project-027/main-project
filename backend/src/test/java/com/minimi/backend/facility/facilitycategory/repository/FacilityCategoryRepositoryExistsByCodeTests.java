@@ -33,7 +33,7 @@ public class FacilityCategoryRepositoryExistsByCodeTests {
     }
 
     @Nested
-    @DisplayName("FacilityCategoryRepository Case")
+    @DisplayName("FacilityCategoryRepository Success Case")
     public class successCase {
 
         @Test
@@ -49,7 +49,7 @@ public class FacilityCategoryRepositoryExistsByCodeTests {
     }
 
     @Nested
-    @DisplayName("FacilityCategoryRepository Case")
+    @DisplayName("FacilityCategoryRepository Fail Case")
     public class failCase {
 
         @Test
