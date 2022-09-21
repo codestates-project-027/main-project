@@ -3,9 +3,8 @@ package com.minimi.backend.facility.category.service;
 
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListenerImpl;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
-import com.minimi.backend.facility.facilitycategorylist.service.FacilityCategoryListServiceImpl;
+import com.minimi.backend.facility.facilitycategorylist.service.FacaMappingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -35,7 +34,7 @@ import static org.mockito.Mockito.times;
 @DisplayName("CategoryFacilityListener Tests")
 public class CategoryFacilityGetListenerImplTests {
     @Mock
-    private FacilityCategoryListServiceImpl FacilityCategoryListService;
+    private FacaMappingServiceImpl FacilityCategoryListService;
 
     @InjectMocks
     private CategoryFacilityGetListenerImpl categoryFacilityGetListener;

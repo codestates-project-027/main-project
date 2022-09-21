@@ -12,12 +12,11 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "facility_categorylist")
-public class FacilityCategoryList {
+public class FacaMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "facility_category_list_id")
-    private Long facilityCategoryListId;
+    @Column(name = "faca_mapping_id")
+    private Long facaMappingId;
 
     @ManyToOne
     @JoinColumn(name = "facility_category_id")
@@ -29,7 +28,7 @@ public class FacilityCategoryList {
 
 
     @Builder
-    public FacilityCategoryList(FacilityCategory facilityCategory, Facility facility){
+    public FacaMapping(FacilityCategory facilityCategory, Facility facility){
         this.facilityCategory = facilityCategory;
         this.facility = facility;
     }

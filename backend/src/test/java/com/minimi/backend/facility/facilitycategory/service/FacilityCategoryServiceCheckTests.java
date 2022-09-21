@@ -73,7 +73,7 @@ public class FacilityCategoryServiceCheckTests {
         }
     }
     @Nested
-    @DisplayName("checkExistsByCategoryCode")
+    @DisplayName("checkExistsByCategoryTitle")
     class checkExistsByCategoryCode {
         @Nested
         @DisplayName("success case")
@@ -81,9 +81,9 @@ public class FacilityCategoryServiceCheckTests {
             @Test
             @DisplayName("success test 1 -> Exists")
             public void successTest1() throws Exception {
-                given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(true);
+                given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString())).willReturn(true);
 
-                Boolean result = facilityCategoryService.checkExistsByCategoryCode("202222");
+                Boolean result = facilityCategoryService.checkExistsByCategoryTitle("헬스");
 
                 assertThat(result, equalTo(true));
             }
@@ -95,9 +95,9 @@ public class FacilityCategoryServiceCheckTests {
             @Test
             @DisplayName("fail test 1 -> not Exists")
             public void failTest1() throws Exception {
-                given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
+                given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString())).willReturn(false);
 
-                Boolean result = facilityCategoryService.checkExistsByCategoryCode("202222");
+                Boolean result = facilityCategoryService.checkExistsByCategoryTitle("헬스");
 
                 assertThat(result, equalTo(false));
             }

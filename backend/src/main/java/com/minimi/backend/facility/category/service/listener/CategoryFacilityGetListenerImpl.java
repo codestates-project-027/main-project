@@ -1,8 +1,7 @@
 package com.minimi.backend.facility.category.service.listener;
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
-import com.minimi.backend.facility.facilitycategorylist.service.FacilityCategoryListService;
+import com.minimi.backend.facility.facilitycategorylist.service.FacaMappingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
@@ -11,9 +10,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CategoryFacilityGetListenerImpl implements CategoryFacilityGetListener {
 
-    private final FacilityCategoryListService facilityCategoryListService;
+    private final FacaMappingService facaMappingService;
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategory(String categoryCode, int page) {
-        return facilityCategoryListService.getCategoryFacilitySlice(categoryCode, page);
+        return facaMappingService.getCategoryFacilitySlice(categoryCode, page);
     }
 }

@@ -8,6 +8,8 @@ public interface FacilityCategoryService {
 
     public FacilityCategory patchFacilityCategory(String categoryCode, String categoryTitle);
 
-    Boolean checkExistsByCategoryCode(String categoryCode);
+    Boolean checkExistsByCategoryTitle(String categoryTitle);
+
+    FacilityCategory getFacilityCategoryByTitle(String categoryTitle);
 
 }

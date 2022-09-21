@@ -2,11 +2,10 @@ package com.minimi.backend.facility.facility.service;
 
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
-import com.minimi.backend.facility.facility.service.listener.FacilityCategoryListGetListenerImpl;
+import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListenerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -41,7 +40,7 @@ public class FacilityServiceGetFromCategoryTests {
     private FacilityRepository facilityRepository;
 
     @Mock
-    private FacilityCategoryListGetListenerImpl facilityCategoryListGetListener;
+    private FacaMappingGetListenerImpl facilityCategoryListGetListener;
 
     @Mock
     private FacilityMapper facilityMapper;

@@ -7,10 +7,11 @@ import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.listener.FacilityCategoryCheckListener;
-import com.minimi.backend.facility.facility.service.listener.FacilityCategoryListGetListener;
+import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.publisher.FacilityDeleteEvent;
 import com.minimi.backend.facility.facility.service.publisher.FacilityPostEvent;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanWrapper;
@@ -29,7 +30,7 @@ public class FacilityServiceImpl implements FacilityService {
     private final FacilityRepository facilityRepository;
     private final FacilityCategoryCheckListener facilityCategoryCheckListener;
     private final FacilityReviewGetListener facilityReviewGetListener;
-    private final FacilityCategoryListGetListener facilityCategoryListGetListener;
+    private final FacaMappingGetListener facaMappingGetListener;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final FacilityMapper facilityMapper;
 
@@ -53,7 +54,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacility(String categoryCode, int page) {
-        return facilityCategoryListGetListener.getFacilityFromCategory(categoryCode, page);
+        return facaMappingGetListener.getFacilityFromCategory(categoryCode, page);
     }
 
     @Override
@@ -73,7 +74,10 @@ public class FacilityServiceImpl implements FacilityService {
                 .categoryList(facilityDtoReq.getCategoryList())
                 .build());
 
-        applicationEventPublisher.publishEvent(new FacilityPostEvent(facility.getFacilityId()));
+        facility.getCategoryList().forEach(categoryTitle -> {
+            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            applicationEventPublisher.publishEvent(new FacilityPostEvent(facilityCategory,facility));
+        });
 
         return facility;
     }
@@ -101,8 +105,8 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     public Boolean checkCategory(List<String> categoryList) {
-        categoryList.forEach(categoryCode ->{
-            checkData(facilityCategoryCheckListener.checkExistsByCategoryCode(categoryCode), "Not Found Category");
+        categoryList.forEach(categoryTitle ->{
+            checkData(facilityCategoryCheckListener.checkExistsByCategoryTitle(categoryTitle), "Not Found Category");
         });
         return true;
     }

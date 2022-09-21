@@ -49,13 +49,13 @@ public class FacilityServiceCheckTests {
             @DisplayName("success ExistsCategory 1 -> exists")
             public void successCaseTest1() throws Exception {
                 List<String> categoryList = new ArrayList<>(Arrays.asList("헬스", "요가"));
-                given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
+                given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString()))
                         .willReturn(true);
 
                 Boolean result = facilityService.checkCategory(categoryList);
 
                 then(facilityCategoryCheckListener).should(times(categoryList.size()))
-                        .checkExistsByCategoryCode(anyString());
+                        .checkExistsByCategoryTitle(anyString());
                 assertThat(result, equalTo(true));
             }
 
@@ -63,14 +63,14 @@ public class FacilityServiceCheckTests {
             @DisplayName("fail ExistsCategory 1 -> not exists")
             public void failCaseTest1() throws Exception {
                 List<String> categoryList = new ArrayList<>(Arrays.asList("헬스", "요가"));
-                given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
+                given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString()))
                         .willReturn(false);
 
                 Exception exception = Assertions.assertThrows(Exception.class, () -> {
                             facilityService.checkCategory(categoryList);
                         });
 
-                then(facilityCategoryCheckListener).should(times(1)).checkExistsByCategoryCode(anyString());
+                then(facilityCategoryCheckListener).should(times(1)).checkExistsByCategoryTitle(anyString());
                 assertThat(exception.getMessage(), equalTo("Not Found Category"));
             }
     }

@@ -5,9 +5,8 @@ package com.minimi.backend.facility.facilitycategorylist.service;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.facilitycategory.service.FacilityCategoryServiceImpl;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacilityCategoryList;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacilityCategoryListRepository;
+import com.minimi.backend.facility.facilitycategorylist.domain.FacaMapping;
+import com.minimi.backend.facility.facilitycategorylist.domain.FacaMappingRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,16 +28,16 @@ import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("FacilityCategoryListServicePost test")
-public class FacilityCategoryListServicePostTests {
+public class FacaMappingServicePostTests {
 
     @Mock
-    private FacilityCategoryListRepository facilityCategoryListRepository;
+    private FacaMappingRepository facaMappingRepository;
 
     @Mock
     private ApplicationEventPublisher eventPublisher;
 
     @InjectMocks
-    private FacilityCategoryListServiceImpl facilityCategoryListService;
+    private FacaMappingServiceImpl facilityCategoryListService;
 
     private Facility facility;
 
@@ -62,17 +61,17 @@ public class FacilityCategoryListServicePostTests {
         @DisplayName("success test 1 -> create")
         public void successTest() throws Exception {
             FacilityCategory facilityCategory = new FacilityCategory(1L,"222222","헬스");
-            FacilityCategoryList facilityCategoryList =
-                    new FacilityCategoryList(1L, facilityCategory, facility);
+            FacaMapping facaMapping =
+                    new FacaMapping(1L, facilityCategory, facility);
 
-            given(facilityCategoryListRepository.save(Mockito.any(FacilityCategoryList.class))).willReturn(facilityCategoryList);
-
-
-            FacilityCategoryList result = facilityCategoryListService.postFacilityCategoryListEntity(facilityCategory, facility);
+            given(facaMappingRepository.save(Mockito.any(FacaMapping.class))).willReturn(facaMapping);
 
 
-            then(facilityCategoryListRepository).should(times(1)).save(Mockito.any(FacilityCategoryList.class));
-            assertThat(result, equalTo(facilityCategoryList));
+            FacaMapping result = facilityCategoryListService.postFacilityCategoryListEntity(facilityCategory, facility);
+
+
+            then(facaMappingRepository).should(times(1)).save(Mockito.any(FacaMapping.class));
+            assertThat(result, equalTo(facaMapping));
         }
 
     }

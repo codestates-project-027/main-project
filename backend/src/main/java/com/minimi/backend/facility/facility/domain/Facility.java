@@ -51,7 +51,6 @@ public class Facility {
     @Enumerated(EnumType.STRING)
     private FacilityStatus facilityStatus;
 
-
     @Builder
     public Facility(String facilityName, String facilityPhoto, List<String> facilityPhotoList,
                     String facilityInfo, String address, String website, String phone,

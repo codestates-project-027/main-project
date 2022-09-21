@@ -68,7 +68,7 @@ public class FacilityServicePostTests {
         @Test
         @DisplayName("success postFacility test 1 -> create")
         public void successPostFacility() throws Exception {
-            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString())).willReturn(true);
+            given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(Mockito.any(Facility.class))).willReturn(facility);
 
             Facility result = facilityService.postFacility(facilityDtoReq);
@@ -83,7 +83,7 @@ public class FacilityServicePostTests {
         @Test
         @DisplayName("fail postFacility test 1 -> null")
         public void failPostFacility() throws Exception {
-            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
+            given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString()))
                     .willReturn(true);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
@@ -91,7 +91,7 @@ public class FacilityServicePostTests {
             });
 
             then(facilityCategoryCheckListener)
-                    .should(times(2)).checkExistsByCategoryCode(anyString());
+                    .should(times(2)).checkExistsByCategoryTitle(anyString());
 
             assertThat(exception.getMessage(), is(nullValue()));
         }
@@ -99,7 +99,7 @@ public class FacilityServicePostTests {
         @Test
         @DisplayName("fail postFacility test 2 -> not found category")
         public void failPostFacilityNoCategory() throws Exception {
-            given(facilityCategoryCheckListener.checkExistsByCategoryCode(Mockito.anyString()))
+            given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString()))
                     .willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
@@ -107,7 +107,7 @@ public class FacilityServicePostTests {
             });
 
             then(facilityCategoryCheckListener)
-                    .should(times(1)).checkExistsByCategoryCode(anyString());
+                    .should(times(1)).checkExistsByCategoryTitle(anyString());
             assertThat(exception.getMessage(), equalTo("Not Found Category"));
         }
     }

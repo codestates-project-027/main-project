@@ -11,4 +11,6 @@ public interface FacilityCategoryRepository extends JpaRepository<FacilityCatego
 
     FacilityCategory findByCategoryCode(String categoryCode);
 
+    FacilityCategory findByCategoryTitle(String categoryTitle);
+
 }

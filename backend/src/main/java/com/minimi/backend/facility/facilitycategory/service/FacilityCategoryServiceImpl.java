@@ -32,8 +32,13 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     }
 
     @Override
-    public Boolean checkExistsByCategoryCode(String categoryCode) {
-        return facilityCategoryRepository.existsByCategoryCode(categoryCode);
+    public Boolean checkExistsByCategoryTitle(String categoryTitle) {
+        return facilityCategoryRepository.existsByCategoryTitle(categoryTitle);
+    }
+
+    @Override
+    public FacilityCategory getFacilityCategoryByTitle(String categoryTitle) {
+        return facilityCategoryRepository.findByCategoryTitle(categoryTitle);
     }
 
     public Boolean checkDataAndBlank(boolean repositoryExists,String value, String Exists_Message) {

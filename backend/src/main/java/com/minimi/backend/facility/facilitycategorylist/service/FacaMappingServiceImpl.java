@@ -2,19 +2,18 @@ package com.minimi.backend.facility.facilitycategorylist.service;
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacilityCategoryList;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacilityCategoryListRepository;
+import com.minimi.backend.facility.facilitycategorylist.domain.FacaMapping;
+import com.minimi.backend.facility.facilitycategorylist.domain.FacaMappingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FacilityCategoryListServiceImpl implements FacilityCategoryListService {
+public class FacaMappingServiceImpl implements FacaMappingService {
 
-    private final FacilityCategoryListRepository facilityCategoryListRepository;
+    private final FacaMappingRepository facaMappingRepository;
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
@@ -22,18 +21,17 @@ public class FacilityCategoryListServiceImpl implements FacilityCategoryListServ
     }
 
     @Override
-    public FacilityCategoryList postFacilityCategoryListEntity(FacilityCategory facilityCategory, Facility facility) {
+    public FacaMapping postFacilityCategoryListEntity(FacilityCategory facilityCategory, Facility facility) {
         //null blank check
         blankAndNullCheck(facilityCategory);
         blankAndNullCheck(facility);
         blankAndNullCheck(facilityCategory.getFacilityCategoryId());
         blankAndNullCheck(facility.getFacilityId());
 
-        return facilityCategoryListRepository.save(
-                FacilityCategoryList.builder()
-                        .facilityCategory(facilityCategory)
-                        .facility(facility).build()
-        );
+        return facaMappingRepository.save(FacaMapping
+                .builder()
+                .facilityCategory(facilityCategory)
+                .facility(facility).build());
     }
 
     public Boolean blankAndNullCheck(Object value) {
