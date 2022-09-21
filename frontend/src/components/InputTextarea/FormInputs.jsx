@@ -19,10 +19,10 @@ export const PwInput = () => {
   );
 };
 
-export const Input = ({ label }) => {
+export const Input = ({ label, placeholder }) => {
   return (
     <WhiteInputGlobal>
-      <input className="input" id={label} />
+      <input className="input" placeholder={placeholder} id={label} />
     </WhiteInputGlobal>
   );
 };

@@ -37,6 +37,6 @@ export const WhiteInputGlobal = styled(NavyInputGlobal)`
     color: var(--main-navy);
   }
   .input::placeholder {
-    color: lightgay;
+    color: lightgray;
   }
 `;

@@ -45,7 +45,7 @@ export const RegisterFacilityForm = () => {
           </label>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <AddressUploader />
-            <Input label={'address'} />
+            <Input placeholder={'상세주소 입력'}label={'address'} />
           </div>
         </div>
         <div className="input--wrapper">
