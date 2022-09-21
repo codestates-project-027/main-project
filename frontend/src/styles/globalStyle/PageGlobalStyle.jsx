@@ -99,16 +99,6 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
 
 export const FacilityPageGlobal = styled(PageGlobalBase)`
   background-color: bisque;
-  .img--wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 550px;
-    height: 300px;
-    background-color: lightgreen;
-    margin-bottom: 10px;
-    padding: ${PADDING.BASIC};
-  }
   .Fname--distance--wrapper {
     display: flex;
     align-items: center;

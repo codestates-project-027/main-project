@@ -12,12 +12,13 @@ import { TbFileDescription } from 'react-icons/tb';
 import { AiFillTag } from 'react-icons/ai';
 
 import StarsCalc from '../components/Calculator/StarsCalc';
+import { CarouselComponent } from '../components/Image/CarouselComponent';
 
-//이미지 캐러셀
+//운동시설 삭제 누가하나? 올린놈이 한다. // 물어보기: 누구나 삭제할수있는것인가? 그렇다면 삭제기능을 안 넣을 것이다.
+//운동시설 생성페이지-수정페이지(삭제 톱니바퀴버튼), 리뷰생성, 수정페이지
+//카테고리 생성/수정하는 admin 페이지
 //시설 소개글 n줄
-//카테고리 생성...??
-//운동시설 생성페이지, 수정페이지, 삭제기능
-//리뷰 생성,수정 페이지
+//이미지 캐러셀
 
 const FacilityPage = () => {
   const tags = ['헬스', 'PT'];
@@ -84,12 +85,15 @@ const FacilityPage = () => {
     },
   ];
 
+  const imgs = [
+    `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
+    `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
+  ];
+
   return (
     <>
       <FacilityPageGlobal>
-        <div className="img--wrapper">
-          FacilityImage : http...경로로 불러오기
-        </div>
+        <CarouselComponent imgs={imgs}>FacilityImage : http...경로로 불러오기</CarouselComponent>
         <div className="Fname--distance--wrapper">
           <H2>OO동 헬스클럽</H2>
           <H4>0.3km</H4> {/*거리계산 컴포넌트*/}

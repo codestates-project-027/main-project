@@ -55,7 +55,9 @@ export const TagGroupDesc = ({ tags }) => {
     <>
       {tags.map((el) => {
         return (
-          <TagStyleInDesc style={{ marginRight: '10px' }}>{el}</TagStyleInDesc>
+          <TagStyleInDesc key={el} style={{ marginRight: '10px' }}>
+            {el}
+          </TagStyleInDesc>
         );
       })}
     </>
