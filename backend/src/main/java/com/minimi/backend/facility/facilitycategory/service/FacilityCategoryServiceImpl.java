@@ -28,7 +28,15 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
 
     @Override
     public FacilityCategory patchFacilityCategory(String categoryCode, String categoryTitle) {
-        return null;
+
+        FacilityCategory facilityCategory = getFacilityCategoryByCategoryCode(categoryCode);
+
+        checkDataAndBlank(facilityCategoryRepository
+                .existsByCategoryTitle(categoryTitle), categoryTitle, "Exists CategoryTitle");
+
+        facilityCategory.setCategoryTitle(categoryTitle);
+
+        return facilityCategoryRepository.save(facilityCategory);
     }
 
     @Override

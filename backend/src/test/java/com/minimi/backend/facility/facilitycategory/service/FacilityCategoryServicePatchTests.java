@@ -1,11 +1,7 @@
 package com.minimi.backend.facility.facilitycategory.service;
 
 import com.minimi.backend.facility.category.domain.Category;
-import com.minimi.backend.facility.category.domain.CategoryDto;
-import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
-import com.minimi.backend.facility.category.service.CategoryServiceImpl;
-import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryRepository;
 import org.junit.jupiter.api.*;
@@ -75,44 +71,6 @@ public class FacilityCategoryServicePatchTests {
             assertThat(result.getCategoryCode(), equalTo(facilityCategoryResult.getCategoryCode()));
             assertThat(result.getCategoryTitle(), equalTo(facilityCategoryResult.getCategoryTitle()));
         }
-        @Test
-        @DisplayName("success test 2 -> patch title null title")
-        public void successTest2() throws Exception{
-            given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(true);
-            given(facilityCategoryRepository.findByCategoryCode(Mockito.anyString()))
-                    .willReturn(facilityCategory);
-            given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString()))
-                    .willReturn(false);
-            given(facilityCategoryRepository.save(Mockito.any(FacilityCategory.class)))
-                    .willReturn(facilityCategory);
-
-            FacilityCategory result = facilityCategoryService.patchFacilityCategory(categoryCode,null);
-
-            then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
-            then(facilityCategoryRepository).should(times(1)).findByCategoryCode(any());
-            then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(any());
-            then(facilityCategoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(facilityCategory));
-        }
-        @Test
-        @DisplayName("success test 3 -> patch title blank title")
-        public void successTest3() throws Exception{
-            given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(true);
-            given(facilityCategoryRepository.findByCategoryCode(Mockito.anyString()))
-                    .willReturn(facilityCategory);
-            given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString()))
-                    .willReturn(false);
-            given(facilityCategoryRepository.save(Mockito.any(FacilityCategory.class)))
-                    .willReturn(facilityCategory);
-
-            FacilityCategory result = facilityCategoryService.patchFacilityCategory(categoryCode,"");
-
-            then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
-            then(facilityCategoryRepository).should(times(1)).findByCategoryCode(any());
-            then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(any());
-            then(facilityCategoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(facilityCategory));
-        }
     }
 
     @Nested
@@ -128,7 +86,7 @@ public class FacilityCategoryServicePatchTests {
             });
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
-            assertThat(exception.getMessage(), equalTo("Not Found Category"));
+            assertThat(exception.getMessage(), equalTo("Null FacilityCategory"));
         }
 
         @Test
