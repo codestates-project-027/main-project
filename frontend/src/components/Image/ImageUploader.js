@@ -7,7 +7,7 @@ import {
 const ImageUploader = () => {
   const [imgPreview, setImgPreview] = useState([]); //상대경로 필요
   const [mainImg, setMainImg] = useState(''); //대표이미지 설정
-  const [isMain, setIsMain] = useState(false);
+  const [isMainId, setIsMainId] = useState('');
 
   const handleAddImg = (e) => {
     const uploadedImgs = e.target.files;
@@ -31,8 +31,11 @@ const ImageUploader = () => {
 
   const handleMainImg = (id) => {
     setMainImg(imgPreview[id]);
-    setIsMain(true);
-    console.log(mainImg);
+    if (mainImg !== '') {
+      setIsMainId(id);
+      alert(`${id + 1}번째 이미지가 대표이미지로 설정되었습니다.`);
+      console.log(mainImg);
+    }
   };
 
   return (
@@ -44,7 +47,7 @@ const ImageUploader = () => {
         <div className="img--wrapper">
           {imgPreview.map((el, id) => (
             <div key={id}>
-              {isMain ? (
+              {isMainId === id ? ( 
                 <img
                   src={el}
                   alt={`facility-${id}`}
