@@ -118,7 +118,8 @@ jacocoTestCoverageVerification {
 					"**.*Request*",
 					"**.*Response*",
 					"**.*Interceptor*",
-					"**.*Exception*"
+					"**.*Exception*",
+					"**.*Mapper*"
 			]
 			element = 'CLASS'
 			enabled = true

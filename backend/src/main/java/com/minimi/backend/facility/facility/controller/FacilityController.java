@@ -1,6 +1,9 @@
-package com.minimi.backend.facility.facility;
+package com.minimi.backend.facility.facility.controller;
 
 
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,7 @@ public class FacilityController {
     //post facility
     @PostMapping("")
     public ResponseEntity postFacility(@RequestBody FacilityDto.request facilityReq){
+        facilityService.postFacility(facilityReq);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
@@ -29,18 +33,19 @@ public class FacilityController {
     @PatchMapping("/{facilityId}")
     public ResponseEntity patchFacility(@PathVariable Long facilityId,
                                         @RequestBody FacilityDto.patch facilityPatch){
+        facilityService.patchFacility(facilityId, facilityPatch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete facility
     @DeleteMapping("/{facilityId}")
     public ResponseEntity deleteFacility(@PathVariable Long facilityId) {
-
+        facilityService.deleteFacility(facilityId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     //get nearFacilityList
     @GetMapping("")
-    public ResponseEntity<Slice<FacilityDto.responsePage>> getNearFacilityList(@RequestParam String location, int page){
+    public ResponseEntity<Slice<ResponseFacilityDto.facilityPageFromCategory>> getNearFacilityList(@RequestParam String location, int page){
         return new ResponseEntity<>(facilityService.getNearFacilityList(location, page), HttpStatus.OK);
     }
 }

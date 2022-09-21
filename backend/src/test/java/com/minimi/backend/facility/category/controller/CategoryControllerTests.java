@@ -2,11 +2,12 @@ package com.minimi.backend.facility.category.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.category.controller.CategoryController;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.service.CategoryService;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class CategoryControllerTests {
 
     @Test
     public void postCategory() throws Exception{
-        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.활성);
+        CategoryDto.request categoryDtoRequest = new CategoryDto.request("220901","헬스장", CategoryStatus.ACTIVE);
         String content = gson.toJson(categoryDtoRequest);
         ResultActions actions = mockMvc.perform(
                 post("/category")
@@ -74,7 +75,7 @@ public class CategoryControllerTests {
     public void patchCategory() throws Exception {
         String categoryTitle = "헬스";
         String categoryCode = "220901";
-        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.비활성);
+        CategoryDto.patch categoryReq = new CategoryDto.patch(categoryTitle, CategoryStatus.INACTIVE);
         String content = gson.toJson(categoryReq);
         ResultActions actions = mockMvc.perform(
                 patch("/category/{categoryCode}", categoryCode)
@@ -101,8 +102,8 @@ public class CategoryControllerTests {
     @Test
     public void getCategoryTitles() throws Exception{
         List<CategoryDto.response> categoryTitles = new ArrayList<>();
-        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.활성);
-        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.비활성);
+        CategoryDto.response category = new CategoryDto.response("220811","헬스", CategoryStatus.ACTIVE);
+        CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.INACTIVE);
         categoryTitles.add(category);
         categoryTitles.add(category1);
         given(categoryService.getCategoryTitles()).willReturn(categoryTitles);
@@ -114,10 +115,10 @@ public class CategoryControllerTests {
         actions.andExpect(status().isOk())
                 .andExpect(jsonPath("[0].categoryCode").value("220811"))
                 .andExpect(jsonPath("[0].categoryTitle").value("헬스"))
-                .andExpect(jsonPath("[0].categoryStatus").value("활성"))
+                .andExpect(jsonPath("[0].categoryStatus").value("ACTIVE"))
                 .andExpect(jsonPath("[1].categoryCode").value("220901"))
                 .andExpect(jsonPath("[1].categoryTitle").value("요가"))
-                .andExpect(jsonPath("[1].categoryStatus").value("비활성"))
+                .andExpect(jsonPath("[1].categoryStatus").value("INACTIVE"))
                 .andDo(document(
                         "get-categoryTitles",
                         getResponsePreProcessor(),
@@ -133,25 +134,25 @@ public class CategoryControllerTests {
 
     @Test
     public void getCategory() throws Exception{
-        String categoryTitle = "헬스";
+        String categoryCode = "220901";
         int page = 1;
-        List<FacilityDto.responsePage> facilityList = new ArrayList<>();
-        FacilityDto.responsePage facility = new FacilityDto.responsePage(
+        List<ResponseFacilityDto.facilityPageFromCategory> facilityList = new ArrayList<>();
+        ResponseFacilityDto.facilityPageFromCategory facility = new ResponseFacilityDto.facilityPageFromCategory(
                 1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스")),"영업중");
-        FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
+                new ArrayList<>(Arrays.asList("헬스")), FacilityStatus.ACTIVE);
+        ResponseFacilityDto.facilityPageFromCategory facility1 = new ResponseFacilityDto.facilityPageFromCategory(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
-                new ArrayList<>(Arrays.asList("헬스","PT")),"영업종료");
-        FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
+                new ArrayList<>(Arrays.asList("헬스", "PT")),FacilityStatus.INACTIVE);
+        ResponseFacilityDto.facilityPageFromCategory facility2 = new ResponseFacilityDto.facilityPageFromCategory(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스","요가")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스", "요가")),FacilityStatus.ACTIVE);
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
-        Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
+        Slice<ResponseFacilityDto.facilityPageFromCategory> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
         given(categoryService.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
         ResultActions actions = mockMvc.perform(
-                get("/category/{categoryTitle}", categoryTitle)
+                get("/category/{categoryCode}", categoryCode)
                         .param("page", String.valueOf(page))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -164,7 +165,7 @@ public class CategoryControllerTests {
                                 "get-category",
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
-                                pathParameters(parameterWithName("categoryTitle").description("타겟 카테고리 이름")),
+                                pathParameters(parameterWithName("categoryCode").description("조회 카테고리 코드")),
                                 requestParameters(parameterWithName("page").description("페이지")),
                                 responseFields(
                                         List.of(
@@ -175,7 +176,7 @@ public class CategoryControllerTests {
                                                 fieldWithPath("content[].starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                                 fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
-                                                fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),
+                                                fieldWithPath("content[].facilityStatus").type(JsonFieldType.STRING).description("운동시설 상태"),
                                                 fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
                                                 fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
                                                 fieldWithPath("pageable.sort.empty").type(JsonFieldType.BOOLEAN).description("pageable sort empty 정보"),

@@ -5,12 +5,14 @@ import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
+import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("postCategory test")
@@ -30,16 +32,19 @@ public class CategoryServicePostTests {
     @Mock
     private CategoryRepository categoryRepository;
 
+    @Mock
+    private ApplicationEventPublisher eventPublisher;
+
     @InjectMocks
     private CategoryServiceImpl categoryService;
 
     private Category category;
-    private CategoryDto.request CategoryDtoRequest;
+    private CategoryDto.request categoryDtoRequest;
 
     @BeforeEach
     public void setup() {
-        category = new Category(1L, "220901", "헬스", CategoryStatus.활성);
-        CategoryDtoRequest = new CategoryDto.request("220901","헬스", CategoryStatus.활성);
+        category = new Category(1L, "220901", "헬스", CategoryStatus.ACTIVE);
+        categoryDtoRequest = new CategoryDto.request("220901","헬스", CategoryStatus.ACTIVE);
     }
 
     @Nested
@@ -52,7 +57,7 @@ public class CategoryServicePostTests {
             given(categoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
             given(categoryRepository.save(Mockito.any(Category.class))).willReturn(category);
 
-            Category result = categoryService.postCategory(CategoryDtoRequest);
+            Category result = categoryService.postCategory(categoryDtoRequest);
 
             then(categoryRepository).should(times(1)).save(any());
             then(categoryRepository).should(times(1)).existsByCategoryCode(any());
@@ -65,22 +70,38 @@ public class CategoryServicePostTests {
     @DisplayName("fail postCategory case")
     class failPostCategoryCase {
         @Test
-        @DisplayName("fail postCategory test 1 -> null")
-        public void failPostCategoryNull() throws Exception {
+        @DisplayName("fail postCategory test 1 -> blank")
+        public void failTest1() throws Exception {
+            CategoryDto.request categoryDtoBlank = new CategoryDto.request("","", CategoryStatus.ACTIVE);
 
-            Category result = categoryService.postCategory(CategoryDtoRequest);
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        categoryService.postCategory(categoryDtoBlank);
+                    });
 
-            assertThat(result, is(nullValue()));
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+        }
+        @Test
+        @DisplayName("fail postCategory test 2 -> null")
+        public void failTest2() throws Exception {
+            CategoryDto.request categoryDtoNull = CategoryDto.request.builder()
+                    .categoryCode("220222")
+                    .categoryTitle("헬스").build();
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                categoryService.postCategory(categoryDtoNull);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
         }
 
         @Test
-        @DisplayName("fail postCategory test 2 -> existsCategoryTitle")
-        public void failPostCategoryExistsTitle() throws Exception {
+        @DisplayName("fail postCategory test 3 -> existsCategoryTitle")
+        public void failTest3() throws Exception {
             given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(true);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                categoryService.postCategory(CategoryDtoRequest);
+                categoryService.postCategory(categoryDtoRequest);
             });
 
             then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
@@ -88,13 +109,13 @@ public class CategoryServicePostTests {
         }
 
         @Test
-        @DisplayName("fail postCategory test 3 -> existsCategoryCode")
-        public void failPostCategoryExistsCode() throws Exception {
+        @DisplayName("fail postCategory test 4 -> existsCategoryCode")
+        public void failTest4() throws Exception {
             given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
                     .willReturn(true);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                categoryService.postCategory(CategoryDtoRequest);
+                categoryService.postCategory(categoryDtoRequest);
             });
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(any());
