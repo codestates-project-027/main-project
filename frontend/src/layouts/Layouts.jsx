@@ -14,18 +14,26 @@ import {
 
 import BottomNavbar from '../components/Bar/BottomNavbar';
 
-export const LayoutMain = () => {
+export const LayoutBase = () => {
   return (
     <>
-      <TopNavPosition>
-        <TopNavbarMain />
-      </TopNavPosition>
       <OutletPosition>
         <Outlet />
       </OutletPosition>
       <BottomNavPosition>
         <BottomNavbar />
       </BottomNavPosition>
+    </>
+  );
+};
+
+export const LayoutMain = () => {
+  return (
+    <>
+      <TopNavPosition>
+        <TopNavbarMain />
+      </TopNavPosition>
+      <LayoutBase />
     </>
   );
 };
@@ -36,12 +44,7 @@ export const LayoutCurrentMenu = () => {
       <TopNavPosition>
         <TopNavbarMenu />
       </TopNavPosition>
-      <OutletPosition>
-        <Outlet />
-      </OutletPosition>
-      <BottomNavPosition>
-        <BottomNavbar />
-      </BottomNavPosition>
+      <LayoutBase />
     </>
   );
 };
@@ -52,12 +55,7 @@ export const LayoutCurrentMenuSearch = () => {
       <TopNavPosition>
         <TopNavbarMenuSearch />
       </TopNavPosition>
-      <OutletPosition>
-        <Outlet />
-      </OutletPosition>
-      <BottomNavPosition>
-        <BottomNavbar />
-      </BottomNavPosition>
+      <LayoutBase />
     </>
   );
 };

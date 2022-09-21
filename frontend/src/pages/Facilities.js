@@ -1,12 +1,13 @@
-import styled from 'styled-components';
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 
 import { SearchbarGroupStyle } from '../styles/components/ComponentGroupStyle';
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCardFlex } from '../components/Card/FacilityCard';
+import { TagGroup } from '../components/Group/BtnAndTagGroup';
 
 const FacilitiesPage = () => {
+  const tags = ['배드민턴', '테니스', '탁구', '수영'];
   return (
     <>
       <FacilitiesPageGlobal>
@@ -16,11 +17,10 @@ const FacilitiesPage = () => {
         </SearchbarGroupStyle>
 
         <div className="tags--wrapper">
-          <div className="title">인기</div>
-          <Tags style={{ marginLeft: '30px' }}>배드민턴</Tags>
-          <Tags>테니스</Tags>
-          <Tags>탁구</Tags>
-          <Tags>수영</Tags>
+          <div className="title" style={{ marginRight: '20px' }}>
+            인기
+          </div>
+          <TagGroup tags={tags} />
         </div>
         <FacilityCardFlex />
         <FacilityCardFlex />
@@ -30,14 +30,3 @@ const FacilitiesPage = () => {
 };
 
 export default FacilitiesPage;
-
-const Tags = styled.div`
-  display: flex;
-  background: bisque;
-  margin: 7px;
-  margin-left: 15px;
-  padding: 5px;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 8px;
-`;

@@ -1,41 +1,7 @@
 import { AttendanceCardStyle } from '../../styles/components/CardStyle';
-const AttendanceCard = () => {
-  const data = [
-    true,
-    false,
-    true,
-    true,
-    false,
-    false,
-    false,
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-  ];
-
+const AttendanceCard = ({ days }) => {
   const date = [];
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < days.length; i++) {
     date.push(<div key={i}>{i + 1}</div>);
   }
 
@@ -54,7 +20,7 @@ const AttendanceCard = () => {
           </div>
 
           <div className="sub--wrapper">
-            {data.map((el, idx) => {
+            {days.map((el, idx) => {
               return (
                 <div
                   className="day"

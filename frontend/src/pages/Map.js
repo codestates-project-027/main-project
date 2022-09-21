@@ -22,8 +22,8 @@ const MapPage = () => {
         </SearchbarGroupStyle>
         <MapContainer />
         <FacilityCardFlex />
-        {/* <FacilityCardFlex />
-        <FacilityCardFlex /> */}
+        <FacilityCardFlex />
+        <FacilityCardFlex />
       </FacilitiesPageGlobal>
     </>
   );

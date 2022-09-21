@@ -3,13 +3,15 @@ import { PADDING } from '../../constants/style';
 
 export const PageGlobalBase = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   padding: 30px;
+  min-height: 720px;
 `;
 
 export const AppPageGlobal = styled(PageGlobalBase)`
   align-items: center;
-  height: 100vh;
+  height: 100%;
   padding: 0;
 `;
 
@@ -69,6 +71,7 @@ export const SignUpPageGlobal = styled(PageGlobalBase)`
     margin: 0.7rem;
     width: 7rem;
     height: 2.5rem;
+    margin-top: 60px;
   }
 `;
 
@@ -96,16 +99,6 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
 
 export const FacilityPageGlobal = styled(PageGlobalBase)`
   background-color: bisque;
-  .img--wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 550px;
-    height: 300px;
-    background-color: lightgreen;
-    margin-bottom: 10px;
-    padding: ${PADDING.BASIC};
-  }
   .Fname--distance--wrapper {
     display: flex;
     align-items: center;
@@ -117,6 +110,22 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
     align-items: center;
     padding: ${PADDING.BASIC};
   }
+  .tags--wrapper {
+    display: flex;
+  }
+  .btns--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    .left--btn {
+      margin-right: 20px;
+    }
+  }
+  .reviews--wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const MyPageGlobal = styled(PageGlobalBase)`
@@ -126,6 +135,10 @@ export const MyPageGlobal = styled(PageGlobalBase)`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .facility--wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 `;
 
@@ -138,3 +151,15 @@ export const AlarmsPageGlobal = styled(PageGlobalBase)`
     margin-top: 30px;
   }
 `;
+
+export const EditMyFacilityGlobal = styled(PageGlobalBase)`
+  display: flex;
+  width: 100%;
+  .facility--wrapper {
+    width: 400px;
+  }
+`;
+
+export const CreateReviewGlobal = styled(PageGlobalBase)``
+
+export const EditReviewGlobal = styled(CreateReviewGlobal)``

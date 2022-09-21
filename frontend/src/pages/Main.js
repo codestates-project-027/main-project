@@ -1,7 +1,6 @@
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
 import SquareBtn from '../components/Button/SquareBtn';
-import QuickBtn from '../components/Button/QuickBtn';
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { MemberCard } from '../components/Card/MemberCard';
 import { MainPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
@@ -9,8 +8,7 @@ import {
   SearchbarGroupStyle,
   MainPageBtnsGroupStyle,
 } from '../styles/components/ComponentGroupStyle';
-import { MainPageBtnIconStyle } from '../styles/components/IconStyles';
-import { MainPageBtnTextStyle } from '../styles/components/TextStyles';
+import { MainQuickBtnGroup } from '../components/Group/BtnAndTagGroup';
 
 //icons
 import { IoIosFitness } from 'react-icons/io';
@@ -22,13 +20,27 @@ import { BsEmojiSmile } from 'react-icons/bs';
 import { BiDotsHorizontalRounded, BiMap } from 'react-icons/bi';
 import { TbSoccerField } from 'react-icons/tb';
 
-import {H3} from '../components/Text/Head'
+import { H3Vainish } from '../components/Text/Head';
 
 const MainPage = () => {
+  const activeCategory = [
+    { idx: 1, text: '헬스/크로스핏', icon: <IoIosFitness size="23px" /> },
+    { idx: 2, text: '요가/필라테스', icon: <GrYoga size="20px" /> },
+    { idx: 3, text: '테니스', icon: <MdSportsTennis size="20px" /> },
+    { idx: 4, text: '골프', icon: <IoGolfOutline size="20px" /> },
+    { idx: 5, text: '킥복싱', icon: <RiBoxingFill size="20px" /> },
+    { idx: 6, text: '운동클래스', icon: <BsEmojiSmile size="20px" /> },
+    { idx: 7, text: '공공시설', icon: <TbSoccerField size="23px" /> },
+    { idx: 8, text: '기타', icon: <BiDotsHorizontalRounded size="23px" /> },
+  ];
+  const activeCategory1 = activeCategory.slice(0, 4);
+  const activeCategory2 = activeCategory.slice(4);
+
   return (
     <>
       <MainPageGlobal>
         <MemberCard />
+
         <SearchbarGroupStyle>
           <img style={{ width: '70px' }} alt="logo" src={TextLogo} />
           <Searchbar />
@@ -36,81 +48,17 @@ const MainPage = () => {
             <BiMap size="20" />
           </SquareBtn>
         </SearchbarGroupStyle>
+
         <MainPageBtnsGroupStyle>
-          <div className="menu--title">바로가기</div>
-          <div className="menu--icons--wrapper">
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <IoIosFitness size="23px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>
-                헬스 <br />
-                크로스핏
-              </MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <GrYoga size="20px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>
-                요가 <br />
-                필라테스
-              </MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <MdSportsTennis size="20px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>테니스</MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <IoGolfOutline size="20px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>골프</MainPageBtnTextStyle>
-            </QuickBtn>
-          </div>
-
-          <div className="menu--icons--wrapper">
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <RiBoxingFill size="20px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>킥복싱</MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <BsEmojiSmile size="20px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>
-                운동
-                <br />
-                클래스
-              </MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <TbSoccerField size="23px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>공공시설</MainPageBtnTextStyle>
-            </QuickBtn>
-
-            <QuickBtn>
-              <MainPageBtnIconStyle>
-                <BiDotsHorizontalRounded size="23px" />
-              </MainPageBtnIconStyle>
-              <MainPageBtnTextStyle>기타</MainPageBtnTextStyle>
-            </QuickBtn>
-          </div>
+          <H3Vainish style={{ marginTop: '40px' }}>바로가기</H3Vainish>
+          <MainQuickBtnGroup category={activeCategory1} />
+          <MainQuickBtnGroup category={activeCategory2} />
         </MainPageBtnsGroupStyle>
 
         <MainPageBtnsGroupStyle>
-          <div className="menu--title">Miracle near me</div>
+          <H3Vainish style={{ marginTop: '20px', marginBottom: '30px' }}>
+            Miracle near me
+          </H3Vainish>
         </MainPageBtnsGroupStyle>
 
         <FacilityCard />
