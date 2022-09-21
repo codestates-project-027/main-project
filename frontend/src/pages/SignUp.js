@@ -1,7 +1,10 @@
+import { SignUpPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
+// import axios from 'axios';
+// import styled from 'styled-components';
 import icon from '../assets/logo/minimi-char.png';
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
-import { SignUpPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
+// import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
   const {
@@ -18,7 +21,28 @@ const SignupPage = () => {
     console.log('data', data);
   };
 
-  // axios
+  // const joinInfo = { email, username, password, userProfile};
+  // if (
+  //   username !== '' &&
+  //   password !== '' &&
+  //   email !== '' &&
+  //   userProfile !== '' &&
+  //   password.length >= 8 &&
+  //   username.length >= 8 &&
+  // ) {
+  //   await axios
+  //     .post(url, joinInfo)
+  //     .then(() => alert('환영합니다!'))
+  //     .then(() => navigate('/login'))
+  //     .catch((err) => alert('이미 가입한 회원정보입니다.'));
+  // };
+
+  // axios.post('http://localhost:8080/join', {
+  //   email: 'email',
+  //   username: 'username',
+  //   password: 'password',
+  //   userProfile: 'userProfile',
+  // }).then (function ());
 
   return (
     <SignUpPageGlobal>

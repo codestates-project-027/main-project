@@ -15,7 +15,10 @@ const PATH = {
 
   EDITMY: '/setting',
   POSTREVIEW: '/postreview',
-  EDITREVIEW: '/editreview'
+  EDITREVIEW: '/editreview',
+  COMMUNITY: '/community',
+  COMMUNITIYWRITING: '/community-writing',
+  COMMUNITIYPOSTING: '/community-posting',
 };
 
 export default PATH;

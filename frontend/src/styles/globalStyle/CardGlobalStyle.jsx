@@ -51,9 +51,14 @@ export const MCardFlexGlobal = styled(MCardGlobal)`
 
 export const AlarmCardGlobal = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 30rem;
+  height: 7rem;
+  color: yellow;
+  font-size: 10px;
+  background-color: var(--main-navy);
+  border-radius: 10px;
 `;
 
 export const ReviewCardGlobal = styled.div`
