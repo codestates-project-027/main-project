@@ -2,10 +2,7 @@ package com.minimi.backend.facility.facilitycategorylist.domain;
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -29,4 +26,11 @@ public class FacilityCategoryList {
     @ManyToOne
     @JoinColumn(name = "facility_id")
     private Facility facility;
+
+
+    @Builder
+    public FacilityCategoryList(FacilityCategory facilityCategory, Facility facility){
+        this.facilityCategory = facilityCategory;
+        this.facility = facility;
+    }
 }
