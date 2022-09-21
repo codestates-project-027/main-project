@@ -26,8 +26,8 @@ public class ContentsService {
         Contents contents = findVerifiedContents(contentsId);
         Optional.ofNullable(patch.getTitle())
                         .ifPresent(title -> contents.setTitle(title));
-        Optional.ofNullable(patch.getContent())
-                .ifPresent(content -> contents.setContent(content));
+        Optional.ofNullable(patch.getContents())
+                .ifPresent(content -> contents.setContents(content));
 
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 public class ContentsDTO {
     private Long contentsId;
     private String title;
-    private String content;
+    private String contents;
     private String username;
     private LocalDateTime createdAt;
     private String userProfile;
@@ -21,10 +21,10 @@ public class ContentsDTO {
     private List<CommentDTO.comment> comment;
 
     @Builder
-    public ContentsDTO(Long contentsId, String title, String content, String username){
+    public ContentsDTO(Long contentsId, String title, String contents, String username){
         this.contentsId=contentsId;
         this.title=title;
-        this.content=content;
+        this.contents=contents;
         this.username=username;
         this.views=0;
         this.likes=0;
@@ -35,7 +35,7 @@ public class ContentsDTO {
     public static class request {
 
         private String title;
-        private String content;
+        private String contents;
         private String username;
 
     }
@@ -44,7 +44,7 @@ public class ContentsDTO {
     public static class response {
         private Long contentsId;
         private String title;
-        private String content;
+        private String contents;
         private String username;
         private LocalDateTime createdAt;
         private String userProfile;
@@ -68,7 +68,7 @@ public class ContentsDTO {
     public static class patch {
 
         private String title;
-        private String content;
+        private String contents;
 
     }
 

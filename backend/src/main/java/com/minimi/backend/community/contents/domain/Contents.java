@@ -24,7 +24,7 @@ public class Contents {
     @Column
     private String title;
     @Column
-    private String content;
+    private String contents;
     @Column
     private String username;
     @Column
@@ -39,9 +39,9 @@ public class Contents {
     @OneToMany(mappedBy = "contents", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
     @Builder
-    public Contents(String title, String content, String username){
+    public Contents(String title, String contents, String username){
         this.title = title;
-        this.content = content;
+        this.contents = contents;
         this.username = username;
         this.views = 0;
         this.createAt = LocalDateTime.now();
