@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 @RequiredArgsConstructor
 public class FacaMappingServiceImpl implements FacaMappingService {
@@ -28,15 +29,27 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
-        FacilityCategory facilityCategory = facilityCategoryGetIdListener.getFacilityCategoryByCategoryCode(categoryCode);
-        Slice<FacaMapping> facaMappingSlice =facaMappingRepository.findByFacilityCategory(facilityCategory, PageRequest.of(page-1,10, Sort.by("facaMappingId").descending()));
+
+        FacilityCategory facilityCategory = facilityCategoryGetIdListener
+                .getFacilityCategoryByCategoryCode(categoryCode);
+
+
+        Slice<FacaMapping> facaMappingSlice =facaMappingRepository
+                .findByFacilityCategory(facilityCategory,
+                        PageRequest.of(page-1,10, Sort.by("facaMappingId").descending()));
+        checkNullSliceContent(facaMappingSlice);
+
 
         List<ResponseFacilityDto.facilityPageFromCategory> resultList = new ArrayList<>();
         facaMappingSlice.getContent().forEach(facaMapping -> {
             resultList.add(facaMappingMapper.FacilityToResponseFacilityDto(facaMapping.getFacility()));
         });
-
         return new SliceImpl<>(resultList,facaMappingSlice.getPageable(),facaMappingSlice.hasNext());
+    }
+
+    private Boolean checkNullSliceContent(Slice<FacaMapping> facaMappingSlice) {
+        if (facaMappingSlice.getContent().size()>0) return true;
+        throw new NullPointerException("Null Slice Content");
     }
 
     @Override

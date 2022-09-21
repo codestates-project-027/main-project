@@ -46,7 +46,7 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     @Override
     public FacilityCategory getFacilityCategoryByCategoryCode(String categoryCode) {
         if (!facilityCategoryRepository.existsByCategoryCode(categoryCode)){
-            throw new NullPointerException();
+            throw new NullPointerException("Null FacilityCategory");
         }
         return facilityCategoryRepository.findByCategoryCode(categoryCode);
     }
