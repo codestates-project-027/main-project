@@ -1,8 +1,8 @@
 import DaumPostcode from 'react-daum-postcode';
 import { useState } from 'react';
-import { ModalBackdropStyle } from '../styles/components/ModalStyle';
+import { ModalBackdropStyle } from '../../styles/components/ModalStyle';
 
-const Test = () => {
+const AddressUploader = () => {
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState('');
 
@@ -21,9 +21,10 @@ const Test = () => {
   const handleModal = () => {
     setOpenPostcode(false);
   };
-  
+
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      {address}
       <button
         style={{
           background: 'lightgreen',
@@ -56,4 +57,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default AddressUploader;

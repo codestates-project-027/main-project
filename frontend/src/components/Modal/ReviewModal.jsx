@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { ModalBoxStyle } from '../../styles/components/Modalstyle';
+import { ModalBoxStyle } from '../../styles/components/ModalStyle';
 import { SubmitBtn } from '../../components/Button/SubmitBtn';
 import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
 

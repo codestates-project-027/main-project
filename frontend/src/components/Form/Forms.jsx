@@ -4,8 +4,9 @@ import { Input } from '../InputTextarea/FormInputs';
 import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../../components/Image/ImageUploader';
+import AddressUploader from '../../components/Address/AddressUploader';
 
-export const RegisterFacility = () => {
+export const RegisterFacilityForm = () => {
   const data = [
     {
       categoryCode: '220811',
@@ -30,7 +31,7 @@ export const RegisterFacility = () => {
           <Input label={'Fname'} />
         </div>
         <div className="input--wrapper">
-          <ImageUploader/>
+          <ImageUploader />
         </div>
         <div className="input--wrapper">
           <label style={{ marginRight: '15px' }} htmlFor="desc">
@@ -42,7 +43,10 @@ export const RegisterFacility = () => {
           <label style={{ marginRight: '15px' }} htmlFor="address">
             주소
           </label>
-          <Input label={'address'} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <AddressUploader />
+            <Input label={'address'} />
+          </div>
         </div>
         <div className="input--wrapper">
           <label style={{ marginRight: '15px' }} htmlFor="webpage">
