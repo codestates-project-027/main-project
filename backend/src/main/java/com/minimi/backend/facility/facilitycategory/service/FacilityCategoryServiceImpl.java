@@ -44,11 +44,11 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
         return facilityCategoryRepository.findByCategoryTitle(categoryTitle);
     }
     @Override
-    public Long getFacilityCategoryIdByCode(String categoryCode) {
+    public FacilityCategory getFacilityCategoryByCategoryCode(String categoryCode) {
         if (!facilityCategoryRepository.existsByCategoryCode(categoryCode)){
             throw new NullPointerException();
         }
-        return facilityCategoryRepository.findByCategoryCode(categoryCode).getFacilityCategoryId();
+        return facilityCategoryRepository.findByCategoryCode(categoryCode);
     }
 
     public Boolean checkDataAndBlank(boolean repositoryExists,String value, String Exists_Message) {

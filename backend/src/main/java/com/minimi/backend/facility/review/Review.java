@@ -11,3 +11,9 @@ public class Review {
     private Long facilityId;
     private LocalDate createdAt;
 }
+//todo
+//
+//reviewList//이름
+//reviewListId
+//facility Id
+//List<review>

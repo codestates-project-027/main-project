@@ -10,6 +10,7 @@ import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
