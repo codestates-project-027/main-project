@@ -1,5 +1,6 @@
 package com.minimi.backend.facility.facility.service.listener;
 
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facilitycategorylist.service.FacilityCategoryListService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ public class FacilityCategoryListGetListenerImpl implements FacilityCategoryList
     private final FacilityCategoryListService facilityCategoryListService;
 
     @Override
-    public Slice<FacilityDto.responsePage> getFacilityFromCategory(String categoryCode, int page) {
+    public Slice<ResponseFacilityDto.facilityPageFromCategory> getFacilityFromCategory(String categoryCode, int page) {
         return facilityCategoryListService.getCategoryFacilitySlice(categoryCode, page);
     }
 }

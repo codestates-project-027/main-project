@@ -2,6 +2,7 @@ package com.minimi.backend.facility.category.service;
 
 
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListenerImpl;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategorylist.service.FacilityCategoryListServiceImpl;
@@ -41,20 +42,20 @@ public class CategoryFacilityGetListenerImplTests {
 
     private String categoryTitle;
     private int page;
-    private List<FacilityDto.responsePage> facilityList;
+    private List<ResponseFacilityDto.facilityPageFromCategory> facilityList;
 
     @BeforeEach
     public void setup(){
         categoryTitle = "헬스";
         page = 1;
         facilityList = new ArrayList<>(Arrays.asList(
-                new FacilityDto.responsePage(
+                new ResponseFacilityDto.facilityPageFromCategory(
                         1L,"파워헬스장","대표이미지","서울특별시 강남구",3,
                         "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스")), FacilityStatus.ACTIVE),
-                new FacilityDto.responsePage(
+                new ResponseFacilityDto.facilityPageFromCategory(
                         2L,"종국헬스장","대표이미지","서울특별시 강북구",2,
                         "35.123456, 120.123456", new ArrayList<>(Arrays.asList("헬스", "PT")),FacilityStatus.INACTIVE),
-                new FacilityDto.responsePage(
+                new ResponseFacilityDto.facilityPageFromCategory(
                         3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,
                         "35.123456, 119.123456", new ArrayList<>(Arrays.asList("헬스", "요가")),FacilityStatus.ACTIVE)
         ));
@@ -66,11 +67,11 @@ public class CategoryFacilityGetListenerImplTests {
         @Test
         @DisplayName("success 1 -> getCategorySlice")
         public void categoryFacilityListener() throws Exception {
-            Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
+            Slice<ResponseFacilityDto.facilityPageFromCategory> categorySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
             given(FacilityCategoryListService.getCategoryFacilitySlice(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(categorySlice);
 
-            Slice<FacilityDto.responsePage> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
+            Slice<ResponseFacilityDto.facilityPageFromCategory> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
 
             then(FacilityCategoryListService).should(times(1)).getCategoryFacilitySlice(anyString(), anyInt());
             assertThat(result, equalTo(categorySlice));
@@ -86,7 +87,7 @@ public class CategoryFacilityGetListenerImplTests {
             given(FacilityCategoryListService.getCategoryFacilitySlice(Mockito.anyString(),Mockito.anyInt()))
                     .willReturn(null);
 
-            Slice<FacilityDto.responsePage> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
+            Slice<ResponseFacilityDto.facilityPageFromCategory> result = categoryFacilityGetListener.getCategory(categoryTitle, page);
 
             then(FacilityCategoryListService).should(times(1)).getCategoryFacilitySlice(anyString(), anyInt());
             assertThat(result, is(nullValue()));

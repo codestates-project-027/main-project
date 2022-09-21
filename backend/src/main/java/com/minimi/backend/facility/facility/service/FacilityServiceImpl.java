@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facility.service;
 
 
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
@@ -46,12 +47,12 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getNearFacilityList(String location, int page) {
+    public Slice<ResponseFacilityDto.facilityPageFromCategory> getNearFacilityList(String location, int page) {
         return null;
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getCategoryFacility(String categoryCode, int page) {
+    public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacility(String categoryCode, int page) {
         return facilityCategoryListGetListener.getFacilityFromCategory(categoryCode, page);
     }
 

@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.controller;
 
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.service.CategoryService;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
@@ -44,8 +45,8 @@ public class CategoryController {
 
     //get category
     @GetMapping("/{categoryCode}")
-    public ResponseEntity<Slice<FacilityDto.responsePage>> getCategory(@PathVariable String categoryCode,
-                                                                       @RequestParam int page){
+    public ResponseEntity<Slice<ResponseFacilityDto.facilityPageFromCategory>> getCategory(@PathVariable String categoryCode,
+                                                                               @RequestParam int page){
         return new ResponseEntity<>(categoryService.getCategory(categoryCode, page), HttpStatus.OK);
     }
 }

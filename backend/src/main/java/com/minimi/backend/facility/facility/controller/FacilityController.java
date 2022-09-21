@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facility.controller;
 
 
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class FacilityController {
 
     //get nearFacilityList
     @GetMapping("")
-    public ResponseEntity<Slice<FacilityDto.responsePage>> getNearFacilityList(@RequestParam String location, int page){
+    public ResponseEntity<Slice<ResponseFacilityDto.facilityPageFromCategory>> getNearFacilityList(@RequestParam String location, int page){
         return new ResponseEntity<>(facilityService.getNearFacilityList(location, page), HttpStatus.OK);
     }
 }

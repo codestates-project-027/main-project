@@ -7,6 +7,7 @@ import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
 import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -68,7 +69,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getCategory(String categoryCode, int page) {
+    public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategory(String categoryCode, int page) {
         return categoryFacilityGetListener.getCategory(categoryCode, page);
     }
 
