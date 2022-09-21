@@ -12,7 +12,19 @@ import {
   TopNavbarMenuSearch,
 } from '../components/Bar/TopNavbars';
 
+import { StickyBtnStyle } from '../styles/components/BtnStyles';
+
 import BottomNavbar from '../components/Bar/BottomNavbar';
+
+export const LayoutBaseForFacilities = () => {
+  return (
+    <>
+      <OutletPosition>
+        <Outlet />
+      </OutletPosition>
+    </>
+  );
+};
 
 export const LayoutBase = () => {
   return (
@@ -50,12 +62,23 @@ export const LayoutCurrentMenu = () => {
 };
 
 export const LayoutCurrentMenuSearch = () => {
+  //LayoutForFacilities
   return (
     <>
       <TopNavPosition>
         <TopNavbarMenuSearch />
       </TopNavPosition>
-      <LayoutBase />
+      <LayoutBaseForFacilities />
+
+      <StickyBtnStyle>
+        시설
+        <br />
+        등록
+      </StickyBtnStyle>
+
+      <BottomNavPosition>
+        <BottomNavbar />
+      </BottomNavPosition>
     </>
   );
 };

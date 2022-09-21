@@ -11,3 +11,7 @@ export const ReviewTXTStyle = styled.textarea`
     outline: transparent;
   }
 `;
+
+export const CreateFTXTStyle = styled(ReviewTXTStyle)`
+  width: 430px;
+`;

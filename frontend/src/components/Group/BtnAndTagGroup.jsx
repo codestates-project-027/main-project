@@ -43,8 +43,38 @@ export const FacilityDescGroup = ({ facility }) => {
 export const TagGroup = ({ tags }) => {
   return (
     <>
-      {tags.map((el) => {
-        return <TagStyle>{el}</TagStyle>;
+      {tags.map((el, idx) => {
+        return <TagStyle key={idx}>{el}</TagStyle>;
+      })}
+    </>
+  );
+};
+
+export const TagGroupX = ({ tags, tagsList, setTagsList }) => {
+  const handleRemove = (idxToRemove) => {
+    setTagsList(tagsList.filter((_, index) => index !== idxToRemove));
+  };
+
+  return (
+    <>
+      {tags.map((el, idx) => {
+        return (
+          <TagStyle key={idx}>
+            {el}
+            <div
+              onClick={()=>handleRemove(idx)}
+              style={{
+                lineHeight: '17px',
+                background: 'white',
+                width: '20px',
+                borderRadius: '100%',
+                marginLeft: '5px',
+              }}
+            >
+              x
+            </div>
+          </TagStyle>
+        );
       })}
     </>
   );

@@ -26,3 +26,16 @@ export const NavyInputGlobal = styled.div`
     color: var(--main-yellow);
   }
 `;
+
+export const WhiteInputGlobal = styled(NavyInputGlobal)`
+  background: white;
+  width: 430px;
+  height: 40px;
+  box-shadow: 3px 3px 3px lightgray;
+  .input {
+    color: var(--main-navy);
+  }
+  .input::placeholder {
+    color: lightgay;
+  }
+`;

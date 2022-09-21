@@ -30,6 +30,8 @@ import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
 import TestPage from './pages/Test';
 import EditMyFacilityPage from './pages/EditMyFacility';
+import RegisterFacilityPage from './pages/RegisterFacility';
+import EditFacilityPage from './pages/EditFacility';
 
 function App() {
   const [test, setTest] = useState('');
@@ -67,6 +69,8 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+              <Route path={PATH.REGISTERFACILITY} element={<RegisterFacilityPage />} />
+              <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>
