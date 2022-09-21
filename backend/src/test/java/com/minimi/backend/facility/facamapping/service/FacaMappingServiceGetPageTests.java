@@ -16,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
@@ -103,8 +102,8 @@ public class FacaMappingServiceGetPageTests {
         @DisplayName("success test 1 -> getPage")
         public void successTest() throws Exception{
 
-            given(facaMappingRepository.findByFacilityCategoryId(Mockito.anyLong(),Mockito.any(Pageable.class)))
-                    .willReturn(facaMappingSlice);
+//            given(facaMappingRepository.findByFacilityCategoryId(Mockito.anyLong(),Mockito.any(Pageable.class)))
+//                    .willReturn(facaMappingSlice);
 
             Slice<ResponseFacilityDto.facilityPageFromCategory> result =
                     facaMappingService.getCategoryFacilitySlice(categoryCode, page);
