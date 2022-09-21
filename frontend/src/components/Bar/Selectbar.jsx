@@ -4,9 +4,12 @@ import { TagGroupX } from '../../components/Group/BtnAndTagGroup';
 export const TagSelectbar = ({ data }) => {
   const [tagsList, setTagsList] = useState([]);
   const handleChangeSelect = (e) => {
-    tagsList.push(e.target.value);
-    console.log(tagsList);
+    const repeated = tagsList.filter((el) => el === e.target.value);
+    if (e.target.value !== '' && repeated.length === 0) {
+      setTagsList([...tagsList, e.target.value]);
+    }
   };
+
   return (
     <>
       <select onChange={handleChangeSelect}>
