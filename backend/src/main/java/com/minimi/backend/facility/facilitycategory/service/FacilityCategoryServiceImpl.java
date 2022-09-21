@@ -14,24 +14,16 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     private final FacilityCategoryRepository facilityCategoryRepository;
     @Override
     public FacilityCategory postFacilityCategory(String categoryCode, String categoryTitle) {
-
-        checkDataAndNull(facilityCategoryRepository.existsByCategoryCode(categoryCode),
+        if (categoryCode==null || categoryTitle==null) throw new NullPointerException("Null Value");
+        checkDataAndBlank(facilityCategoryRepository.existsByCategoryCode(categoryCode),
                 categoryCode, "Exists CategoryCode");
-        checkDataAndNull(facilityCategoryRepository.existsByCategoryTitle(categoryTitle),
+        checkDataAndBlank(facilityCategoryRepository.existsByCategoryTitle(categoryTitle),
                 categoryTitle, "Exists CategoryTitle");
 
         return facilityCategoryRepository.save(
                 FacilityCategory.builder()
                 .categoryCode(categoryCode).
                 categoryTitle(categoryTitle).build());
-    }
-    public void checkDataAndNull(boolean repositoryExists,String value, String Exists_Message) {
-        if (value.isBlank()) {
-            throw new NullPointerException("Null Value");
-        }
-        if (repositoryExists){
-            throw new RuntimeException(Exists_Message);
-        }
     }
 
     @Override
@@ -42,5 +34,15 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
     @Override
     public Boolean checkExistsByCategoryCode(String categoryCode) {
         return facilityCategoryRepository.existsByCategoryCode(categoryCode);
+    }
+
+    public Boolean checkDataAndBlank(boolean repositoryExists,String value, String Exists_Message) {
+        if (value.isBlank()) {
+            throw new NullPointerException("Null Value");
+        }
+        if (repositoryExists){
+            throw new RuntimeException(Exists_Message);
+        }
+        return true;
     }
 }

@@ -65,7 +65,7 @@ public class FacilityCategoryServicePostTests {
     @DisplayName("fail FacilityCategoryServicePostTests case")
     class failCase {
         @Test
-        @DisplayName("fail FacilityCategoryServicePostTests test 1 -> null")
+        @DisplayName("fail FacilityCategoryServicePostTests test 1 -> blank")
         public void failTest1() throws Exception {
             given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
 
@@ -80,8 +80,19 @@ public class FacilityCategoryServicePostTests {
         }
 
         @Test
-        @DisplayName("fail FacilityCategoryServicePostTests test 2 -> existsCategoryTitle")
+        @DisplayName("fail FacilityCategoryServicePostTests test 2 -> null")
         public void failTest2() throws Exception {
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                facilityCategoryService.postFacilityCategory(null, null);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+        }
+
+        @Test
+        @DisplayName("fail FacilityCategoryServicePostTests test 3 -> existsCategoryTitle")
+        public void failTest3() throws Exception {
             given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(true);
 
@@ -94,8 +105,8 @@ public class FacilityCategoryServicePostTests {
         }
 
         @Test
-        @DisplayName("fail FacilityCategoryServicePostTests test 3 -> existsCategoryCode")
-        public void failTest3() throws Exception {
+        @DisplayName("fail FacilityCategoryServicePostTests test 4 -> existsCategoryCode")
+        public void failTest4() throws Exception {
             given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString()))
                     .willReturn(true);
 

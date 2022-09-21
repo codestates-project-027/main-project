@@ -30,9 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
 
-        blankCheck(categoryDtoRequest.getCategoryCode());
-        blankCheck(categoryDtoRequest.getCategoryTitle());
-        blankCheck(categoryDtoRequest.getCategoryStatus());
+        blankAndNullCheck(categoryDtoRequest.getCategoryCode());
+        blankAndNullCheck(categoryDtoRequest.getCategoryTitle());
+        blankAndNullCheck(categoryDtoRequest.getCategoryStatus());
 
         checkTitle(categoryDtoRequest.getCategoryTitle());
         checkCode(categoryDtoRequest.getCategoryCode());
@@ -46,12 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
 
         eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
         return category;
-    }
-
-    public void blankCheck(Object value) {
-        if (value==null||String.valueOf(value).isBlank()) {
-            throw new NullPointerException("Null Value");
-        }
     }
 
     @Override
@@ -102,5 +96,11 @@ public class CategoryServiceImpl implements CategoryService {
             throw new RuntimeException("Exists CategoryCode");
         }
         return "NotExistsCode";
+    }
+
+    public void blankAndNullCheck(Object value) {
+        if (value==null||String.valueOf(value).isBlank()) {
+            throw new NullPointerException("Null Value");
+        }
     }
 }
