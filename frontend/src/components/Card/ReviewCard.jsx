@@ -31,7 +31,7 @@ export const ReviewCard = () => {
             </div>
             <div className="content--wrapper">
               내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용
-              내용 내용 내용 내용 내용 내용 내용 내용
+              내용 내용 내용 내용 내용 내용 내용 내용 aasefas
             </div>
           </div>
         </RCardStyle>

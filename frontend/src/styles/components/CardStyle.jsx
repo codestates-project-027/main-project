@@ -198,8 +198,11 @@ export const RCardStyle = styled.div`
       }
     }
     .content--wrapper {
-      display: flex;
+      display: inline-block;
+      text-align: left;
       margin-bottom: 20px;
+      white-space: normal;
+      overflow-wrap: break-word;
     }
   }
 `;

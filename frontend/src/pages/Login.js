@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import CharLogo from '../assets/logo/minimi-char.png';
 import { LoginPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import { IdInput, PwInput } from '../components/Input/FormInputs';
+import { IdInput, PwInput } from '../components/InputTextarea/FormInputs';
 //mui
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
 import { YellowBtn, NavyBtn } from '../components/Button/MuiBtns';
-import { BasicTextField } from '../components/Input/MuiTextFileds';
+import { BasicTextField } from '../components/InputTextarea/MuiTextFileds';
 
 const LoginPage = () => {
   return (

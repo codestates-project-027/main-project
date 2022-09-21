@@ -67,7 +67,6 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
-              {/* 시설 등록 페이지 */}
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

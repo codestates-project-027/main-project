@@ -159,3 +159,7 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
     width: 400px;
   }
 `;
+
+export const CreateReviewGlobal = styled(PageGlobalBase)``
+
+export const EditReviewGlobal = styled(CreateReviewGlobal)``

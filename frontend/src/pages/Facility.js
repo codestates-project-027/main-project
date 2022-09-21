@@ -4,6 +4,7 @@ import { H2, H3, H4 } from '../components/Text/Head';
 import { SubmitBtn } from '../components/Button/SubmitBtn';
 import { TagGroupDesc } from '../components/Group/BtnAndTagGroup';
 import { ReviewCard } from '../components/Card/ReviewCard';
+import { CReviewModal } from '../components/Modal/ReviewModal';
 
 import { CgWebsite } from 'react-icons/cg';
 import { BiMap, BiBell } from 'react-icons/bi';
@@ -14,11 +15,16 @@ import { AiFillTag } from 'react-icons/ai';
 import StarsCalc from '../components/Calculator/StarsCalc';
 import { CarouselComponent } from '../components/Image/CarouselComponent';
 
-//운동시설 삭제 누가하나? 올린놈이 한다. // 물어보기: 누구나 삭제할수있는것인가? 그렇다면 삭제기능을 안 넣을 것이다.
-//운동시설 생성페이지-수정페이지(삭제 톱니바퀴버튼), 리뷰생성, 수정페이지
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../styles/mui/theme';
+
+//운동시설 수정/삭제 누가하나? 올린사람이 한다?? 
+// 물어보기: 누구나 삭제할수있는것인가? 그렇다면 삭제기능을 안 넣을 것이다.
+//운동시설 생성페이지 : admin일때만 접근가능
+//작성자 인지 가능하면 그떄만 수정/삭제아이콘 뜨게-,
 //카테고리 생성/수정하는 admin 페이지
-//시설 소개글 n줄
-//이미지 캐러셀
+
+//리뷰 수정페이지 : 아이콘 클릭하면 뜨게 
 
 const FacilityPage = () => {
   const tags = ['헬스', 'PT'];
@@ -93,30 +99,34 @@ const FacilityPage = () => {
   return (
     <>
       <FacilityPageGlobal>
-        <CarouselComponent imgs={imgs}>FacilityImage : http...경로로 불러오기</CarouselComponent>
-        <div className="Fname--distance--wrapper">
-          <H2>OO동 헬스클럽</H2>
-          <H4>0.3km</H4> {/*거리계산 컴포넌트*/}
-        </div>
-        <div className="minimi--score--wrapper">
-          <H3>미니미 만족도</H3>
-          <H4 style={{ marginLeft: '15px' }}>
-            <StarsCalc starValue={4} />
-          </H4>
-        </div>
-        <FacilityDescGroup facility={facility} />
+        <ThemeProvider theme={theme}>
+          <CarouselComponent imgs={imgs}>
+            FacilityImage : http...경로로 불러오기
+          </CarouselComponent>
+          <div className="Fname--distance--wrapper">
+            <H2>OO동 헬스클럽</H2>
+            <H4>0.3km</H4> {/*거리계산 컴포넌트*/}
+          </div>
+          <div className="minimi--score--wrapper">
+            <H3>미니미 만족도</H3>
+            <H4 style={{ marginLeft: '15px' }}>
+              <StarsCalc starValue={4} />
+            </H4>
+          </div>
+          <FacilityDescGroup facility={facility} />
 
-        <div className="btns--wrapper">
-          <SubmitBtn text={'찜'} />
-          <SubmitBtn text={'내 시설 등록'} />
-        </div>
-        <div className="reviews--wrapper" style={{ marginTop: '30px' }}>
-          <ReviewCard />
-          <ReviewCard />
-        </div>
-        <div className="btns--wrapper" style={{ marginTop: '15px' }}>
-          <SubmitBtn text={'리뷰 작성'} />
-        </div>
+          <div className="btns--wrapper">
+            <SubmitBtn text={'찜'} />
+            <SubmitBtn text={'내 시설 등록'} />
+          </div>
+          <div className="reviews--wrapper" style={{ marginTop: '30px' }}>
+            <ReviewCard />
+            <ReviewCard />
+          </div>
+          <div className="btns--wrapper" style={{ marginTop: '15px' }}>
+            <CReviewModal />
+          </div>
+        </ThemeProvider>
       </FacilityPageGlobal>
     </>
   );
