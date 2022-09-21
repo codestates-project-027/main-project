@@ -32,6 +32,7 @@ export const WhiteInputGlobal = styled(NavyInputGlobal)`
   width: 430px;
   height: 40px;
   box-shadow: 3px 3px 3px lightgray;
+  margin-bottom: 3px;
   .input {
     color: var(--main-navy);
   }

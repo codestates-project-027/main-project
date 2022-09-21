@@ -1,15 +1,8 @@
-import { IoIosFitness } from 'react-icons/io';
+import ImageUploader from '../components/Image/ImageUploader';
+//지울것임
 
 const Test = () => {
-  const arr = [<IoIosFitness size="23px" />, <IoIosFitness size="23px" />];
-
-  return (
-    <>
-      {arr.map((el) => {
-        return <div>{el}</div>;
-      })}
-    </>
-  );
+  return <ImageUploader></ImageUploader>;
 };
 
 export default Test;
