@@ -98,9 +98,10 @@ public class CategoryServiceImpl implements CategoryService {
         return "NotExistsCode";
     }
 
-    public void blankAndNullCheck(Object value) {
+    public Boolean blankAndNullCheck(Object value) {
         if (value==null||String.valueOf(value).isBlank()) {
             throw new NullPointerException("Null Value");
         }
+        return true;
     }
 }

@@ -12,6 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
@@ -122,7 +125,7 @@ public class CategoryServiceCheckTests {
             @Test
             @DisplayName("success checkGetCategory test 1 -> checkGetCategory")
             public void successCheckGetCategory() throws Exception {
-                Category category = new Category(1L,code,title,CategoryStatus.ACTIVE);
+                Category category = new Category(1L, code, title, CategoryStatus.ACTIVE);
                 given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
                         .willReturn(true);
                 given(categoryRepository.findByCategoryCode(Mockito.anyString()))
@@ -136,6 +139,7 @@ public class CategoryServiceCheckTests {
                 assertThat(result, equalTo(category));
             }
         }
+
         @Nested
         @DisplayName("fail checkGetCategory case")
         class failCheckCategoryCase {
@@ -152,6 +156,56 @@ public class CategoryServiceCheckTests {
                 then(categoryRepository).should(times(1)).existsByCategoryCode(any());
                 assertThat(exception.getMessage(), equalTo("Not Found Category"));
             }
+        }
+    }
+    @Nested
+    @DisplayName("blankAndNullCheck")
+    class checkBlankAndNullCheck {
+        @Nested
+        @DisplayName("success case")
+        class successCase {
+            @Test
+            @DisplayName("success test 1 -> string value")
+            public void successTest1() throws Exception {
+
+                Boolean result = categoryService.blankAndNullCheck("stringValue");
+
+                assertThat(result, equalTo(true));
+            }
+            @Test
+            @DisplayName("success test 2 -> Object value")
+            public void successTest2() throws Exception {
+                CategoryStatus categoryStatus = CategoryStatus.ACTIVE;
+                Boolean result = categoryService.blankAndNullCheck(categoryStatus);
+
+                assertThat(result, equalTo(true));
+            }
+        }
+        @Nested
+        @DisplayName("fail case")
+        class failCase {
+            @Test
+            @DisplayName("fail test 1 -> null")
+            public void failTest1() throws Exception {
+
+                Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                    categoryService.blankAndNullCheck(null);
+                });
+
+                assertThat(exception.getMessage(), equalTo("Null Value"));
+            }
+
+            @Test
+            @DisplayName("fail test 2 -> blank")
+            public void failTest2() throws Exception {
+
+                Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                    categoryService.blankAndNullCheck("");
+                });
+
+                assertThat(exception.getMessage(), equalTo("Null Value"));
+            }
+
         }
     }
 }
