@@ -2,7 +2,7 @@ import styled from 'styled-components';
 export const ImgUploaderGlobal = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 430px;
   label {
     background: lightgreen;
     border-radius: 3px;
@@ -23,7 +23,7 @@ export const ImgUploaderGlobal = styled.div`
     }
   }
   img {
-    width: 100px;
-    height: 100px;
+    width: 86px;
+    height: 86px;
   }
 `;

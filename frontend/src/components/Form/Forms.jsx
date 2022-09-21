@@ -3,6 +3,7 @@ import { H2 } from '../Text/Head';
 import { Input } from '../InputTextarea/FormInputs';
 import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
+import ImageUploader from '../../components/Image/ImageUploader';
 
 export const RegisterFacility = () => {
   const data = [
@@ -28,7 +29,9 @@ export const RegisterFacility = () => {
           </label>
           <Input label={'Fname'} />
         </div>
-        <div className="input--wrapper">사진넣는 컴포넌트</div>
+        <div className="input--wrapper">
+          <ImageUploader/>
+        </div>
         <div className="input--wrapper">
           <label style={{ marginRight: '15px' }} htmlFor="desc">
             설명
