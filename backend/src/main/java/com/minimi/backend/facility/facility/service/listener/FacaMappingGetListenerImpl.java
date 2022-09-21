@@ -1,7 +1,7 @@
 package com.minimi.backend.facility.facility.service.listener;
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
-import com.minimi.backend.facility.facilitycategorylist.service.FacaMappingService;
+import com.minimi.backend.facility.facamapping.service.FacaMappingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;

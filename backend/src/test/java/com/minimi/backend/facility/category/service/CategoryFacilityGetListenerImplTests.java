@@ -4,7 +4,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListenerImpl;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
-import com.minimi.backend.facility.facilitycategorylist.service.FacaMappingServiceImpl;
+import com.minimi.backend.facility.facamapping.service.FacaMappingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

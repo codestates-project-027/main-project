@@ -1,8 +1,8 @@
-package com.minimi.backend.facility.facilitycategorylist.service.listener;
+package com.minimi.backend.facility.facamapping.service.listener;
 
 
 import com.minimi.backend.facility.facility.service.publisher.FacilityPostEvent;
-import com.minimi.backend.facility.facilitycategorylist.service.FacaMappingService;
+import com.minimi.backend.facility.facamapping.service.FacaMappingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;

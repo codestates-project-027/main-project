@@ -1,10 +1,10 @@
-package com.minimi.backend.facility.facilitycategorylist.service;
+package com.minimi.backend.facility.facamapping.service;
 
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacaMapping;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacaMappingRepository;
+import com.minimi.backend.facility.facamapping.domain.FacaMapping;
+import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;

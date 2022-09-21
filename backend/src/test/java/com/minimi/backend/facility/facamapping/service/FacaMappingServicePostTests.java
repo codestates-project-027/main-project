@@ -1,12 +1,12 @@
-package com.minimi.backend.facility.facilitycategorylist.service;
+package com.minimi.backend.facility.facamapping.service;
 
 
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacaMapping;
-import com.minimi.backend.facility.facilitycategorylist.domain.FacaMappingRepository;
+import com.minimi.backend.facility.facamapping.domain.FacaMapping;
+import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

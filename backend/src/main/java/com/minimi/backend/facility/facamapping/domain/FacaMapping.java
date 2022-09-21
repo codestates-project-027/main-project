@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facilitycategorylist.domain;
+package com.minimi.backend.facility.facamapping.domain;
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
