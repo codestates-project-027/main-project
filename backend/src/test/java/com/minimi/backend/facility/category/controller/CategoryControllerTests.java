@@ -2,11 +2,12 @@ package com.minimi.backend.facility.category.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.category.controller.CategoryController;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.service.CategoryService;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,25 +134,25 @@ public class CategoryControllerTests {
 
     @Test
     public void getCategory() throws Exception{
-        String categoryTitle = "헬스";
+        String categoryCode = "220901";
         int page = 1;
-        List<FacilityDto.responsePage> facilityList = new ArrayList<>();
-        FacilityDto.responsePage facility = new FacilityDto.responsePage(
+        List<ResponseFacilityDto.facilityPageFromCategory> facilityList = new ArrayList<>();
+        ResponseFacilityDto.facilityPageFromCategory facility = new ResponseFacilityDto.facilityPageFromCategory(
                 1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스")),"영업중");
-        FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
+                new ArrayList<>(Arrays.asList("헬스")), FacilityStatus.ACTIVE);
+        ResponseFacilityDto.facilityPageFromCategory facility1 = new ResponseFacilityDto.facilityPageFromCategory(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
-                new ArrayList<>(Arrays.asList("헬스", "PT")),"영업종료");
-        FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
+                new ArrayList<>(Arrays.asList("헬스", "PT")),FacilityStatus.INACTIVE);
+        ResponseFacilityDto.facilityPageFromCategory facility2 = new ResponseFacilityDto.facilityPageFromCategory(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
-                new ArrayList<>(Arrays.asList("헬스", "요가")),"영업중");
+                new ArrayList<>(Arrays.asList("헬스", "요가")),FacilityStatus.ACTIVE);
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
-        Slice<FacilityDto.responsePage> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
+        Slice<ResponseFacilityDto.facilityPageFromCategory> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
         given(categoryService.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
         ResultActions actions = mockMvc.perform(
-                get("/category/{categoryTitle}", categoryTitle)
+                get("/category/{categoryCode}", categoryCode)
                         .param("page", String.valueOf(page))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -164,7 +165,7 @@ public class CategoryControllerTests {
                                 "get-category",
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
-                                pathParameters(parameterWithName("categoryTitle").description("타겟 카테고리 이름")),
+                                pathParameters(parameterWithName("categoryCode").description("조회 카테고리 코드")),
                                 requestParameters(parameterWithName("page").description("페이지")),
                                 responseFields(
                                         List.of(
@@ -175,7 +176,7 @@ public class CategoryControllerTests {
                                                 fieldWithPath("content[].starRate").type(JsonFieldType.NUMBER).description("운동시설 별점"),
                                                 fieldWithPath("content[].location").type(JsonFieldType.STRING).description("운동시설 좌표"),
                                                 fieldWithPath("content[].categoryList").type(JsonFieldType.ARRAY).description("카테고리 리스트"),
-                                                fieldWithPath("content[].status").type(JsonFieldType.STRING).description("운동시설 상태"),
+                                                fieldWithPath("content[].facilityStatus").type(JsonFieldType.STRING).description("운동시설 상태"),
                                                 fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
                                                 fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
                                                 fieldWithPath("pageable.sort.empty").type(JsonFieldType.BOOLEAN).description("pageable sort empty 정보"),

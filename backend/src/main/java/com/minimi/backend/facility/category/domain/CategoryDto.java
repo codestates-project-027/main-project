@@ -1,11 +1,13 @@
 package com.minimi.backend.facility.category.domain;
 
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import lombok.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +20,7 @@ public class CategoryDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class request{
         @NotBlank(message = "카테고리 관리코드는 공백일 수 없습니다.")
         @Size(max = 100, message = "카테고리 관리코드가 너무 깁니다.")
@@ -47,5 +50,18 @@ public class CategoryDto {
         private String categoryCode;
         private String categoryTitle;
         private CategoryStatus categoryStatus;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class responseFacilityPage{
+        private Long facilityId;
+        private String facilityName;
+        private String facilityPhoto;
+        private String address;
+        private int starRate;
+        private String location;
+        private List<String> categoryList;
+        private FacilityStatus facilityStatus;
     }
 }

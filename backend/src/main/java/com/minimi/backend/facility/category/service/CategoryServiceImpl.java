@@ -4,12 +4,17 @@ import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
+import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
+import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,24 +25,34 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
 
+    private final ApplicationEventPublisher eventPublisher;
+
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
+
+        blankAndNullCheck(categoryDtoRequest.getCategoryCode());
+        blankAndNullCheck(categoryDtoRequest.getCategoryTitle());
+        blankAndNullCheck(categoryDtoRequest.getCategoryStatus());
 
         checkTitle(categoryDtoRequest.getCategoryTitle());
         checkCode(categoryDtoRequest.getCategoryCode());
 
-        Category category = Category.builder()
+        Category category = categoryRepository.save(Category
+                .builder()
                 .categoryTitle(categoryDtoRequest.getCategoryTitle())
                 .categoryCode(categoryDtoRequest.getCategoryCode())
                 .categoryStatus(categoryDtoRequest.getCategoryStatus())
-                .build();
-        return categoryRepository.save(category);
+                .build());
+
+        eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
+        return category;
     }
 
     @Override
     public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
-        Category category = categoryRepository.findByCategoryCode(categoryCode)
-                .orElseThrow(() -> new NullPointerException("NoContent CategoryCode"));
+
+        Category category = getCategory(categoryCode);
+
         if(!category.getCategoryTitle().equals(categoryDtoPatch.getCategoryTitle())){
             checkTitle(categoryDtoPatch.getCategoryTitle());
         }
@@ -47,7 +62,10 @@ public class CategoryServiceImpl implements CategoryService {
         if(!(categoryDtoPatch.getCategoryStatus()==null)){
             category.setCategoryStatus(categoryDtoPatch.getCategoryStatus());
         }
-        return categoryRepository.save(category);
+        Category patchedCategory = categoryRepository.save(category);
+        eventPublisher.publishEvent(
+                new CategoryPatchEvent(patchedCategory.getCategoryCode(), patchedCategory.getCategoryTitle()));
+        return patchedCategory;
     }
 
     @Override
@@ -56,8 +74,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Slice<FacilityDto.responsePage> getCategory(String categoryTitle, int page) {
-        return categoryFacilityGetListener.getCategory(categoryTitle, page);
+    public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategory(String categoryCode, int page) {
+        return categoryFacilityGetListener.getCategory(categoryCode, page);
+    }
+
+    public Category getCategory(String categoryCode) {
+        if (categoryRepository.existsByCategoryCode(categoryCode)){
+            return categoryRepository.findByCategoryCode(categoryCode);
+        }
+        throw new NullPointerException("Not Found Category");
     }
 
     public String checkTitle(String categoryTitle) {
@@ -71,5 +96,12 @@ public class CategoryServiceImpl implements CategoryService {
             throw new RuntimeException("Exists CategoryCode");
         }
         return "NotExistsCode";
+    }
+
+    public Boolean blankAndNullCheck(Object value) {
+        if (value==null||String.valueOf(value).isBlank()) {
+            throw new NullPointerException("Null Value");
+        }
+        return true;
     }
 }

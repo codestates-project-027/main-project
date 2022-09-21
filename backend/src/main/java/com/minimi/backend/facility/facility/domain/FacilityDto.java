@@ -1,8 +1,10 @@
-package com.minimi.backend.facility.facility;
+package com.minimi.backend.facility.facility.domain;
 
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class FacilityDto {
         private int starRate;
         private String location;
         private List<String> categoryList;
-        private String status;
+        private FacilityStatus facilityStatus;
     }
 
     @AllArgsConstructor
@@ -27,11 +29,12 @@ public class FacilityDto {
         private Long facilityId;
         private String facilityName;
         private String location;
-        private String status;
+        private FacilityStatus facilityStatus;
     }
 
     @AllArgsConstructor
     @Getter
+    @Setter
     public static class response{
         private Long facilityId;
         private String facilityName;
@@ -43,7 +46,7 @@ public class FacilityDto {
         private int starRate;
         private String location;
         private List<String> categoryList;
-        private String status;
+        private FacilityStatus facilityStatus;
         private List<ReviewDto.response> reviews;
     }
 
@@ -61,6 +64,7 @@ public class FacilityDto {
         private List<String> categoryList;
     }
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class patch{
         private String facilityName;
@@ -72,6 +76,10 @@ public class FacilityDto {
         private String phone;
         private String location;
         private List<String> categoryList;
+
+        @Builder
+        public patch (){
+        }
     }
 
 }

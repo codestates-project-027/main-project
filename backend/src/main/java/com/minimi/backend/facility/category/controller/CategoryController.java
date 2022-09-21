@@ -3,14 +3,12 @@ package com.minimi.backend.facility.category.controller;
 
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.service.CategoryService;
-import com.minimi.backend.facility.facility.FacilityDto;
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
+import com.minimi.backend.facility.facility.domain.FacilityDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -46,9 +44,9 @@ public class CategoryController {
     }
 
     //get category
-    @GetMapping("/{categoryTitle}")
-    public ResponseEntity<Slice<FacilityDto.responsePage>> getCategory(@PathVariable String categoryTitle,
-                                                                       @RequestParam int page){
-        return new ResponseEntity<>(categoryService.getCategory(categoryTitle, page), HttpStatus.OK);
+    @GetMapping("/{categoryCode}")
+    public ResponseEntity<Slice<ResponseFacilityDto.facilityPageFromCategory>> getCategory(@PathVariable String categoryCode,
+                                                                               @RequestParam int page){
+        return new ResponseEntity<>(categoryService.getCategory(categoryCode, page), HttpStatus.OK);
     }
 }
