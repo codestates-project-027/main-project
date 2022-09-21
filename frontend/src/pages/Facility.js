@@ -18,13 +18,7 @@ import { CarouselComponent } from '../components/Image/CarouselComponent';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
 
-//운동시설 수정/삭제 누가하나? 올린사람이 한다?? 
-// 물어보기: 누구나 삭제할수있는것인가? 그렇다면 삭제기능을 안 넣을 것이다.
-//운동시설 생성페이지 : admin일때만 접근가능
-//작성자 인지 가능하면 그떄만 수정/삭제아이콘 뜨게-,
-//카테고리 생성/수정하는 admin 페이지
-
-//리뷰 수정페이지 : 아이콘 클릭하면 뜨게 
+//리뷰 수정페이지 : 아이콘 클릭하면 모달뜨게
 
 const FacilityPage = () => {
   const tags = ['헬스', 'PT'];
