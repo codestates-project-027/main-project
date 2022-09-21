@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -29,6 +30,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category postCategory(CategoryDto.request categoryDtoRequest) {
 
+        blankCheck(categoryDtoRequest.getCategoryCode());
+        blankCheck(categoryDtoRequest.getCategoryTitle());
+        blankCheck(categoryDtoRequest.getCategoryStatus());
+
         checkTitle(categoryDtoRequest.getCategoryTitle());
         checkCode(categoryDtoRequest.getCategoryCode());
 
@@ -41,6 +46,12 @@ public class CategoryServiceImpl implements CategoryService {
 
         eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
         return category;
+    }
+
+    public void blankCheck(Object value) {
+        if (value==null||String.valueOf(value).isBlank()) {
+            throw new NullPointerException("Null Value");
+        }
     }
 
     @Override

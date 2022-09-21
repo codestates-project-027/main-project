@@ -20,6 +20,7 @@ public class CategoryDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class request{
         @NotBlank(message = "카테고리 관리코드는 공백일 수 없습니다.")
         @Size(max = 100, message = "카테고리 관리코드가 너무 깁니다.")

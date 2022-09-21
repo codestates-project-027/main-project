@@ -67,12 +67,16 @@ public class FacilityCategoryServicePostTests {
         @Test
         @DisplayName("fail FacilityCategoryServicePostTests test 1 -> null")
         public void failTest1() throws Exception {
+            given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
 
+            categoryCode = "";
+            categoryTitle = "";
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
                 facilityCategoryService.postFacilityCategory(categoryCode, categoryTitle);
             });
 
-            assertThat(exception.getMessage(), is(nullValue()));
+            then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(any());
+            assertThat(exception.getMessage(), equalTo("Null Value"));
         }
 
         @Test

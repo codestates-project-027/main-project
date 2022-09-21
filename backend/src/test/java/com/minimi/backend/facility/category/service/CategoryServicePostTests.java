@@ -70,19 +70,33 @@ public class CategoryServicePostTests {
     @DisplayName("fail postCategory case")
     class failPostCategoryCase {
         @Test
-        @DisplayName("fail postCategory test 1 -> null")
-        public void failPostCategoryNull() throws Exception {
+        @DisplayName("fail postCategory test 1 -> blank")
+        public void failTest1() throws Exception {
+            CategoryDto.request categoryDtoBlank = new CategoryDto.request("","", CategoryStatus.ACTIVE);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                        categoryService.postCategory(categoryDtoRequest);
+                        categoryService.postCategory(categoryDtoBlank);
                     });
 
-            assertThat(exception.getMessage(), is(nullValue()));
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+        }
+        @Test
+        @DisplayName("fail postCategory test 2 -> null")
+        public void failTest2() throws Exception {
+            CategoryDto.request categoryDtoNull = CategoryDto.request.builder()
+                    .categoryCode("220222")
+                    .categoryTitle("헬스").build();
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                categoryService.postCategory(categoryDtoNull);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
         }
 
         @Test
-        @DisplayName("fail postCategory test 2 -> existsCategoryTitle")
-        public void failPostCategoryExistsTitle() throws Exception {
+        @DisplayName("fail postCategory test 3 -> existsCategoryTitle")
+        public void failTest3() throws Exception {
             given(categoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(true);
 
@@ -95,8 +109,8 @@ public class CategoryServicePostTests {
         }
 
         @Test
-        @DisplayName("fail postCategory test 3 -> existsCategoryCode")
-        public void failPostCategoryExistsCode() throws Exception {
+        @DisplayName("fail postCategory test 4 -> existsCategoryCode")
+        public void failTest4() throws Exception {
             given(categoryRepository.existsByCategoryCode(Mockito.anyString()))
                     .willReturn(true);
 
