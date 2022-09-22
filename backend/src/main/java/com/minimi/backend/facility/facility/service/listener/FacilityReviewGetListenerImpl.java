@@ -1,6 +1,6 @@
 package com.minimi.backend.facility.facility.service.listener;
 
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

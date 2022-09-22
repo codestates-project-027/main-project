@@ -2,9 +2,9 @@ package com.minimi.backend.facility.controller;
 
 
 import com.google.gson.Gson;
-import com.minimi.backend.facility.review.ReviewDto;
-import com.minimi.backend.facility.review.ReviewController;
-import com.minimi.backend.facility.review.ReviewService;
+import com.minimi.backend.facility.review.domain.ReviewDto;
+import com.minimi.backend.facility.review.controller.ReviewController;
+import com.minimi.backend.facility.review.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;

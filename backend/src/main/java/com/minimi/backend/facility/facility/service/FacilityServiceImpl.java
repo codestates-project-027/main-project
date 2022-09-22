@@ -12,7 +12,7 @@ import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetLi
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;

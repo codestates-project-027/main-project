@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.review;
+package com.minimi.backend.facility.review.domain;
 
 import com.minimi.backend.auth.domain.Auth;
 

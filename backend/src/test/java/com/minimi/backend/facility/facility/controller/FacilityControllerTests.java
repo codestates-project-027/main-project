@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import com.minimi.backend.facility.facility.service.FacilityServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
