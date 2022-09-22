@@ -5,10 +5,12 @@ import com.minimi.backend.facility.facilitycategory.service.FacilityCategoryServ
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@EnableAsync
 public class FacilityCategoryPatchSubImpl implements FacilityCategoryPatchSub {
 
     private final FacilityCategoryService facilityCategoryService;
