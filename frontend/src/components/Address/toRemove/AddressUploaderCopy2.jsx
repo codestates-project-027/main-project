@@ -1,6 +1,6 @@
 import DaumPostcode from 'react-daum-postcode';
 import { useState, useEffect } from 'react';
-import { ModalBackdropStyle } from '../../styles/components/ModalStyle';
+import { ModalBackdropStyle } from '../../../styles/components/ModalStyle';
 const { kakao } = window;
 
 const AddressUploader = () => {

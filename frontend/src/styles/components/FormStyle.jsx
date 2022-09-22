@@ -14,4 +14,17 @@ export const RegisterFailityForm = styled.div`
     justify-content: center;
     margin-top: 20px;
   }
+  .tags--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .btn--wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
 `;

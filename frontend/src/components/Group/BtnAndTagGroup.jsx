@@ -62,13 +62,14 @@ export const TagGroupX = ({ tags, tagsList, setTagsList }) => {
           <TagStyle key={idx}>
             {el}
             <div
-              onClick={()=>handleRemove(idx)}
+              onClick={() => handleRemove(idx)}
               style={{
                 lineHeight: '17px',
                 background: 'white',
                 width: '20px',
                 borderRadius: '100%',
                 marginLeft: '5px',
+                cursor: 'pointer',
               }}
             >
               x
