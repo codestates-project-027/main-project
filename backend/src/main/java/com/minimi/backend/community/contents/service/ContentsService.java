@@ -50,4 +50,8 @@ public class ContentsService {
         Contents findContents = contents.orElseThrow();
         return findContents;
     }
+    //test용
+    public ContentsDTO.response getContents(Long contentsId){
+        return null;
+    }
 }

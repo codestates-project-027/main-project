@@ -42,9 +42,8 @@ public class ContentsController {
     }
     //get Contents
     @GetMapping("")
-    public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page,
-                                                                  @RequestParam int size){
-        Slice<Contents> contentsSlice = contentsService.findContentsList(page-1, size);
+    public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page){
+        Slice<Contents> contentsSlice = contentsService.findContentsList(page-1, 3);
         List<Contents> contents = contentsSlice.getContent();
         return new ResponseEntity<>(contentsSlice,HttpStatus.OK);
     }
