@@ -1,10 +1,13 @@
 import DaumPostcode from 'react-daum-postcode';
 import { useState } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/ModalStyle';
+import axios from 'axios';
+const { kakao } = window;
 
 const AddressUploader = () => {
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState('');
+  const [data, setData] = useState('');
 
   const handleAddress = {
     clickButton: () => {
@@ -15,11 +18,27 @@ const AddressUploader = () => {
       setAddress(data.address);
       setOpenPostcode(false);
       console.log(address);
+      geoCoding();
     },
   };
 
   const handleModal = () => {
     setOpenPostcode(false);
+  };
+
+  //주소 -> 좌표변환
+  const geoCoding = () => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(address, function (result, status) {
+      // 우편번호 서비스로 위도 경도 찾기
+      data = { name: '카페 이름', latitude: result[0], longitude: result[1] };
+      console.log(data);
+      axios.post('/test')
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        console.log(coords);
+      }
+    });
   };
 
   return (

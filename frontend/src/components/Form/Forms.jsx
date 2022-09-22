@@ -4,8 +4,8 @@ import { Input } from '../InputTextarea/FormInputs';
 import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../../components/Image/ImageUploader';
-import AddressUploader from '../../components/Address/AddressUploader';
-import AddressUploaderCopy from '../../components/Address/AddressUploaderCopy';
+import AddressUploader from '../Address/AddressUploader';
+import AddressUploaderCopy from '../Address/AddressUploader';
 import GoogleMap from '../../components/Address/GeoCodingHandler';
 
 export const RegisterFacilityForm = () => {

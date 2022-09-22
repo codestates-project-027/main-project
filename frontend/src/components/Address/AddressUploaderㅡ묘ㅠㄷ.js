@@ -1,12 +1,13 @@
 import DaumPostcode from 'react-daum-postcode';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/ModalStyle';
+import axios from 'axios';
 const { kakao } = window;
 
 const AddressUploader = () => {
   const [openPostcode, setOpenPostcode] = useState(false);
-  const [address, setAddress] = useState('');
-  const [coord, setCoord] = useState({});
+  const [address, setAddress] = useState(null);
+  const [data, setData] = useState('');
 
   const handleAddress = {
     clickButton: () => {
@@ -16,6 +17,8 @@ const AddressUploader = () => {
     selectAddress: (data) => {
       setAddress(data.address);
       setOpenPostcode(false);
+      console.log(address);
+      // geoCoding();
     },
   };
 
@@ -23,30 +26,23 @@ const AddressUploader = () => {
     setOpenPostcode(false);
   };
 
-  useEffect(() => {
-    const geoCoding = () => {
-      const geocoder = new kakao.maps.services.Geocoder();
+  //주소 -> 좌표변환
+  const geoCoding = () => {
+    const geocoder = new kakao.maps.services.Geocoder();
 
-      const callback = function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          setCoord({
-            lat: result[0].road_address.x,
-            lng: result[0].road_address.y,
-          });
-        }
-      };
-      if (address) {
-        geocoder.addressSearch(address, callback);
+    const callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        console.log(result);
       }
     };
-    geoCoding();
-  }, [address]);
+    if (address) {
+      geocoder.addressSearch(address, callback);
+    }
+  };
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       {address}
-      {/* {geoCoding()} */}
-      {console.log(coord)}
       <button
         style={{
           background: 'lightgreen',
