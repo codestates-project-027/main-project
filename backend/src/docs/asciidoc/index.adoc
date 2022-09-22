@@ -415,70 +415,70 @@ include::{snippets}/post-login/response-body.adoc[]
 === 게시글 조회 [GET]
 ==== Request
 .httpie-request
-include::{snippets}/get-content/httpie-request.adoc[]
+include::{snippets}/get-contents/httpie-request.adoc[]
 .http-request
-include::{snippets}/get-content/http-request.adoc[]
+include::{snippets}/get-contents/http-request.adoc[]
 .path-parameters
-include::{snippets}/get-content/path-parameters.adoc[]
+include::{snippets}/get-contents/path-parameters.adoc[]
 .request-body
-include::{snippets}/get-content/request-body.adoc[]
+include::{snippets}/get-contents/request-body.adoc[]
 ==== Response
 .http-response
-include::{snippets}/get-content/http-response.adoc[]
+include::{snippets}/get-contents/http-response.adoc[]
 .response-body
-include::{snippets}/get-content/response-body.adoc[]
+include::{snippets}/get-contents/response-body.adoc[]
 .response-fields
-include::{snippets}/get-content/response-fields.adoc[]
+include::{snippets}/get-contents/response-fields.adoc[]
 
 === 게시글 생성 [POST]
 ==== Request
 .httpie-request
-include::{snippets}/post-content/httpie-request.adoc[]
+include::{snippets}/post-contents/httpie-request.adoc[]
 .http-request
-include::{snippets}/post-content/http-request.adoc[]
+include::{snippets}/post-contents/http-request.adoc[]
 .request-body
-include::{snippets}/post-content/request-body.adoc[]
+include::{snippets}/post-contents/request-body.adoc[]
 .request-fields
-include::{snippets}/post-content/request-fields.adoc[]
+include::{snippets}/post-contents/request-fields.adoc[]
 ==== Response
 .http-response
-include::{snippets}/post-content/http-response.adoc[]
+include::{snippets}/post-contents/http-response.adoc[]
 .response-body
-include::{snippets}/post-content/response-body.adoc[]
+include::{snippets}/post-contents/response-body.adoc[]
 
 === 게시글 수정 [PATCH]
 ==== Request
 .httpie-request
-include::{snippets}/patch-content/httpie-request.adoc[]
+include::{snippets}/patch-contents/httpie-request.adoc[]
 .http-request
-include::{snippets}/patch-content/http-request.adoc[]
+include::{snippets}/patch-contents/http-request.adoc[]
 .path-parameters
-include::{snippets}/patch-content/path-parameters.adoc[]
+include::{snippets}/patch-contents/path-parameters.adoc[]
 .request-body
-include::{snippets}/patch-content/request-body.adoc[]
+include::{snippets}/patch-contents/request-body.adoc[]
 .request-fields
-include::{snippets}/patch-content/request-fields.adoc[]
+include::{snippets}/patch-contents/request-fields.adoc[]
 ==== Response
 .http-response
-include::{snippets}/patch-content/http-response.adoc[]
+include::{snippets}/patch-contents/http-response.adoc[]
 .response-body
-include::{snippets}/patch-comment/response-body.adoc[]
+include::{snippets}/patch-comments/response-body.adoc[]
 
 === 게시글 삭제 [DELETE]
 ==== Request
 .httpie-request
-include::{snippets}/delete-content/httpie-request.adoc[]
+include::{snippets}/delete-contents/httpie-request.adoc[]
 .http-request
-include::{snippets}/delete-content/http-request.adoc[]
+include::{snippets}/delete-contents/http-request.adoc[]
 .path-parameters
-include::{snippets}/delete-content/path-parameters.adoc[]
+include::{snippets}/delete-contents/path-parameters.adoc[]
 .request-body
-include::{snippets}/delete-content/request-body.adoc[]
+include::{snippets}/delete-contents/request-body.adoc[]
 ==== Response
 .http-response
-include::{snippets}/delete-content/http-response.adoc[]
+include::{snippets}/delete-contents/http-response.adoc[]
 .response-body
-include::{snippets}/delete-content/response-body.adoc[]
+include::{snippets}/delete-contents/response-body.adoc[]
 
 == 댓글
 === 댓글 생성 [POST]
