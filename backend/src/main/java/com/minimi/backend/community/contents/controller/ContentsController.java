@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,8 +44,9 @@ public class ContentsController {
     @GetMapping("")
     public ResponseEntity<Slice<ContentsDTO.get>> getContentsList(@RequestParam int page,
                                                                   @RequestParam int size){
-
-        return new ResponseEntity<>(contentsService.getContentsList(page-1,size),HttpStatus.OK);
+        Slice<ContentsDTO.get> contentsSlice = contentsService.findContentsList(page-1, size);
+        List<ContentsDTO.get> contents = contentsSlice.getContent();
+        return new ResponseEntity<>(contentsService.findContentsList(page-1,size),HttpStatus.OK);
     }
     //delete Content
     @DeleteMapping("/{contentsId}")

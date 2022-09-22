@@ -6,7 +6,10 @@ import com.minimi.backend.community.contents.domain.ContentsDTO;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -34,10 +37,10 @@ public class ContentsService {
     public void deleteContents(Long contentsId){
         contentsRepository.delete(findContents(contentsId));
     }
-    public ContentsDTO.response getContents(long contentsId) {
-        return null;
-    }
-    public Slice<ContentsDTO.get> getContentsList(int page, int size){
+
+    public Slice<ContentsDTO.get> findContentsList(int page,int size){
+        PageRequest pageRequest = PageRequest.of(page, size);
+        contentsRepository.findSliceBy(pageRequest);
         return null;
     }
 

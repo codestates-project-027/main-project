@@ -44,6 +44,7 @@ public class Contents {
         this.contents = contents;
         this.username = username;
         this.views = 0;
+        this.userProfile = "basicProfile";
         this.createAt = LocalDateTime.now();
     }
 }
