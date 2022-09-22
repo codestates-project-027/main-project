@@ -1,10 +1,11 @@
 import { EditFacGlobal } from '../styles/globalStyle/PageGlobalStyle';
+import {EditFacilityForm} from '../components/Form/Forms'
 
 const EditFacilityPage = () => {
   return (
     <>
       <EditFacGlobal>
-        <div>시설 수정페이지</div>
+        <EditFacilityForm />
       </EditFacGlobal>
     </>
   );
