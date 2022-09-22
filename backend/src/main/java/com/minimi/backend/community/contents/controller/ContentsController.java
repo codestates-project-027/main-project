@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/contents")
 public class ContentsController {
     private final ContentsService contentsService;
-    private final ContentsMapper contentsMapper;
 
     //post Content
     @PostMapping("")

@@ -462,7 +462,7 @@ include::{snippets}/patch-contents/request-fields.adoc[]
 .http-response
 include::{snippets}/patch-contents/http-response.adoc[]
 .response-body
-include::{snippets}/patch-comments/response-body.adoc[]
+include::{snippets}/patch-contents/response-body.adoc[]
 
 === 게시글 삭제 [DELETE]
 ==== Request
@@ -537,31 +537,31 @@ include::{snippets}/delete-comment/response-body.adoc[]
 === 좋아요 생성 [POST]
 ==== Request
 .httpie-request
-include::{snippets}/post-like/httpie-request.adoc[]
+include::{snippets}/post-likes/httpie-request.adoc[]
 .http-request
-include::{snippets}/post-like/http-request.adoc[]
+include::{snippets}/post-likes/http-request.adoc[]
 .request-body
-include::{snippets}/post-like/request-body.adoc[]
+include::{snippets}/post-likes/request-body.adoc[]
 .request-fields
-include::{snippets}/post-like/request-fields.adoc[]
+include::{snippets}/post-likes/request-fields.adoc[]
 ==== Response
 .http-response
-include::{snippets}/post-like/http-response.adoc[]
+include::{snippets}/post-likes/http-response.adoc[]
 .response-body
-include::{snippets}/post-like/response-body.adoc[]
+include::{snippets}/post-likes/response-body.adoc[]
 
 === 좋아요 삭제 [DELETE]
 ==== Request
 .httpie-request
-include::{snippets}/delete-like/httpie-request.adoc[]
+include::{snippets}/delete-likes/httpie-request.adoc[]
 .http-request
-include::{snippets}/delete-like/http-request.adoc[]
+include::{snippets}/delete-likes/http-request.adoc[]
 .path-parameters
-include::{snippets}/delete-like/path-parameters.adoc[]
+include::{snippets}/delete-likes/path-parameters.adoc[]
 .request-body
-include::{snippets}/delete-like/request-body.adoc[]
+include::{snippets}/delete-likes/request-body.adoc[]
 ==== Response
 .http-response
-include::{snippets}/delete-like/http-response.adoc[]
+include::{snippets}/delete-likes/http-response.adoc[]
 .response-body
-include::{snippets}/delete-like/response-body.adoc[]
+include::{snippets}/delete-likes/response-body.adoc[]
