@@ -1,5 +1,6 @@
 package com.minimi.backend.facility.facility.domain;
 
+import com.minimi.backend.facility.facility.mapper.FacilityCategoryListConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -44,7 +45,8 @@ public class Facility {
     @Column
     private int starRate;
 
-    @ElementCollection
+    @Convert(converter = FacilityCategoryListConverter.class)
+    @Column
     private List<String> categoryList;
 
     @Column

@@ -1,8 +1,12 @@
 package com.minimi.backend.facility.category.service.publisher;
 
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+@ToString
 public class CategoryPostEvent{
     private final String categoryCode;
     private final String categoryTitle;

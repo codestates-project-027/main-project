@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facilitycategory.service.listener;
+package com.minimi.backend.facility.facilitycategory.service.sub;
 
 
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FacilityCategoryPostListenerImpl implements FacilityCategoryPostListener {
+public class FacilityCategoryPostSubImpl implements FacilityCategoryPostSub {
 
     private final FacilityCategoryService facilityCategoryService;
 

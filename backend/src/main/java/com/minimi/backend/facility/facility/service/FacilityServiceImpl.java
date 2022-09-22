@@ -9,8 +9,8 @@ import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.listener.FacilityCategoryCheckListener;
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
-import com.minimi.backend.facility.facility.service.publisher.FacilityDeleteEvent;
-import com.minimi.backend.facility.facility.service.publisher.FacilityPostEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.review.ReviewDto;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 
@@ -98,10 +99,12 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
+    @Transactional
     public void deleteFacility(Long facilityId) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
-        facilityRepository.deleteById(facilityId);
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
+
+        facilityRepository.deleteById(facilityId);
     }
 
     public Boolean checkCategory(List<String> categoryList) {

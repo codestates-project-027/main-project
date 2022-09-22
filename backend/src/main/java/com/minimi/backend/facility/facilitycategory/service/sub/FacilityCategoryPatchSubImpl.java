@@ -1,5 +1,6 @@
-package com.minimi.backend.facility.facilitycategory.service.listener;
+package com.minimi.backend.facility.facilitycategory.service.sub;
 
+import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
 import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import com.minimi.backend.facility.facilitycategory.service.FacilityCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -9,15 +10,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FacilityCategoryPatchListenerImpl implements FacilityCategoryPatchListener{
+public class FacilityCategoryPatchSubImpl implements FacilityCategoryPatchSub {
 
     private final FacilityCategoryService facilityCategoryService;
 
     @Override
     @EventListener
     @Async
-    public void patchFacilityCategory(CategoryPostEvent categoryPostEvent) {
+    public void patchFacilityCategory(CategoryPatchEvent categoryPatchEvent) {
         facilityCategoryService.patchFacilityCategory(
-                categoryPostEvent.getCategoryCode(), categoryPostEvent.getCategoryTitle());
+                categoryPatchEvent.getCategoryCode(), categoryPatchEvent.getCategoryTitle());
     }
 }
