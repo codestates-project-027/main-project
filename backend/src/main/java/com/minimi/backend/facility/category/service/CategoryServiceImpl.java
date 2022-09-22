@@ -5,16 +5,14 @@ import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
-import com.minimi.backend.facility.category.service.publisher.CategoryPatchEvent;
-import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
+import com.minimi.backend.facility.category.service.pub.CategoryPatchEvent;
+import com.minimi.backend.facility.category.service.pub.CategoryPostEvent;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service

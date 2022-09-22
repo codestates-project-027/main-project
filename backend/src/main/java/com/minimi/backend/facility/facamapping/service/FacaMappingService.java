@@ -9,5 +9,7 @@ import org.springframework.data.domain.Slice;
 public interface FacaMappingService {
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page);
 
-    FacaMapping postFacilityCategoryListEntity(FacilityCategory facilityCategory, Facility facility);
+    FacaMapping postFacaMapping(FacilityCategory facilityCategory, Facility facility);
+
+    void deleteFacaMapping(Long facilityid);
 }

@@ -18,6 +18,12 @@ public class FacaMapping {
     @Column(name = "faca_mapping_id")
     private Long facaMappingId;
 
+    @Column
+    private Long facaId;
+
+    @Column
+    private Long faId;
+
     @ManyToOne
     @JoinColumn(name = "facility_category_id")
     private FacilityCategory facilityCategory;
@@ -28,8 +34,10 @@ public class FacaMapping {
 
 
     @Builder
-    public FacaMapping(FacilityCategory facilityCategory, Facility facility){
+    public FacaMapping(FacilityCategory facilityCategory, Facility facility, Long facilityCategoryId, Long facilityId){
         this.facilityCategory = facilityCategory;
         this.facility = facility;
+        this.facaId = facilityCategoryId;
+        this.faId = facilityId;
     }
 }

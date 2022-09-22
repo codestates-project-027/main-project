@@ -60,12 +60,12 @@ public class FacaMappingServicePostTests {
         public void successTest() throws Exception {
             FacilityCategory facilityCategory = new FacilityCategory(1L,"222222","헬스");
             FacaMapping facaMapping =
-                    new FacaMapping(1L, facilityCategory, facility);
+                    new FacaMapping(1L, 1L,1L,facilityCategory, facility);
 
             given(facaMappingRepository.save(Mockito.any(FacaMapping.class))).willReturn(facaMapping);
 
 
-            FacaMapping result = facaMappingService.postFacilityCategoryListEntity(facilityCategory, facility);
+            FacaMapping result = facaMappingService.postFacaMapping(facilityCategory, facility);
 
 
             then(facaMappingRepository).should(times(1)).save(Mockito.any(FacaMapping.class));
@@ -82,7 +82,7 @@ public class FacaMappingServicePostTests {
         public void failTest() throws Exception {
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facaMappingService.postFacilityCategoryListEntity(null, null);
+                facaMappingService.postFacaMapping(null, null);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));
@@ -95,7 +95,7 @@ public class FacaMappingServicePostTests {
             Facility facility = new Facility();
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facaMappingService.postFacilityCategoryListEntity(facilityCategory, facility);
+                facaMappingService.postFacaMapping(facilityCategory, facility);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));

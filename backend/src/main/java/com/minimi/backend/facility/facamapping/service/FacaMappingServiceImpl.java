@@ -14,6 +14,7 @@ import org.springframework.data.domain.SliceImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,13 +48,8 @@ public class FacaMappingServiceImpl implements FacaMappingService {
         return new SliceImpl<>(resultList,facaMappingSlice.getPageable(),facaMappingSlice.hasNext());
     }
 
-    private Boolean checkNullSliceContent(Slice<FacaMapping> facaMappingSlice) {
-        if (facaMappingSlice.getContent().size()>0) return true;
-        throw new NullPointerException("Null Slice Content");
-    }
-
     @Override
-    public FacaMapping postFacilityCategoryListEntity(FacilityCategory facilityCategory, Facility facility) {
+    public FacaMapping postFacaMapping(FacilityCategory facilityCategory, Facility facility) {
         //null blank check
         blankAndNullCheck(facilityCategory);
         blankAndNullCheck(facility);
@@ -63,7 +59,16 @@ public class FacaMappingServiceImpl implements FacaMappingService {
         return facaMappingRepository.save(FacaMapping
                 .builder()
                 .facilityCategory(facilityCategory)
-                .facility(facility).build());
+                .facility(facility)
+                .facilityCategoryId(facilityCategory.getFacilityCategoryId())
+                .facilityId(facility.getFacilityId())
+                .build());
+    }
+
+    @Override
+    @Transactional
+    public void deleteFacaMapping(Long facilityId) {
+        facaMappingRepository.deleteAllByFaId(facilityId);
     }
 
     public Boolean blankAndNullCheck(Object value) {
@@ -71,5 +76,10 @@ public class FacaMappingServiceImpl implements FacaMappingService {
             throw new NullPointerException("Null Value");
         }
         return true;
+    }
+
+    private Boolean checkNullSliceContent(Slice<FacaMapping> facaMappingSlice) {
+        if (facaMappingSlice.getContent().size()>0) return true;
+        throw new NullPointerException("Null Slice Content");
     }
 }
