@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import CommunityCard from '../components/Card/CommunityCard';
+import Button from '../components/Button/CommunityBtn';
 
 const CommunityPage = () => {
   //axios
@@ -29,7 +30,7 @@ const CommunityPage = () => {
       <CSS>
         {users.length ? renderCard() : <p>등록 된 글이 없습니다.</p>}
         <Link to="/community-writing">
-          <button>글쓰기</button>
+          <Button>글쓰기</Button>
         </Link>
       </CSS>
     </>
