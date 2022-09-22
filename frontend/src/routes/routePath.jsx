@@ -18,7 +18,9 @@ const PATH = {
   EDITREVIEW: '/editreview',
 
   REGISTERFACILITY:'/registerfac',
-  EDITFACILITY:'/editfac'
+  EDITFACILITY:'/editfac',
+
+  ADMIN:'/admin'
 };
 
 export default PATH;

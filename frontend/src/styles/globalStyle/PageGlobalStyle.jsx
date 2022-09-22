@@ -164,3 +164,5 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
 export const RegisterFacGlobal = styled(PageGlobalBase)``
 
 export const EditFacGlobal = styled(RegisterFacGlobal)``
+
+export const AdminGlobal = styled(PageGlobalBase)``
