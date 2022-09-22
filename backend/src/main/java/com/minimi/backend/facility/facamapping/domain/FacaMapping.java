@@ -24,11 +24,11 @@ public class FacaMapping {
     @Column
     private Long faId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facility_category_id")
     private FacilityCategory facilityCategory;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facility_id")
     private Facility facility;
 

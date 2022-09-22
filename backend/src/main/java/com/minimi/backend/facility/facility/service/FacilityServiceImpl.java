@@ -10,6 +10,7 @@ import com.minimi.backend.facility.facility.service.listener.FacilityCategoryChe
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityPatchEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.review.domain.ReviewDto;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -88,14 +90,33 @@ public class FacilityServiceImpl implements FacilityService {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
 
-        if(!(facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {
-            checkCategory(facilityDtoPat.getCategoryList());
+
+        if((facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {
+            Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
+
+            facilityRepository.save(patchedFacility);
+            return patchedFacility;
         }
+
+        checkCategory(facilityDtoPat.getCategoryList());
 
         Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
 
-        facilityRepository.save(patchedFacility);
-        return patchedFacility;
+        Facility resultFacility = facilityRepository.save(patchedFacility);
+
+
+        List<FacilityCategory> facilityCategoryList = new ArrayList<>();
+        resultFacility.getCategoryList().forEach(categoryTitle -> {
+            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            facilityCategoryList.add(facilityCategory);
+        });
+
+        applicationEventPublisher.publishEvent(new FacilityPatchEvent(
+                resultFacility.getFacilityId(),
+                facilityCategoryList
+        ));
+
+        return resultFacility;
     }
 
     @Override
