@@ -79,6 +79,7 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
   width: 100vw;
+  min-height: 635px;
 
   .tags--wrapper {
     display: flex;
@@ -160,6 +161,8 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
   }
 `;
 
-export const CreateReviewGlobal = styled(PageGlobalBase)``
+export const RegisterFacGlobal = styled(PageGlobalBase)``
 
-export const EditReviewGlobal = styled(CreateReviewGlobal)``
+export const EditFacGlobal = styled(RegisterFacGlobal)``
+
+export const AdminGlobal = styled(PageGlobalBase)``

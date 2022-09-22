@@ -1,15 +1,17 @@
-import { IoIosFitness } from 'react-icons/io';
+import Geocode from 'react-geocode';
 
-const Test = () => {
-  const arr = [<IoIosFitness size="23px" />, <IoIosFitness size="23px" />];
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+Geocode.setLanguage('ko');
+Geocode.setRegion('ko');
+Geocode.enableDebug();
 
-  return (
-    <>
-      {arr.map((el) => {
-        return <div>{el}</div>;
-      })}
-    </>
-  );
+const GoogleMap = async (currentAddress) => {
+  return Geocode.fromAddress(currentAddress)
+    .then((res) => {
+      const { lat, lng } = res.results[0].geometry.location;
+      console.log(lat, lng);
+    })
+    .catch((err) => console.log(err));
 };
 
-export default Test;
+export default GoogleMap;

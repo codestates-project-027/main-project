@@ -1,5 +1,5 @@
 import { ReviewCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
-import { RCardStyle } from '../../styles/components/CardStyle';
+import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
 import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
@@ -16,7 +16,7 @@ export const ReviewCard = () => {
   return (
     <>
       <ReviewCardGlobal>
-        <RCardStyle onMouseOver={hoverOn} onMouseLeave={hoverOff}>
+        <ReviewCardStyle onMouseOver={hoverOn} onMouseLeave={hoverOff}>
           <div className="img--wrapper">img</div>
           <div className="rest--wrapper">
             {isHover ? (
@@ -34,7 +34,7 @@ export const ReviewCard = () => {
               내용 내용 내용 내용 내용 내용 내용 내용 aasefas
             </div>
           </div>
-        </RCardStyle>
+        </ReviewCardStyle>
       </ReviewCardGlobal>
     </>
   );

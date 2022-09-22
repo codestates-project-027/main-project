@@ -3,9 +3,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { ModalBoxStyle } from '../../styles/components/ModalStyle';
-import { SubmitBtn } from '../../components/Button/SubmitBtn';
-import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
+import { ModalBoxStyle } from '../../styles/components/Modalstyle';
+import { SubmitBtn } from '../Button/SubmitBtn';
+import { ReviewTXT } from '../InputTextarea/FormTextarea';
+import { StickyBtnStyle } from '../../styles/components/BtnStyles';
 
 export const CReviewModal = () => {
   const [open, setOpen] = useState(false);
