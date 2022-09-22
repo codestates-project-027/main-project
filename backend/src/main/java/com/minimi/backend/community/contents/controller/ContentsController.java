@@ -5,6 +5,7 @@ import com.minimi.backend.community.contents.domain.ContentsDTO;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
 import com.minimi.backend.community.contents.service.ContentsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class ContentsController {
     }
     //get Contents
     @GetMapping("")
-    public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page){
+    public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page, Pageable pageable){
         Slice<Contents> contentsSlice = contentsService.findContentsList(page-1, 3);
         List<Contents> contents = contentsSlice.getContent();
         return new ResponseEntity<>(contentsSlice,HttpStatus.OK);
