@@ -5,6 +5,8 @@ import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../../components/Image/ImageUploader';
 import AddressUploader from '../../components/Address/AddressUploader';
+import AddressUploaderCopy from '../../components/Address/AddressUploaderCopy';
+import GoogleMap from '../../components/Address/GeoCodingHandler';
 
 export const RegisterFacilityForm = () => {
   const data = [
@@ -45,7 +47,7 @@ export const RegisterFacilityForm = () => {
           </label>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <AddressUploader />
-            <Input placeholder={'상세주소 입력'}label={'address'} />
+            <Input placeholder={'상세주소 입력'} label={'address'} />
           </div>
         </div>
         <div className="input--wrapper">
@@ -60,7 +62,10 @@ export const RegisterFacilityForm = () => {
           </label>
           <Input label={'phonenum'} />
         </div>
-        <div className="input--wrapper">위치등록 컴포넌트</div>
+        {/* <div className="input--wrapper">
+          위치등록 컴포넌트
+          <GoogleMap currentAddress/>
+        </div> */}
         <div className="input--wrapper">
           <TagSelectbar data={data} />
         </div>
