@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facility.service.publisher;
+package com.minimi.backend.facility.facility.service.pub;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.facility.service.publisher;
+package com.minimi.backend.facility.facility.service.pub;
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;

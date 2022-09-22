@@ -36,6 +36,7 @@ public class FacilityCategoryServiceImpl implements FacilityCategoryService {
 
         facilityCategory.setCategoryTitle(categoryTitle);
 
+
         return facilityCategoryRepository.save(facilityCategory);
     }
 

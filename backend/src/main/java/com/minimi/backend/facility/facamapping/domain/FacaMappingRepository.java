@@ -6,6 +6,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FacaMappingRepository extends JpaRepository<FacaMapping, Long> {
-    //err
     Slice<FacaMapping> findByFacilityCategory(FacilityCategory facilityCategory, Pageable pageable);
+
+    void deleteAllByFaId(Long facilityId);
 }
