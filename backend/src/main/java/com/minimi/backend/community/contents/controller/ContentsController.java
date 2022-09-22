@@ -42,11 +42,11 @@ public class ContentsController {
     }
     //get Contents
     @GetMapping("")
-    public ResponseEntity<Slice<ContentsDTO.get>> getContentsList(@RequestParam int page,
+    public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page,
                                                                   @RequestParam int size){
-        Slice<ContentsDTO.get> contentsSlice = contentsService.findContentsList(page-1, size);
-        List<ContentsDTO.get> contents = contentsSlice.getContent();
-        return new ResponseEntity<>(contentsService.findContentsList(page-1,size),HttpStatus.OK);
+        Slice<Contents> contentsSlice = contentsService.findContentsList(page-1, size);
+        List<Contents> contents = contentsSlice.getContent();
+        return new ResponseEntity<>(contentsSlice,HttpStatus.OK);
     }
     //delete Content
     @DeleteMapping("/{contentsId}")

@@ -38,12 +38,13 @@ public class ContentsService {
         contentsRepository.delete(findContents(contentsId));
     }
 
-    public Slice<ContentsDTO.get> findContentsList(int page,int size){
+    //---------------------------------------
+    public Slice<Contents> findContentsList(int page,int size){
         PageRequest pageRequest = PageRequest.of(page, size);
-        contentsRepository.findSliceBy(pageRequest);
-        return null;
+        Slice<Contents> slice = contentsRepository.findSliceBy(pageRequest);
+        return slice;
     }
-
+//--------------------------------------------------
     public Contents findContents(Long contentsId){
         Optional<Contents> contents = contentsRepository.findById(contentsId);
         Contents findContents = contents.orElseThrow();

@@ -123,7 +123,7 @@ public class ContentsControllerTest implements helper {
                 LocalDateTime.of(2022, 9, 16, 12, 30,1,1),
                 "프로필 사진", 0, 0, commentList);
 
-        given(contentsService.getContents(Mockito.anyLong())).willReturn(response);
+        given(contentsService.findContents(Mockito.anyLong())).willReturn(response);
         ResultActions actions = mockMvc.perform(
                 get("/contents/{contentsId}", 1L)
                         .accept(MediaType.APPLICATION_JSON)

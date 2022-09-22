@@ -30,7 +30,7 @@ public class Contents {
     @Column
     private String userProfile;
     @Column
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     @Column
     private int views;
 
@@ -45,6 +45,6 @@ public class Contents {
         this.username = username;
         this.views = 0;
         this.userProfile = "basicProfile";
-        this.createAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 }
