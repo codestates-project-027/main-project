@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FacaMappingRepository extends JpaRepository<FacaMapping, Long> {
     Slice<FacaMapping> findByFacilityCategory(FacilityCategory facilityCategory, Pageable pageable);
 
-    void deleteAllByFaId(Long facilityId);
+    void deleteAllByFaId(Long faId);
+
+    Boolean existsByFaId(Long faId);
 }

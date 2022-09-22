@@ -68,6 +68,9 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     @Override
     @Transactional
     public void deleteFacaMapping(Long facilityId) {
+
+        if (!facaMappingRepository.existsByFaId(facilityId)) throw new NullPointerException("No Exists");
+
         facaMappingRepository.deleteAllByFaId(facilityId);
     }
 
