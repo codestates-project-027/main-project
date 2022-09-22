@@ -5,7 +5,6 @@ import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
 import com.minimi.backend.facility.category.domain.CategoryStatus;
-import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,13 +13,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
-import java.util.Optional;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;

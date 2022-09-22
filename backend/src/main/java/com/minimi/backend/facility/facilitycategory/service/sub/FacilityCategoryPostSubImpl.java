@@ -1,7 +1,7 @@
 package com.minimi.backend.facility.facilitycategory.service.sub;
 
 
-import com.minimi.backend.facility.category.service.publisher.CategoryPostEvent;
+import com.minimi.backend.facility.category.service.pub.CategoryPostEvent;
 import com.minimi.backend.facility.facilitycategory.service.FacilityCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
