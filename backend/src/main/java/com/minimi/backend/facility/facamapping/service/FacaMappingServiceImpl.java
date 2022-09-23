@@ -84,6 +84,7 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
         FacaMapping facaMapping = facaMappingRepository
                 .findByFaIdAndFacaId(facilityId, facilityCategory.getFacilityCategoryId());
+
         facaMapping.setFacilityCategory(facilityCategory);
         facaMapping.setFacaId(facilityCategory.getFacilityCategoryId());
         return facaMappingRepository.save(facaMapping);

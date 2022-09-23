@@ -51,6 +51,7 @@ public class FacilityDto {
     }
 
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class request{
         private String facilityName;

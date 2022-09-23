@@ -25,6 +25,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,8 @@ public class FacilityServiceImpl implements FacilityService {
     @Override
     public Facility postFacility(FacilityDto.request facilityDtoReq) {
 
+        facilityDtoReq.setCategoryList(
+                facilityDtoReq.getCategoryList().stream().distinct().collect(Collectors.toList()));
         checkCategory(facilityDtoReq.getCategoryList());
 
         Facility facility =facilityRepository.save(Facility.builder()
@@ -99,6 +102,8 @@ public class FacilityServiceImpl implements FacilityService {
             return patchedFacility;
         }
 
+        facilityDtoPat.setCategoryList(
+                facilityDtoPat.getCategoryList().stream().distinct().collect(Collectors.toList()));
         checkCategory(facilityDtoPat.getCategoryList());
 
         Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
