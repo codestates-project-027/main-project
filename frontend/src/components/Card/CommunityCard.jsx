@@ -1,4 +1,4 @@
-import { AlarmCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
+import { CommunityCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 
 import {
   UserImageCard,
@@ -10,7 +10,7 @@ import {
 const CommunityCard = () => {
   return (
     <>
-      <AlarmCardGlobal>
+      <CommunityCardGlobal>
         <UserImageCard>
           <div className="img--wrapper">유저이미지</div>
         </UserImageCard>
@@ -28,7 +28,7 @@ const CommunityCard = () => {
         <Location>
           <div className="date">2022.10.03</div>
         </Location>
-      </AlarmCardGlobal>
+      </CommunityCardGlobal>
     </>
   );
 };
