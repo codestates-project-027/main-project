@@ -12,13 +12,7 @@ export const MainQuickBtnGroup = ({ category }) => {
       <MainPageBIGroupStyle>
         {category.map((el) => {
           return (
-            <>
-              <MainQuickBtn
-                key={el.idx}
-                textProp={el.text}
-                iconProp={el.icon}
-              />
-            </>
+            <MainQuickBtn key={el.idx} textProp={el.text} iconProp={el.icon} />
           );
         })}
       </MainPageBIGroupStyle>
