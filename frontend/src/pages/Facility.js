@@ -1,3 +1,5 @@
+//기능 구현 후 정리
+import styled from 'styled-components';
 import { FacilityPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescGroup } from '../components/Group/BtnAndTagGroup';
 import { H2, H3, H4 } from '../components/Text/Head';
@@ -10,14 +12,13 @@ import { BiMap, BiBell } from 'react-icons/bi';
 import { IoCallOutline } from 'react-icons/io5';
 import { TbFileDescription } from 'react-icons/tb';
 import { AiFillTag } from 'react-icons/ai';
+import { IconWrapperFac } from '../styles/components/IconStyles';
 
 import StarsCalc from '../components/Calculator/StarsCalc';
 import { CarouselComponent } from '../components/Image/CarouselComponent';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
-
-//리뷰 수정페이지 : 아이콘 클릭하면 모달뜨게
 
 const FacilityPage = () => {
   const tags = ['헬스', 'PT'];
@@ -26,50 +27,36 @@ const FacilityPage = () => {
       idx: 1,
       value: '소개 bla bla bla bla bla bla bla bla bla bla bla bla bla',
       icon: (
-        <TbFileDescription
-          size="20"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginRight: '10px',
-            marginBottom: '20px',
-          }}
-        />
+        <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
+          <TbFileDescription size="20" />
+        </IconWrapperFac>
       ),
     },
     {
       idx: 2,
       value: '주소',
       icon: (
-        <BiMap
-          size="20"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginRight: '10px',
-            marginBottom: '20px',
-          }}
-        />
+        <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
+          <BiMap size="20" />
+        </IconWrapperFac>
       ),
     },
     {
       idx: 3,
       value: 'www.healthclub.com',
       icon: (
-        <CgWebsite
-          size="20"
-          style={{ marginRight: '10px', marginBottom: '20px' }}
-        />
+        <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
+          <CgWebsite size="20" />
+        </IconWrapperFac>
       ),
     },
     {
       idx: 4,
       value: '02-1111-1111',
       icon: (
-        <IoCallOutline
-          size="20"
-          style={{ marginRight: '10px', marginBottom: '20px' }}
-        />
+        <IconWrapperFac marginBottom="20px">
+          <IoCallOutline size="20" />
+        </IconWrapperFac>
       ),
     },
     {
@@ -77,12 +64,20 @@ const FacilityPage = () => {
       value: (
         <TagGroup backGround="bisque" margin="-4px 10px 13px 0px" tags={tags} />
       ),
-      icon: <AiFillTag size="20" style={{ marginRight: '10px' }} />,
+      icon: (
+        <IconWrapperFac>
+          <AiFillTag size="20" />
+        </IconWrapperFac>
+      ),
     },
     {
       idx: 6,
       value: '휴업',
-      icon: <BiBell size="20" style={{ marginRight: '10px' }} />,
+      icon: (
+        <IconWrapperFac>
+          <BiBell size="20" />
+        </IconWrapperFac>
+      ),
     },
   ];
 
@@ -104,23 +99,23 @@ const FacilityPage = () => {
           </div>
           <div className="minimi--score--wrapper">
             <H3>미니미 만족도</H3>
-            <H4 style={{ marginLeft: '15px' }}>
+            <H4 marginLeft="15px">
               <StarsCalc starValue={4} />
             </H4>
           </div>
           <FacilityDescGroup facility={facility} />
 
           <div className="btns--wrapper">
-            <BigBtn marginRight={'15px'}>찜</BigBtn>
+            <BigBtn marginRight="15px">찜</BigBtn>
             <BigBtn>내 시설 등록</BigBtn>
           </div>
-          <div className="reviews--wrapper" style={{ marginTop: '30px' }}>
+          <Div className="reviews--wrapper" marginTop="30px">
             <ReviewCard />
             <ReviewCard />
-          </div>
-          <div className="btns--wrapper" style={{ marginTop: '15px' }}>
+          </Div>
+          <Div className="btns--wrapper" marginTop="15px">
             <CReviewModal />
-          </div>
+          </Div>
         </ThemeProvider>
       </FacilityPageGlobal>
     </>
@@ -128,3 +123,7 @@ const FacilityPage = () => {
 };
 
 export default FacilityPage;
+
+const Div = styled.div`
+  margin-top: ${(props) => props.marginTop};
+`;

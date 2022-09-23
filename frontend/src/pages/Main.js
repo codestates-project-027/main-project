@@ -1,13 +1,11 @@
-import TextLogo from '../assets/logo/minimi-text.png';
-import Searchbar from '../components/Bar/Searchbar';
-import { SquareBtn } from '../components/Button/Btns';
+import styled from 'styled-components';
+
+import { SearchbarWBtn } from '../components/Bar/Searchbar';
+
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { MemberCard } from '../components/Card/MemberCard';
 import { MainPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import {
-  SearchbarGroupStyle,
-  MainPageBtnsGroupStyle,
-} from '../styles/components/ComponentGroupStyle';
+import { MainPageBtnsGroupStyle } from '../styles/components/ComponentGroupStyle';
 import { MainQuickBtnGroup } from '../components/Group/BtnAndTagGroup';
 
 //icons
@@ -20,7 +18,7 @@ import { BsEmojiSmile } from 'react-icons/bs';
 import { BiDotsHorizontalRounded, BiMap } from 'react-icons/bi';
 import { TbSoccerField } from 'react-icons/tb';
 
-import { H3Vainish } from '../components/Text/Head';
+import { H3 } from '../components/Text/Head';
 
 const MainPage = () => {
   const activeCategory = [
@@ -33,32 +31,26 @@ const MainPage = () => {
     { idx: 7, text: '공공시설', icon: <TbSoccerField size="23px" /> },
     { idx: 8, text: '기타', icon: <BiDotsHorizontalRounded size="23px" /> },
   ];
-  const activeCategory1 = activeCategory.slice(0, 4);
-  const activeCategory2 = activeCategory.slice(4);
+  const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
 
   return (
     <>
       <MainPageGlobal>
         <MemberCard />
-
-        <SearchbarGroupStyle>
-          <img style={{ width: '70px' }} alt="logo" src={TextLogo} />
-          <Searchbar />
-          <SquareBtn>
-            <BiMap size="20" />
-          </SquareBtn>
-        </SearchbarGroupStyle>
-
+        <SearchbarWBtn Icon={<BiMap size="20" />} />
         <MainPageBtnsGroupStyle>
-          <H3Vainish style={{ marginTop: '40px' }}>바로가기</H3Vainish>
-          <MainQuickBtnGroup category={activeCategory1} />
-          <MainQuickBtnGroup category={activeCategory2} />
+          <H3 maxWidth="790px" marginTop="40px">
+            바로가기
+          </H3>
+          {split.map((el, idx) => {
+            return <MainQuickBtnGroup key={idx} category={el} />;
+          })}
         </MainPageBtnsGroupStyle>
 
         <MainPageBtnsGroupStyle>
-          <H3Vainish style={{ marginTop: '20px', marginBottom: '30px' }}>
+          <H3 maxWidth="790px" marginTop="20px" marginBottom="30px">
             Miracle near me
-          </H3Vainish>
+          </H3>
         </MainPageBtnsGroupStyle>
 
         <FacilityCard />
@@ -68,3 +60,7 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+const Img = styled.img`
+  width: 70px;
+`;

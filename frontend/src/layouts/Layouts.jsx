@@ -1,3 +1,5 @@
+//기능 구현 후 합칠 예정
+
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -8,7 +10,7 @@ import {
 
 import { TopNavbar, BottomNavbar } from '../components/Bar/Navbars';
 
-import { StickyBtnStyle } from '../styles/components/BtnStyles';
+import { StickyBtn } from '../components/Button/Btns';
 
 export const LayoutBaseForFacilities = () => {
   return (
@@ -23,9 +25,7 @@ export const LayoutBaseForFacilities = () => {
 export const LayoutBase = () => {
   return (
     <>
-      <OutletPosition>
-        <Outlet />
-      </OutletPosition>
+      <LayoutBaseForFacilities />
       <BottomNavPosition>
         <BottomNavbar />
       </BottomNavPosition>
@@ -64,11 +64,11 @@ export const LayoutCurrentMenuSearch = () => {
       </TopNavPosition>
       <LayoutBaseForFacilities />
 
-      <StickyBtnStyle>
+      <StickyBtn>
         시설
         <br />
         등록
-      </StickyBtnStyle>
+      </StickyBtn>
 
       <BottomNavPosition>
         <BottomNavbar />

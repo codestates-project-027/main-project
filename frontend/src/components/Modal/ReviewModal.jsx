@@ -1,28 +1,21 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ModalBoxStyle } from '../../styles/components/Modalstyle';
 import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
-import { BigBtn } from '../../components/Button/Btns';
+import { RoundBtn, BigBtn } from '../../components/Button/Btns';
+import styled from 'styled-components';
 
+//기능 구현 후 합칠 예정
 export const CReviewModal = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button
-        variant="contained"
-        sx={{ borderRadius: '16px' }}
-        color="yellow"
-        style={{ width: '113px', marginBottom: '15px' }}
-        onClick={handleOpen}
-      >
-        리뷰 작성
-      </Button>
+    <>
+      <RoundBtn onClick={handleOpen}>리뷰 작성</RoundBtn>
       <Modal
         open={open}
         onClose={handleClose}
@@ -33,20 +26,13 @@ export const CReviewModal = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             리뷰 작성하기
           </Typography>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
+          <Div>
             <ReviewTXT />
             <BigBtn>리뷰 작성</BigBtn>
-          </div>
+          </Div>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 };
 
@@ -57,7 +43,7 @@ export const UReviewModal = () => {
 
   return (
     <div>
-      <Button //mui pen icon
+      <button //mui pen icon
         variant="contained"
         sx={{ borderRadius: '16px' }}
         color="yellow"
@@ -75,19 +61,19 @@ export const UReviewModal = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             리뷰 수정하기
           </Typography>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
+          <Div>
             <ReviewTXT /> {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
             <BigBtn>리뷰 수정</BigBtn>
-          </div>
+          </Div>
         </Box>
       </Modal>
     </div>
   );
 };
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

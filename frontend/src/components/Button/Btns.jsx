@@ -89,3 +89,15 @@ export const BigBtn = styled(BasicBtn)`
   margin-right: ${(props) => props.marginRight || '0px'};
   font-weight: ${(props) => props.fontWeight || '400'};
 `;
+
+export const StickyBtn = styled(BasicBtn)`
+  width: 57px;
+  height: 57px;
+  border-radius: 100%;
+  position: sticky;
+  margin-bottom: 30px;
+  margin-right: -90%;
+  word-break: break-all;
+  white-space: pre;
+  box-shadow: 24;
+`;

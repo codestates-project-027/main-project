@@ -1,3 +1,5 @@
+// 기능 구현 후 정리
+
 import { AdminGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { ReadCategoryForm } from '../components/Form/CategoryForms';
 import { useSelector, useDispatch } from 'react-redux';

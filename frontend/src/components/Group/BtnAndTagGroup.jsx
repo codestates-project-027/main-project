@@ -4,7 +4,7 @@ import { FacilityPageDescGroupStyle } from '../../styles/components/ComponentGro
 import { MainQuickBtn } from '../Button/Btns';
 import { H4 } from '../../components/Text/Head';
 
-import { TagStyle, TagStyleInDesc } from '../../styles/components/TagStyle';
+import { TagStyle } from '../../styles/components/TagStyle';
 import styled from 'styled-components';
 
 export const MainQuickBtnGroup = ({ category }) => {

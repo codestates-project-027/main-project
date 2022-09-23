@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ImgUploaderGlobal } from '../../styles/globalStyle/UploaderGlobalStyle';
+import styled from 'styled-components';
 
 const ImageUploader = () => {
   const [imgPreview, setImgPreview] = useState([]); //상대경로 필요
@@ -37,9 +38,7 @@ const ImageUploader = () => {
 
   return (
     <>
-      <ImgUploaderGlobal
-        style={{ marginLeft: '45px', marginTop: '30px', marginBottom: '30px' }}
-      >
+      <ImgUploaderGlobal>
         <label htmlFor="img-input" onChange={handleAddImg}>
           <input type="file" id="img-input" multiple />
         </label>
@@ -47,11 +46,10 @@ const ImageUploader = () => {
           {imgPreview.map((el, id) => (
             <div key={id}>
               {isMainId === id ? (
-                <img
+                <Img
                   src={el}
                   alt={`facility-${id}`}
                   onClick={() => handleMainImg(id)}
-                  style={{ border: '3px solid red' }}
                 />
               ) : (
                 <img
@@ -73,3 +71,7 @@ const ImageUploader = () => {
 };
 
 export default ImageUploader;
+
+const Img = styled.img`
+  border: 3px solid red;
+`;

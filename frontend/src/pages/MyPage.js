@@ -4,6 +4,8 @@ import { MyPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescCard } from '../components/Card/FacilityCard';
 import { H1, H3 } from '../components/Text/Head';
 import { AiFillSetting } from 'react-icons/ai';
+import { IconWrapper } from '../styles/components/IconStyles';
+import styled from 'styled-components';
 
 const MyPage = () => {
   const days = [
@@ -42,29 +44,19 @@ const MyPage = () => {
           <MemberCardFlex />
         </div>
         <div className="facility--wrapper">
-          <H3 style={{ marginBottom: '30px' }}>사용중인 시설</H3>
-          <AiFillSetting style={{ marginRight: '10px' }} />
+          <H3 marginBottom="30px">사용중인 시설</H3>
+          <IconWrapper marginRight="10px">
+            <AiFillSetting />
+          </IconWrapper>
         </div>
 
-        <div className="my--wrapper" style={{ marginBottom: '20px' }}>
-          <FacilityDescCard text={'출석'}/>
-        </div>
+        <Div className="my--wrapper" marginBottom="20px">
+          <FacilityDescCard text={'출석'} />
+        </Div>
 
-        <H3
-          style={{
-            display: 'flex',
-            marginBottom: '30px',
-            justifyContent: 'space-between',
-          }}
-        >
+        <H3 display="flex" marginBottom="30px" justifyContent="space-between">
           이달의 방문율
-          <div
-            style={{
-              marginRight: '20px',
-            }}
-          >
-            몇 프로
-          </div>
+          <Div marginRight="20px">몇 프로</Div>
         </H3>
 
         <AttendanceCard days={days} />
@@ -74,3 +66,8 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
+const Div = styled.div`
+  margin-bottom: ${(props) => props.marginBottom};
+  margin-right: ${(props) => props.marginRight};
+`;

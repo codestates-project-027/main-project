@@ -6,6 +6,7 @@ export const SearchbarGroupStyle = styled.div`
   justify-content: center;
   align-items: center;
   width: 60%;
+  margin: ${(props) => props.margin};
   @media screen and (max-width: 790px) {
     width: 80%;
   }
@@ -48,7 +49,8 @@ export const MainPageBtnsGroupStyle = styled.div`
   }
 `;
 
-export const MainPageBIGroupStyle = styled.div` //button & icon group
+export const MainPageBIGroupStyle = styled.div`
+  //button & icon group
   display: flex;
   align-items: center;
   justify-content: space-evenly;

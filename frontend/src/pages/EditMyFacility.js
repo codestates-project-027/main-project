@@ -6,8 +6,8 @@ const EditMyFacilityPage = () => {
   return (
     <EditMyFacilityGlobal>
       <div className="facility--wrapper">
-        <H1 style={{ marginBottom: '30px' }}>사용중인 시설 편집</H1>
-        <FacilityDescCard text={'삭제'}/>
+        <H1 marginBottom="30px">사용중인 시설 편집</H1>
+        <FacilityDescCard text={'삭제'} backGround="black" color="red" />
       </div>
     </EditMyFacilityGlobal>
   );

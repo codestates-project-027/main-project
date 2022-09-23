@@ -13,7 +13,7 @@ const MarkerContainer = ({ position, content }) => {
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      {isHover && <div style={MarkerIconStyle}>{content}</div>}
+      {isHover && <MarkerIconStyle>{content}</MarkerIconStyle>}
     </MapMarker>
   );
 };

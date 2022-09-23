@@ -3,6 +3,9 @@ export const ImgUploaderGlobal = styled.div`
   display: flex;
   flex-direction: column;
   width: 430px;
+  margin-left: 45px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   label {
     background: lightgreen;
     border-radius: 3px;

@@ -1,7 +1,9 @@
-import TextLogo from '../assets/logo/minimi-text.png';
-import Searchbar from '../components/Bar/Searchbar';
+//기능 구현 후 map
 
-import { SearchbarGroupStyle } from '../styles/components/ComponentGroupStyle';
+import styled from 'styled-components';
+
+import { SearchbarWBtn } from '../components/Bar/Searchbar';
+
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCardFlex } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
@@ -11,15 +13,10 @@ const FacilitiesPage = () => {
   return (
     <>
       <FacilitiesPageGlobal>
-        <SearchbarGroupStyle>
-          <img style={{ width: '70px' }} alt="logo" src={TextLogo} />
-          <Searchbar />
-        </SearchbarGroupStyle>
+        <SearchbarWBtn noIcon="noIcon" />
 
         <div className="tags--wrapper">
-          <div className="title" style={{ marginRight: '20px' }}>
-            인기
-          </div>
+          <Div className="title">인기</Div>
           <TagGroup tags={tags} />
         </div>
         <FacilityCardFlex />
@@ -30,3 +27,8 @@ const FacilitiesPage = () => {
 };
 
 export default FacilitiesPage;
+
+
+const Div = styled.div`
+  margin-right: 20px;
+`;

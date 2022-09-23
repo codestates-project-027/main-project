@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const H1 = styled.div`
   display: flex;
+  margin-bottom: ${(props) => props.marginBottom};
   font-size: 1.5rem;
 `;
 
@@ -10,11 +11,12 @@ export const H2 = styled(H1)`
 `;
 
 export const H3 = styled(H1)`
+  display: ${(props) => props.display};
+  justify-content: ${(props) => props.justifyContent};
   font-size: 1.2rem;
-`;
-
-export const H3Vainish = styled(H3)`
-  @media screen and (max-width: 790px) {
+  margin-top: ${(props) => props.marginTop};
+  margin-bottom: ${(props) => props.marginBottom};
+  @media screen and (max-width: ${(props) => props.maxWidth || '0'}) {
     display: none;
   }
 `;
@@ -23,4 +25,5 @@ export const H4 = styled(H1)`
   //basic
   font-size: 1rem;
   align-items: ${(props) => props.alignItems || ''};
+  margin-left: ${(props) => props.marginLeft || ''};
 `;

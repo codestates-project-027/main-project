@@ -6,6 +6,13 @@ export const IconWrapper = styled.div`
   cursor: pointer;
 `;
 
+export const IconWrapperFac = styled.div`
+  margin-right: 10px;
+  display: ${(props) => props.display};
+  align-items: ${(props) => props.alignItems};
+  margin-bottom: ${(props) => props.marginBottom};
+`;
+
 export const StarsWrapper = styled.div`
   margin-top: ${(props) => props.marginTop || '5px'};
 `;
@@ -29,13 +36,13 @@ export const BottomNavIconStyle = styled.div`
   font-size: 1.8em;
 `;
 
-export const MarkerIconStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '150px',
-  height: '50px',
-  background: '#37474f',
-  color: '#fae316',
-  borderRadius: '3px',
-};
+export const MarkerIconStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  background: #37474f;
+  color: #fae316;
+  border-radius: 3px;
+`;

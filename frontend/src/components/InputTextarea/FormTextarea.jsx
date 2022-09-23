@@ -3,6 +3,7 @@ import {
   CreateFTXTStyle,
 } from '../../styles/components/InputTextareaStyle';
 import { useState } from 'react';
+import styled from 'styled-components';
 
 export const ReviewTXT = () => {
   const [count, setCount] = useState(0);
@@ -12,7 +13,7 @@ export const ReviewTXT = () => {
         maxLength={100}
         onChange={(e) => setCount(e.target.value.length)}
       />
-      <p style={{ marginBottom: '20px' }}>{count}/100</p>
+      <P marginBottom="20px">{count}/100</P>
     </>
   );
 };
@@ -21,19 +22,23 @@ export const FacilityDescForm = () => {
   const [count, setCount] = useState(0);
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-        }}
-      >
+      <Div>
         <CreateFTXTStyle
           maxLength={200}
           onChange={(e) => setCount(e.target.value.length)}
         />
-        <p style={{}}>{count}/200</p>
-      </div>
+        <P>{count}/200</P>
+      </Div>
     </>
   );
 };
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const P = styled.p`
+  margin-bottom: ${(props) => props.marginBottom || 0};
+`;
