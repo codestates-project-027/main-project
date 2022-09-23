@@ -28,6 +28,7 @@ public interface FacaMappingService {
     void deleteFacaMapping(Long facilityId);
 
     /**
+     * @deprecated exists only testCode
      * @param facilityId
      * @param facilityCategory
      * @return FacaMapping

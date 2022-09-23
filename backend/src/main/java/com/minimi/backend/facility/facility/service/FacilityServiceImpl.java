@@ -10,7 +10,6 @@ import com.minimi.backend.facility.facility.service.listener.FacilityCategoryChe
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
-import com.minimi.backend.facility.facility.service.pub.FacilityPatchEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.review.domain.ReviewDto;
@@ -80,11 +79,7 @@ public class FacilityServiceImpl implements FacilityService {
                 .categoryList(facilityDtoReq.getCategoryList())
                 .build());
 
-        facility.getCategoryList().forEach(categoryTitle -> {
-            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
-            applicationEventPublisher.publishEvent(
-                    new FacilityPostEvent(facilityCategory,facility));
-        });
+        publishPostEventList(facility);
 
         return facility;
     }
@@ -111,13 +106,8 @@ public class FacilityServiceImpl implements FacilityService {
 
         Facility resultFacility = facilityRepository.save(patchedFacility);
 
-
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
-        resultFacility.getCategoryList().forEach(categoryTitle -> {
-            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
-            applicationEventPublisher.publishEvent(
-                    new FacilityPostEvent(facilityCategory,resultFacility));
-        });
+        publishPostEventList(resultFacility);
 
         return resultFacility;
     }
@@ -158,5 +148,13 @@ public class FacilityServiceImpl implements FacilityService {
             }
         });
         return facility;
+    }
+
+    public void publishPostEventList(Facility facility) {
+        facility.getCategoryList().forEach(categoryTitle -> {
+            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            applicationEventPublisher.publishEvent(
+                    new FacilityPostEvent(facilityCategory, facility));
+        });
     }
 }

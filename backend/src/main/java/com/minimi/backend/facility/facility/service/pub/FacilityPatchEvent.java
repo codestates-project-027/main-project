@@ -6,12 +6,19 @@ import lombok.Getter;
 
 import java.util.List;
 
+
+
 @Getter
 public class FacilityPatchEvent {
 
     private final Long facilityId;
     private final FacilityCategory facilityCategory;
 
+    /**
+     * @deprecated patchEvent replaced deleteEvent and postEvent
+     * @param facilityId
+     * @param facilityCategory
+     */
     public FacilityPatchEvent(Long facilityId, FacilityCategory facilityCategory) {
         this.facilityId = facilityId;
         this.facilityCategory = facilityCategory;
