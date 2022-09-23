@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ModalBoxStyle } from '../../styles/components/Modalstyle';
-import { SubmitBtn } from '../../components/Button/SubmitBtn';
 import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
+import { BigBtn } from '../../components/Button/Btns';
 
 export const CReviewModal = () => {
   const [open, setOpen] = useState(false);
@@ -42,7 +42,7 @@ export const CReviewModal = () => {
             }}
           >
             <ReviewTXT />
-            <SubmitBtn text={'리뷰 작성'} />
+            <BigBtn>리뷰 작성</BigBtn>
           </div>
         </Box>
       </Modal>
@@ -84,7 +84,7 @@ export const UReviewModal = () => {
             }}
           >
             <ReviewTXT /> {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
-            <SubmitBtn text={'리뷰 수정'} />
+            <BigBtn>리뷰 수정</BigBtn>
           </div>
         </Box>
       </Modal>

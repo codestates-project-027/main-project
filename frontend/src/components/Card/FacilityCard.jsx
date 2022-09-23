@@ -7,7 +7,8 @@ import {
   FCardFlexStyle,
   FDescCardStyle,
 } from '../../styles/components/CardStyle';
-import { SubmitBtn, DeleteBtn } from '../../components/Button/SubmitBtn';
+// import { SubmitBtn, DeleteBtn } from '../../components/Button/SubmitBtn';
+import { BigBtn } from '../../components/Button/Btns';
 import { H4 } from '../Text/Head';
 
 export const FacilityCard = () => {
@@ -65,7 +66,7 @@ export const FacilityDescCard = () => {
     <>
       <FDescCardStyle>
         <H4 style={{ alignItems: 'center' }}>OO동 헬스클럽</H4>
-        <SubmitBtn text={'출석'} />
+        <BigBtn>출석</BigBtn>
       </FDescCardStyle>
     </>
   );
@@ -75,8 +76,10 @@ export const FacilityDescCardEdit = () => {
   return (
     <>
       <FDescCardStyle>
-        <H4 style={{ alignItems: 'center'}}>OO동 헬스클럽</H4>
-        <DeleteBtn text={'삭제'} />
+        <H4 style={{ alignItems: 'center' }}>OO동 헬스클럽</H4>
+        <BigBtn backGround={'black'} color={'red'} fontWeight={'700'}>
+          삭제
+        </BigBtn>
       </FDescCardStyle>
     </>
   );

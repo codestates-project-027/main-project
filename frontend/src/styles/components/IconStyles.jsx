@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const IconWrapper = styled.div`
   margin-left: ${(props) => props.marginLeft || '10px'};
+  margin-right: ${(props) => props.marginRight || '0px'};
   cursor: pointer;
 `;
 

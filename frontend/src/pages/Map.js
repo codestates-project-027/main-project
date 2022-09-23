@@ -1,6 +1,6 @@
 import TextLogo from '../assets/logo/minimi-text.png';
 import Searchbar from '../components/Bar/Searchbar';
-import SquareBtn from '../components/Button/SquareBtn';
+import { SquareBtn } from '../components/Button/Btns';
 import MapContainer from '../components/Map/MapContainer';
 
 import { BiCurrentLocation } from 'react-icons/bi';

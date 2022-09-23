@@ -5,7 +5,7 @@ import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
-import { SubmitBtn } from '../Button/SubmitBtn';
+import { BigBtn } from '../Button/Btns';
 
 export const RegisterFacilityForm = () => {
   const data = [
@@ -66,7 +66,7 @@ export const RegisterFacilityForm = () => {
           <TagSelectbar data={data} />
         </div>
         <div className="btn--wrapper">
-          <SubmitBtn text={'시설 등록'} />
+          <BigBtn>시설 등록</BigBtn>
         </div>
       </RegisterFailityForm>
     </>
@@ -87,7 +87,8 @@ export const EditFacilityForm = () => {
     },
   ];
 
-  return ( //로컬스토리지에서 정보 가져오기 -> 수정 -> api로 수정요청
+  return (
+    //로컬스토리지에서 정보 가져오기 -> 수정 -> api로 수정요청
     <>
       <RegisterFailityForm>
         <H2>시설 정보 변경하기</H2>
@@ -132,7 +133,7 @@ export const EditFacilityForm = () => {
           <TagSelectbar data={data} />
         </div>
         <div className="btn--wrapper">
-          <SubmitBtn text={'시설 정보 변경'} />
+        <BigBtn>시설 정보 변경</BigBtn>
         </div>
       </RegisterFailityForm>
     </>

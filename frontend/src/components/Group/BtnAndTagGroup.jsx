@@ -1,7 +1,7 @@
 import { MainPageBIGroupStyle } from '../../styles/components/ComponentGroupStyle';
 import { FacilityPageDescGroupStyle } from '../../styles/components/ComponentGroupStyle';
 
-import { MainQuickBtn } from '../Button/QuickBtn';
+import { MainQuickBtn } from '../Button/Btns';
 import { H4 } from '../../components/Text/Head';
 
 import { TagStyle, TagStyleInDesc } from '../../styles/components/TagStyle';

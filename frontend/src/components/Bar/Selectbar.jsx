@@ -6,7 +6,11 @@ export const TagSelectbar = ({ data }) => {
 
   const handleChangeSelect = (e) => {
     const repeated = tagsList.filter((el) => el === e.target.value);
-    if (e.target.value !== '' && e.target.value !== '-' && repeated.length === 0) {
+    if (
+      e.target.value !== '' &&
+      e.target.value !== '-' &&
+      repeated.length === 0
+    ) {
       setTagsList([...tagsList, e.target.value]);
     }
   };
@@ -14,9 +18,7 @@ export const TagSelectbar = ({ data }) => {
   return (
     <>
       <select onChange={handleChangeSelect}>
-        <option value={'-'}>
-          ---
-        </option>
+        <option value={'-'}>---</option>
         {data.map((el, idx) => {
           return (
             <option value={el.categoryTitle} key={idx}>

@@ -1,11 +1,10 @@
 import { FacilityPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescGroup } from '../components/Group/BtnAndTagGroup';
 import { H2, H3, H4 } from '../components/Text/Head';
-import { SubmitBtn } from '../components/Button/SubmitBtn';
 import { TagGroupDesc } from '../components/Group/BtnAndTagGroup';
 import { ReviewCard } from '../components/Card/ReviewCard';
 import { CReviewModal } from '../components/Modal/ReviewModal';
-
+import { BigBtn } from '../components/Button/Btns';
 import { CgWebsite } from 'react-icons/cg';
 import { BiMap, BiBell } from 'react-icons/bi';
 import { IoCallOutline } from 'react-icons/io5';
@@ -110,8 +109,8 @@ const FacilityPage = () => {
           <FacilityDescGroup facility={facility} />
 
           <div className="btns--wrapper">
-            <SubmitBtn text={'찜'} />
-            <SubmitBtn text={'내 시설 등록'} />
+            <BigBtn marginRight={'15px'}>찜</BigBtn>
+            <BigBtn>내 시설 등록</BigBtn>
           </div>
           <div className="reviews--wrapper" style={{ marginTop: '30px' }}>
             <ReviewCard />
