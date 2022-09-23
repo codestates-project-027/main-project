@@ -6,19 +6,19 @@ export const BasicBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.backGround || '#FFEB3B'};
-  color: ${(props) => props.color || '#37474f'};
+  background: ${(props) => props.backGround || 'var(--main-yellow)'};
+  color: ${(props) => props.color || 'var(--main-navy)'};
   width: ${(props) => props.width || 'fit-content'};
   height: ${(props) => props.height || 'fit-content'};
   border: none;
   border-radius: ${(props) => props.borderRadius || '3px'};
   padding: ${(props) => props.padding || '5px 8px 5px 8px'};
   margin-bottom: ${(props) => props.marginBottom || '0px'};
-  box-shadow: 0px 2px 2px #bdbdbd;
+  box-shadow: 0px 2px 2px var(--box-shoadow);
   cursor: pointer;
   &:hover {
-    background: ${(props) => props.hoverBg || '#f5e131'};
-    box-shadow: 0px 2px 4px #a1a1a1;
+    background: ${(props) => props.hoverBg || 'var(--dark-yellow)'};
+    box-shadow: 0px 2px 4px var(--hover-box-shadow);
     transition: all 0.3s ease-in-out;
   }
 `;
