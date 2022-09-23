@@ -6,11 +6,9 @@ export const IconWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const IconStyle = {
-  //이름 바꾸기
-  marginRight: '13px',
-  cursor: 'pointer',
-};
+export const StarsWrapper = styled.div`
+  margin-top: ${(props) => props.marginTop || '5px'};
+`;
 
 export const MainPageBtnIconStyle = styled.div`
   @media screen and (max-width: 3000px) {
