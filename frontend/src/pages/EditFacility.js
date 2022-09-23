@@ -1,5 +1,5 @@
 import { EditFacGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import {EditFacilityForm} from '../components/Form/Forms'
+import {EditFacilityForm} from '../components/Form/FacilityForms'
 
 const EditFacilityPage = () => {
   return (
