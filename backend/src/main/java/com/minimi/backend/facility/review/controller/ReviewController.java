@@ -15,6 +15,13 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
+    //getPage review
+    @GetMapping("/{facilityId}")
+    public ResponseEntity getReview(@PathVariable Long facilityId,
+                                    @RequestParam int page) {
+        return new ResponseEntity<>(reviewService.getReviewPage(facilityId,page), HttpStatus.OK);
+    }
+
     //post review
     @PostMapping("")
     public ResponseEntity postReview(@RequestBody ReviewDto.request reviewReq){
@@ -23,14 +30,14 @@ public class ReviewController {
 
     //patch review
     @PatchMapping("/{reviewId}")
-    public ResponseEntity patchReview(@PathVariable String reviewId,
+    public ResponseEntity patchReview(@PathVariable Long reviewId,
                                       @RequestBody ReviewDto.patch reviewPatch){
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
 
     //delete review
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity deleteReview(@PathVariable String reviewId) {
+    public ResponseEntity deleteReview(@PathVariable Long reviewId) {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
