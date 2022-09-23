@@ -5,10 +5,7 @@ import com.minimi.backend.facility.facamapping.domain.FacaMapping;
 import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -88,6 +85,30 @@ public class FacaMappingServicePatchTests {
             then(facaMappingRepository).should(times(1))
                     .save(Mockito.any(FacaMapping.class));
             assertThat(result, equalTo(facaMapping2));
+        }
+    }
+
+    @Nested
+    @DisplayName("fail Case")
+    class fail {
+
+        @Test
+        @DisplayName("fail test 1 -> not exists facaMapping")
+        public void failTest1() throws Exception {
+            given(facaMappingRepository.existsByFaId(Mockito.anyLong())).willReturn(false);
+
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        FacaMapping result = facaMappingService.patchFacaMapping(2L, facilityCategory);
+                    });
+
+            then(facaMappingRepository).should(times(1))
+                    .existsByFaId(Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .findByFaIdAndFacaId(Mockito.anyLong(), Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .save(Mockito.any(FacaMapping.class));
+            assertThat(exception.getMessage(), equalTo("Not Found facaMapping"));
         }
     }
 }
