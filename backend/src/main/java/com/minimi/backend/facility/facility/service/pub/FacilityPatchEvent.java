@@ -10,10 +10,10 @@ import java.util.List;
 public class FacilityPatchEvent {
 
     private final Long facilityId;
-    private final List<FacilityCategory> facilityCategoryList;
+    private final FacilityCategory facilityCategory;
 
-    public FacilityPatchEvent(Long facilityId, List<FacilityCategory> facilityCategoryList) {
+    public FacilityPatchEvent(Long facilityId, FacilityCategory facilityCategory) {
         this.facilityId = facilityId;
-        this.facilityCategoryList = facilityCategoryList;
+        this.facilityCategory = facilityCategory;
     }
 }

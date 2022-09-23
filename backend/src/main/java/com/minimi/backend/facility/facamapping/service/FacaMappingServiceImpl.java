@@ -74,6 +74,17 @@ public class FacaMappingServiceImpl implements FacaMappingService {
         facaMappingRepository.deleteAllByFaId(facilityId);
     }
 
+    @Override
+    public FacaMapping patchFacaMapping(Long facilityId, FacilityCategory facilityCategory) {
+        //todo testCode
+        facaMappingRepository.existsByFaId(facilityId);
+        FacaMapping facaMapping = facaMappingRepository
+                .findByFaIdAndFacaId(facilityId, facilityCategory.getFacilityCategoryId());
+        facaMapping.setFacilityCategory(facilityCategory);
+        facaMapping.setFacaId(facilityCategory.getFacilityCategoryId());
+        return facaMappingRepository.save(facaMapping);
+    }
+
     public Boolean blankAndNullCheck(Object value) {
         if (value==null||String.valueOf(value).isBlank()) {
             throw new NullPointerException("Null Value");

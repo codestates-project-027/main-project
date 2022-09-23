@@ -79,7 +79,8 @@ public class FacilityServiceImpl implements FacilityService {
 
         facility.getCategoryList().forEach(categoryTitle -> {
             FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
-            applicationEventPublisher.publishEvent(new FacilityPostEvent(facilityCategory,facility));
+            applicationEventPublisher.publishEvent(
+                    new FacilityPostEvent(facilityCategory,facility));
         });
 
         return facility;
@@ -104,17 +105,11 @@ public class FacilityServiceImpl implements FacilityService {
 
         Facility resultFacility = facilityRepository.save(patchedFacility);
 
-
-        List<FacilityCategory> facilityCategoryList = new ArrayList<>();
         resultFacility.getCategoryList().forEach(categoryTitle -> {
             FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
-            facilityCategoryList.add(facilityCategory);
+            applicationEventPublisher.publishEvent(
+                    new FacilityPatchEvent(resultFacility.getFacilityId(), facilityCategory));
         });
-
-        applicationEventPublisher.publishEvent(new FacilityPatchEvent(
-                resultFacility.getFacilityId(),
-                facilityCategoryList
-        ));
 
         return resultFacility;
     }

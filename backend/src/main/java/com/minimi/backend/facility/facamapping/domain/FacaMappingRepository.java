@@ -11,4 +11,6 @@ public interface FacaMappingRepository extends JpaRepository<FacaMapping, Long> 
     void deleteAllByFaId(Long faId);
 
     Boolean existsByFaId(Long faId);
+
+    FacaMapping findByFaIdAndFacaId(Long faId, Long facaId);
 }

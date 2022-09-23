@@ -58,7 +58,7 @@ public class FacilityCategoryServicePatchTests {
                     .willReturn(facilityCategory);
             given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(false);
-            given(facilityCategoryRepository.save(Mockito.any(FacilityCategory.class)))
+            given(facilityCategoryRepository.save(facilityCategory))
                     .willReturn(facilityCategoryResult);
 
             FacilityCategory result = facilityCategoryService.patchFacilityCategory(categoryCode,categoryTitle);
