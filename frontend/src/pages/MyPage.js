@@ -47,7 +47,7 @@ const MyPage = () => {
         </div>
 
         <div className="my--wrapper" style={{ marginBottom: '20px' }}>
-          <FacilityDescCard />
+          <FacilityDescCard text={'출석'}/>
         </div>
 
         <H3

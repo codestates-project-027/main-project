@@ -1,4 +1,5 @@
 import { AttendanceCardStyle } from '../../styles/components/CardStyle';
+
 const AttendanceCard = ({ days }) => {
   const date = [];
   for (let i = 0; i < days.length; i++) {
@@ -27,8 +28,8 @@ const AttendanceCard = ({ days }) => {
                   key={idx}
                   style={
                     el === true
-                      ? { background: 'lightgreen' }
-                      : { background: 'lightgray' }
+                      ? { background: 'var(--attended)' }
+                      : { background: 'var(--absent)' }
                   }
                 />
               );
