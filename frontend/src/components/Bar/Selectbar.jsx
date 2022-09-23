@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TagGroupX } from '../../components/Group/BtnAndTagGroup';
+import { TagGroup } from '../../components/Group/BtnAndTagGroup';
 
 export const TagSelectbar = ({ data }) => {
   const [tagsList, setTagsList] = useState([]);
@@ -27,10 +27,11 @@ export const TagSelectbar = ({ data }) => {
           );
         })}
       </select>
-      <TagGroupX
+      <TagGroup
         tags={tagsList}
         tagsList={tagsList}
         setTagsList={setTagsList}
+        close={'close'}
       />
     </>
   );

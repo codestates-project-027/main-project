@@ -1,7 +1,7 @@
 import { FacilityPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescGroup } from '../components/Group/BtnAndTagGroup';
 import { H2, H3, H4 } from '../components/Text/Head';
-import { TagGroupDesc } from '../components/Group/BtnAndTagGroup';
+import { TagGroup } from '../components/Group/BtnAndTagGroup';
 import { ReviewCard } from '../components/Card/ReviewCard';
 import { CReviewModal } from '../components/Modal/ReviewModal';
 import { BigBtn } from '../components/Button/Btns';
@@ -74,7 +74,9 @@ const FacilityPage = () => {
     },
     {
       idx: 5,
-      value: <TagGroupDesc tags={tags} />,
+      value: (
+        <TagGroup backGround="bisque" margin="-4px 10px 13px 0px" tags={tags} />
+      ),
       icon: <AiFillTag size="20" style={{ marginRight: '10px' }} />,
     },
     {

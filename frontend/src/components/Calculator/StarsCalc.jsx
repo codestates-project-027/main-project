@@ -8,7 +8,7 @@ const StarsCalc = ({ starValue }) => {
 
   return (
     <>
-      {arr.map((idx) => (
+      {arr.map((el, idx) => (
         <div key={idx}>
           <StarsWrapper>
             <AiFillStar size={20} fill="var(--logo-yellow)" />

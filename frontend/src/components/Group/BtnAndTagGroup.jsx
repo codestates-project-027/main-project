@@ -5,6 +5,7 @@ import { MainQuickBtn } from '../Button/Btns';
 import { H4 } from '../../components/Text/Head';
 
 import { TagStyle, TagStyleInDesc } from '../../styles/components/TagStyle';
+import styled from 'styled-components';
 
 export const MainQuickBtnGroup = ({ category }) => {
   return (
@@ -34,17 +35,14 @@ export const FacilityDescGroup = ({ facility }) => {
   );
 };
 
-export const TagGroup = ({ tags }) => {
-  return (
-    <>
-      {tags.map((el, idx) => {
-        return <TagStyle key={idx}>{el}</TagStyle>;
-      })}
-    </>
-  );
-};
-
-export const TagGroupX = ({ tags, tagsList, setTagsList }) => {
+export const TagGroup = ({
+  tags,
+  tagsList,
+  setTagsList,
+  close,
+  backGround,
+  margin,
+}) => {
   const handleRemove = (idxToRemove) => {
     setTagsList(tagsList.filter((_, index) => index !== idxToRemove));
   };
@@ -53,21 +51,9 @@ export const TagGroupX = ({ tags, tagsList, setTagsList }) => {
     <>
       {tags.map((el, idx) => {
         return (
-          <TagStyle key={idx}>
+          <TagStyle backGround={backGround} margin={margin} key={idx}>
             {el}
-            <div
-              onClick={() => handleRemove(idx)}
-              style={{
-                lineHeight: '17px',
-                background: 'white',
-                width: '20px',
-                borderRadius: '100%',
-                marginLeft: '5px',
-                cursor: 'pointer',
-              }}
-            >
-              x
-            </div>
+            {close ? <X onClick={() => handleRemove(idx)}>x</X> : null}
           </TagStyle>
         );
       })}
@@ -75,16 +61,11 @@ export const TagGroupX = ({ tags, tagsList, setTagsList }) => {
   );
 };
 
-export const TagGroupDesc = ({ tags }) => {
-  return (
-    <>
-      {tags.map((el) => {
-        return (
-          <TagStyleInDesc key={el} style={{ marginRight: '10px' }}>
-            {el}
-          </TagStyleInDesc>
-        );
-      })}
-    </>
-  );
-};
+const X = styled.div`
+  line-height: 17px;
+  background: white;
+  width: 20px;
+  border-radius: 100%;
+  margin-left: 5px;
+  cursor: pointer;
+`;

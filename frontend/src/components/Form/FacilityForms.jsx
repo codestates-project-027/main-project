@@ -6,6 +6,9 @@ import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
 import { BigBtn } from '../Button/Btns';
+import styled from 'styled-components';
+
+//기능 구현하고 합칠 예정.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
 
 export const RegisterFacilityForm = () => {
   const data = [
@@ -26,43 +29,33 @@ export const RegisterFacilityForm = () => {
       <RegisterFailityForm>
         <H2>시설 등록하기</H2>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="Fname">
-            이름
-          </label>
+          <Label htmlFor="Fname">이름</Label>
           <Input label={'Fname'} />
         </div>
         <div className="input--wrapper">
           <ImageUploader />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="desc">
-            설명
-          </label>
+          <Label htmlFor="desc">설명</Label>
           <FacilityDescForm />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="address">
-            주소
-          </label>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Label htmlFor="address">주소</Label>
+          <AddressWrapper>
             <AddressUploader />
             <Input placeholder={'상세주소 입력'} label={'address'} />
-          </div>
+          </AddressWrapper>
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="webpage">
-            web
-          </label>
+          <Label htmlFor="webpage">web</Label>
           <Input label={'webpage'} />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="phonenum">
-            전화
-          </label>
+          <Label htmlFor="phonenum">전화</Label>
           <Input label={'phonenum'} />
         </div>
         <div className="tags--wrapper">
-          <div style={{ marginRight: '20px' }}>태그</div>
+          <Div>태그</Div>
           <TagSelectbar data={data} />
         </div>
         <div className="btn--wrapper">
@@ -93,49 +86,52 @@ export const EditFacilityForm = () => {
       <RegisterFailityForm>
         <H2>시설 정보 변경하기</H2>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="Fname">
-            이름
-          </label>
+          <Label htmlFor="Fname">이름</Label>
           <Input label={'Fname'} />
         </div>
         <div className="input--wrapper">
           <ImageUploader />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="desc">
-            설명
-          </label>
+          <Label htmlFor="desc">설명</Label>
           <FacilityDescForm />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="address">
-            주소
-          </label>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Label htmlFor="address">주소</Label>
+          <AddressWrapper>
             <AddressUploader />
             <Input placeholder={'상세주소 입력'} label={'address'} />
-          </div>
+          </AddressWrapper>
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="webpage">
-            web
-          </label>
+          <Label htmlFor="webpage">web</Label>
           <Input label={'webpage'} />
         </div>
         <div className="input--wrapper">
-          <label style={{ marginRight: '15px' }} htmlFor="phonenum">
-            전화
-          </label>
+          <Label htmlFor="phonenum">전화</Label>
           <Input label={'phonenum'} />
         </div>
         <div className="tags--wrapper">
-          <div style={{ marginRight: '20px' }}>태그</div>
+          <Div>태그</Div>
           <TagSelectbar data={data} />
         </div>
         <div className="btn--wrapper">
-        <BigBtn>시설 정보 변경</BigBtn>
+          <BigBtn>시설 정보 변경</BigBtn>
         </div>
       </RegisterFailityForm>
     </>
   );
 };
+
+const Label = styled.label`
+  margin-right: 15px;
+`;
+
+const AddressWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Div = styled.div`
+  margin-right: 17px;
+`;
