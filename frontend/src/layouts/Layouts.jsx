@@ -6,15 +6,9 @@ import {
   BottomNavPosition,
 } from '../styles/position/LayoutPositions';
 
-import {
-  TopNavbarMain,
-  TopNavbarMenu,
-  TopNavbarMenuSearch,
-} from '../components/Bar/TopNavbars';
+import { TopNavbar, BottomNavbar } from '../components/Bar/Navbars';
 
 import { StickyBtnStyle } from '../styles/components/BtnStyles';
-
-import BottomNavbar from '../components/Bar/BottomNavbar';
 
 export const LayoutBaseForFacilities = () => {
   return (
@@ -43,7 +37,7 @@ export const LayoutMain = () => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbarMain />
+        <TopNavbar type={'우리 동네 주소'} />
       </TopNavPosition>
       <LayoutBase />
     </>
@@ -54,7 +48,7 @@ export const LayoutCurrentMenu = () => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbarMenu />
+        <TopNavbar type={'현재 메뉴'} />
       </TopNavPosition>
       <LayoutBase />
     </>
@@ -66,7 +60,7 @@ export const LayoutCurrentMenuSearch = () => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbarMenuSearch />
+        <TopNavbar type={'현재 메뉴 + search icon'} />
       </TopNavPosition>
       <LayoutBaseForFacilities />
 

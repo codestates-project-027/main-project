@@ -46,6 +46,7 @@ export const TopNavbarGlobal = styled(BottomNavbarGlobal)`
   width: 100%;
   background-color: var(--main-yellow);
   .tab--wrapper {
+    display: flex;
     margin-left: 20px;
   }
   .icon--wrapper {

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const IconWrapper = styled.div`
+  margin-left: ${(props) => props.marginLeft || '10px'};
+  cursor: pointer;
+`;
+
 export const IconStyle = {
   //이름 바꾸기
   marginRight: '13px',

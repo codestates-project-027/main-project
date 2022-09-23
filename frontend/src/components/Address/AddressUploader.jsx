@@ -2,6 +2,7 @@ import DaumPostcode from 'react-daum-postcode';
 import { useState, useEffect } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/Modalstyle';
 import { BasicBtn } from '../Button/Btns';
+import styled from 'styled-components';
 
 const { kakao } = window;
 
@@ -41,7 +42,7 @@ const AddressUploader = () => {
   }, [address]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <Div>
       {address}
       {console.log(coord)}
       <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
@@ -55,21 +56,37 @@ const AddressUploader = () => {
               setOpenPostcode(false);
             }}
           >
-            <DaumPostcode
-              style={{
-                position: 'absolute',
-                width: '500px',
-                top: '20%',
-                left: '35%',
-              }}
-              onComplete={handleAddress.selectAddress} // 값을 선택할 경우 실행되는 이벤트
-              autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-            />
+            <DaumPostcodeWrapper>
+              <DaumPostcode
+                onComplete={handleAddress.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+                autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+              />
+            </DaumPostcodeWrapper>
           </ModalBackdropStyle>
         </>
       )}
-    </div>
+    </Div>
   );
 };
 
 export default AddressUploader;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const DaumPostcodeWrapper = styled.div`
+  position: absolute;
+  width: 500px;
+  top: 20%;
+  left: 35%;
+`;
+
+// DaumPostcode
+//               style={{
+//                 position: 'absolute',
+//                 width: '500px',
+//                 top: '20%',
+//                 left: '35%',
+//               }}
