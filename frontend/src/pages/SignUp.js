@@ -21,21 +21,21 @@ const SignupPage = () => {
     console.log('data', data);
   };
 
-  // const joinInfo = { email, username, password, userProfile};
-  // if (
-  //   username !== '' &&
-  //   password !== '' &&
-  //   email !== '' &&
-  //   userProfile !== '' &&
-  //   password.length >= 8 &&
-  //   username.length >= 8 &&
-  // ) {
-  //   await axios
-  //     .post(url, joinInfo)
-  //     .then(() => alert('환영합니다!'))
-  //     .then(() => navigate('/login'))
-  //     .catch((err) => alert('이미 가입한 회원정보입니다.'));
-  // };
+  // // const joinInfo = { email, username, password, userProfile};
+  // // if (
+  // //   username !== '' &&
+  // //   password !== '' &&
+  // //   email !== '' &&
+  // //   userProfile !== '' &&
+  // //   password.length >= 8 &&
+  // //   username.length >= 8 &&
+  // // ) {
+  // //   await axios
+  // //     .post(url, joinInfo)
+  // //     .then(() => alert('환영합니다!'))
+  // //     .then(() => navigate('/login'))
+  // //     .catch((err) => alert('이미 가입한 회원정보입니다.'));
+  // // };
 
   // axios.post('http://localhost:8080/join', {
   //   email: 'email',

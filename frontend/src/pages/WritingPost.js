@@ -1,16 +1,20 @@
 // import styled from 'styled-components';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button/CommunityBtn';
 import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
 
 const WritingPage = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     title: '',
     content: '',
   });
 
   const handleWriting = () => {
+    setValues({ title: '', content: '' });
     console.log(values);
+    navigate('/community');
   };
 
   return (
