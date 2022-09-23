@@ -3,7 +3,7 @@ import { H2 } from '../Text/Head';
 import { Input } from '../InputTextarea/FormInputs';
 import { FacilityDescForm } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
-import ImageUploader from '../../components/Image/ImageUploader';
+import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
 import { SubmitBtn } from '../Button/SubmitBtn';
 

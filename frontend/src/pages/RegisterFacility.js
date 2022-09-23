@@ -1,5 +1,5 @@
 import { RegisterFacGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import { RegisterFacilityForm } from '../components/Form/Forms';
+import { RegisterFacilityForm } from '../components/Form/FacilityForms';
 
 const RegisterFacilityPage = () => {
   return (
