@@ -75,6 +75,7 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     }
 
     @Override
+    @Transactional
     public FacaMapping patchFacaMapping(Long facilityId, FacilityCategory facilityCategory) {
 
         blankAndNullCheck(facilityId);

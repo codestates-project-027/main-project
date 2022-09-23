@@ -90,6 +90,7 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
+    @Transactional
     public Facility patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
@@ -110,10 +111,12 @@ public class FacilityServiceImpl implements FacilityService {
 
         Facility resultFacility = facilityRepository.save(patchedFacility);
 
+
+        applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
         resultFacility.getCategoryList().forEach(categoryTitle -> {
             FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
             applicationEventPublisher.publishEvent(
-                    new FacilityPatchEvent(resultFacility.getFacilityId(), facilityCategory));
+                    new FacilityPostEvent(facilityCategory,resultFacility));
         });
 
         return resultFacility;
