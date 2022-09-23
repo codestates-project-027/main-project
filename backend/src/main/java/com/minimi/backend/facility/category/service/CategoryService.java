@@ -14,7 +14,7 @@ public interface CategoryService {
 
     Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoRequest);
 
-    List<CategoryDto.response> getCategoryTitles();
+    List<CategoryDto.response> getCategoryTitles(Boolean active);
 
     Slice<ResponseFacilityDto.facilityPageFromCategory> getCategory(String categoryCode, int page);
 }

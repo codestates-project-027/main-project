@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
 import com.minimi.backend.facility.category.service.pub.CategoryPatchEvent;
@@ -67,8 +68,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto.response> getCategoryTitles() {
-        return categoryMapper.categoryListToCategoryDtoResponseList(categoryRepository.findAll());
+    public List<CategoryDto.response> getCategoryTitles(Boolean active) {
+        if (active) {
+            return categoryMapper.categoryListToCategoryDtoResponseList(
+                    categoryRepository.findAllByCategoryStatus(CategoryStatus.ACTIVE));
+        }
+        return categoryMapper.categoryListToCategoryDtoResponseList(
+                categoryRepository.findAll());
     }
 
     @Override
