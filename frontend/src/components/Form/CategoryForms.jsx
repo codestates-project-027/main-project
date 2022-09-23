@@ -1,3 +1,5 @@
+//map은 api 구현 후 사용예정
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,6 +15,7 @@ export const ReadCategoryForm = ({ data }) => {
         <Table sx={{ minWidth: 400 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+              {/* map */}
               <TableCell align="center">Code</TableCell>
               <TableCell align="center">Title</TableCell>
               <TableCell align="center">Status</TableCell>

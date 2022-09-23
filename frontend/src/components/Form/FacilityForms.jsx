@@ -1,3 +1,5 @@
+//api 구현하고 합칠 예정.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
+
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
 import { Input } from '../InputTextarea/FormInputs';
@@ -8,7 +10,7 @@ import AddressUploader from '../Address/AddressUploader';
 import { BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
 
-//기능 구현하고 합칠 예정.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
+
 
 export const RegisterFacilityForm = () => {
   const data = [
