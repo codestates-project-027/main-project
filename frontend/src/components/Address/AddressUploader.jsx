@@ -82,11 +82,3 @@ const DaumPostcodeWrapper = styled.div`
   top: 20%;
   left: 35%;
 `;
-
-// DaumPostcode
-//               style={{
-//                 position: 'absolute',
-//                 width: '500px',
-//                 top: '20%',
-//                 left: '35%',
-//               }}
