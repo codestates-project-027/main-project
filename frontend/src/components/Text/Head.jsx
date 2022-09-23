@@ -22,5 +22,5 @@ export const H3Vainish = styled(H3)`
 export const H4 = styled(H1)`
   //basic
   font-size: 1rem;
-  
+  align-items: ${(props) => props.alignItems || ''};
 `;

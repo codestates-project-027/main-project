@@ -1,27 +1,32 @@
+import { useState } from 'react';
 import { ReviewCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
 import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
-import { useState } from 'react';
+import { IconWrapper } from '../../styles/components/IconStyles';
 
 export const ReviewCard = () => {
   const [isHover, setIsHover] = useState(false);
-  const hoverOn = () => {
-    setIsHover(true);
-  };
-  const hoverOff = () => {
-    setIsHover(false);
-  };
+
   return (
     <>
       <ReviewCardGlobal>
-        <ReviewCardStyle onMouseOver={hoverOn} onMouseLeave={hoverOff}>
+        <ReviewCardStyle
+          onMouseOver={() => {
+            setIsHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsHover(false);
+          }}
+        >
           <div className="img--wrapper">img</div>
           <div className="rest--wrapper">
             {isHover ? (
               <div className="edit--wrapper">
-                <RiPencilFill style={{ marginRight: '15px' }} />
+                <IconWrapper marginRight="15px">
+                  <RiPencilFill />
+                </IconWrapper>
                 <AiOutlineCloseSquare />
               </div>
             ) : null}

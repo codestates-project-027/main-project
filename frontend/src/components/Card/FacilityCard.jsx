@@ -61,7 +61,7 @@ export const FacilityDescCard = ({ text, backGround, color }) => {
   return (
     <>
       <FDescCardStyle>
-        <H4 style={{ alignItems: 'center' }}>OO동 헬스클럽</H4>
+        <H4 alignItems="center">OO동 헬스클럽</H4>
         <BigBtn backGround={backGround} color={color}>
           {text}
         </BigBtn>
