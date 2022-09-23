@@ -1,6 +1,8 @@
 import DaumPostcode from 'react-daum-postcode';
 import { useState, useEffect } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/Modalstyle';
+import { BasicBtn } from '../Button/Btns';
+
 const { kakao } = window;
 
 const AddressUploader = () => {
@@ -17,10 +19,6 @@ const AddressUploader = () => {
       setAddress(data.address);
       setOpenPostcode(false);
     },
-  };
-
-  const handleModal = () => {
-    setOpenPostcode(false);
   };
 
   useEffect(() => {
@@ -45,23 +43,18 @@ const AddressUploader = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       {address}
-      {/* {geoCoding()} */}
       {console.log(coord)}
-      <button
-        style={{
-          background: 'lightgreen',
-          border: 'none',
-          borderRadius: '3px',
-          padding: '5px',
-        }}
-        onClick={handleAddress.clickButton}
-      >
+      <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
         주소검색
-      </button>
+      </BasicBtn>
 
       {openPostcode && (
         <>
-          <ModalBackdropStyle onClick={handleModal}>
+          <ModalBackdropStyle
+            onClick={() => {
+              setOpenPostcode(false);
+            }}
+          >
             <DaumPostcode
               style={{
                 position: 'absolute',
