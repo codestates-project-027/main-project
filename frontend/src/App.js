@@ -30,6 +30,9 @@ import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
 import TestPage from './pages/Test';
 import EditMyFacilityPage from './pages/EditMyFacility';
+import RegisterFacilityPage from './pages/RegisterFacility';
+import EditFacilityPage from './pages/EditFacility';
+import AdminPage from './pages/Admin';
 
 import CommunityPage from './pages/Community';
 import WritingPage from './pages/WritingPost';
@@ -71,11 +74,17 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+
               <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
               <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
               <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-
-              {/* 시설 등록 페이지 */}
+              
+              <Route
+                path={PATH.REGISTERFACILITY}
+                element={<RegisterFacilityPage />}
+              />
+              <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
+              <Route path={PATH.ADMIN} element={<AdminPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

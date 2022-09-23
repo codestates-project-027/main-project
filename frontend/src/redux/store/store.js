@@ -1,8 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
-import communityReducer from '../CommunitySlice/CommunitySlice';
+import {
+  combineReducers,
+  configureStore,
+  applyMiddleware,
+} from '@reduxjs/toolkit';
+import { createLogger } from 'redux-logger';
+import ReduxThunk from 'redux-thunk';
+import { categorySlice } from '../slices/categorySlice';
 
-export const store = configureStore({
-  reducer: {
-    postings: communityReducer,
-  },
+
+const logger = createLogger();
+const rootReducer = combineReducers({
+  category: categorySlice.reducer,
 });
+
+const store = configureStore(
+  {
+    reducer: rootReducer,
+  },
+  applyMiddleware(logger, ReduxThunk)
+);
+
+export default store;

@@ -158,7 +158,7 @@ export const LocationViewCardStyle = styled.div`
   background-color: lightgoldenrodyellow;
 `;
 
-export const RCardStyle = styled.div`
+export const ReviewCardStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,6 +206,7 @@ export const RCardStyle = styled.div`
     }
   }
 `;
+
 export const UserImageCard = styled.div`
   border: 1px solid white;
   width: 5rem;
