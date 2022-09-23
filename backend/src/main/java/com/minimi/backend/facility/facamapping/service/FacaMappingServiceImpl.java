@@ -76,8 +76,12 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
     @Override
     public FacaMapping patchFacaMapping(Long facilityId, FacilityCategory facilityCategory) {
-        //todo testCode
-        facaMappingRepository.existsByFaId(facilityId);
+
+        blankAndNullCheck(facilityId);
+        blankAndNullCheck(facilityCategory);
+
+        if (!facaMappingRepository.existsByFaId(facilityId)) throw new NullPointerException("Not Found FacaMapping");
+
         FacaMapping facaMapping = facaMappingRepository
                 .findByFaIdAndFacaId(facilityId, facilityCategory.getFacilityCategoryId());
         facaMapping.setFacilityCategory(facilityCategory);

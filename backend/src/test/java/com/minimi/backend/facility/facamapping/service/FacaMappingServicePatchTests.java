@@ -108,7 +108,41 @@ public class FacaMappingServicePatchTests {
                     .findByFaIdAndFacaId(Mockito.anyLong(), Mockito.anyLong());
             then(facaMappingRepository).should(times(0))
                     .save(Mockito.any(FacaMapping.class));
-            assertThat(exception.getMessage(), equalTo("Not Found facaMapping"));
+            assertThat(exception.getMessage(), equalTo("Not Found FacaMapping"));
+        }
+
+        @Test
+        @DisplayName("fail test 2 -> null facilityId")
+        public void failTest2() throws Exception {
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                FacaMapping result = facaMappingService.patchFacaMapping(null, facilityCategory);
+            });
+
+            then(facaMappingRepository).should(times(0))
+                    .existsByFaId(Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .findByFaIdAndFacaId(Mockito.anyLong(), Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .save(Mockito.any(FacaMapping.class));
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+        }
+
+        @Test
+        @DisplayName("fail test 3 -> null facilityCategory")
+        public void failTest3() throws Exception {
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                FacaMapping result = facaMappingService.patchFacaMapping(1L, null);
+            });
+
+            then(facaMappingRepository).should(times(0))
+                    .existsByFaId(Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .findByFaIdAndFacaId(Mockito.anyLong(), Mockito.anyLong());
+            then(facaMappingRepository).should(times(0))
+                    .save(Mockito.any(FacaMapping.class));
+            assertThat(exception.getMessage(), equalTo("Null Value"));
         }
     }
 }
