@@ -207,3 +207,36 @@ export const ReviewCardStyle = styled.div`
   }
 `;
 
+export const UserImageCard = styled.div`
+  border: 1px solid white;
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem;
+`;
+
+export const Posting = styled.div`
+  .content--wrapper {
+    margin-top: 0.2rem;
+    margin-right: 7rem;
+    height: 5rem;
+    width: 8rem;
+    .name--wrapper {
+      display: flex;
+      position: relative;
+      right: 1.5rem;
+    }
+    .post {
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      bottom: 4rem;
+      right: 1.5rem;
+    }
+  }
+`;
+
+export const Location = styled.div`
+  margin-top: 5rem;
+  margin-right: 1rem;
+`;

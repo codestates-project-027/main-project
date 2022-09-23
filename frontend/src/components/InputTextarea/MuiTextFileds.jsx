@@ -21,3 +21,11 @@ export const BasicTextField = ({ text }) => {
     </TextField>
   );
 };
+
+export const CommunityTextField = ({ text, onChange, value, inputProps }) => {
+  return (
+    <TextField {...inputProps} onChange={onChange} value={value} fullWidth>
+      {text}
+    </TextField>
+  );
+};

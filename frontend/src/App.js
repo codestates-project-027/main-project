@@ -34,6 +34,10 @@ import RegisterFacilityPage from './pages/RegisterFacility';
 import EditFacilityPage from './pages/EditFacility';
 import AdminPage from './pages/Admin';
 
+import CommunityPage from './pages/Community';
+import WritingPage from './pages/WritingPost';
+import PostingPage from './pages/Posting';
+
 function App() {
   const [test, setTest] = useState('');
 
@@ -70,6 +74,11 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+
+              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
+              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+              
               <Route
                 path={PATH.REGISTERFACILITY}
                 element={<RegisterFacilityPage />}
