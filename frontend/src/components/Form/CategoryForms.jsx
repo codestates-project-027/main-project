@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -42,23 +43,21 @@ export const ReadCategoryForm = ({ data }) => {
   );
 };
 
-export const InputCategoryForm = ({ idx }) => {
-  const handleSelect = (e) => {
-    if (e.target.value !== '-') {
-    }
-  };
+export const InputCategoryForm = ({ idx, type }) => {
   return (
     <>
-      <div>{idx}</div>
       <Formik
         initialValues={{ code: '', title: '', status: '' }}
         validate={(values) => {
           const errors = {};
           if (!values.code) {
-            errors.code = 'Code: Required';
+            errors.code = 'ex) 000001';
           }
           if (!values.title) {
-            errors.title = 'Title: Required';
+            errors.title = 'ex) 헬스';
+          }
+          if (!values.status) {
+            errors.status = 'ex) ACTIVE / INACTIVE';
           }
           return errors;
         }}
@@ -86,11 +85,17 @@ export const InputCategoryForm = ({ idx }) => {
               />
               <ErrorMessage name="title" component="div" />
             </div>
-            <select>
-              <option value={'ACTIVE'}>Active</option>
-              <option value={'INACTIVE'}>Inactive</option>
-            </select>
-            <BigBtn marginTop="20px">카테고리 생성</BigBtn>
+            <div className="input--wrapper">
+              <Field
+                type="text"
+                name="status"
+                placeholder="Category Status"
+                required
+              />
+              <ErrorMessage name="status" component="div" />
+            </div>
+
+            <BigBtn marginTop="20px">카테고리 {type}</BigBtn>
           </FormWrapper>
         </Form>
       </Formik>

@@ -8,7 +8,8 @@ import { InputCategoryForm } from '../components/Form/CategoryForms';
 
 const AdminPage = () => {
   const [category, setCategory] = useState({});
-  const [btnIdx, setBtnIdx] = useState(-1);
+  const [btnIdx, setBtnIdx] = useState(0);
+  const [type, setType] = useState('');
 
   const data = [
     {
@@ -25,8 +26,13 @@ const AdminPage = () => {
 
   const btnContent = ['Read', 'Create', 'Edit'];
 
-  const clickHandler = (idx) => {
+  const clickBtn = (idx) => {
     setBtnIdx(idx);
+    if (idx === 0) {
+      console.log('data 불러오기');
+    } else if (idx === 1) {
+      setType('생성');
+    } else setType('수정');
   };
 
   return (
@@ -43,7 +49,7 @@ const AdminPage = () => {
                 marginRight="30px"
                 key={idx}
                 onClick={() => {
-                  clickHandler(idx);
+                  clickBtn(idx);
                 }}
               >
                 {el}
@@ -51,9 +57,7 @@ const AdminPage = () => {
             );
           })}
         </BtnsWrapper>
-        {btnIdx === 0 ? <InputCategoryForm idx={btnIdx}/> : ''}
-        {btnIdx === 1 ? <InputCategoryForm idx={btnIdx}/> : ''}
-        {btnIdx === 2 ? <InputCategoryForm idx={btnIdx}/> : ''}
+        {btnIdx !== 0 ? <InputCategoryForm type={type} idx={btnIdx} /> : ''}
         {/* <button onClick={getHandler}>get</button>
         <button onClick={postHandler}>post</button>
         <button onClick={patchHandler}>patch</button> */}

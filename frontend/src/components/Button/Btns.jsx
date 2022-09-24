@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { MainPageBtnIconStyle } from '../../styles/components/IconStyles';
 import { MainPageBtnTextStyle } from '../../styles/components/TextStyles';
 
-export const BasicBtn = styled.div`
+export const BasicBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
