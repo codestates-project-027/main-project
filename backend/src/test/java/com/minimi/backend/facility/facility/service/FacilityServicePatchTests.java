@@ -126,6 +126,7 @@ public class FacilityServicePatchTests {
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
             facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("시설정보2");
+
             facilityDtoReqContainNull.setFacilityPhotoList(new ArrayList<>(Arrays.asList("이미지1", "이미지22")));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));

@@ -20,7 +20,7 @@ public interface FacaMappingService {
      * @param facility
      * @return FacaMapping
      */
-    FacaMapping postFacaMapping(FacilityCategory facilityCategory, Facility facility);
+    void postFacaMapping(FacilityCategory facilityCategory, Facility facility);
 
     /**
      * @param facilityId
@@ -33,6 +33,6 @@ public interface FacaMappingService {
      * @param facilityCategory
      * @return FacaMapping
      */
-    FacaMapping patchFacaMapping(Long facilityId, FacilityCategory facilityCategory);
+    void patchFacaMapping(Long facilityId, FacilityCategory facilityCategory);
 
 }

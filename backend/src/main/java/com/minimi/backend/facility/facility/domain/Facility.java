@@ -21,6 +21,8 @@ public class Facility {
     @Column
     private String facilityName;
 
+
+    //todo 삭제 (dto로 이동) 클라이언트의 요구사항에의해 엔티티가 오염되면안됨
     @Column
     private String facilityPhoto;
 
@@ -39,9 +41,13 @@ public class Facility {
     @Column
     private String phone;
 
+
+    //todo location객체 만들어서  String 대신 쓰기 (원시타입지양) 변화에 유연하게 만들기
     @Column
     private String location;
 
+
+    //todo 삭제 (starRate객체 생성 후 dto에 주입)
     @Column
     private int starRate;
 

@@ -12,9 +12,9 @@ public interface FacilityService {
 
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacility(String categoryCode, int page);
 
-    public Facility postFacility(FacilityDto.request facilityDtoReq);
+    public void postFacility(FacilityDto.request facilityDtoReq);
 
-    public Facility patchFacility(Long facilityId, FacilityDto.patch facilityDtoPat);
+    public void patchFacility(Long facilityId, FacilityDto.patch facilityDtoPat);
 
     public void deleteFacility(Long facilityId);
 
