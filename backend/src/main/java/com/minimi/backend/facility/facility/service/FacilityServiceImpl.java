@@ -12,6 +12,7 @@ import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetLi
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanWrapper;
@@ -61,7 +62,7 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Facility postFacility(FacilityDto.request facilityDtoReq) {
+    public void postFacility(FacilityDto.request facilityDtoReq) {
 
         facilityDtoReq.setCategoryList(
                 facilityDtoReq.getCategoryList().stream().distinct().collect(Collectors.toList()));
@@ -80,13 +81,11 @@ public class FacilityServiceImpl implements FacilityService {
                 .build());
 
         publishPostEventList(facility);
-
-        return facility;
     }
 
     @Override
     @Transactional
-    public Facility patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
+    public void patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
 
@@ -95,7 +94,7 @@ public class FacilityServiceImpl implements FacilityService {
             Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
 
             facilityRepository.save(patchedFacility);
-            return patchedFacility;
+            return;
         }
 
         facilityDtoPat.setCategoryList(
@@ -108,8 +107,6 @@ public class FacilityServiceImpl implements FacilityService {
 
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
         publishPostEventList(resultFacility);
-
-        return resultFacility;
     }
 
     @Override
@@ -152,9 +149,9 @@ public class FacilityServiceImpl implements FacilityService {
 
     public void publishPostEventList(Facility facility) {
         facility.getCategoryList().forEach(categoryTitle -> {
-            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            FacilityCategoryDto.response facilityCategoryDtoRes = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
             applicationEventPublisher.publishEvent(
-                    new FacilityPostEvent(facilityCategory, facility));
+                    new FacilityPostEvent(facilityCategoryDtoRes, facility));
         });
     }
 }

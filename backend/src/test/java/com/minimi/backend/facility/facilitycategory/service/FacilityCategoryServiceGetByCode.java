@@ -2,7 +2,9 @@ package com.minimi.backend.facility.facilitycategory.service;
 
 
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryRepository;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +25,9 @@ public class FacilityCategoryServiceGetByCode {
 
     @Mock
     private FacilityCategoryRepository facilityCategoryRepository;
+
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
 
     @InjectMocks
     private FacilityCategoryServiceImpl facilityCategoryService;
@@ -45,12 +50,15 @@ public class FacilityCategoryServiceGetByCode {
                     .willReturn(true);
             given(facilityCategoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(facilityCategory);
+            given(facilityCategoryMapper.facilityCategoryToFacilityCategoryDtoResponse(facilityCategory))
+                    .willReturn(Mockito.any(FacilityCategoryDto.response.class));
 
-            FacilityCategory result = facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
+            facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(facilityCategoryRepository).should(times(1)).findByCategoryCode(anyString());
-            assertThat(result, equalTo(facilityCategory));
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryToFacilityCategoryDtoResponse(Mockito.any(FacilityCategory.class));
         }
     }
     @Nested
@@ -64,7 +72,7 @@ public class FacilityCategoryServiceGetByCode {
                     .willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                FacilityCategory result = facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
+                facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
             });
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());

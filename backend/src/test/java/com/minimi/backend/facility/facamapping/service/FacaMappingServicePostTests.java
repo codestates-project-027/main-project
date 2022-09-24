@@ -7,6 +7,8 @@ import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facamapping.domain.FacaMapping;
 import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,10 +36,15 @@ public class FacaMappingServicePostTests {
     @Mock
     private ApplicationEventPublisher eventPublisher;
 
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
+
     @InjectMocks
     private FacaMappingServiceImpl facaMappingService;
 
     private Facility facility;
+
+    private FacilityCategoryDto.response facilityCategoryDtoRes;
 
     @BeforeEach
     public void setup(){
@@ -47,6 +54,9 @@ public class FacaMappingServicePostTests {
                 "시설정보","서울특별시 강남구","www.website.com",
                 "010-0000-0000","34.12345, 119.12345", 4,
                 new ArrayList<>(Arrays.asList("헬스", "PT")), FacilityStatus.PENDING
+        );
+        facilityCategoryDtoRes = new FacilityCategoryDto.response(
+                1L,"222222","헬스"
         );
     }
 
@@ -61,15 +71,19 @@ public class FacaMappingServicePostTests {
             FacilityCategory facilityCategory = new FacilityCategory(1L,"222222","헬스");
             FacaMapping facaMapping =
                     new FacaMapping(1L, 1L,1L,facilityCategory, facility);
-
+            given(facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(
+                    Mockito.any(FacilityCategoryDto.response.class)))
+                    .willReturn(facilityCategory);
             given(facaMappingRepository.save(Mockito.any(FacaMapping.class))).willReturn(facaMapping);
 
 
-            FacaMapping result = facaMappingService.postFacaMapping(facilityCategory, facility);
+            facaMappingService.postFacaMapping(facilityCategoryDtoRes, facility);
 
-
-            then(facaMappingRepository).should(times(1)).save(Mockito.any(FacaMapping.class));
-            assertThat(result, equalTo(facaMapping));
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryDtoResponseToFacilityCategory(
+                            Mockito.any(FacilityCategoryDto.response.class));
+            then(facaMappingRepository).should(times(1))
+                    .save(Mockito.any(FacaMapping.class));
         }
 
     }
@@ -91,11 +105,11 @@ public class FacaMappingServicePostTests {
         @Test
         @DisplayName("fail test 2 -> blankValue")
         public void failTest2() throws Exception {
-            FacilityCategory facilityCategory = new FacilityCategory();
+            FacilityCategoryDto.response facilityCategoryDtoResNull = new FacilityCategoryDto.response();
             Facility facility = new Facility();
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facaMappingService.postFacaMapping(facilityCategory, facility);
+                facaMappingService.postFacaMapping(facilityCategoryDtoResNull, facility);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));

@@ -5,6 +5,8 @@ import com.minimi.backend.facility.facamapping.domain.FacaMapping;
 import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,6 +31,9 @@ public class FacaMappingServicePatchTests {
     @Mock
     private ApplicationEventPublisher eventPublisher;
 
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
+
     @InjectMocks
     private FacaMappingServiceImpl facaMappingService;
 
@@ -37,10 +42,13 @@ public class FacaMappingServicePatchTests {
     private Facility facility;
     private FacilityCategory facilityCategory;
 
+    private FacilityCategoryDto.response facilityCategoryDtoRes;
+
     @BeforeEach
     void setup(){
         facility = new Facility();
         facilityCategory = new FacilityCategory();
+        facilityCategoryDtoRes = new FacilityCategoryDto.response();
         facaMapping = new FacaMapping(
                 1L,
                 1L,
@@ -63,6 +71,11 @@ public class FacaMappingServicePatchTests {
                     "222",
                     "헬스"
             );
+            FacilityCategoryDto.response facilityCategoryDtoRes2 = new FacilityCategoryDto.response(
+                    2L,
+                    "222",
+                    "헬스"
+            );
             FacaMapping facaMapping2 = new FacaMapping(
                     1L,
                     2L,
@@ -71,11 +84,14 @@ public class FacaMappingServicePatchTests {
                     facility
             );
             given(facaMappingRepository.existsByFaId(Mockito.anyLong())).willReturn(true);
+            given(facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(
+                    Mockito.any(FacilityCategoryDto.response.class)))
+                    .willReturn(facilityCategory2);
             given(facaMappingRepository.findByFaIdAndFacaId(Mockito.anyLong(),Mockito.anyLong())).willReturn(facaMapping);
             given(facaMappingRepository.save(facaMapping)).willReturn(facaMapping2);
 
 
-            FacaMapping result = facaMappingService.patchFacaMapping(1L,facilityCategory2);
+            facaMappingService.patchFacaMapping(1L,facilityCategoryDtoRes2);
 
 
             then(facaMappingRepository).should(times(1))
@@ -84,7 +100,6 @@ public class FacaMappingServicePatchTests {
                     .findByFaIdAndFacaId(Mockito.anyLong(), Mockito.anyLong());
             then(facaMappingRepository).should(times(1))
                     .save(Mockito.any(FacaMapping.class));
-            assertThat(result, equalTo(facaMapping2));
         }
     }
 
@@ -99,7 +114,7 @@ public class FacaMappingServicePatchTests {
 
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                        FacaMapping result = facaMappingService.patchFacaMapping(2L, facilityCategory);
+                        facaMappingService.patchFacaMapping(2L, facilityCategoryDtoRes);
                     });
 
             then(facaMappingRepository).should(times(1))
@@ -116,7 +131,7 @@ public class FacaMappingServicePatchTests {
         public void failTest2() throws Exception {
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                FacaMapping result = facaMappingService.patchFacaMapping(null, facilityCategory);
+                facaMappingService.patchFacaMapping(null, facilityCategoryDtoRes);
             });
 
             then(facaMappingRepository).should(times(0))
@@ -133,7 +148,7 @@ public class FacaMappingServicePatchTests {
         public void failTest3() throws Exception {
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                FacaMapping result = facaMappingService.patchFacaMapping(1L, null);
+                facaMappingService.patchFacaMapping(1L, null);
             });
 
             then(facaMappingRepository).should(times(0))

@@ -4,6 +4,7 @@ import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facamapping.domain.FacaMapping;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import org.springframework.data.domain.Slice;
 
 
@@ -16,11 +17,11 @@ public interface FacaMappingService {
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page);
 
     /**
-     * @param facilityCategory
+     * @param facilityCategoryDtoRes
      * @param facility
      * @return FacaMapping
      */
-    void postFacaMapping(FacilityCategory facilityCategory, Facility facility);
+    void postFacaMapping(FacilityCategoryDto.response facilityCategoryDtoRes, Facility facility);
 
     /**
      * @param facilityId
@@ -30,9 +31,9 @@ public interface FacaMappingService {
     /**
      * @deprecated exists only testCode
      * @param facilityId
-     * @param facilityCategory
+     * @param facilityCategoryDtoRes
      * @return FacaMapping
      */
-    void patchFacaMapping(Long facilityId, FacilityCategory facilityCategory);
+    void patchFacaMapping(Long facilityId, FacilityCategoryDto.response facilityCategoryDtoRes);
 
 }

@@ -2,7 +2,9 @@ package com.minimi.backend.facility.facilitycategory.service;
 
 
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryRepository;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +25,9 @@ public class FacilityCategoryServiceGetByTitle {
 
     @Mock
     private FacilityCategoryRepository facilityCategoryRepository;
+
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
 
     @InjectMocks
     private FacilityCategoryServiceImpl facilityCategoryService;
@@ -45,12 +50,15 @@ public class FacilityCategoryServiceGetByTitle {
                     .willReturn(true);
             given(facilityCategoryRepository.findByCategoryTitle(Mockito.anyString()))
                     .willReturn(facilityCategory);
+            given(facilityCategoryMapper.facilityCategoryToFacilityCategoryDtoResponse(facilityCategory))
+                    .willReturn(Mockito.any(FacilityCategoryDto.response.class));
 
-            FacilityCategory result = facilityCategoryService.getFacilityCategoryByTitle("헬스");
+            facilityCategoryService.getFacilityCategoryByTitle("헬스");
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(anyString());
             then(facilityCategoryRepository).should(times(1)).findByCategoryTitle(anyString());
-            assertThat(result, equalTo(facilityCategory));
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryToFacilityCategoryDtoResponse(facilityCategory);
         }
     }
     @Nested
@@ -64,7 +72,7 @@ public class FacilityCategoryServiceGetByTitle {
                     .willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                        FacilityCategory result = facilityCategoryService.getFacilityCategoryByTitle("헬스");
+                        facilityCategoryService.getFacilityCategoryByTitle("헬스");
                     });
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(anyString());

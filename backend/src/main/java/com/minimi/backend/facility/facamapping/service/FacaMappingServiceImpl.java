@@ -7,6 +7,8 @@ import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facamapping.domain.FacaMapping;
 import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -26,13 +28,16 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     private final FacaMappingRepository facaMappingRepository;
     private final FacilityCategoryGetIdListener facilityCategoryGetIdListener;
     private final FacaMappingMapper facaMappingMapper;
+    private final FacilityCategoryMapper facilityCategoryMapper;
 
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
 
-        FacilityCategory facilityCategory = facilityCategoryGetIdListener
-                .getFacilityCategoryByCategoryCode(categoryCode);
+        FacilityCategory facilityCategory = facilityCategoryMapper
+                .facilityCategoryDtoResponseToFacilityCategory(
+                        facilityCategoryGetIdListener
+                                .getFacilityCategoryByCategoryCode(categoryCode));
 
 
         Slice<FacaMapping> facaMappingSlice =facaMappingRepository
@@ -49,18 +54,19 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     }
 
     @Override
-    public FacaMapping postFacaMapping(FacilityCategory facilityCategory, Facility facility) {
+    public void postFacaMapping(FacilityCategoryDto.response facilityCategoryDtoRes, Facility facility) {
         //null blank check
-        blankAndNullCheck(facilityCategory);
+        blankAndNullCheck(facilityCategoryDtoRes);
         blankAndNullCheck(facility);
-        blankAndNullCheck(facilityCategory.getFacilityCategoryId());
+        blankAndNullCheck(facilityCategoryDtoRes.getFacilityCategoryId());
         blankAndNullCheck(facility.getFacilityId());
+        FacilityCategory facilityCategory = facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(facilityCategoryDtoRes);
 
-        return facaMappingRepository.save(FacaMapping
+        facaMappingRepository.save(FacaMapping
                 .builder()
                 .facilityCategory(facilityCategory)
                 .facility(facility)
-                .facilityCategoryId(facilityCategory.getFacilityCategoryId())
+                .facilityCategoryId(facilityCategoryDtoRes.getFacilityCategoryId())
                 .facilityId(facility.getFacilityId())
                 .build());
     }
@@ -76,19 +82,21 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
     @Override
     @Transactional
-    public FacaMapping patchFacaMapping(Long facilityId, FacilityCategory facilityCategory) {
+    public void patchFacaMapping(Long facilityId, FacilityCategoryDto.response facilityCategoryDtoRes) {
 
         blankAndNullCheck(facilityId);
-        blankAndNullCheck(facilityCategory);
+        blankAndNullCheck(facilityCategoryDtoRes);
 
         if (!facaMappingRepository.existsByFaId(facilityId)) throw new NullPointerException("Not Found FacaMapping");
 
+        FacilityCategory facilityCategory = facilityCategoryMapper
+                .facilityCategoryDtoResponseToFacilityCategory(facilityCategoryDtoRes);
         FacaMapping facaMapping = facaMappingRepository
                 .findByFaIdAndFacaId(facilityId, facilityCategory.getFacilityCategoryId());
 
         facaMapping.setFacilityCategory(facilityCategory);
         facaMapping.setFacaId(facilityCategory.getFacilityCategoryId());
-        return facaMappingRepository.save(facaMapping);
+        facaMappingRepository.save(facaMapping);
     }
 
     public Boolean blankAndNullCheck(Object value) {

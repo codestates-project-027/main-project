@@ -8,6 +8,8 @@ import com.minimi.backend.facility.facamapping.service.listener.FacilityCategory
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -47,6 +49,9 @@ public class FacaMappingServiceGetPageTests {
     @Mock
     private FacaMappingMapper facaMappingMapper;
 
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
+
     @InjectMocks
     private FacaMappingServiceImpl facaMappingService;
 
@@ -64,10 +69,12 @@ public class FacaMappingServiceGetPageTests {
     private int page;
 
     private FacilityCategory facilityCategory;
+    private FacilityCategoryDto.response facilityCategoryDtoRes;
 
     @BeforeEach
     public void setup(){
         facilityCategory = new FacilityCategory(1L, "220901", "헬스");
+        facilityCategoryDtoRes = new FacilityCategoryDto.response(1L,"220901", "헬스");
         categoryCode = "220901";
         page = 1;
         nullFacaSlice = new SliceImpl<>(new ArrayList<>());
@@ -123,6 +130,9 @@ public class FacaMappingServiceGetPageTests {
         public void successTest() throws Exception{
             given(facilityCategoryGetIdListener
                     .getFacilityCategoryByCategoryCode(Mockito.anyString()))
+                    .willReturn(facilityCategoryDtoRes);
+            given(facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(
+                    Mockito.any(FacilityCategoryDto.response.class)))
                     .willReturn(facilityCategory);
             given(facaMappingRepository
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class)))
@@ -138,6 +148,9 @@ public class FacaMappingServiceGetPageTests {
 
             then(facilityCategoryGetIdListener).should(times(1))
                     .getFacilityCategoryByCategoryCode(anyString());
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryDtoResponseToFacilityCategory(
+                            Mockito.any(FacilityCategoryDto.response.class));
             then(facaMappingRepository).should(times(1))
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class));
             then(facaMappingMapper).should(times(3)).FacilityToResponseFacilityDto(any(Facility.class));
@@ -172,6 +185,10 @@ public class FacaMappingServiceGetPageTests {
         public void failTest2() throws Exception{
             given(facilityCategoryGetIdListener
                     .getFacilityCategoryByCategoryCode(Mockito.anyString()))
+                    .willReturn(facilityCategoryDtoRes);
+            given(facilityCategoryMapper
+                    .facilityCategoryDtoResponseToFacilityCategory(
+                            Mockito.any(FacilityCategoryDto.response.class)))
                     .willReturn(facilityCategory);
             given(facaMappingRepository
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class)))
@@ -184,6 +201,8 @@ public class FacaMappingServiceGetPageTests {
 
             then(facilityCategoryGetIdListener).should(times(1))
                     .getFacilityCategoryByCategoryCode(anyString());
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryDtoResponseToFacilityCategory(Mockito.any(FacilityCategoryDto.response.class));
             then(facaMappingRepository).should(times(1))
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class));
             assertThat(exception.getMessage(), equalTo("Null Slice Content"));
@@ -195,6 +214,10 @@ public class FacaMappingServiceGetPageTests {
         public void failTest3() throws Exception{
             given(facilityCategoryGetIdListener
                     .getFacilityCategoryByCategoryCode(Mockito.anyString()))
+                    .willReturn(facilityCategoryDtoRes);
+            given(facilityCategoryMapper
+                    .facilityCategoryDtoResponseToFacilityCategory(
+                            Mockito.any(FacilityCategoryDto.response.class)))
                     .willReturn(facilityCategory);
             given(facaMappingRepository
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class)))
@@ -210,6 +233,8 @@ public class FacaMappingServiceGetPageTests {
 
             then(facilityCategoryGetIdListener).should(times(1))
                     .getFacilityCategoryByCategoryCode(anyString());
+            then(facilityCategoryMapper).should(times(1))
+                    .facilityCategoryDtoResponseToFacilityCategory(Mockito.any(FacilityCategoryDto.response.class));
             then(facaMappingRepository).should(times(1))
                     .findByFacilityCategory(Mockito.any(FacilityCategory.class),Mockito.any(Pageable.class));
             then(facaMappingMapper).should(times(1))

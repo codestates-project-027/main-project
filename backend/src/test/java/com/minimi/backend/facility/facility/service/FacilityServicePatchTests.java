@@ -98,7 +98,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult);
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReq);
+            facilityService.patchFacility(facilityId, facilityDtoReq);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -106,18 +106,6 @@ public class FacilityServicePatchTests {
             then(facilityCategoryCheckListener)
                     .should(times(2)).checkExistsByCategoryTitle(anyString());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facilityResult.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facilityResult.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facilityResult.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facilityResult.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facilityResult.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facilityResult.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facilityResult.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facilityResult.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facilityResult.getCategoryList()));
         }
         @Test
         @DisplayName("success patchFacility test 2 -> contain null patch without categoryList")
@@ -132,24 +120,13 @@ public class FacilityServicePatchTests {
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
             then(facilityRepository).should(times(1)).findById(anyLong());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facility.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facilityResult.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facility.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facility.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facility.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facilityResult.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facilityResult.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facility.getCategoryList()));
+
         }
 
         @Test
@@ -165,7 +142,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult2);
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -173,18 +150,7 @@ public class FacilityServicePatchTests {
             then(facilityCategoryCheckListener)
                     .should(times(2)).checkExistsByCategoryTitle(anyString());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facility.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult2.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facilityResult2.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult2.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facility.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facilityResult2.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facility.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facility.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facility.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult2.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facilityResult2.getCategoryList()));
+
         }
 
         @Test
@@ -199,24 +165,13 @@ public class FacilityServicePatchTests {
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
             then(facilityRepository).should(times(1)).findById(anyLong());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facility.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facility.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facility.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facility.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facility.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facilityResult.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facilityResult.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facility.getCategoryList()));
+
         }
         @Test
         @DisplayName("success patchFacility test 5 -> contain blank patch with categoryList")
@@ -231,7 +186,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult3);
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -239,18 +194,7 @@ public class FacilityServicePatchTests {
             then(facilityCategoryCheckListener)
                     .should(times(2)).checkExistsByCategoryTitle(anyString());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facility.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult3.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facility.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult3.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facility.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facility.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facility.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facilityResult3.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facility.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult3.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facilityResult3.getCategoryList()));
+
         }
         @Test
         @DisplayName("success patchFacility test 6 -> contain blank patch with categoryList size == 0")
@@ -264,24 +208,13 @@ public class FacilityServicePatchTests {
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            Facility result = facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
             then(facilityRepository).should(times(1)).findById(anyLong());
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result.getPhone(), equalTo(facility.getPhone()));
-            assertThat(result.getFacilityId(), equalTo(facilityResult.getFacilityId()));
-            assertThat(result.getFacilityInfo(), equalTo(facility.getFacilityInfo()));
-            assertThat(result.getFacilityName(), equalTo(facilityResult.getFacilityName()));
-            assertThat(result.getAddress(), equalTo(facility.getAddress()));
-            assertThat(result.getFacilityPhoto(), equalTo(facility.getFacilityPhoto()));
-            assertThat(result.getLocation(), equalTo(facility.getLocation()));
-            assertThat(result.getStarRate(), equalTo(facilityResult.getStarRate()));
-            assertThat(result.getWebsite(), equalTo(facility.getWebsite()));
-            assertThat(result.getFacilityPhotoList(), equalTo(facility.getFacilityPhotoList()));
-            assertThat(result.getFacilityStatus(), equalTo(facilityResult.getFacilityStatus()));
-            assertThat(result.getCategoryList(), equalTo(facility.getCategoryList()));
+
         }
     }
 

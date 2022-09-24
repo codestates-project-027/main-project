@@ -2,6 +2,7 @@ package com.minimi.backend.facility.facamapping.service.listener;
 
 
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.facilitycategory.service.FacilityCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ public class FacilityCategoryGetIdListenerImpl implements FacilityCategoryGetIdL
     private final FacilityCategoryService facilityCategoryService;
 
     @Override
-    public FacilityCategory getFacilityCategoryByCategoryCode(String categoryCode) {
+    public FacilityCategoryDto.response getFacilityCategoryByCategoryCode(String categoryCode) {
         return facilityCategoryService.getFacilityCategoryByCategoryCode(categoryCode);
     }
 }

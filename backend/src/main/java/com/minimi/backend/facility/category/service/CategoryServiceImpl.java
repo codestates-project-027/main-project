@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
-    public Category postCategory(CategoryDto.request categoryDtoRequest) {
+    public void postCategory(CategoryDto.request categoryDtoRequest) {
 
         blankAndNullCheck(categoryDtoRequest.getCategoryCode());
         blankAndNullCheck(categoryDtoRequest.getCategoryTitle());
@@ -44,11 +44,10 @@ public class CategoryServiceImpl implements CategoryService {
                 .build());
 
         eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
-        return category;
     }
 
     @Override
-    public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
+    public void patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
 
         Category category = getCategory(categoryCode);
 
@@ -64,7 +63,6 @@ public class CategoryServiceImpl implements CategoryService {
         Category patchedCategory = categoryRepository.save(category);
         eventPublisher.publishEvent(
                 new CategoryPatchEvent(patchedCategory.getCategoryCode(), patchedCategory.getCategoryTitle()));
-        return patchedCategory;
     }
 
     @Override

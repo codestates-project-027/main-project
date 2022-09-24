@@ -21,6 +21,6 @@ public class FacilityPatchSubImpl implements FacilityPatchSub{
     @EventListener
     @Async
     public void patchFacaMapping(FacilityPatchEvent facilityPatchEvent) {
-        facaMappingService.patchFacaMapping(facilityPatchEvent.getFacilityId(), facilityPatchEvent.getFacilityCategory());
+        facaMappingService.patchFacaMapping(facilityPatchEvent.getFacilityId(), facilityPatchEvent.getFacilityCategoryDtoRes());
     }
 }
