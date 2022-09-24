@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ModalBoxStyle } from '../../styles/components/Modalstyle';
-import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
+import { Textarea } from '../../components/InputTextarea/FormTextarea';
 import { RoundBtn, BigBtn } from '../../components/Button/Btns';
 import styled from 'styled-components';
 
@@ -27,7 +27,7 @@ export const CReviewModal = () => {
             리뷰 작성하기
           </Typography>
           <Div>
-            <ReviewTXT />
+            <Textarea type="review" />
             <BigBtn>리뷰 작성</BigBtn>
           </Div>
         </Box>
@@ -62,7 +62,7 @@ export const UReviewModal = () => {
             리뷰 수정하기
           </Typography>
           <Div>
-            <ReviewTXT /> {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
+            <Textarea type="review" /> {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
             <BigBtn>리뷰 수정</BigBtn>
           </Div>
         </Box>

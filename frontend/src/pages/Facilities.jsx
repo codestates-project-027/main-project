@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { SearchbarWBtn } from '../components/Bar/Searchbar';
 
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import { FacilityCardFlex } from '../components/Card/FacilityCard';
+import { FacilityCard } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
 
 const FacilitiesPage = () => {
@@ -19,15 +19,14 @@ const FacilitiesPage = () => {
           <Div className="title">인기</Div>
           <TagGroup tags={tags} />
         </div>
-        <FacilityCardFlex />
-        <FacilityCardFlex />
+        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} />
       </FacilitiesPageGlobal>
     </>
   );
 };
 
 export default FacilitiesPage;
-
 
 const Div = styled.div`
   margin-right: 20px;

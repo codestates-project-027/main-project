@@ -5,22 +5,21 @@ import {
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export const ReviewTXT = () => {
+export const Textarea = ({ type }) => {
+  //ReviewTXT : 리뷰 작성 textarea
+  //FacilityTXT : 시설 등록 textarea
   const [count, setCount] = useState(0);
-  return (
-    <>
-      <ReviewTXTStyle
-        maxLength={100}
-        onChange={(e) => setCount(e.target.value.length)}
-      />
-      <P marginBottom="20px">{count}/100</P>
-    </>
-  );
-};
-
-export const FacilityDescForm = () => {
-  const [count, setCount] = useState(0);
-  return (
+  if (type === 'review') {
+    return (
+      <>
+        <ReviewTXTStyle
+          maxLength={100}
+          onChange={(e) => setCount(e.target.value.length)}
+        />
+        <P marginBottom="20px">{count}/100</P>
+      </>
+    );
+  } else if (type === 'facility') {
     <>
       <Div>
         <CreateFTXTStyle
@@ -29,8 +28,8 @@ export const FacilityDescForm = () => {
         />
         <P>{count}/200</P>
       </Div>
-    </>
-  );
+    </>;
+  }
 };
 
 const Div = styled.div`

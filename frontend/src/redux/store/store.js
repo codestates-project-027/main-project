@@ -6,7 +6,7 @@ import {
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import { categorySlice } from '../slices/categorySlice';
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const logger = createLogger();
 const rootReducer = combineReducers({
@@ -17,7 +17,8 @@ const store = configureStore(
   {
     reducer: rootReducer,
   },
-  applyMiddleware(logger, ReduxThunk)
+  applyMiddleware(logger, ReduxThunk),
+  composeWithDevTools()
 );
 
 export default store;

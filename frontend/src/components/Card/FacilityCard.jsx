@@ -33,26 +33,22 @@ export const FBaseCard = () => {
   );
 };
 
-export const FacilityCard = () => {
-  return (
-    <>
-      <FCardGlobal to="/facility">
-        <FCardStyle>
-          <FBaseCard />
-        </FCardStyle>
-      </FCardGlobal>
-    </>
-  );
-};
-
-export const FacilityCardFlex = () => {
-  return (
+export const FacilityCard = ({ Flex }) => {
+  return Flex ? (
     <>
       <FCardFlexGlobal to="/facility">
         <FCardFlexStyle>
           <FBaseCard />
         </FCardFlexStyle>
       </FCardFlexGlobal>
+    </>
+  ) : (
+    <>
+      <FCardGlobal to="/facility">
+        <FCardStyle>
+          <FBaseCard />
+        </FCardStyle>
+      </FCardGlobal>
     </>
   );
 };

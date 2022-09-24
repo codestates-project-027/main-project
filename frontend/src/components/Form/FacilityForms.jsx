@@ -3,7 +3,7 @@
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
 import { Input } from '../InputTextarea/FormInputs';
-import { FacilityDescForm } from '../InputTextarea/FormTextarea';
+import { Textarea } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
@@ -39,7 +39,7 @@ export const RegisterFacilityForm = () => {
         </div>
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
-          <FacilityDescForm />
+          <Textarea type="facility" />
         </div>
         <div className="input--wrapper">
           <Label htmlFor="address">주소</Label>
@@ -96,7 +96,7 @@ export const EditFacilityForm = () => {
         </div>
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
-          <FacilityDescForm />
+          <Textarea type="facility" />
         </div>
         <div className="input--wrapper">
           <Label htmlFor="address">주소</Label>

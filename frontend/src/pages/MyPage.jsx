@@ -1,4 +1,4 @@
-import { MemberCardFlex } from '../components/Card/MemberCard';
+import { MemberCard } from '../components/Card/MemberCard';
 import AttendanceCard from '../components/Card/AttendanceCard';
 import { MyPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityDescCard } from '../components/Card/FacilityCard';
@@ -41,7 +41,7 @@ const MyPage = () => {
       <MyPageGlobal>
         <H1>마이 페이지</H1>
         <div className="card--wrapper">
-          <MemberCardFlex />
+          <MemberCard Flex={'Flex'} />
         </div>
         <div className="facility--wrapper">
           <H3 marginBottom="30px">사용중인 시설</H3>

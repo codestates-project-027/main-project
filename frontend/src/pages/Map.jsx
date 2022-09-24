@@ -5,7 +5,7 @@ import MapContainer from '../components/Map/MapContainer';
 import { BiCurrentLocation } from 'react-icons/bi';
 
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
-import { FacilityCardFlex } from '../components/Card/FacilityCard';
+import { FacilityCard } from '../components/Card/FacilityCard';
 
 const MapPage = () => {
   return (
@@ -13,9 +13,9 @@ const MapPage = () => {
       <FacilitiesPageGlobal>
         <SearchbarWBtn Icon={<BiCurrentLocation size="20" />} />
         <MapContainer />
-        <FacilityCardFlex />
-        <FacilityCardFlex />
-        <FacilityCardFlex />
+        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} />
       </FacilitiesPageGlobal>
     </>
   );

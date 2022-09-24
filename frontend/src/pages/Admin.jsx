@@ -1,25 +1,14 @@
-// 기능 구현 후 정리
-
+import styled from 'styled-components';
 import { AdminGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { ReadCategoryForm } from '../components/Form/CategoryForms';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import AXIOSCategory from '../api/AXIOS';
-import { readCategory } from '../redux/slices/categorySlice';
-import axios from 'axios';
-import MinimiClient from '../api/Interceptor';
-
-//쓰기 : axios interceptor, redux-persist, redux-toolkit, redux-thunks, formik
-//READ: 현재 카테고리 목록: Code, Title, Status별 (table)
-//POST: 카테고리 생성 form : Code, Title, Status 입력
-//PATCH : 카테고리 수정 form : Title, Status
+import { useState } from 'react';
+import { H3 } from '../components/Text/Head';
+import { BigBtn } from '../components/Button/Btns';
+import { InputCategoryForm } from '../components/Form/CategoryForms';
 
 const AdminPage = () => {
-  const categoryState = useSelector((state) => state.categorySlice);
-  const dispatch = useDispatch();
-  const params = useParams();
   const [category, setCategory] = useState({});
+  const [btnIdx, setBtnIdx] = useState(-1);
 
   const data = [
     {
@@ -34,92 +23,52 @@ const AdminPage = () => {
     },
   ];
 
-  //reducer
+  const btnContent = ['Read', 'Create', 'Edit'];
 
-  const GET_CATEGORY = 'GET_CATEGORY';
-  const POST_CATEGORY = 'POST_CATEGORY';
-  const PATCH_CATEGORY = 'PATCH_CATEGORY';
-
-  // action creator
-  const getCategoryAction = (response) => {
-    return {
-      type: GET_CATEGORY,
-      payload: response,
-    };
-  };
-
-  const postCategoryAction = (response) => {
-    return {
-      type: POST_CATEGORY,
-      payload: response,
-    };
-  };
-
-  const patchCategoryAction = (response) => {
-    return {
-      type: PATCH_CATEGORY,
-      payload: response,
-    };
-  };
-
-  //thunk
-  const getCategory = async () => {
-    const response = await axios.get(
-      'https://minimi-place.duckdns.org/category'
-    );
-    console.log(response.data);
-  };
-
-  const postCategoryThunk = async () => {
-    const body = {
-      categoryCode: '000001',
-      categoryTitle: '헬스',
-      categoryStatus: 'ACTIVE',
-    };
-    const response = await axios.post(
-      'https://minimi-place.duckdns.org/category',
-      body
-    );
-    dispatch(postCategoryAction(response.data));
-  };
-
-  const patchCategoryThunk = async () => {
-    const body = {
-      categoryCode: '000001',
-      categoryTitle: '헬스',
-      categoryStatus: 'INACTIVE',
-    };
-    const response = await axios.patch(
-      'https://minimi-place.duckdns.org/category/000001',
-      body
-    );
-    dispatch(patchCategoryAction(response.data));
-  };
-
-  //button handler
-  const getHandler = () => {
-    getCategory();
-  };
-
-  const postHandler = () => {
-    postCategoryThunk();
-  };
-
-  const patchHandler = () => {
-    patchCategoryThunk();
+  const clickHandler = (idx) => {
+    setBtnIdx(idx);
   };
 
   return (
     <>
       <AdminGlobal>
-        {/* <ReadCategoryForm data={category} /> */}
-
-        <button onClick={getHandler}>get</button>
+        <H3 marginBottom="30px" display="flex" justifyContent="center">
+          카테고리 목록
+        </H3>
+        <ReadCategoryForm data={data} />
+        <BtnsWrapper>
+          {btnContent.map((el, idx) => {
+            return (
+              <BigBtn
+                marginRight="30px"
+                key={idx}
+                onClick={() => {
+                  clickHandler(idx);
+                }}
+              >
+                {el}
+              </BigBtn>
+            );
+          })}
+        </BtnsWrapper>
+        {btnIdx === 0 ? <InputCategoryForm idx={btnIdx}/> : ''}
+        {btnIdx === 1 ? <InputCategoryForm idx={btnIdx}/> : ''}
+        {btnIdx === 2 ? <InputCategoryForm idx={btnIdx}/> : ''}
+        {/* <button onClick={getHandler}>get</button>
         <button onClick={postHandler}>post</button>
-        <button onClick={patchHandler}>patch</button>
+        <button onClick={patchHandler}>patch</button> */}
       </AdminGlobal>
     </>
   );
 };
 
 export default AdminPage;
+
+const BtnsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 100px;
+  margin-top: 50px;
+`;
