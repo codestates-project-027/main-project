@@ -12,7 +12,7 @@ import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { patchCategoryAction } from '../../redux/actions/actions';
+
 
 //api
 import {
@@ -57,6 +57,18 @@ export const InputCategoryForm = ({ idx, type }) => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categorySlice);
 
+  const postCategoryTest = async (values) => {
+    const body = {
+      categoryCode: values.categoryCode,
+      categoryTitle: values.categoryTitle,
+      categoryStatus: values.categoryStatus,
+    };
+    const res = await axios.post(
+      `https://minimi-place.duckdns.org/category/`,
+      body
+    );
+  };
+
   const patchCategoryTest = async (values) => {
     const body = {
       categoryTitle: values.categoryTitle,
@@ -68,6 +80,7 @@ export const InputCategoryForm = ({ idx, type }) => {
       body
     );
   };
+  
   return (
     <>
       <Formik
@@ -90,7 +103,7 @@ export const InputCategoryForm = ({ idx, type }) => {
           return errors;
         }}
         onSubmit={(values) => {
-          idx === 1 ? console.log('생성:', values) : patchCategoryTest(values);
+          idx === 1 ? postCategoryTest(values) : patchCategoryTest(values);
           console.log(values);
         }}
       >

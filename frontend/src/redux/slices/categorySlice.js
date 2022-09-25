@@ -3,6 +3,7 @@ import MinimiClient from '../../api/Interceptor';
 import { apiPath } from '../../api/AXIOS';
 
 const initialState = {
+  list: [],
   categoryCode: '',
   categoryTitle: '',
   categoryStatus: '',
@@ -21,9 +22,7 @@ export const categorySlice = createSlice({
   initialState,
   reducers: {
     getCategory: (state, action) => {
-      state.categoryCode = action.payload.categoryCode;
-      state.categoryTitle = action.payload.categoryTitle;
-      state.categoryStatus = action.payload.categoryStatus;
+       state.list = action.payload.list
     },
     postCategory: (state, action) => {
       state.categoryCode = action.payload.categoryCode;
@@ -36,3 +35,5 @@ export const categorySlice = createSlice({
     },
   },
 });
+
+export const { getCategory } = categorySlice.actions;

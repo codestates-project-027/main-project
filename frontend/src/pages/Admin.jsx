@@ -6,13 +6,16 @@ import { H3 } from '../components/Text/Head';
 import { BigBtn } from '../components/Button/Btns';
 import { InputCategoryForm } from '../components/Form/CategoryForms';
 import { useSelector, useDispatch } from 'react-redux';
+import { getCategory } from '../redux/slices/categorySlice';
 import axios from 'axios';
 
 const AdminPage = () => {
-  const categoryState = useSelector((state) => state.categorySlice);
+  const dispatch = useDispatch();
+  const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
   const [category, setCategory] = useState({});
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
+  const list = categoryState.list;
 
   const data = [
     {
@@ -28,9 +31,18 @@ const AdminPage = () => {
   ];
 
   const getCategoryTest = async () => {
-    const res = await axios.get('https://minimi-place.duckdns.org/category/');
-    console.log(res.data);
+    await axios.get('https://minimi-place.duckdns.org/category').then((res) => {
+      dispatch(getCategory({ list: res.data }));
+      console.log('categoryState:', categoryState);
+    });
   };
+
+  // useEffect(() => {
+  //   getCategoryTest()
+
+  //   // dispatch(getCategory({list:['3']}));
+  //   console.log(category)
+  // }, [dispatch]);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 
@@ -38,6 +50,7 @@ const AdminPage = () => {
     setBtnIdx(idx);
     if (idx === 0) {
       getCategoryTest();
+      console.log('categoryState:', categoryState);
     } else if (idx === 1) {
       setType('생성');
     } else setType('수정');
@@ -47,9 +60,9 @@ const AdminPage = () => {
     <>
       <AdminGlobal>
         <H3 marginBottom="30px" display="flex" justifyContent="center">
-          카테고리 목록
+          카테고리 목록 
         </H3>
-        <ReadCategoryForm data={data} />
+        <ReadCategoryForm data={categoryState.list} />
         <BtnsWrapper>
           {btnContent.map((el, idx) => {
             return (
