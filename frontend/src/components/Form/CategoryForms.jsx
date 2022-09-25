@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +12,6 @@ import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-
 
 //api
 import {
@@ -54,6 +53,7 @@ export const ReadCategoryForm = ({ data }) => {
 };
 
 export const InputCategoryForm = ({ idx, type }) => {
+ 
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categorySlice);
 
@@ -80,7 +80,7 @@ export const InputCategoryForm = ({ idx, type }) => {
       body
     );
   };
-  
+
   return (
     <>
       <Formik

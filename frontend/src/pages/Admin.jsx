@@ -30,26 +30,24 @@ const AdminPage = () => {
     },
   ];
 
-  const getCategoryTest = async () => {
+  const getCategoryAXIOS = async () => {
     await axios.get('https://minimi-place.duckdns.org/category').then((res) => {
       dispatch(getCategory({ list: res.data }));
       console.log('categoryState:', categoryState);
     });
   };
+  
 
   // useEffect(() => {
-  //   getCategoryTest()
-
-  //   // dispatch(getCategory({list:['3']}));
-  //   console.log(category)
-  // }, [dispatch]);
+  //   getCategoryAXIOS();
+  // }, []);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
     if (idx === 0) {
-      getCategoryTest();
+      getCategoryAXIOS();
       console.log('categoryState:', categoryState);
     } else if (idx === 1) {
       setType('생성');
@@ -60,7 +58,7 @@ const AdminPage = () => {
     <>
       <AdminGlobal>
         <H3 marginBottom="30px" display="flex" justifyContent="center">
-          카테고리 목록 
+          카테고리 목록
         </H3>
         <ReadCategoryForm data={categoryState.list} />
         <BtnsWrapper>
