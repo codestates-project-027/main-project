@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { AdminGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { ReadCategoryForm } from '../components/Form/CategoryForms';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { H3 } from '../components/Text/Head';
 import { BigBtn } from '../components/Button/Btns';
 import { InputCategoryForm } from '../components/Form/CategoryForms';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const AdminPage = () => {
+  const categoryState = useSelector((state) => state.categorySlice);
   const [category, setCategory] = useState({});
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
@@ -24,12 +27,17 @@ const AdminPage = () => {
     },
   ];
 
+  const getCategoryTest = async () => {
+    const res = await axios.get('https://minimi-place.duckdns.org/category/');
+    console.log(res.data);
+  };
+
   const btnContent = ['Read', 'Create', 'Edit'];
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
     if (idx === 0) {
-      console.log('data 불러오기');
+      getCategoryTest();
     } else if (idx === 1) {
       setType('생성');
     } else setType('수정');
@@ -58,9 +66,6 @@ const AdminPage = () => {
           })}
         </BtnsWrapper>
         {btnIdx !== 0 ? <InputCategoryForm type={type} idx={btnIdx} /> : ''}
-        {/* <button onClick={getHandler}>get</button>
-        <button onClick={postHandler}>post</button>
-        <button onClick={patchHandler}>patch</button> */}
       </AdminGlobal>
     </>
   );

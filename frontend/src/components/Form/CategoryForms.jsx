@@ -11,6 +11,16 @@ import { TAG_CODE_REGEX } from '../../constants/regex';
 import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { patchCategoryAction } from '../../redux/actions/actions';
+
+//api
+import {
+  getCategoryThunk,
+  postCategoryThunk,
+  patchCategoryThunk,
+} from '../../redux/thunks/thunks';
+import axios from 'axios';
 
 export const ReadCategoryForm = ({ data }) => {
   return (
@@ -44,24 +54,43 @@ export const ReadCategoryForm = ({ data }) => {
 };
 
 export const InputCategoryForm = ({ idx, type }) => {
+  const dispatch = useDispatch();
+  const categoryState = useSelector((state) => state.categorySlice);
+
+  const patchCategoryTest = async (values) => {
+    const body = {
+      categoryTitle: values.categoryTitle,
+      categoryStatus: values.categoryStatus,
+    };
+    const res = await axios.patch(
+      // dispatch(patchCategoryAction(res.data));
+      `https://minimi-place.duckdns.org/category/${values.categoryCode}`,
+      body
+    );
+  };
   return (
     <>
       <Formik
-        initialValues={{ code: '', title: '', status: '' }}
+        initialValues={{
+          categoryCode: '',
+          categoryTitle: '',
+          categoryStatus: '',
+        }}
         validate={(values) => {
           const errors = {};
-          if (!values.code) {
+          if (!values.categoryCode) {
             errors.code = 'ex) 000001';
           }
-          if (!values.title) {
+          if (!values.categoryTitle) {
             errors.title = 'ex) 헬스';
           }
-          if (!values.status) {
+          if (!values.categoryStatus) {
             errors.status = 'ex) ACTIVE / INACTIVE';
           }
           return errors;
         }}
         onSubmit={(values) => {
+          idx === 1 ? console.log('생성:', values) : patchCategoryTest(values);
           console.log(values);
         }}
       >
@@ -69,33 +98,36 @@ export const InputCategoryForm = ({ idx, type }) => {
           <FormWrapper>
             <div className="input--wrapper">
               <Field
-                type="number"
-                name="code"
+                type="text"
+                name="categoryCode"
                 placeholder="Category Code"
+                maxLength={6}
                 required
               />
-              <ErrorMessage name="code" component="div" />
+              <ErrorMessage name="categoryCode" component="div" />
             </div>
             <div className="input--wrapper">
               <Field
                 type="text"
-                name="title"
+                name="categoryTitle"
                 placeholder="Category Title"
                 required
               />
-              <ErrorMessage name="title" component="div" />
+              <ErrorMessage name="categoryTitle" component="div" />
             </div>
             <div className="input--wrapper">
               <Field
                 type="text"
-                name="status"
+                name="categoryStatus"
                 placeholder="Category Status"
                 required
               />
-              <ErrorMessage name="status" component="div" />
+              <ErrorMessage name="categoryStatus" component="div" />
             </div>
 
-            <BigBtn marginTop="20px">카테고리 {type}</BigBtn>
+            <BigBtn type="submit" marginTop="20px">
+              카테고리 {type}
+            </BigBtn>
           </FormWrapper>
         </Form>
       </Formik>
