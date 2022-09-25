@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { AdminGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { ReadCategoryForm } from '../components/Form/CategoryForms';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { H3 } from '../components/Text/Head';
 import { BigBtn } from '../components/Button/Btns';
 import { InputCategoryForm } from '../components/Form/CategoryForms';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
 import axiosInstance from '../api/Interceptor';
+import { getCategoryAXIOS } from '../api/AXIOS';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -15,16 +16,23 @@ const AdminPage = () => {
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
 
-  const getCategoryAXIOS = async () => {
+  // const getCategoryAXIOS = async () => {
+  //   await axiosInstance.get('/category').then((res) => {
+  //     dispatch(getCategory({ list: res.data }));
+  //     console.log('categoryState:', categoryState);
+  //   });
+  // };
+
+  const getCategoryAXIOS = useCallback(async () => {
     await axiosInstance.get('/category').then((res) => {
       dispatch(getCategory({ list: res.data }));
       console.log('categoryState:', categoryState);
     });
-  }
+  }, []);
 
-  // useEffect(() => {
-  //   getCategoryAXIOS();
-  // }, []);
+  useEffect(() => {
+    getCategoryAXIOS();
+  }, [getCategoryAXIOS]);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

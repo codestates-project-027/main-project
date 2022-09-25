@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
 
 //api
 import axiosInstance from '../../api/Interceptor';
@@ -47,9 +46,6 @@ export const ReadCategoryForm = ({ data }) => {
 };
 
 export const InputCategoryForm = ({ idx, type }) => {
-  const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.categorySlice);
-
   const postCategoryAXIOS = async (values) => {
     const body = {
       categoryCode: values.categoryCode,

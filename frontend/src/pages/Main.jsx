@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { useSelector } from 'react-redux';
 import { SearchbarWBtn } from '../components/Bar/Searchbar';
 
 import { FacilityCard } from '../components/Card/FacilityCard';
@@ -21,15 +21,16 @@ import { TbSoccerField } from 'react-icons/tb';
 import { H3 } from '../components/Text/Head';
 
 const MainPage = () => {
+  const categoryState = useSelector((state) => state.category); 
   const activeCategory = [
-    { idx: 1, text: '헬스/크로스핏', icon: <IoIosFitness size="23px" /> },
-    { idx: 2, text: '요가/필라테스', icon: <GrYoga size="20px" /> },
-    { idx: 3, text: '테니스', icon: <MdSportsTennis size="20px" /> },
-    { idx: 4, text: '골프', icon: <IoGolfOutline size="20px" /> },
-    { idx: 5, text: '킥복싱', icon: <RiBoxingFill size="20px" /> },
-    { idx: 6, text: '운동클래스', icon: <BsEmojiSmile size="20px" /> },
-    { idx: 7, text: '공공시설', icon: <TbSoccerField size="23px" /> },
-    { idx: 8, text: '기타', icon: <BiDotsHorizontalRounded size="23px" /> },
+    { idx: 1, text: categoryState.list[0].categoryTitle, icon: <IoIosFitness size="23px" /> },
+    { idx: 2, text: categoryState.list[1].categoryTitle, icon: <GrYoga size="20px" /> },
+    { idx: 3, text: categoryState.list[2].categoryTitle, icon: <MdSportsTennis size="20px" /> },
+    { idx: 4, text: categoryState.list[3].categoryTitle, icon: <IoGolfOutline size="20px" /> },
+    { idx: 5, text: categoryState.list[4].categoryTitle, icon: <RiBoxingFill size="20px" /> },
+    { idx: 6, text: categoryState.list[5].categoryTitle, icon: <BsEmojiSmile size="20px" /> },
+    { idx: 7, text: categoryState.list[6].categoryTitle, icon: <TbSoccerField size="23px" /> },
+    { idx: 8, text: categoryState.list[7].categoryTitle, icon: <BiDotsHorizontalRounded size="23px" /> },
   ];
   const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
 
@@ -60,7 +61,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-const Img = styled.img`
-  width: 70px;
-`;

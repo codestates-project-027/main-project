@@ -2,7 +2,6 @@ import {
   combineReducers,
   configureStore,
   applyMiddleware,
-  getDefaultMiddleware,
 } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
