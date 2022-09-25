@@ -7,36 +7,20 @@ import { BigBtn } from '../components/Button/Btns';
 import { InputCategoryForm } from '../components/Form/CategoryForms';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
-import axios from 'axios';
+import axiosInstance from '../api/Interceptor';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
-  const [category, setCategory] = useState({});
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
-  const list = categoryState.list;
-
-  const data = [
-    {
-      categoryCode: '220811',
-      categoryTitle: '헬스',
-      categoryStatus: 'ACTIVE',
-    },
-    {
-      categoryCode: '220901',
-      categoryTitle: '요가',
-      categoryStatus: 'INACTIVE',
-    },
-  ];
 
   const getCategoryAXIOS = async () => {
-    await axios.get('https://minimi-place.duckdns.org/category').then((res) => {
+    await axiosInstance.get('/category').then((res) => {
       dispatch(getCategory({ list: res.data }));
       console.log('categoryState:', categoryState);
     });
-  };
-  
+  }
 
   // useEffect(() => {
   //   getCategoryAXIOS();

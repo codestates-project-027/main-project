@@ -26,7 +26,7 @@ const store = configureStore(
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        ReduxThunk: {},
+        ReduxThunk: {}, //thunk
         serializableCheck: false,
       }).concat(logger),
   },

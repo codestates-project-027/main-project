@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import MinimiClient from '../../api/Interceptor';
-import { apiPath } from '../../api/AXIOS';
 
 const initialState = {
   list: [],
@@ -9,20 +7,12 @@ const initialState = {
   categoryStatus: '',
 };
 
-//actions
-// export const GET_CATEGORY = 'GET_CATEGORY';
-// export const getCategoryAction = () => {
-//   return (dispatch,getState) => {
-//       MinimiClient.get(apiPath.API_GetCategory)
-//   }
-// };
-
 export const categorySlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
     getCategory: (state, action) => {
-       state.list = action.payload.list
+      state.list = action.payload.list;
     },
     postCategory: (state, action) => {
       state.categoryCode = action.payload.categoryCode;

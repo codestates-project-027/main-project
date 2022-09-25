@@ -7,19 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
-import { TAG_CODE_REGEX } from '../../constants/regex';
 import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
 //api
-import {
-  getCategoryThunk,
-  postCategoryThunk,
-  patchCategoryThunk,
-} from '../../redux/thunks/thunks';
-import axios from 'axios';
+import axiosInstance from '../../api/Interceptor';
 
 export const ReadCategoryForm = ({ data }) => {
   return (
@@ -53,30 +47,25 @@ export const ReadCategoryForm = ({ data }) => {
 };
 
 export const InputCategoryForm = ({ idx, type }) => {
- 
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categorySlice);
 
-  const postCategoryTest = async (values) => {
+  const postCategoryAXIOS = async (values) => {
     const body = {
       categoryCode: values.categoryCode,
       categoryTitle: values.categoryTitle,
       categoryStatus: values.categoryStatus,
     };
-    const res = await axios.post(
-      `https://minimi-place.duckdns.org/category/`,
-      body
-    );
+    const res = await axiosInstance.post(`/category`, body);
   };
 
-  const patchCategoryTest = async (values) => {
+  const patchCategoryAXIOS = async (values) => {
     const body = {
       categoryTitle: values.categoryTitle,
       categoryStatus: values.categoryStatus,
     };
-    const res = await axios.patch(
-      // dispatch(patchCategoryAction(res.data));
-      `https://minimi-place.duckdns.org/category/${values.categoryCode}`,
+    const res = await axiosInstance.patch(
+      `/category/${values.categoryCode}`,
       body
     );
   };
@@ -103,7 +92,7 @@ export const InputCategoryForm = ({ idx, type }) => {
           return errors;
         }}
         onSubmit={(values) => {
-          idx === 1 ? postCategoryTest(values) : patchCategoryTest(values);
+          idx === 1 ? postCategoryAXIOS(values) : patchCategoryAXIOS(values);
           console.log(values);
         }}
       >
