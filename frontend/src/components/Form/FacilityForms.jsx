@@ -9,10 +9,12 @@ import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
 import { BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 
 
 export const RegisterFacilityForm = () => {
+  const categoryState = useSelector((state) => state.category);
   const data = [
     {
       categoryCode: '220811',
@@ -58,7 +60,7 @@ export const RegisterFacilityForm = () => {
         </div>
         <div className="tags--wrapper">
           <Div>태그</Div>
-          <TagSelectbar data={data} />
+          <TagSelectbar data={categoryState.list} />
         </div>
         <div className="btn--wrapper">
           <BigBtn>시설 등록</BigBtn>

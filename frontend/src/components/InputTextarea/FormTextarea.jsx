@@ -20,15 +20,17 @@ export const Textarea = ({ type }) => {
       </>
     );
   } else if (type === 'facility') {
-    <>
-      <Div>
-        <CreateFTXTStyle
-          maxLength={200}
-          onChange={(e) => setCount(e.target.value.length)}
-        />
-        <P>{count}/200</P>
-      </Div>
-    </>;
+    return (
+      <>
+        <Div>
+          <CreateFTXTStyle
+            maxLength={200}
+            onChange={(e) => setCount(e.target.value.length)}
+          />
+          <P>{count}/200</P>
+        </Div>
+      </>
+    );
   }
 };
 

@@ -1,5 +1,3 @@
-//기능 구현 후 map
-
 import styled from 'styled-components';
 
 import { SearchbarWBtn } from '../components/Bar/Searchbar';
@@ -7,6 +5,7 @@ import { SearchbarWBtn } from '../components/Bar/Searchbar';
 import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
+
 
 const FacilitiesPage = () => {
   const tags = ['배드민턴', '테니스', '탁구', '수영'];

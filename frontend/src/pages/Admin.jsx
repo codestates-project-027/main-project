@@ -8,7 +8,7 @@ import { InputCategoryForm } from '../components/Form/CategoryForms';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
 import axiosInstance from '../api/Interceptor';
-import { getCategoryAXIOS } from '../api/AXIOS';
+
 
 const AdminPage = () => {
   const dispatch = useDispatch();
