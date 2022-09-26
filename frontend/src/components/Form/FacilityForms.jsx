@@ -1,4 +1,4 @@
-//api 구현하고 합칠 예정.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
+//api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
 
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../../api/Interceptor';
 
 export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
@@ -48,18 +49,8 @@ export const RegisterFacilityForm = () => {
     });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    e.persist();
-
-    // const files = e.target.fac_photos.files; //파일리스트
-
-    // const formData = new FormData();
-    // for (let i = 0; i < files.length; i++) {
-    //   formData.append('files', files[i]);
-    // }
-
-    const dataSet = {
+  const postFacilityAXIOS = async () => {
+    const body = {
       facilityName,
       facilityPhotoList: images.map((el) => el.file),
       facilityInfo,
@@ -69,78 +60,69 @@ export const RegisterFacilityForm = () => {
       location: facilityState.location,
       tags: tagsList,
     };
-    console.log('dataSet:', dataSet);
-    // console.log('filesArrya:', files);
-
-    // formData.append('data', JSON.stringify(dataSet));
-
-    // const postFacility = await axios({
-    //   method: 'POST',
-    //   url: '주소',
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    //   data: formData,
-    // });
-
-    // console.log('postFacility:', postFacility);
+    const res = await axiosInstance.post(`/facility`, body);
   };
 
-  // setPhotos(imageList[0].file)
+  const onSubmit = async () => {
+    postFacilityAXIOS();
+  };
+
   return (
     <>
       <RegisterFailityForm>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <H2>시설 등록하기</H2>
-          <div className="input--wrapper">
-            <Label htmlFor="name">이름</Label>
+        <H2>시설 등록하기</H2>
+        <div className="input--wrapper">
+          <Label htmlFor="name">이름</Label>
+          <Input
+            name={'facilityName'}
+            label={'name'}
+            width="300px"
+            value={facilityName}
+            onChange={onChange}
+          />
+        </div>
+        <div className="input--wrapper">
+          <ImageUploader images={images} setImages={setImages} />
+        </div>
+        <div className="input--wrapper">
+          <Label htmlFor="desc">설명</Label>
+          <Textarea
+            type="facility"
+            registerFac={registerFac}
+            setRegisterFac={setRegisterFac}
+          />
+        </div>
+        <div className="input--wrapper">
+          <Label htmlFor="address">주소</Label>
+          <AddressWrapper>
+            <AddressUploader facilityState={facilityState} />
             <Input
-              name={'facilityName'}
-              label={'name'}
-              width="300px"
-              value={facilityName}
+              placeholder={'상세주소 입력'}
+              name="address2"
+              label={'address'}
               onChange={onChange}
             />
-          </div>
-          <div className="input--wrapper">
-            <ImageUploader images={images} setImages={setImages} />
-          </div>
-          <div className="input--wrapper">
-            <Label htmlFor="desc">설명</Label>
-            <Textarea
-              type="facility"
-              registerFac={registerFac}
-              setRegisterFac={setRegisterFac}
-            />
-          </div>
-          <div className="input--wrapper">
-            <Label htmlFor="address">주소</Label>
-            <AddressWrapper>
-              <AddressUploader facilityState={facilityState} />
-              <Input
-                placeholder={'상세주소 입력'}
-                name="address2"
-                label={'address'}
-                onChange={onChange}
-              />
-            </AddressWrapper>
-          </div>
-          <div className="input--wrapper">
-            <Label htmlFor="website">web</Label>
-            <Input label={'website'} name="website" onChange={onChange} />
-          </div>
-          <div className="input--wrapper">
-            <Label htmlFor="phone">전화</Label>
-            <Input label={'phone'} name="phone" onChange={onChange} />
-          </div>
-          <div className="tags--wrapper">
-            <Div>태그</Div>
-            <TagSelectbar data={categoryState.list} tagsList={tagsList} setTagsList={setTagsList}/>
-          </div>
-          <div className="btn--wrapper">
-            <BigBtn type="submit">시설 등록</BigBtn>
-          </div>
-        </form>
+          </AddressWrapper>
+        </div>
+        <div className="input--wrapper">
+          <Label htmlFor="website">web</Label>
+          <Input label={'website'} name="website" onChange={onChange} />
+        </div>
+        <div className="input--wrapper">
+          <Label htmlFor="phone">전화</Label>
+          <Input label={'phone'} name="phone" onChange={onChange} />
+        </div>
+        <div className="tags--wrapper">
+          <Div>태그</Div>
+          <TagSelectbar
+            data={categoryState.list}
+            tagsList={tagsList}
+            setTagsList={setTagsList}
+          />
+        </div>
+        <div className="btn--wrapper">
+          <BigBtn onClick={onSubmit}>시설 등록</BigBtn>
+        </div>
       </RegisterFailityForm>
     </>
   );
