@@ -29,6 +29,10 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public void postReview(ReviewDto.request reviewDtoReq) {
+        blankAndNullCheck(reviewDtoReq.getContents());
+        blankAndNullCheck(reviewDtoReq.getFacilityId());
+        blankAndNullCheck(reviewDtoReq.getUsername());
+
         Review review = new Review(reviewDtoReq.getUsername(), reviewDtoReq.getContents());
         Review reviewSave = reviewRepository.save(review);
 
@@ -59,7 +63,23 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void patchReview(Long reviewId, ReviewDto.patch reviewDtoPat) {
+    public void patchReview(Long facilityId, Long reviewId, ReviewDto.patch reviewDtoPat) {
+        Review review = reviewRepository.findById(reviewId).orElseThrow(NullPointerException::new);
 
+        if(!(reviewDtoPat.getContents()==null||reviewDtoPat.getContents().isBlank())) {
+            review.setContents(reviewDtoPat.getContents());
+        }
+        if(!(reviewDtoPat.getUsername()==null||reviewDtoPat.getUsername().isBlank())) {
+            review.setUsername(reviewDtoPat.getUsername());
+        }
+
+        reviewRepository.save(review);
+    }
+
+    public Boolean blankAndNullCheck(Object value) {
+        if (value==null||String.valueOf(value).isBlank()) {
+            throw new NullPointerException("Null Value");
+        }
+        return true;
     }
 }

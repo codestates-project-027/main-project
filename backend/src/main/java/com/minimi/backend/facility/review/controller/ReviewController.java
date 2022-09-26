@@ -30,15 +30,18 @@ public class ReviewController {
     }
 
     //patch review
-    @PatchMapping("/{reviewId}")
-    public ResponseEntity patchReview(@PathVariable Long reviewId,
+    @PatchMapping("/{facilityId}/{reviewId}")
+    public ResponseEntity patchReview(@PathVariable Long facilityId,
+                                      @PathVariable Long reviewId,
                                       @RequestBody ReviewDto.patch reviewPatch){
+        reviewService.patchReview(facilityId, reviewId, reviewPatch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
 
     //delete review
     @DeleteMapping("/{facilityId}/{reviewId}")
-    public ResponseEntity deleteReview(@PathVariable Long facilityId, Long reviewId) {
+    public ResponseEntity deleteReview(@PathVariable Long facilityId,
+                                       @PathVariable Long reviewId) {
         reviewService.deleteReview(facilityId, reviewId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
