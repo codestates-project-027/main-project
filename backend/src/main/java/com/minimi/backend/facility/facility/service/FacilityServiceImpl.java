@@ -82,8 +82,8 @@ public class FacilityServiceImpl implements FacilityService {
                 .categoryList(facilityDtoReq.getCategoryList())
                 .build());
 
-        publishPostEventList(facility);
         applicationEventPublisher.publishEvent(new FacilityPostReviewEvent(facility.getFacilityId()));
+        publishPostEventList(facility);
     }
 
     @Override
@@ -153,9 +153,9 @@ public class FacilityServiceImpl implements FacilityService {
 
     public void publishPostEventList(Facility facility) {
         facility.getCategoryList().forEach(categoryTitle -> {
-            FacilityCategoryDto.response facilityCategoryDtoRes = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
             applicationEventPublisher.publishEvent(
-                    new FacilityPostEvent(facilityCategoryDtoRes, facility));
+                    new FacilityPostEvent(facilityCategory, facility));
         });
     }
 }

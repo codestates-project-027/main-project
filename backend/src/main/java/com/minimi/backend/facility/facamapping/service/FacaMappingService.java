@@ -21,7 +21,7 @@ public interface FacaMappingService {
      * @param facility
      * @return FacaMapping
      */
-    void postFacaMapping(FacilityCategoryDto.response facilityCategoryDtoRes, Facility facility);
+    void postFacaMapping(FacilityCategory facilityCategory, Facility facility);
 
     /**
      * @param facilityId

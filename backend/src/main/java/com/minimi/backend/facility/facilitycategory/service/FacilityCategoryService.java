@@ -13,6 +13,6 @@ public interface FacilityCategoryService {
 
     FacilityCategoryDto.response getFacilityCategoryByCategoryCode(String categoryCode);
 
-    FacilityCategoryDto.response getFacilityCategoryByTitle(String categoryTitle);
+    FacilityCategory getFacilityCategoryByTitle(String categoryTitle);
 
 }

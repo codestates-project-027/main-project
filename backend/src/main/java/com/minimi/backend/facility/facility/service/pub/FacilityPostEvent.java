@@ -9,11 +9,11 @@ import lombok.Getter;
 public class FacilityPostEvent{
 
 
-    private final FacilityCategoryDto.response facilityCategoryDtoRes;
+    private final FacilityCategory facilityCategory;
     private final Facility facility;
 
-    public FacilityPostEvent(FacilityCategoryDto.response facilityCategoryDtoRes, Facility facility) {
-        this.facilityCategoryDtoRes = facilityCategoryDtoRes;
+    public FacilityPostEvent(FacilityCategory facilityCategory, Facility facility) {
+        this.facilityCategory = facilityCategory;
         this.facility = facility;
     }
 }

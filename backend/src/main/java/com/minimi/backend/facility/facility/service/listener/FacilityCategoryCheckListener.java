@@ -7,5 +7,5 @@ import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 public interface FacilityCategoryCheckListener {
     Boolean checkExistsByCategoryTitle(String categoryTitle);
 
-    FacilityCategoryDto.response getFacilityCategoryByTitle(String categoryTitle);
+    FacilityCategory getFacilityCategoryByTitle(String categoryTitle);
 }

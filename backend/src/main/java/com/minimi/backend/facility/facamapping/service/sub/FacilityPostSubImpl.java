@@ -21,7 +21,7 @@ public class FacilityPostSubImpl implements FacilityPostSub {
     @Async
     public void saveFacaMapping(FacilityPostEvent facilityPostEvent) {
         facaMappingService.postFacaMapping(
-                facilityPostEvent.getFacilityCategoryDtoRes(),
+                facilityPostEvent.getFacilityCategory(),
                 facilityPostEvent.getFacility());
     }
 }

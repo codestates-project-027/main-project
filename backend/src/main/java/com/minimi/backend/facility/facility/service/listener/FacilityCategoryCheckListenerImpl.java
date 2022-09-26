@@ -18,7 +18,7 @@ public class FacilityCategoryCheckListenerImpl implements FacilityCategoryCheckL
     }
 
     @Override
-    public FacilityCategoryDto.response getFacilityCategoryByTitle(String categoryTitle) {
+    public FacilityCategory getFacilityCategoryByTitle(String categoryTitle) {
         return facilityCategoryService.getFacilityCategoryByTitle(categoryTitle);
     }
 }

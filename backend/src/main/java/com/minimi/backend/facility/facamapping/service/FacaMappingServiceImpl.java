@@ -54,19 +54,18 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     }
 
     @Override
-    public void postFacaMapping(FacilityCategoryDto.response facilityCategoryDtoRes, Facility facility) {
+    public void postFacaMapping(FacilityCategory facilityCategory, Facility facility) {
         //null blank check
-        blankAndNullCheck(facilityCategoryDtoRes);
+        blankAndNullCheck(facilityCategory);
         blankAndNullCheck(facility);
-        blankAndNullCheck(facilityCategoryDtoRes.getFacilityCategoryId());
+        blankAndNullCheck(facilityCategory.getFacilityCategoryId());
         blankAndNullCheck(facility.getFacilityId());
-        FacilityCategory facilityCategory = facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(facilityCategoryDtoRes);
 
         facaMappingRepository.save(FacaMapping
                 .builder()
                 .facilityCategory(facilityCategory)
                 .facility(facility)
-                .facilityCategoryId(facilityCategoryDtoRes.getFacilityCategoryId())
+                .facilityCategoryId(facilityCategory.getFacilityCategoryId())
                 .facilityId(facility.getFacilityId())
                 .build());
     }
