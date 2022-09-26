@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
 import axiosInstance from '../api/Interceptor';
 
-
 const AdminPage = () => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
@@ -26,7 +25,6 @@ const AdminPage = () => {
   const getCategoryAXIOS = useCallback(async () => {
     await axiosInstance.get('/category').then((res) => {
       dispatch(getCategory({ list: res.data }));
-      console.log('categoryState:', categoryState);
     });
   }, []);
 

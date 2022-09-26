@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import styled from 'styled-components';
+import { CategoryFormWrapper } from '../../styles/components/FormStyle';
 import { BigBtn } from '../../components/Button/Btns';
 //Formik
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -93,7 +92,7 @@ export const InputCategoryForm = ({ idx, type }) => {
         }}
       >
         <Form>
-          <FormWrapper>
+          <CategoryFormWrapper>
             <div className="input--wrapper">
               <Field
                 type="text"
@@ -126,40 +125,9 @@ export const InputCategoryForm = ({ idx, type }) => {
             <BigBtn type="submit" marginTop="20px">
               카테고리 {type}
             </BigBtn>
-          </FormWrapper>
+          </CategoryFormWrapper>
         </Form>
       </Formik>
     </>
   );
 };
-
-const FormWrapper = styled.div`
-  display: flex;
-  background: aliceblue;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 30px;
-  width: 500px;
-  height: 250px;
-  .input--wrapper {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  input,
-  select {
-    width: 200px;
-    height: 40px;
-    border: none;
-    box-shadow: 3px 3px 3px lightgray;
-  }
-  div {
-    margin-left: 20px;
-    align-items: center;
-  }
-  select {
-    margin-left: 20px;
-  }
-  ${BigBtn} {
-    margin-left: 50px;
-  }
-`;

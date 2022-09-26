@@ -6,6 +6,7 @@ import {
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import { categorySlice } from '../slices/categorySlice';
+import { facilitySlice } from '../slices/facilitySlice';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import storage from 'redux-persist/lib/storage';
@@ -15,6 +16,7 @@ const logger = createLogger();
 
 const rootReducer = combineReducers({
   category: categorySlice.reducer,
+  facility: facilitySlice.reducer
 });
 
 const persistConfig = { key: 'root', storage };

@@ -1,42 +1,62 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useState } from 'react';
 
 const TestPage = () => {
-  return (
-    <div>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address';
-          }
+  const [inputs, setInputs] = useState({
+    artistName: '',
+    artistCompany: '',
+    artistGenre: '',
+    imageUri: '',
+    description: '',
+    realName: '',
+    account: '',
+    bank: '',
+  });
 
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log(values);
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+  const {
+    artistName,
+    artistCompany,
+    artistGenre,
+    imageUri,
+    description,
+    realName,
+    account,
+    bank,
+  } = inputs;
+
+  const onChange = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <>
+      <div>
+        <input name="artistName" value={artistName} onChange={onChange} />
+        <br />
+        <input name="artistCompany" value={artistCompany} onChange={onChange} />
+        <br />
+        <input name="artistGenre" value={artistGenre} onChange={onChange} />
+        <br />
+        <input name="imageUri" value={imageUri} onChange={onChange} />
+        <br />
+        <input
+          name="description"
+          style={{ width: '550px', height: '300px' }}
+          value={description}
+          onChange={onChange}
+        />
+        <br />
+        <input name="realName" value={realName} onChange={onChange} />
+        <br />
+        <input name="account" value={account} onChange={onChange} />
+        <br />
+        <input name="bank" value={bank} onChange={onChange} />
+        <br />
+        <button onClick={()=>{console.log(inputs)}}>click</button>
+      </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 //수정해야 함
 import axios from 'axios';
 
-// const BASE_URL = `https://minimi-place.duckdns.org`;
+// const BASE_URL = `https://minimi-place..org`;
 const BASE_URL = `http://localhost:8080`;
 
 // url
