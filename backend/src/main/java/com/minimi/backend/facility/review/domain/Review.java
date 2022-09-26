@@ -1,16 +1,34 @@
 package com.minimi.backend.facility.review.domain;
 
-import com.minimi.backend.auth.domain.Auth;
+import lombok.*;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class Review {
-    private Long reviewId;
-    private String username;
-    private String contents;
-    private LocalDate createdAt;
 
-    @ManyToOne
-    private ReviewList reviewList;
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
+    private Long reviewId;
+
+    @Column
+    private String username;
+
+    @Column
+    private String contents;
+
+//    @Column
+//    private LocalDate createdAt;
+
+    @Builder
+    public Review(String username, String contents){
+        this.username = username;
+        this.contents = contents;
+    }
 }

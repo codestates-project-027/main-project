@@ -4,12 +4,10 @@ package com.minimi.backend.facility.facility.service.pub;
 import lombok.Getter;
 
 @Getter
-public class FacilityPostReviewEvent {
-
+public class FacilityDeleteReviewEvent {
     private final Long facilityId;
 
-
-    public FacilityPostReviewEvent(Long facilityId){
-        this.facilityId = facilityId;
+    public FacilityDeleteReviewEvent(Long facilityId){
+        this.facilityId=facilityId;
     }
 }

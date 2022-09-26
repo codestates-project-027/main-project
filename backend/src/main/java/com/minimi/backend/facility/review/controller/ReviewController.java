@@ -25,6 +25,7 @@ public class ReviewController {
     //post review
     @PostMapping("")
     public ResponseEntity postReview(@RequestBody ReviewDto.request reviewReq){
+        reviewService.postReview(reviewReq);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
@@ -36,8 +37,9 @@ public class ReviewController {
     }
 
     //delete review
-    @DeleteMapping("/{reviewId}")
-    public ResponseEntity deleteReview(@PathVariable Long reviewId) {
+    @DeleteMapping("/{facilityId}/{reviewId}")
+    public ResponseEntity deleteReview(@PathVariable Long facilityId, Long reviewId) {
+        reviewService.deleteReview(facilityId, reviewId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

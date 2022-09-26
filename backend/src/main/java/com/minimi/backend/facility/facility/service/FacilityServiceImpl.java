@@ -10,7 +10,9 @@ import com.minimi.backend.facility.facility.service.listener.FacilityCategoryChe
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityDeleteReviewEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityPostReviewEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.review.domain.ReviewDto;
@@ -81,6 +83,7 @@ public class FacilityServiceImpl implements FacilityService {
                 .build());
 
         publishPostEventList(facility);
+        applicationEventPublisher.publishEvent(new FacilityPostReviewEvent(facility.getFacilityId()));
     }
 
     @Override
@@ -116,6 +119,7 @@ public class FacilityServiceImpl implements FacilityService {
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
 
         facilityRepository.deleteById(facilityId);
+        applicationEventPublisher.publishEvent(new FacilityDeleteReviewEvent(facilityId));
     }
 
     public Boolean checkCategory(List<String> categoryList) {
