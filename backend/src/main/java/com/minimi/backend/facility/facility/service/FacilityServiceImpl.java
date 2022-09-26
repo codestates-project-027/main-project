@@ -118,8 +118,8 @@ public class FacilityServiceImpl implements FacilityService {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
 
-        facilityRepository.deleteById(facilityId);
         applicationEventPublisher.publishEvent(new FacilityDeleteReviewEvent(facilityId));
+        facilityRepository.deleteById(facilityId);
     }
 
     public Boolean checkCategory(List<String> categoryList) {

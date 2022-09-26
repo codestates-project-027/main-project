@@ -135,11 +135,11 @@ public class ReviewControllerTests {
         Slice<ReviewDto.response> reviewPage = new SliceImpl<>(reviewList, PageRequest.of(page-1, 10), false);
 
 
-        given(reviewService.getReviewPage(Mockito.anyLong(),Mockito.anyInt())).willReturn(reviewList);
+        given(reviewService.getReview(Mockito.anyLong())).willReturn(reviewList);
 
         ResultActions actions = mockMvc.perform(
                 get("/review/{facilityId}", facilityId)
-                        .param("page", String.valueOf(page))
+//                        .param("page", String.valueOf(page))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );

@@ -19,7 +19,7 @@ public class ReviewController {
     @GetMapping("/{facilityId}")
     public ResponseEntity getReview(@PathVariable Long facilityId,
                                     @RequestParam int page) {
-        return new ResponseEntity<>(reviewService.getReviewPage(facilityId,page), HttpStatus.OK);
+        return new ResponseEntity<>(reviewService.getReview(facilityId), HttpStatus.OK);
     }
 
     //post review
