@@ -50,15 +50,11 @@ public class FacilityCategoryServiceGetByCode {
                     .willReturn(true);
             given(facilityCategoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(facilityCategory);
-            given(facilityCategoryMapper.facilityCategoryToFacilityCategoryDtoResponse(facilityCategory))
-                    .willReturn(Mockito.any(FacilityCategoryDto.response.class));
 
             facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(facilityCategoryRepository).should(times(1)).findByCategoryCode(anyString());
-            then(facilityCategoryMapper).should(times(1))
-                    .facilityCategoryToFacilityCategoryDtoResponse(Mockito.any(FacilityCategory.class));
         }
     }
     @Nested

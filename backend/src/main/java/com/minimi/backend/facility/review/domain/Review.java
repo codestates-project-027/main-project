@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -23,12 +24,13 @@ public class Review {
     @Column
     private String contents;
 
-//    @Column
-//    private LocalDate createdAt;
+    @Column
+    private LocalDateTime createdAt;
 
     @Builder
     public Review(String username, String contents){
         this.username = username;
         this.contents = contents;
+        this.createdAt = LocalDateTime.now();
     }
 }

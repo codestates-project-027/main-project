@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -126,26 +127,26 @@ public class ReviewControllerTests {
         int page = 1;
         List<ReviewDto.response> reviewList = new ArrayList<>(Arrays.asList(
                 new ReviewDto.response(
-                        1L,"헬린이","userProfileIMG","좋은 헬스장이네요!",LocalDate.of(2022,8,11)),
+                        1L,"헬린이","좋은 헬스장이네요!", LocalDateTime.of(2022,8,11,10,20)),
                 new ReviewDto.response(
-                        2L,"헬고수","userProfileIMG","그냥 헬스장이네요!",LocalDate.of(2022,9,11)),
+                        2L,"헬고수","그냥 헬스장이네요!",LocalDateTime.of(2022,9,11,10,20)),
                 new ReviewDto.response(
-                        3L,"사용자","userProfileIMG","헬스장이네요!",LocalDate.of(2022,10,11))
+                        3L,"사용자","헬스장이네요!",LocalDateTime.of(2022,10,11,10,20))
         ));
-        Slice<ReviewDto.response> reviewPage = new SliceImpl<>(reviewList, PageRequest.of(page-1, 10), false);
+
+//        Slice<ReviewDto.response> reviewPage = new SliceImpl<>(reviewList, PageRequest.of(page-1, 10), false);
 
 
         given(reviewService.getReview(Mockito.anyLong())).willReturn(reviewList);
 
         ResultActions actions = mockMvc.perform(
                 get("/review/{facilityId}", facilityId)
-//                        .param("page", String.valueOf(page))
+                        .param("page", String.valueOf(page))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("content[0].reviewId").value(1L))
-                .andExpect(jsonPath("pageable.pageNumber").value(page-1))
+//                .andExpect(jsonPath("content[0].reviewId").value(1L))
                 .andDo(document(
                         "get-reviewPage",
                         getRequestPreProcessor(),
@@ -154,28 +155,32 @@ public class ReviewControllerTests {
                                 requestParameters(parameterWithName("page").description("페이지")),
                                 responseFields(
                                         List.of(
-                                                fieldWithPath("content[].reviewId").type(JsonFieldType.NUMBER).description("리뷰 ID"),
-                                                fieldWithPath("content[].username").type(JsonFieldType.STRING).description("리뷰 유저네임"),
-                                                fieldWithPath("content[].userProfile").type(JsonFieldType.STRING).description("리뷰 유저 프로필이미지"),
-                                                fieldWithPath("content[].contents").type(JsonFieldType.STRING).description("리뷰 본문"),
-                                                fieldWithPath("content[].createdAt").type(JsonFieldType.STRING).description("리뷰 생성일"),
-                                                fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
-                                                fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
-                                                fieldWithPath("pageable.sort.empty").type(JsonFieldType.BOOLEAN).description("pageable sort empty 정보"),
-                                                fieldWithPath("pageable.pageNumber").type(JsonFieldType.NUMBER).description("pageable 넘버 정보"),
-                                                fieldWithPath("pageable.pageSize").type(JsonFieldType.NUMBER).description("pageable 사이즈 정보"),
-                                                fieldWithPath("pageable.offset").type(JsonFieldType.NUMBER).description("pageable sort 오프셋 정보"),
-                                                fieldWithPath("pageable.paged").type(JsonFieldType.BOOLEAN).description("pageable sort paged 정보"),
-                                                fieldWithPath("pageable.unpaged").type(JsonFieldType.BOOLEAN).description("unpaged"),
-                                                fieldWithPath("last").type(JsonFieldType.BOOLEAN).description("마지막 페이지"),
-                                                fieldWithPath("numberOfElements").type(JsonFieldType.NUMBER).description("numberOfElements"),
-                                                fieldWithPath("size").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
-                                                fieldWithPath("sort.sorted").type(JsonFieldType.BOOLEAN).description("정렬 sorted 정보"),
-                                                fieldWithPath("sort.unsorted").type(JsonFieldType.BOOLEAN).description("정렬 unsorted 정보"),
-                                                fieldWithPath("sort.empty").type(JsonFieldType.BOOLEAN).description("정렬 empty 정보"),
-                                                fieldWithPath("first").type(JsonFieldType.BOOLEAN).description("첫번째 페이지"),
-                                                fieldWithPath("number").type(JsonFieldType.NUMBER).description("number"),
-                                                fieldWithPath("empty").type(JsonFieldType.BOOLEAN).description("empty")
+                                                fieldWithPath("[].reviewId").type(JsonFieldType.NUMBER).description("리뷰 ID"),
+                                                fieldWithPath("[].username").type(JsonFieldType.STRING).description("리뷰 유저네임"),
+                                                fieldWithPath("[].contents").type(JsonFieldType.STRING).description("리뷰 본문"),
+                                                fieldWithPath("[].createdAt").type(JsonFieldType.STRING).description("리뷰 생성일")
+//                                                fieldWithPath("content[].reviewId").type(JsonFieldType.NUMBER).description("리뷰 ID"),
+//                                                fieldWithPath("content[].username").type(JsonFieldType.STRING).description("리뷰 유저네임"),
+//                                                fieldWithPath("content[].userProfile").type(JsonFieldType.STRING).description("리뷰 유저 프로필이미지"),
+//                                                fieldWithPath("content[].contents").type(JsonFieldType.STRING).description("리뷰 본문"),
+//                                                fieldWithPath("content[].createdAt").type(JsonFieldType.STRING).description("리뷰 생성일"),
+//                                                fieldWithPath("pageable.sort.sorted").type(JsonFieldType.BOOLEAN).description("pageable sort sorted 정보"),
+//                                                fieldWithPath("pageable.sort.unsorted").type(JsonFieldType.BOOLEAN).description("pageable sort unsorted 정보"),
+//                                                fieldWithPath("pageable.sort.empty").type(JsonFieldType.BOOLEAN).description("pageable sort empty 정보"),
+//                                                fieldWithPath("pageable.pageNumber").type(JsonFieldType.NUMBER).description("pageable 넘버 정보"),
+//                                                fieldWithPath("pageable.pageSize").type(JsonFieldType.NUMBER).description("pageable 사이즈 정보"),
+//                                                fieldWithPath("pageable.offset").type(JsonFieldType.NUMBER).description("pageable sort 오프셋 정보"),
+//                                                fieldWithPath("pageable.paged").type(JsonFieldType.BOOLEAN).description("pageable sort paged 정보"),
+//                                                fieldWithPath("pageable.unpaged").type(JsonFieldType.BOOLEAN).description("unpaged"),
+//                                                fieldWithPath("last").type(JsonFieldType.BOOLEAN).description("마지막 페이지"),
+//                                                fieldWithPath("numberOfElements").type(JsonFieldType.NUMBER).description("numberOfElements"),
+//                                                fieldWithPath("size").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
+//                                                fieldWithPath("sort.sorted").type(JsonFieldType.BOOLEAN).description("정렬 sorted 정보"),
+//                                                fieldWithPath("sort.unsorted").type(JsonFieldType.BOOLEAN).description("정렬 unsorted 정보"),
+//                                                fieldWithPath("sort.empty").type(JsonFieldType.BOOLEAN).description("정렬 empty 정보"),
+//                                                fieldWithPath("first").type(JsonFieldType.BOOLEAN).description("첫번째 페이지"),
+//                                                fieldWithPath("number").type(JsonFieldType.NUMBER).description("number"),
+//                                                fieldWithPath("empty").type(JsonFieldType.BOOLEAN).description("empty")
                                         )
                                 )
                         )

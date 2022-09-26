@@ -46,15 +46,5 @@ public class FacaMappingServiceDeleteTests {
     @Test
     @DisplayName("fail test")
     public void fail() throws Exception {
-        Long facilityId = 1L;
-        given(facaMappingRepository.existsByFaId(facilityId)).willReturn(false);
-
-        Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                    facaMappingService.deleteFacaMapping(facilityId);
-                });
-
-        then(facaMappingRepository).should(times(1)).existsByFaId(Mockito.anyLong());
-        then(facaMappingRepository).should(times(0)).deleteAllByFaId(Mockito.anyLong());
-        assertThat(exception.getMessage(), equalTo("No Exists"));
     }
 }

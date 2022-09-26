@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,9 +64,9 @@ public class FacilityControllerTests {
         categoryList.add("헬스");
         categoryList.add("PT");
         reviews.add(new ReviewDto.response(
-                1L,"헬린이","userProfileIMG","좋은 헬스장이네요!",LocalDate.of(2022,8,11)));
+                1L,"헬린이","좋은 헬스장이네요!", LocalDateTime.of(2022,8,11,10,20)));
         reviews.add(new ReviewDto.response(
-                2L,"삼대오백","userProfileIMG","운동기구가 조금 부족해요..",LocalDate.of(2022,8,15)));
+                2L,"삼대오백","운동기구가 조금 부족해요..",LocalDateTime.of(2022,8,15,10,20)));
         FacilityDto.response facility = new FacilityDto.response(
                 1L,
                 "미니미헬스장",
@@ -102,14 +103,10 @@ public class FacilityControllerTests {
                 .andExpect(jsonPath("facilityStatus").value("ACTIVE"))
                 .andExpect(jsonPath("reviews[0].reviewId").value(1L))
                 .andExpect(jsonPath("reviews[0].username").value("헬린이"))
-                .andExpect(jsonPath("reviews[0].userProfile").value("userProfileIMG"))
                 .andExpect(jsonPath("reviews[0].contents").value("좋은 헬스장이네요!"))
-                .andExpect(jsonPath("reviews[0].createdAt").value(String.valueOf(LocalDate.of(2022,8,11))))
                 .andExpect(jsonPath("reviews[1].reviewId").value(2L))
                 .andExpect(jsonPath("reviews[1].username").value("삼대오백"))
-                .andExpect(jsonPath("reviews[1].userProfile").value("userProfileIMG"))
                 .andExpect(jsonPath("reviews[1].contents").value("운동기구가 조금 부족해요.."))
-                .andExpect(jsonPath("reviews[1].createdAt").value(String.valueOf(LocalDate.of(2022,8,15))))
                 .andDo(document(
                         "get-facility",
                         getResponsePreProcessor(),
@@ -130,12 +127,10 @@ public class FacilityControllerTests {
                                 fieldWithPath("facilityStatus").type(JsonFieldType.STRING).description("운동시설 상태"),
                                 fieldWithPath("reviews[0].reviewId").type(JsonFieldType.NUMBER).description("운동시설 리뷰 id"),
                                 fieldWithPath("reviews[0].username").type(JsonFieldType.STRING).description("운동시설 리뷰 작성자"),
-                                fieldWithPath("reviews[0].userProfile").type(JsonFieldType.STRING).description("운동시설 리뷰 작성자 프로필이미지"),
                                 fieldWithPath("reviews[0].contents").type(JsonFieldType.STRING).description("운동시설 리뷰 본문"),
                                 fieldWithPath("reviews[0].createdAt").type(JsonFieldType.STRING).description("운동시설 리뷰 생성일"),
                                 fieldWithPath("reviews[1].reviewId").type(JsonFieldType.NUMBER).description("운동시설 리뷰 id"),
                                 fieldWithPath("reviews[1].username").type(JsonFieldType.STRING).description("운동시설 리뷰 작성자"),
-                                fieldWithPath("reviews[1].userProfile").type(JsonFieldType.STRING).description("운동시설 리뷰 작성자 프로필이미지"),
                                 fieldWithPath("reviews[1].contents").type(JsonFieldType.STRING).description("운동시설 리뷰 본문"),
                                 fieldWithPath("reviews[1].createdAt").type(JsonFieldType.STRING).description("운동시설 리뷰 id")
                                 )

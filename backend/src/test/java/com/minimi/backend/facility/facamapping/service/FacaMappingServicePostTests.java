@@ -71,17 +71,11 @@ public class FacaMappingServicePostTests {
             FacilityCategory facilityCategory = new FacilityCategory(1L,"222222","헬스");
             FacaMapping facaMapping =
                     new FacaMapping(1L, 1L,1L,facilityCategory, facility);
-            given(facilityCategoryMapper.facilityCategoryDtoResponseToFacilityCategory(
-                    Mockito.any(FacilityCategoryDto.response.class)))
-                    .willReturn(facilityCategory);
             given(facaMappingRepository.save(Mockito.any(FacaMapping.class))).willReturn(facaMapping);
 
 
-            facaMappingService.postFacaMapping(facilityCategoryDtoRes, facility);
+            facaMappingService.postFacaMapping(facilityCategory, facility);
 
-            then(facilityCategoryMapper).should(times(1))
-                    .facilityCategoryDtoResponseToFacilityCategory(
-                            Mockito.any(FacilityCategoryDto.response.class));
             then(facaMappingRepository).should(times(1))
                     .save(Mockito.any(FacaMapping.class));
         }
@@ -105,11 +99,11 @@ public class FacaMappingServicePostTests {
         @Test
         @DisplayName("fail test 2 -> blankValue")
         public void failTest2() throws Exception {
-            FacilityCategoryDto.response facilityCategoryDtoResNull = new FacilityCategoryDto.response();
+            FacilityCategory facilityCategory = new FacilityCategory();
             Facility facility = new Facility();
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facaMappingService.postFacaMapping(facilityCategoryDtoResNull, facility);
+                facaMappingService.postFacaMapping(facilityCategory, facility);
             });
 
             assertThat(exception.getMessage(), equalTo("Null Value"));
