@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.review.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -9,12 +10,11 @@ public class ReviewDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class response{
         private Long reviewId;
         private String username;
-        private String userProfile;
         private String contents;
-        private LocalDate createdAt;
     }
 
     @AllArgsConstructor

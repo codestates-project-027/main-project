@@ -1,12 +1,18 @@
 package com.minimi.backend.facility.review.service;
 
 
+import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.review.domain.*;
+import com.minimi.backend.facility.review.mapper.ReviewMapper;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,11 +22,14 @@ public class ReviewServiceImpl implements ReviewService{
 
     private final ReviewRepository  reviewRepository;
     private final ReviewFacilityRepository reviewFacilityRepository;
+    private final ReviewMapper reviewMapper;
 
 
     @Override
-    public Slice<ReviewDto.response> getReviewPage(Long facilityId, int page) {
-        return null;
+    public List<ReviewDto.response> getReviewPage(Long facilityId, int page) {
+        ReviewFacility reviewFacility = reviewFacilityRepository.findByFacilityId(facilityId);
+
+        return reviewMapper.reviewListToReviewDtoResList(reviewFacility.getReview());
     }
 
     @Override

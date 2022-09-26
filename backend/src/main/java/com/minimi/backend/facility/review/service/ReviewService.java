@@ -7,7 +7,7 @@ import org.springframework.data.domain.Slice;
 import java.util.List;
 
 public interface ReviewService {
-    Slice<ReviewDto.response> getReviewPage(Long facilityId, int page);
+    List<ReviewDto.response> getReviewPage(Long facilityId, int page);
 
     void postReview(ReviewDto.request reviewDtoReq);
 

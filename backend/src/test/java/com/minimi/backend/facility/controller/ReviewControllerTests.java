@@ -103,8 +103,9 @@ public class ReviewControllerTests {
     @Test
     public void deleteReview() throws Exception{
         Long reviewId = 1L;
+        Long facilityId = 1L;
         ResultActions actions = mockMvc.perform(
-                delete("/review/{reviewId}",reviewId)
+                delete("/review/{facilityId}/{reviewId}", facilityId, reviewId)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -113,6 +114,7 @@ public class ReviewControllerTests {
                         "delete-review",
                         getRequestPreProcessor(),
                         pathParameters(
+                                parameterWithName("facilityId").description("시설 ID"),
                                 parameterWithName("reviewId").description("리뷰 ID")
                         )));
     }
@@ -133,7 +135,7 @@ public class ReviewControllerTests {
         Slice<ReviewDto.response> reviewPage = new SliceImpl<>(reviewList, PageRequest.of(page-1, 10), false);
 
 
-        given(reviewService.getReviewPage(Mockito.anyLong(),Mockito.anyInt())).willReturn(reviewPage);
+        given(reviewService.getReviewPage(Mockito.anyLong(),Mockito.anyInt())).willReturn(reviewList);
 
         ResultActions actions = mockMvc.perform(
                 get("/review/{facilityId}", facilityId)
