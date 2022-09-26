@@ -3,10 +3,7 @@ package com.minimi.backend.facility.review.service;
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.review.domain.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -87,6 +86,70 @@ public class ReviewServicePostTests {
                     .findByFacilityId(Mockito.anyLong());
             then(reviewFacilityRepository).should(times(1))
                     .save(Mockito.any(ReviewFacility.class));
+
+        }
+    }
+
+    @Nested
+    @DisplayName("fail case")
+    class failCase {
+
+        @Test
+        @DisplayName("fail test 1 -> null check 1")
+        public void failTest1() throws Exception {
+            ReviewDto.request reviewDtoReq = ReviewDto.request.builder()
+                    .facilityId(1L).username("sda").build();
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                reviewService.postReview(reviewDtoReq);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+
+        }
+
+        @Test
+        @DisplayName("fail test 2 -> blank check 1")
+        public void failTest2() throws Exception {
+            ReviewDto.request reviewDtoReq = ReviewDto.request.builder()
+                    .contents("").facilityId(1L).username("").build();
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                reviewService.postReview(reviewDtoReq);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+
+        }
+
+        @Test
+        @DisplayName("fail test 3 -> null check")
+        public void failTest3() throws Exception {
+            ReviewDto.request reviewDtoReq = ReviewDto.request.builder()
+                    .username("adsf")
+                    .contents("asdf").build();
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                reviewService.postReview(reviewDtoReq);
+            });
+
+            assertThat(exception.getMessage(), equalTo("Null Value"));
+
+        }
+        @Test
+        @DisplayName("fail test 4 -> notExists ReviewFacility")
+        public void failTest4() throws Exception {
+            given(reviewFacilityRepository.existsByFacilityId(Mockito.anyLong()))
+                    .willReturn(false);
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        reviewService.postReview(reviewDtoReq);
+                    });
+
+            then(reviewFacilityRepository).should(times(1))
+                    .existsByFacilityId(Mockito.anyLong());
+
+            assertThat(exception.getMessage(), equalTo("Not Found Facility"));
 
         }
     }

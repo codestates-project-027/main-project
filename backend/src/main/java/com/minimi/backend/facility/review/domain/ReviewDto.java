@@ -23,6 +23,7 @@ public class ReviewDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class request{
         private Long facilityId;
         private String username;
