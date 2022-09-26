@@ -33,9 +33,7 @@ public class ReviewServiceImpl implements ReviewService{
         blankAndNullCheck(reviewDtoReq.getFacilityId());
         blankAndNullCheck(reviewDtoReq.getUsername());
 
-        if (!reviewFacilityRepository.existsByFacilityId(reviewDtoReq.getFacilityId())){
-            throw new NullPointerException("Not Found Facility");
-        }
+        checkByFacilityId(!reviewFacilityRepository.existsByFacilityId(reviewDtoReq.getFacilityId()), "Not Found Facility");
 
         Review review = new Review(reviewDtoReq.getUsername(), reviewDtoReq.getContents());
         Review reviewSave = reviewRepository.save(review);
@@ -58,12 +56,21 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public void deleteReview(Long facilityId, Long reviewId) {
+        checkByFacilityId(!reviewFacilityRepository.existsByFacilityId(facilityId), "Not Found Facility");
+
         Review review = reviewRepository.findById(reviewId).orElseThrow(RuntimeException::new);
-        ReviewFacility reviewFacility = reviewFacilityRepository.findById(facilityId).orElseThrow(RuntimeException::new);
+
+        ReviewFacility reviewFacility = reviewFacilityRepository.findByFacilityId(facilityId);
 
         reviewFacility.removeReview(review);
         reviewFacilityRepository.save(reviewFacility);
         reviewRepository.delete(review);
+    }
+
+    private void checkByFacilityId(boolean reviewFacilityRepository, String Not_Found_Facility) {
+        if (reviewFacilityRepository){
+            throw new NullPointerException(Not_Found_Facility);
+        }
     }
 
     @Override
@@ -81,9 +88,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     public Boolean blankAndNullCheck(Object value) {
-        if (value==null||String.valueOf(value).isBlank()) {
-            throw new NullPointerException("Null Value");
-        }
+        checkByFacilityId(value == null || String.valueOf(value).isBlank(), "Null Value");
         return true;
     }
 }
