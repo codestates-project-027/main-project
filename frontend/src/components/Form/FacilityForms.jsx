@@ -17,6 +17,7 @@ import axios from 'axios';
 export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
+  const [images, setImages] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
     facilityPhotoList: [],
@@ -59,7 +60,7 @@ export const RegisterFacilityForm = () => {
 
     const dataSet = {
       facilityName,
-      facilityPhotoList: 'file list',
+      facilityPhotoList: images.map((el) => el.file),
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
       website,
@@ -101,7 +102,7 @@ export const RegisterFacilityForm = () => {
             />
           </div>
           <div className="input--wrapper">
-            <ImageUploader />
+            <ImageUploader images={images} setImages={setImages} />
           </div>
           <div className="input--wrapper">
             <Label htmlFor="desc">설명</Label>
@@ -126,7 +127,6 @@ export const RegisterFacilityForm = () => {
           <div className="input--wrapper">
             <Label htmlFor="website">web</Label>
             <Input label={'website'} name="website" onChange={onChange} />
-            
           </div>
           <div className="input--wrapper">
             <Label htmlFor="phone">전화</Label>

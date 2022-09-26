@@ -2,12 +2,10 @@ import ImageUploading from 'react-images-uploading';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const ImageUploader = () => {
-  const [images, setImages] = useState([]);
-  
+const ImageUploader = ({ images, setImages }) => {
   const maxNumber = 5;
 
-  const onChange = (imageList, addUpdateIdx) => {
+  const onChange = (imageList) => {
     setImages(imageList);
   };
 
