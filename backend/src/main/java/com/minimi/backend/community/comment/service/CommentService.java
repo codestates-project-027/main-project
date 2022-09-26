@@ -30,10 +30,6 @@ public class CommentService {
             comment.setContent(patch.getContent());
         }
         commentRepository.save(comment);
-//        Comment comment = commentRepository.findById(commentId).orElseThrow();
-//        Optional.ofNullable(patch.getContent())
-//                .ifPresent(contents -> comment.setContent(contents));
-//        commentRepository.save(comment);
     }
     public void deleteComment(Long commentId){
         Comment comment = commentRepository.findById(commentId).orElseThrow();
