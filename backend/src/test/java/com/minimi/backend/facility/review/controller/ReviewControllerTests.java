@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.controller;
+package com.minimi.backend.facility.review.controller;
 
 
 import com.google.gson.Gson;
@@ -79,10 +79,11 @@ public class ReviewControllerTests {
     @Test
     public void patchReview() throws Exception {
         Long reviewId = 1L;
+        Long facilityId = 1L;
         ReviewDto.patch reviewPatch = new ReviewDto.patch("미니미", "여기 좋은 운동시설이네요");
         String content = gson.toJson(reviewPatch);
         ResultActions actions = mockMvc.perform(
-                patch("/review/{reviewId}", reviewId)
+                patch("/review/{facilityId}/{reviewId}", facilityId, reviewId)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
@@ -92,6 +93,7 @@ public class ReviewControllerTests {
                         "patch-review",
                         getRequestPreProcessor(),
                         pathParameters(
+                                parameterWithName("facilityId").description("시설 ID"),
                                 parameterWithName("reviewId").description("리뷰 ID")
                         ),
                         requestFields(

@@ -33,11 +33,15 @@ public class ReviewServiceImpl implements ReviewService{
         blankAndNullCheck(reviewDtoReq.getFacilityId());
         blankAndNullCheck(reviewDtoReq.getUsername());
 
+        if (!reviewFacilityRepository.existsByFacilityId(reviewDtoReq.getFacilityId())){
+            throw new NullPointerException("Not Found Facility");
+        }
+
         Review review = new Review(reviewDtoReq.getUsername(), reviewDtoReq.getContents());
         Review reviewSave = reviewRepository.save(review);
 
         ReviewFacility reviewFacility = reviewFacilityRepository
-                .findById(reviewDtoReq.getFacilityId()).orElseThrow(RuntimeException::new);
+                .findByFacilityId(reviewDtoReq.getFacilityId());
         reviewFacility.addReview(reviewSave);
 
         reviewFacilityRepository.save(reviewFacility);
