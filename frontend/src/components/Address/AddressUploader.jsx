@@ -21,7 +21,7 @@ const AddressUploader = ({ facilityState }) => {
     },
 
     selectAddress: (data) => {
-      setAddress(data.address); 
+      setAddress(data.address);
       setOpenPostcode(false);
     },
   };
@@ -36,7 +36,12 @@ const AddressUploader = ({ facilityState }) => {
             lat: result[0].road_address.x,
             lng: result[0].road_address.y,
           });
-          dispatch(postFacility({ address: address, location: `${result[0].road_address.x}, ${result[0].road_address.y}` }));
+          dispatch(
+            postFacility({
+              address: address,
+              location: `${result[0].road_address.x}, ${result[0].road_address.y}`,
+            })
+          );
         }
       };
       if (address) {
@@ -52,7 +57,7 @@ const AddressUploader = ({ facilityState }) => {
       <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
         주소검색
       </BasicBtn>
-      <button onClick={()=>{console.log(facilityState)}}>click</button>
+
       {openPostcode && (
         <>
           <ModalBackdropStyle

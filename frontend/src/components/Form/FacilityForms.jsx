@@ -18,6 +18,7 @@ export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
     facilityPhotoList: [],
@@ -66,7 +67,7 @@ export const RegisterFacilityForm = () => {
       website,
       phone,
       location: facilityState.location,
-      tags,
+      tags: tagsList,
     };
     console.log('dataSet:', dataSet);
     // console.log('filesArrya:', files);
@@ -134,7 +135,7 @@ export const RegisterFacilityForm = () => {
           </div>
           <div className="tags--wrapper">
             <Div>태그</Div>
-            <TagSelectbar data={categoryState.list} />
+            <TagSelectbar data={categoryState.list} tagsList={tagsList} setTagsList={setTagsList}/>
           </div>
           <div className="btn--wrapper">
             <BigBtn type="submit">시설 등록</BigBtn>
