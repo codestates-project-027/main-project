@@ -59,12 +59,12 @@ export const RegisterFacilityForm = () => {
 
     const dataSet = {
       facilityName,
-      photos: 'file list',
+      facilityPhotoList: 'file list',
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
       website,
       phone,
-      location,
+      location: facilityState.location,
       tags,
     };
     console.log('dataSet:', dataSet);
@@ -95,8 +95,8 @@ export const RegisterFacilityForm = () => {
             <Input
               name={'facilityName'}
               label={'name'}
-              value={facilityName}
               width="300px"
+              value={facilityName}
               onChange={onChange}
             />
           </div>
@@ -105,7 +105,11 @@ export const RegisterFacilityForm = () => {
           </div>
           <div className="input--wrapper">
             <Label htmlFor="desc">설명</Label>
-            <Textarea type="facility" registerFac={registerFac} setRegisterFac={setRegisterFac}/>
+            <Textarea
+              type="facility"
+              registerFac={registerFac}
+              setRegisterFac={setRegisterFac}
+            />
           </div>
           <div className="input--wrapper">
             <Label htmlFor="address">주소</Label>
@@ -113,18 +117,20 @@ export const RegisterFacilityForm = () => {
               <AddressUploader facilityState={facilityState} />
               <Input
                 placeholder={'상세주소 입력'}
+                name="address2"
                 label={'address'}
                 onChange={onChange}
               />
             </AddressWrapper>
           </div>
           <div className="input--wrapper">
-            <Label htmlFor="webpage">web</Label>
-            <Input label={'webpage'} />
+            <Label htmlFor="website">web</Label>
+            <Input label={'website'} name="website" onChange={onChange} />
+            
           </div>
           <div className="input--wrapper">
-            <Label htmlFor="phonenum">전화</Label>
-            <Input label={'phonenum'} />
+            <Label htmlFor="phone">전화</Label>
+            <Input label={'phone'} name="phone" onChange={onChange} />
           </div>
           <div className="tags--wrapper">
             <Div>태그</Div>
