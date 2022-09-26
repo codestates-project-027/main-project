@@ -34,10 +34,7 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
 
-        FacilityCategory facilityCategory = facilityCategoryMapper
-                .facilityCategoryDtoResponseToFacilityCategory(
-                        facilityCategoryGetIdListener
-                                .getFacilityCategoryByCategoryCode(categoryCode));
+        FacilityCategory facilityCategory = facilityCategoryGetIdListener.getFacilityCategoryByCategoryCode(categoryCode);
 
 
         Slice<FacaMapping> facaMappingSlice =facaMappingRepository
@@ -74,7 +71,7 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     @Transactional
     public void deleteFacaMapping(Long facilityId) {
 
-        if (!facaMappingRepository.existsByFaId(facilityId)) throw new NullPointerException("No Exists");
+        if (!facaMappingRepository.existsByFaId(facilityId)) return;
 
         facaMappingRepository.deleteAllByFaId(facilityId);
     }

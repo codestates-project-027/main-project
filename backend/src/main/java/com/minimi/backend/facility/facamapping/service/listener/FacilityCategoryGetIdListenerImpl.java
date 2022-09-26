@@ -14,7 +14,7 @@ public class FacilityCategoryGetIdListenerImpl implements FacilityCategoryGetIdL
     private final FacilityCategoryService facilityCategoryService;
 
     @Override
-    public FacilityCategoryDto.response getFacilityCategoryByCategoryCode(String categoryCode) {
+    public FacilityCategory getFacilityCategoryByCategoryCode(String categoryCode) {
         return facilityCategoryService.getFacilityCategoryByCategoryCode(categoryCode);
     }
 }

@@ -11,7 +11,7 @@ public interface FacilityCategoryService {
 
     Boolean checkExistsByCategoryTitle(String categoryTitle);
 
-    FacilityCategoryDto.response getFacilityCategoryByCategoryCode(String categoryCode);
+    FacilityCategory getFacilityCategoryByCategoryCode(String categoryCode);
 
     FacilityCategory getFacilityCategoryByTitle(String categoryTitle);
 

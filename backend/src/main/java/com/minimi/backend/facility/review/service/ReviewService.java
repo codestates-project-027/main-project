@@ -15,8 +15,6 @@ public interface ReviewService {
 
     void deleteReview(Long facilityId, Long reviewId);
 
-    void deleteReviewFacility(Long facilityId);
-
     void patchReview(Long reviewId, ReviewDto.patch reviewDtoPat);
 
 }

@@ -10,11 +10,9 @@ import com.minimi.backend.facility.facility.service.listener.FacilityCategoryChe
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
-import com.minimi.backend.facility.facility.service.pub.FacilityDeleteReviewEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostReviewEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanWrapper;
@@ -24,7 +22,6 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -117,8 +114,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void deleteFacility(Long facilityId) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
-
-        applicationEventPublisher.publishEvent(new FacilityDeleteReviewEvent(facilityId));
+        
         facilityRepository.deleteById(facilityId);
     }
 

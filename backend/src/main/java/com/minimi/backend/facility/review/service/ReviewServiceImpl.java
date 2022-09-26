@@ -59,14 +59,6 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void deleteReviewFacility(Long facilityId) {
-        if (!reviewFacilityRepository.existsByFacilityId(facilityId)) {
-            throw new RuntimeException();
-        }
-        reviewFacilityRepository.deleteByFacilityId(facilityId);
-    }
-
-    @Override
     public void patchReview(Long reviewId, ReviewDto.patch reviewDtoPat) {
 
     }
