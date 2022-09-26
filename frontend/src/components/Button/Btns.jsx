@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { MainPageBtnIconStyle } from '../../styles/components/IconStyles';
 import { MainPageBtnTextStyle } from '../../styles/components/TextStyles';
 
-export const BasicBtn = styled.div`
+export const BasicBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,6 +88,7 @@ export const BigBtn = styled(BasicBtn)`
   height: ${(props) => props.height || '35px'};
   margin-right: ${(props) => props.marginRight || '0px'};
   font-weight: ${(props) => props.fontWeight || '400'};
+  margin-top: ${(props) => props.marginTop};
 `;
 
 export const StickyBtn = styled(BasicBtn)`

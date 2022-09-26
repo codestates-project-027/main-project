@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 //axios intercepter
-const MinimiClient = axios.create({
+const axiosInstance = axios.create({
   baseURL: `https://minimi-place.duckdns.org`,
-  timeout: 1000,
+  // timeout: 1000,
 });
 
 //Request interceptor
-MinimiClient.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   function (config) {
     config.headers['Content-Type'] = 'application/json; charset=utf-8';
     // config.headers['Authorization'] = `Bearer 토큰값`; ->수정하기
@@ -20,9 +20,9 @@ MinimiClient.interceptors.request.use(
 );
 
 //Response interceptor
-MinimiClient.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   function (response) {
-    return response.data.data;
+    return response
   },
   function (error) {
     if (error.status === 404) {
@@ -32,4 +32,4 @@ MinimiClient.interceptors.response.use(
   }
 );
 
-export default MinimiClient;
+export default axiosInstance;

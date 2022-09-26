@@ -3,14 +3,40 @@ import {
   WhiteInputGlobal,
 } from '../../styles/globalStyle/InputGlobalStyle';
 
-export const Input = ({ label, type, placeholder, IDPW }) => {
+export const Input = ({
+  name,
+  label,
+  type,
+  placeholder,
+  IDPW,
+  maxLength,
+  value,
+  onChange,
+  width,
+}) => {
   return IDPW ? (
     <NavyInputGlobal>
-      <input className="input" type={type} placeholder={placeholder} />
+      <input
+        className="input"
+        type={type}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        value={value}
+        onChange={onChange}
+      />
     </NavyInputGlobal>
   ) : (
     <WhiteInputGlobal>
-      <input className="input" placeholder={placeholder} id={label} />
+      <input
+        name={name}
+        className="input"
+        type={type}
+        placeholder={placeholder}
+        id={label}
+        maxLength={maxLength}
+        value={value}
+        onChange={onChange}
+      />
     </WhiteInputGlobal>
   );
 };

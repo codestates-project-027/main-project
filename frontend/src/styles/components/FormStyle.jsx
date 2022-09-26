@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { BigBtn } from '../../components/Button/Btns';
+
 export const RegisterFailityForm = styled.div`
   display: flex;
   align-items: flex-start;
@@ -16,7 +18,6 @@ export const RegisterFailityForm = styled.div`
   }
   .tags--wrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-top: 30px;
   }
@@ -26,5 +27,43 @@ export const RegisterFailityForm = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+  }
+`;
+
+export const FacilityFormWrapper = styled.div`
+  input {
+    width: ${(props) => props.width || '200px'};
+    height: 40px;
+    border: none;
+    box-shadow: 3px 3px 3px lightgray;
+    color: var(--main-navy);
+    border-radius: 5px;
+    ::placeholder {
+      color: lightgray;
+    }
+  }
+`;
+export const CategoryFormWrapper = styled(FacilityFormWrapper)`
+  display: flex;
+  background: aliceblue;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 500px;
+  height: 250px;
+  .input--wrapper {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  div {
+    margin-left: 20px;
+    align-items: center;
+  }
+  select {
+    margin-left: 20px;
+  }
+  ${BigBtn} {
+    margin-left: 50px;
   }
 `;

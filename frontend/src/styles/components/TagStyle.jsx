@@ -7,3 +7,4 @@ export const TagStyle = styled.div`
   border-radius: 8px;
   margin: ${(props) => props.margin || '7px'};
 `;
+

@@ -3,22 +3,28 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ModalBoxStyle } from '../../styles/components/Modalstyle';
-import { ReviewTXT } from '../../components/InputTextarea/FormTextarea';
-import { RoundBtn, BigBtn } from '../../components/Button/Btns';
+import { Textarea } from '../InputTextarea/FormTextarea';
+import { RoundBtn, BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
 
 //기능 구현 후 합칠 예정
 export const CReviewModal = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <>
-      <RoundBtn onClick={handleOpen}>리뷰 작성</RoundBtn>
+      <RoundBtn
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        리뷰 작성
+      </RoundBtn>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => {
+          setOpen(false);
+        }}
         aria-labelledby="modal-post-review"
         aria-describedby="modal-post-review"
       >
@@ -27,7 +33,7 @@ export const CReviewModal = () => {
             리뷰 작성하기
           </Typography>
           <Div>
-            <ReviewTXT />
+            <Textarea type="review" />
             <BigBtn>리뷰 작성</BigBtn>
           </Div>
         </Box>
@@ -62,12 +68,35 @@ export const UReviewModal = () => {
             리뷰 수정하기
           </Typography>
           <Div>
-            <ReviewTXT /> {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
+            <Textarea type="review" />{' '}
+            {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
             <BigBtn>리뷰 수정</BigBtn>
           </Div>
         </Box>
       </Modal>
     </div>
+  );
+};
+
+export const ImgUploadModal = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button>업로드</button>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+        aria-labelledby="modal-upload-img"
+        aria-describedby="modal-upload-img"
+      >
+        <Box sx={ModalBoxStyle}>
+         이미지 모음
+        </Box>
+      </Modal>
+    </>
   );
 };
 
@@ -77,3 +106,5 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+

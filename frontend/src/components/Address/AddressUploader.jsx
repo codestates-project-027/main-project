@@ -3,10 +3,14 @@ import { useState, useEffect } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/Modalstyle';
 import { BasicBtn } from '../Button/Btns';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { postFacility } from '../../redux/slices/facilitySlice';
 
 const { kakao } = window;
 
-const AddressUploader = () => {
+const AddressUploader = ({ facilityState }) => {
+  const dispatch = useDispatch();
+
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState('');
   const [coord, setCoord] = useState({});
@@ -32,6 +36,12 @@ const AddressUploader = () => {
             lat: result[0].road_address.x,
             lng: result[0].road_address.y,
           });
+          dispatch(
+            postFacility({
+              address: address,
+              location: `${result[0].road_address.x}, ${result[0].road_address.y}`,
+            })
+          );
         }
       };
       if (address) {
@@ -44,7 +54,6 @@ const AddressUploader = () => {
   return (
     <Div>
       {address}
-      {console.log(coord)}
       <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
         주소검색
       </BasicBtn>
