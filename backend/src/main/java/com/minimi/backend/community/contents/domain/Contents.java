@@ -30,6 +30,8 @@ public class Contents {
     @Column
     private String userProfile;
     @Column
+    private int commentNumber;
+    @Column
     private LocalDateTime createdAt;
     @Column
     private int views;

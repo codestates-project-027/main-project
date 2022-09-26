@@ -11,21 +11,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentDTO {
 
-    private String contents;
-    private String userName;
+    private String content;
+    private String username;
     private Long contentsId;
     @Builder
-    public CommentDTO(String contents,String userName, Long questionId){
-        this.contents=contents;
-        this.userName=userName;
+    public CommentDTO(String content,String username, Long contentsId){
+        this.content=content;
+        this.username=username;
         this.contentsId=contentsId;
+
     }
     @Getter
     @AllArgsConstructor
     public static class comment {
         private Long commentId;
         private Long contentsId;
-        private String contents;
+        private String content;
         private String username;
         private LocalDateTime createdAt;
     }
@@ -36,7 +37,7 @@ public class CommentDTO {
         private Long contentsId;
         private String username;
         private String userProfile;
-        private String contents;
+        private String content;
     }
 
 
@@ -46,12 +47,12 @@ public class CommentDTO {
         private Long commentId;
         private String username;
         private String userProfile;
-        private String contents;
+        private String content;
         private LocalDateTime createdAt;
     }
     @Getter
     @AllArgsConstructor
     public static class patch{
-        private String contents;
+        private String content;
     }
 }

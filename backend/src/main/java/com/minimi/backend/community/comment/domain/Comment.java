@@ -33,6 +33,7 @@ public class Comment {
         this.content = content;
         this.username = username;
         this.contents = contents;
+        this.createdAt = LocalDateTime.now();
     }
 
 }
