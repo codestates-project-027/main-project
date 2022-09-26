@@ -30,7 +30,6 @@ public class CommentService {
 //            comment.setContent(patch.getContent());
 //        }
 //        commentRepository.save(comment);
-
         Comment comment = commentRepository.findById(commentId).orElseThrow();
         Optional.ofNullable(patch.getContent())
                 .ifPresent(content -> comment.setContent(content));
