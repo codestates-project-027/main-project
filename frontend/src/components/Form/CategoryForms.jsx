@@ -45,24 +45,25 @@ export const ReadCategoryForm = ({ data }) => {
 };
 
 export const InputCategoryForm = ({ idx, type }) => {
-  const postCategoryAXIOS = async (values) => {
-    const body = {
-      categoryCode: values.categoryCode,
-      categoryTitle: values.categoryTitle,
-      categoryStatus: values.categoryStatus,
-    };
-    const res = await axiosInstance.post(`/category`, body);
-  };
-
-  const patchCategoryAXIOS = async (values) => {
-    const body = {
-      categoryTitle: values.categoryTitle,
-      categoryStatus: values.categoryStatus,
-    };
-    const res = await axiosInstance.patch(
-      `/category/${values.categoryCode}`,
-      body
-    );
+  const categoryAXIOS = {
+    post: async (values) => {
+      const body = {
+        categoryCode: values.categoryCode,
+        categoryTitle: values.categoryTitle,
+        categoryStatus: values.categoryStatus,
+      };
+      const res = await axiosInstance.post(`/category`, body);
+    },
+    patch: async (values) => {
+      const body = {
+        categoryTitle: values.categoryTitle,
+        categoryStatus: values.categoryStatus,
+      };
+      const res = await axiosInstance.patch(
+        `/category/${values.categoryCode}`,
+        body
+      );
+    },
   };
 
   return (
@@ -87,7 +88,7 @@ export const InputCategoryForm = ({ idx, type }) => {
           return errors;
         }}
         onSubmit={(values) => {
-          idx === 1 ? postCategoryAXIOS(values) : patchCategoryAXIOS(values);
+          idx === 1 ? categoryAXIOS.post(values) : categoryAXIOS.patch(values);
           console.log(values);
         }}
       >

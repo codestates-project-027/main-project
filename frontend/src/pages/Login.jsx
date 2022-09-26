@@ -19,13 +19,15 @@ const LoginPage = () => {
           <Input IDPW="IDPW" placeholder="비밀번호" type="password" />
           <Div className="button--wrapper">
             <RoundBtn marginBottom={'15px'}>로그인</RoundBtn>
-            <RoundBtn
-              backGround={'#37474f'}
-              color={'white'}
-              hoverBg={'#102027'}
-            >
-              회원가입
-            </RoundBtn>
+            <Link to="/signup">
+              <RoundBtn
+                backGround={'#37474f'}
+                color={'white'}
+                hoverBg={'#102027'}
+              >
+                회원가입
+              </RoundBtn>
+            </Link>
           </Div>
         </div>
       </LoginPageGlobal>

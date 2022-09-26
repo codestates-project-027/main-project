@@ -12,7 +12,6 @@ import { BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import axios from 'axios';
 import axiosInstance from '../../api/Interceptor';
 
 export const RegisterFacilityForm = () => {
@@ -61,9 +60,9 @@ export const RegisterFacilityForm = () => {
     //   location: facilityState.location,
     //   tags: tagsList,
     // };
-    const body = {
+    const body = { //photoList 따로 둘 때
       facilityName,
-      facilityPhoto:imagesResolved[0],
+      facilityPhoto: imagesResolved[0],
       facilityPhotoList: imagesResolved.slice(1),
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
