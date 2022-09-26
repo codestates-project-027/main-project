@@ -17,12 +17,13 @@ public class CommentController {
     public ResponseEntity postComment(@RequestBody CommentDTO request){
 
         commentService.createComment(request);
-        return new ResponseEntity(request, HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
     //patch comment
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable Long commentId,
-                                       @RequestBody CommentDTO commentDTO){
+                                       @RequestBody CommentDTO.patch patch){
+        commentService.patchComment(commentId,patch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete comment

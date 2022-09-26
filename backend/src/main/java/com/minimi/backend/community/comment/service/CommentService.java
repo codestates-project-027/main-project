@@ -8,6 +8,8 @@ import com.minimi.backend.community.contents.domain.ContentsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -21,6 +23,18 @@ public class CommentService {
         Contents contents = contentsRepository.findById(commentDTO.getContentsId()).orElseThrow();
         contents.setCommentNumber(contents.getCommentNumber()+1);
         commentRepository.save(new Comment(commentDTO.getContent(),commentDTO.getUsername(),contents));
+    }
+    public void patchComment(Long commentId, CommentDTO.patch patch){
+//        Comment comment = commentRepository.findById(commentId).orElseThrow();
+//        if (patch.getContent()!=null){
+//            comment.setContent(patch.getContent());
+//        }
+//        commentRepository.save(comment);
+
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
+        Optional.ofNullable(patch.getContent())
+                .ifPresent(content -> comment.setContent(content));
+        commentRepository.save(comment);
     }
 
 }

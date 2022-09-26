@@ -14,13 +14,14 @@ public class CommentDTO {
     private String content;
     private String username;
     private Long contentsId;
+
     @Builder
     public CommentDTO(String content,String username, Long contentsId){
         this.content=content;
         this.username=username;
         this.contentsId=contentsId;
-
     }
+
     @Getter
     @AllArgsConstructor
     public static class comment {
