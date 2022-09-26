@@ -19,6 +19,7 @@ export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
+  const imagesResolved = images.map((el) => el.file);
   const [tagsList, setTagsList] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
@@ -50,9 +51,20 @@ export const RegisterFacilityForm = () => {
   };
 
   const postFacilityAXIOS = async () => {
+    // const body = { //photoList가 모여있을 때
+    //   facilityName,
+    //   facilityPhotoList: images.map((el) => el.file),
+    //   facilityInfo,
+    //   address: `${facilityState.address} ${address2}`,
+    //   website,
+    //   phone,
+    //   location: facilityState.location,
+    //   tags: tagsList,
+    // };
     const body = {
       facilityName,
-      facilityPhotoList: images.map((el) => el.file),
+      facilityPhoto:imagesResolved[0],
+      facilityPhotoList: imagesResolved.slice(1),
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
       website,
@@ -65,6 +77,7 @@ export const RegisterFacilityForm = () => {
 
   const onSubmit = async () => {
     postFacilityAXIOS();
+    // console.log(imagesResolved[0],imagesResolved.slice(1))
   };
 
   return (
