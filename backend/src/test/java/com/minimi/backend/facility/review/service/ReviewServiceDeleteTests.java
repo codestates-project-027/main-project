@@ -2,10 +2,7 @@ package com.minimi.backend.facility.review.service;
 
 
 import com.minimi.backend.facility.review.domain.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -84,6 +83,60 @@ public class ReviewServiceDeleteTests {
             then(reviewRepository).should(times(1))
                     .delete(Mockito.any(Review.class));
 
+        }
+    }
+
+    @Nested
+    @DisplayName("fail case")
+    class failCase {
+        @Test
+        @DisplayName("fail test 1 -> not found facilityId")
+        public void failTest() throws Exception {
+            given(reviewFacilityRepository.existsByFacilityId(Mockito.anyLong())).willReturn(false);
+
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                        reviewService.deleteReview(1L, 1L);
+                    });
+
+            then(reviewFacilityRepository).should(times(1))
+                    .existsByFacilityId(Mockito.anyLong());
+            then(reviewRepository).should(times(0))
+                    .findById(Mockito.anyLong());
+            then(reviewFacilityRepository).should(times(0))
+                    .findByFacilityId(Mockito.anyLong());
+            then(reviewFacilityRepository).should(times(0))
+                    .save(Mockito.any(ReviewFacility.class));
+            then(reviewRepository).should(times(0))
+                    .delete(Mockito.any(Review.class));
+
+            assertThat(exception.getMessage(), equalTo("Not Found Facility"));
+        }
+
+        @Test
+        @DisplayName("fail test 2 -> not found reviewId")
+        public void failTest2() throws Exception {
+            given(reviewFacilityRepository.existsByFacilityId(Mockito.anyLong())).willReturn(true);
+            given(reviewRepository.findById(Mockito.anyLong()))
+                    .willThrow(new NullPointerException("Not Found Facility"));
+
+
+            Exception exception = Assertions.assertThrows(Exception.class, () -> {
+                reviewService.deleteReview(1L, 1L);
+            });
+
+            then(reviewFacilityRepository).should(times(1))
+                    .existsByFacilityId(Mockito.anyLong());
+            then(reviewRepository).should(times(1))
+                    .findById(Mockito.anyLong());
+            then(reviewFacilityRepository).should(times(0))
+                    .findByFacilityId(Mockito.anyLong());
+            then(reviewFacilityRepository).should(times(0))
+                    .save(Mockito.any(ReviewFacility.class));
+            then(reviewRepository).should(times(0))
+                    .delete(Mockito.any(Review.class));
+
+            assertThat(exception.getMessage(), equalTo("Not Found Facility"));
         }
     }
 

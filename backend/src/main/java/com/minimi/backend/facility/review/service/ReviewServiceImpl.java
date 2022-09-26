@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService{
     public void deleteReview(Long facilityId, Long reviewId) {
         checkByFacilityId(!reviewFacilityRepository.existsByFacilityId(facilityId), "Not Found Facility");
 
-        Review review = reviewRepository.findById(reviewId).orElseThrow(RuntimeException::new);
+        Review review = reviewRepository.findById(reviewId).orElseThrow(NullPointerException::new);
 
         ReviewFacility reviewFacility = reviewFacilityRepository.findByFacilityId(facilityId);
 
