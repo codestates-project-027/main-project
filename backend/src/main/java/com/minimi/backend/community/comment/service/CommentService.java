@@ -24,16 +24,16 @@ public class CommentService {
         contents.setCommentNumber(contents.getCommentNumber()+1);
         commentRepository.save(new Comment(commentDTO.getContent(),commentDTO.getUsername(),contents));
     }
-    public void patchComment(Long commentId, CommentDTO.patch patch){
-//        Comment comment = commentRepository.findById(commentId).orElseThrow();
-//        if (patch.getContent()!=null){
-//            comment.setContent(patch.getContent());
-//        }
-//        commentRepository.save(comment);
+    public void patchComment(Long commentId, CommentDTO patch){
         Comment comment = commentRepository.findById(commentId).orElseThrow();
-        Optional.ofNullable(patch.getContent())
-                .ifPresent(content -> comment.setContent(content));
+        if (patch.getContent()!=null){
+            comment.setContent(patch.getContent());
+        }
         commentRepository.save(comment);
+//        Comment comment = commentRepository.findById(commentId).orElseThrow();
+//        Optional.ofNullable(patch.getContent())
+//                .ifPresent(contents -> comment.setContent(contents));
+//        commentRepository.save(comment);
     }
     public void deleteComment(Long commentId){
         Comment comment = commentRepository.findById(commentId).orElseThrow();

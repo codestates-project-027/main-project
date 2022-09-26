@@ -22,6 +22,10 @@ public class CommentDTO {
         this.contentsId=contentsId;
     }
 
+    public CommentDTO(String content) {
+        this.content=content;
+    }
+
     @Getter
     @AllArgsConstructor
     public static class comment {
@@ -51,9 +55,18 @@ public class CommentDTO {
         private String content;
         private LocalDateTime createdAt;
     }
-    @Getter
-    @AllArgsConstructor
-    public static class patch{
-        private String content;
-    }
+//    //@Getter
+//    //@AllArgsConstructor
+//    public static class patch{
+//        private String content;
+//
+//        public String getContent(){
+//            return content;
+//        }
+//        @Builder
+//        public patch(String content){
+//            this.content=content;
+//        }
+//
+//    }
 }

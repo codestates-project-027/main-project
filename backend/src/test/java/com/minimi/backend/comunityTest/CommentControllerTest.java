@@ -65,9 +65,8 @@ public class CommentControllerTest {
 
     @Test
     public void patchComment() throws Exception {
-        CommentDTO.patch commentPatch = new CommentDTO.patch(
-                "댓글 수정");
-        String content = gson.toJson(commentPatch);
+        CommentDTO patch = new CommentDTO("댓글 수정");
+        String content = gson.toJson(patch);
         ResultActions actions = mockMvc.perform(
                 patch("/comment/{commentId}", 1L)
                         .accept(MediaType.APPLICATION_JSON)

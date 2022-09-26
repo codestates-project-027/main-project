@@ -22,8 +22,8 @@ public class CommentController {
     //patch comment
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable Long commentId,
-                                       @RequestBody CommentDTO.patch patch){
-        commentService.patchComment(commentId,patch);
+                                       @RequestBody CommentDTO patch){
+        commentService.patchComment(commentId, patch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete comment
