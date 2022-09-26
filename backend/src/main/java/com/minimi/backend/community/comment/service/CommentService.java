@@ -36,5 +36,11 @@ public class CommentService {
                 .ifPresent(content -> comment.setContent(content));
         commentRepository.save(comment);
     }
+    public void deleteComment(Long commentId){
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
+        commentRepository.deleteById(commentId);
+        Contents contents = comment.getContents();
+        contents.setCommentNumber(contents.getCommentNumber()-1);
+    }
 
 }
