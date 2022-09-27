@@ -1,4 +1,4 @@
-package com.minimi.backend.facility.config;
+package com.minimi.backend.facility.aws.config;
 
 
 import com.amazonaws.auth.AWSCredentials;
