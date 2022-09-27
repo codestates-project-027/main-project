@@ -1,61 +1,21 @@
-import { useState } from 'react';
+import { SearchbarWBtn } from '../components/Bar/Searchbar';
+import MapContainer from '../components/Map/MapContainer';
+import { BiCurrentLocation } from 'react-icons/bi';
+import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
+import { FacilityCard } from '../components/Card/FacilityCard';
 
+//test에서는 기존의 map page 보관해두고, MAP 에는 내 위치 뽑는거랑, 마커로 경도위도파악 시스템 넣기
+//geolocation + 좌표로 거리계산하기
 const TestPage = () => {
-  const [inputs, setInputs] = useState({
-    artistName: '',
-    artistCompany: '',
-    artistGenre: '',
-    imageUri: '',
-    description: '',
-    realName: '',
-    account: '',
-    bank: '',
-  });
-
-  const {
-    artistName,
-    artistCompany,
-    artistGenre,
-    imageUri,
-    description,
-    realName,
-    account,
-    bank,
-  } = inputs;
-
-  const onChange = (e) => {
-    setInputs({
-      ...inputs,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
     <>
-      <div>
-        <input name="artistName" value={artistName} onChange={onChange} />
-        <br />
-        <input name="artistCompany" value={artistCompany} onChange={onChange} />
-        <br />
-        <input name="artistGenre" value={artistGenre} onChange={onChange} />
-        <br />
-        <input name="imageUri" value={imageUri} onChange={onChange} />
-        <br />
-        <input
-          name="description"
-          style={{ width: '550px', height: '300px' }}
-          value={description}
-          onChange={onChange}
-        />
-        <br />
-        <input name="realName" value={realName} onChange={onChange} />
-        <br />
-        <input name="account" value={account} onChange={onChange} />
-        <br />
-        <input name="bank" value={bank} onChange={onChange} />
-        <br />
-        <button onClick={()=>{console.log(inputs)}}>click</button>
-      </div>
+      <FacilitiesPageGlobal>
+        <SearchbarWBtn Icon={<BiCurrentLocation size="20" />} />
+        <MapContainer />
+        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} />
+      </FacilitiesPageGlobal>
     </>
   );
 };

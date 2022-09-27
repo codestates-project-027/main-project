@@ -71,7 +71,8 @@ export const RegisterFacilityForm = () => {
       location: facilityState.location,
       tags: tagsList,
     };
-    const res = await axiosInstance.post(`/facility`, body);
+    // const res = await axiosInstance.post(`/facility`, body);
+    console.log(body)
   };
 
   const onSubmit = async () => {
