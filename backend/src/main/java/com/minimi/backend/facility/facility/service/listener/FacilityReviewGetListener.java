@@ -1,7 +1,6 @@
 package com.minimi.backend.facility.facility.service.listener;
 
-import com.minimi.backend.facility.review.ReviewDto;
-import org.springframework.data.domain.Slice;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 
 import java.util.List;
 

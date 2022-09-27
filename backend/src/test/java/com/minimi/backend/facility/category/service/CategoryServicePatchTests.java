@@ -60,16 +60,12 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category))
                     .willReturn(categoryResult);
 
-            Category result = categoryService.patchCategory(categoryCode,CategoryDtoPatch);
+            categoryService.patchCategory(categoryCode,CategoryDtoPatch);
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result.getCategoryId(), equalTo(category.getCategoryId()));
-            assertThat(result.getCategoryCode(), equalTo(category.getCategoryCode()));
-            assertThat(result.getCategoryStatus(), equalTo(category.getCategoryStatus()));
-            assertThat(result.getCategoryTitle(), equalTo(category.getCategoryTitle()));
         }
         @Test
         @DisplayName("success patchCategory test 2 -> patch title null code")
@@ -84,13 +80,13 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category))
                     .willReturn(categoryTitle);
 
-            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+            categoryService.patchCategory(categoryCode,patchTitle);
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(categoryTitle));
+
         }
         @Test
         @DisplayName("success patchCategory test 3 -> patch code null title")
@@ -103,12 +99,12 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category))
                     .willReturn(categoryTitle);
 
-            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+            categoryService.patchCategory(categoryCode,patchTitle);
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(categoryTitle));
+
         }
         @Test
         @DisplayName("success patchCategory test 4 -> patch code blank title")
@@ -123,13 +119,13 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category))
                     .willReturn(categoryTitle);
 
-            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+            categoryService.patchCategory(categoryCode,patchTitle);
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).existsByCategoryTitle(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(categoryTitle));
+
         }
         @Test
         @DisplayName("success patchCategory test 5 -> patch code same title")
@@ -142,12 +138,12 @@ public class CategoryServicePatchTests {
             given(categoryRepository.save(category))
                     .willReturn(categoryTitle);
 
-            Category result = categoryService.patchCategory(categoryCode,patchTitle);
+            categoryService.patchCategory(categoryCode,patchTitle);
 
             then(categoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(categoryRepository).should(times(1)).findByCategoryCode(any());
             then(categoryRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(categoryTitle));
+
         }
     }
 

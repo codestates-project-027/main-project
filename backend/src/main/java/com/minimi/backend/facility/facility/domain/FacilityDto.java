@@ -1,6 +1,6 @@
 package com.minimi.backend.facility.facility.domain;
 
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,6 +51,7 @@ public class FacilityDto {
     }
 
     @Getter
+    @Setter
     @AllArgsConstructor
     public static class request{
         private String facilityName;

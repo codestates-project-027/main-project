@@ -7,7 +7,7 @@ import com.minimi.backend.facility.facility.domain.FacilityRepository;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,10 +67,10 @@ public class FacilityServiceGetTests {
         );
 
         reviewDtoResList = new ArrayList<>(Arrays.asList(
-                new ReviewDto.response(1L, "유저닉네임1", "프로필이미지",
-                        "리뷰내용", LocalDate.of(2022, 9, 1)),
-                new ReviewDto.response(2L, "유저닉네임2", "프로필이미지",
-                        "리뷰내용", LocalDate.of(2022, 9, 2))
+                new ReviewDto.response(1L, "유저닉네임1",
+                        "리뷰내용", LocalDateTime.of(2022, 9, 1,10,20)),
+                new ReviewDto.response(2L, "유저닉네임2",
+                        "리뷰내용", LocalDateTime.of(2022, 9, 1,10,30))
         ));
 
         facilityDtoRes = new FacilityDto.response(
@@ -89,10 +90,10 @@ public class FacilityServiceGetTests {
                 new ArrayList<>(Arrays.asList("헬스", "PT")),
                 FacilityStatus.ACTIVE,
                 new ArrayList<>(Arrays.asList(
-                        new ReviewDto.response(1L, "유저닉네임1", "프로필이미지",
-                                "리뷰내용", LocalDate.of(2022, 9, 1)),
-                        new ReviewDto.response(2L, "유저닉네임2", "프로필이미지",
-                                "리뷰내용", LocalDate.of(2022, 9, 2))
+                        new ReviewDto.response(1L, "유저닉네임1",
+                                "리뷰내용", LocalDateTime.of(2022, 9, 1,10,20)),
+                        new ReviewDto.response(2L, "유저닉네임2",
+                                "리뷰내용", LocalDateTime.of(2022, 9, 1,10,30))
                 ))
         );
 
@@ -125,14 +126,10 @@ public class FacilityServiceGetTests {
                 assertThat(result.getCategoryList(), equalTo(facilityDtoResResult.getCategoryList()));
                 assertThat(result.getReviews().get(0).getReviewId(), equalTo(facilityDtoResResult.getReviews().get(0).getReviewId()));
                 assertThat(result.getReviews().get(0).getContents(), equalTo(facilityDtoResResult.getReviews().get(0).getContents()));
-                assertThat(result.getReviews().get(0).getCreatedAt(), equalTo(facilityDtoResResult.getReviews().get(0).getCreatedAt()));
                 assertThat(result.getReviews().get(0).getUsername(), equalTo(facilityDtoResResult.getReviews().get(0).getUsername()));
-                assertThat(result.getReviews().get(0).getUserProfile(), equalTo(facilityDtoResResult.getReviews().get(0).getUserProfile()));
                 assertThat(result.getReviews().get(1).getReviewId(), equalTo(facilityDtoResResult.getReviews().get(1).getReviewId()));
                 assertThat(result.getReviews().get(1).getContents(), equalTo(facilityDtoResResult.getReviews().get(1).getContents()));
-                assertThat(result.getReviews().get(1).getCreatedAt(), equalTo(facilityDtoResResult.getReviews().get(1).getCreatedAt()));
                 assertThat(result.getReviews().get(1).getUsername(), equalTo(facilityDtoResResult.getReviews().get(1).getUsername()));
-                assertThat(result.getReviews().get(1).getUserProfile(), equalTo(facilityDtoResResult.getReviews().get(1).getUserProfile()));
         }
     }
 }

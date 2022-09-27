@@ -42,6 +42,8 @@ public class CategoryServiceGetTitleTests {
 
     private List<Category> categoryList;
     private List<CategoryDto.response> categoryDtoList;
+    private List<Category> categoryList1;
+    private List<CategoryDto.response> categoryDtoList1;
 
     @BeforeEach
     public void setup(){
@@ -53,6 +55,14 @@ public class CategoryServiceGetTitleTests {
                 new CategoryDto.response("220901","헬스",CategoryStatus.ACTIVE),
                 new CategoryDto.response("220902","요가",CategoryStatus.INACTIVE)
         ));
+        categoryList1 = new ArrayList<>(Arrays.asList(
+                new Category(1L,"220901","헬스", CategoryStatus.ACTIVE),
+                new Category(2L,"220902","요가", CategoryStatus.ACTIVE)
+        ));
+        categoryDtoList1 = new ArrayList<>(Arrays.asList(
+                new CategoryDto.response("220901","헬스",CategoryStatus.ACTIVE),
+                new CategoryDto.response("220902","요가",CategoryStatus.ACTIVE)
+        ));
     }
 
     @Nested
@@ -60,16 +70,34 @@ public class CategoryServiceGetTitleTests {
     class successGetTitleCategoryCase {
 
         @Test
-        @DisplayName("success getTitleCategory test 1 -> getTitle")
-        public void successGetTitleCategory() throws Exception {
+        @DisplayName("success getTitleCategory test 1 -> getTitle, active false")
+        public void successGetTitleCategory1() throws Exception {
             given(categoryRepository.findAll()).willReturn(categoryList);
             given(categoryMapper.categoryListToCategoryDtoResponseList(Mockito.anyList())).willReturn(categoryDtoList);
 
-            List<CategoryDto.response> result = categoryService.getCategoryTitles();
+            List<CategoryDto.response> result = categoryService.getCategoryTitles(false);
 
-            then(categoryRepository).should(times(1)).findAll();
-            then(categoryMapper).should(times(1)).categoryListToCategoryDtoResponseList(anyList());
+            then(categoryRepository).should(times(1))
+                    .findAll();
+            then(categoryMapper).should(times(1))
+                    .categoryListToCategoryDtoResponseList(anyList());
             assertThat(result, equalTo(categoryDtoList));
+        }
+        @Test
+        @DisplayName("success getTitleCategory test 2 -> getTitle, active true")
+        public void successGetTitleCategory2() throws Exception {
+            given(categoryRepository.findAllByCategoryStatus(Mockito.any(CategoryStatus.class)))
+                    .willReturn(categoryList1);
+            given(categoryMapper.categoryListToCategoryDtoResponseList(Mockito.anyList()))
+                    .willReturn(categoryDtoList1);
+
+            List<CategoryDto.response> result = categoryService.getCategoryTitles(true);
+
+            then(categoryRepository).should(times(1))
+                    .findAllByCategoryStatus(Mockito.any(CategoryStatus.class));
+            then(categoryMapper).should(times(1))
+                    .categoryListToCategoryDtoResponseList(anyList());
+            assertThat(result, equalTo(categoryDtoList1));
         }
     }
 
@@ -78,9 +106,16 @@ public class CategoryServiceGetTitleTests {
     class failGetTitleCategoryCase {
 
         @Test
-        @DisplayName("fail getTitleCategory test 1 -> null")
-        public void failGetTitleCategory() throws Exception {
-            List<CategoryDto.response> result = categoryService.getCategoryTitles();
+        @DisplayName("fail getTitleCategory test 1 -> null  active false")
+        public void failGetTitleCategory1() throws Exception {
+            List<CategoryDto.response> result = categoryService.getCategoryTitles(false);
+
+            assertThat(result, equalTo(new ArrayList<>()));
+        }
+        @Test
+        @DisplayName("fail getTitleCategory test 2 -> null  active true")
+        public void failGetTitleCategory2() throws Exception {
+            List<CategoryDto.response> result = categoryService.getCategoryTitles(true);
 
             assertThat(result, equalTo(new ArrayList<>()));
         }

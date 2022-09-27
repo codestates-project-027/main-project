@@ -106,9 +106,10 @@ public class CategoryControllerTests {
         CategoryDto.response category1 = new CategoryDto.response("220901","요가",CategoryStatus.INACTIVE);
         categoryTitles.add(category);
         categoryTitles.add(category1);
-        given(categoryService.getCategoryTitles()).willReturn(categoryTitles);
+        given(categoryService.getCategoryTitles(Mockito.anyBoolean())).willReturn(categoryTitles);
         ResultActions actions = mockMvc.perform(
                 get("/category")
+                        .param("active",String.valueOf(false))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );

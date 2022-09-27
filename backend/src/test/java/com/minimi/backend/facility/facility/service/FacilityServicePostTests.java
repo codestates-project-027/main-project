@@ -71,10 +71,9 @@ public class FacilityServicePostTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(Mockito.any(Facility.class))).willReturn(facility);
 
-            Facility result = facilityService.postFacility(facilityDtoReq);
+            facilityService.postFacility(facilityDtoReq);
 
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(facility));
         }
     }
     @Nested

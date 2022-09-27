@@ -1,12 +1,13 @@
 package com.minimi.backend.facility.facilitycategory.service;
 
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 
 public interface FacilityCategoryService {
 
-    public FacilityCategory postFacilityCategory(String categoryCode, String categoryTitle);
+    public void postFacilityCategory(String categoryCode, String categoryTitle);
 
-    public FacilityCategory patchFacilityCategory(String categoryCode, String categoryTitle);
+    public void patchFacilityCategory(String categoryCode, String categoryTitle);
 
     Boolean checkExistsByCategoryTitle(String categoryTitle);
 

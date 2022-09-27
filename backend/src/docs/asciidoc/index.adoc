@@ -167,6 +167,26 @@ include::{snippets}/delete-facility/http-response.adoc[]
 include::{snippets}/delete-facility/response-body.adoc[]
 
 == 운동시설 리뷰
+=== 운동시설 리뷰 조회 [GET]
+==== Request
+.httpie-request
+include::{snippets}/get-reviewPage/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-reviewPage/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-reviewPage/path-parameters.adoc[]
+.request-parameters
+include::{snippets}/get-reviewPage/request-parameters.adoc[]
+.request-body
+include::{snippets}/get-reviewPage/request-body.adoc[]
+==== Response
+.http-response
+include::{snippets}/get-reviewPage/http-response.adoc[]
+.response-body
+include::{snippets}/get-reviewPage/response-body.adoc[]
+.response-fields
+include::{snippets}/get-reviewPage/response-fields.adoc[]
+
 === 운동시설 리뷰 생성 [POST]
 ==== Request
 .httpie-request

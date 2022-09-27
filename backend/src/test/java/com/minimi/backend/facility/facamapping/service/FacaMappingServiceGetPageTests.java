@@ -8,6 +8,8 @@ import com.minimi.backend.facility.facamapping.service.listener.FacilityCategory
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -47,6 +49,9 @@ public class FacaMappingServiceGetPageTests {
     @Mock
     private FacaMappingMapper facaMappingMapper;
 
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
+
     @InjectMocks
     private FacaMappingServiceImpl facaMappingService;
 
@@ -64,10 +69,12 @@ public class FacaMappingServiceGetPageTests {
     private int page;
 
     private FacilityCategory facilityCategory;
+    private FacilityCategoryDto.response facilityCategoryDtoRes;
 
     @BeforeEach
     public void setup(){
         facilityCategory = new FacilityCategory(1L, "220901", "헬스");
+        facilityCategoryDtoRes = new FacilityCategoryDto.response(1L,"220901", "헬스");
         categoryCode = "220901";
         page = 1;
         nullFacaSlice = new SliceImpl<>(new ArrayList<>());

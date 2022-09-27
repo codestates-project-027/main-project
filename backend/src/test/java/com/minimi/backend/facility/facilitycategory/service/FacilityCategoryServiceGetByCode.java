@@ -2,7 +2,9 @@ package com.minimi.backend.facility.facilitycategory.service;
 
 
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryRepository;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +25,9 @@ public class FacilityCategoryServiceGetByCode {
 
     @Mock
     private FacilityCategoryRepository facilityCategoryRepository;
+
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
 
     @InjectMocks
     private FacilityCategoryServiceImpl facilityCategoryService;
@@ -46,11 +51,10 @@ public class FacilityCategoryServiceGetByCode {
             given(facilityCategoryRepository.findByCategoryCode(Mockito.anyString()))
                     .willReturn(facilityCategory);
 
-            FacilityCategory result = facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
+            facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(facilityCategoryRepository).should(times(1)).findByCategoryCode(anyString());
-            assertThat(result, equalTo(facilityCategory));
         }
     }
     @Nested
@@ -64,7 +68,7 @@ public class FacilityCategoryServiceGetByCode {
                     .willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                FacilityCategory result = facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
+                facilityCategoryService.getFacilityCategoryByCategoryCode("222222");
             });
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
