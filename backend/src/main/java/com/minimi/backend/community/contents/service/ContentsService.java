@@ -12,6 +12,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -53,5 +54,9 @@ public class ContentsService {
     //test용
     public ContentsDTO.response getContents(Long contentsId){
         return null;
+    }
+    @Transactional
+    public int updateViews(Long id) {
+        return contentsRepository.updateViews(id);
     }
 }
