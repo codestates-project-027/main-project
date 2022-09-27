@@ -49,7 +49,7 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public void postReviewFacility(Long facilityId) {
         if (reviewFacilityRepository.existsByFacilityId(facilityId)) {
-            throw new RuntimeException();
+            throw new RuntimeException("Exists ReviewFacility");
         }
         reviewFacilityRepository.save(new ReviewFacility(facilityId));
     }
