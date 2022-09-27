@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
 
-const MapPage = () => {
+const MapPage = () => { //두번 클릭해야 작동하고 새로고침해야 화면이 나오는 문제
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [location, setLocation] = useState();
@@ -23,17 +23,19 @@ const MapPage = () => {
   const handleError = (error) => {
     setError(error.message);
   };
-
   const handleLocation = () => {
     if (!geolocation) {
       setError('Geolocation is not supported.');
       return;
     }
     geolocation.getCurrentPosition(handleSuccess, handleError);
-    if (location!==undefined){
+    if (location !== undefined) {
       dispatch(getLocation({ currentLocation: location }));
     }
+    console.log('located');
   };
+
+  useEffect(() => {}, [locationState]);
 
   return (
     <>
