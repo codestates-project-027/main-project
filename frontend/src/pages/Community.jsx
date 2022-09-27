@@ -1,11 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { CommunityCardGlobal } from '../styles/globalStyle/CardGlobalStyle';
 import { UserImageCard } from '../styles/components/CardStyle';
-import Button from '../components/Button/CommunityBtn';
+import { Button } from '../components/Button/Btns';
 import { Posting, Location } from '../styles/components/CardStyle';
 
 const CommunityPage = () => {

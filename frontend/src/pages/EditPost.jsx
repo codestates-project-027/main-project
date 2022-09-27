@@ -1,13 +1,14 @@
+import React from 'react';
 // import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../components/Button/Btns';
 import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
 import { WritingPost } from '../redux/CommunitySlice/CommunitySlice';
 
-const WritingPage = () => {
+const EditPostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -16,13 +17,15 @@ const WritingPage = () => {
     // username: ''; 회원가입 후 유저아이디
   });
 
-  const url = 'http://localhost:8080/contents';
+  //   const url = 'http://localhost:8080/contents';
 
-  const GET_COMMUNITY = 'GET_COMMUNITY';
-  const POST_COMMUNITY = 'POST_COMMUNITY';
-  const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
+  //   const GET_COMMUNITY = 'GET_COMMUNITY';
+  //   const POST_COMMUNITY = 'POST_COMMUNITY';
+  //   const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
-  const handleWriting = () => {
+  const handleEditPost = () => {
+    const params = useParams;
+    console.log(params.id);
     setValues({ title: '', contents: '' });
     dispatch(
       WritingPost({
@@ -66,10 +69,10 @@ const WritingPage = () => {
           onChange={(e) => setValues({ ...values, contents: e.target.value })}
         />
       </div>
-      <Button onClick={handleWriting}>글쓰기</Button>
+      <Button onClick={handleEditPost}>수정</Button>
       {/* 태그기능 */}
     </div>
   );
 };
 
-export default WritingPage;
+export default EditPostPage;

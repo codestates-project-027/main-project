@@ -37,6 +37,7 @@ import AdminPage from './pages/Admin';
 import CommunityPage from './pages/Community';
 import WritingPage from './pages/WritingPost';
 import PostingPage from './pages/Posting';
+import EditPostPage from './pages/EditPost';
 
 function App() {
   const [test, setTest] = useState('');
@@ -78,7 +79,7 @@ function App() {
               <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
               <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
               <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-              
+              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
               <Route
                 path={PATH.REGISTERFACILITY}
                 element={<RegisterFacilityPage />}
