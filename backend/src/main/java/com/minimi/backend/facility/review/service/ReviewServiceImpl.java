@@ -77,7 +77,8 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public void patchReview(Long facilityId, Long reviewId, ReviewDto.patch reviewDtoPat) {
-        Review review = reviewRepository.findById(reviewId).orElseThrow(NullPointerException::new);
+        Review review = reviewRepository.findById(reviewId).orElseThrow(
+                () -> new NullPointerException("Not Found Review"));
 
         if(!(reviewDtoPat.getContents()==null||reviewDtoPat.getContents().isBlank())) {
             review.setContents(reviewDtoPat.getContents());

@@ -32,6 +32,7 @@ public class ReviewDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class patch{
         private String username;
         private String contents;
