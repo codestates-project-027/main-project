@@ -3,8 +3,13 @@ import { Map } from 'react-kakao-maps-sdk';
 import { MAPSIZE } from '../../constants/style';
 import { data } from '../../constants/test-markers';
 import MarkerContainer from './MarkerContainer';
+import { useSelector } from 'react-redux';
 
-const MapContainer = () => {
+const MapContainer = ({location}) => {
+  
+  const locationState = useSelector((state) => state.location);
+  console.log(locationState)
+
   const [myLoca, setMyLoca] = useState({ lat: 33.450701, lng: 126.570667 });
   return (
     <>
