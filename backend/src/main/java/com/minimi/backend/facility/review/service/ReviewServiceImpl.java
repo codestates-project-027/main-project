@@ -22,6 +22,8 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public List<ReviewDto.response> getReview(Long facilityId) {
+        checkByFacilityId(!reviewFacilityRepository.existsByFacilityId(facilityId), "Not Found Facility");
+
         ReviewFacility reviewFacility = reviewFacilityRepository.findByFacilityId(facilityId);
 
         return reviewMapper.reviewListToReviewDtoResList(reviewFacility.getReview());
