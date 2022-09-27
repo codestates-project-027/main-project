@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,11 +24,19 @@ public class S3UploadService {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
+    @Value("${cloud.aws.s3.switchDev}")
+    private Boolean devMode;
+
     private final AmazonS3 amazonS3;
 
 
-    public List<String> upload(MultipartFile[] multipartFileList) throws IOException {
+    public List<String> upload(List<MultipartFile> multipartFileList) throws IOException{
         List<String> imagePathList = new ArrayList<>();
+
+        if (devMode) {
+            imagePathList.add("devMode IMG Path");
+            return imagePathList;
+        }
 
         for (MultipartFile multipartFile: multipartFileList) {
             String s3FileName = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();

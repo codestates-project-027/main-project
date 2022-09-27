@@ -18,11 +18,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.mock.web.MockPart;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.multipart.MultipartFile;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -139,92 +148,104 @@ public class FacilityControllerTests {
 
     @Test
     public void postFacility() throws Exception{
-        List<String> photoList = new ArrayList<>();
-        photoList.add("이미지");
-        List<String> categoryList = new ArrayList<>();
-        categoryList.add("헬스");
-        categoryList.add("PT");
-        FacilityDto.request facilityReq = new FacilityDto.request(
-                "미니미헬스장",
-                "대표이미지",
-                photoList,
-                "미니미 헬스장 입니다.",
-                "서울특별시 강남구",
-                "www.minimi-health.kr",
-                "010-0000-0000",
-                "36.123456, 119.123456",
-                categoryList);
-        String content = gson.toJson(facilityReq);
+        MockMultipartFile multipartFile1 = new MockMultipartFile(
+                "minimitest","minimitest.png","image/png",new FileInputStream("src/testimg/minimitest.png"));
+        MockMultipartFile multipartFile2 = new MockMultipartFile(
+                "file","minimitest.png","application/octet-stream",new byte[0]);
+
+        List<MultipartFile> multipartFileList = new ArrayList<>();
+        multipartFileList.add(multipartFile1);
+        multipartFileList.add(multipartFile2);
+        FacilityDto.request requestDto = new FacilityDto.request(
+                "시설명","시설정보","주소","www.wwww.www","010-0000-0000","35.123, 199.123",
+                new ArrayList<>());
+        String requestDtoJson =  gson.toJson(requestDto);
+        MockMultipartFile request = new MockMultipartFile("request","request","application/json",requestDtoJson.getBytes(StandardCharsets.UTF_8));
+
+
+//        List<String> photoList = new ArrayList<>();
+//        photoList.add("이미지");
+//        List<String> categoryList = new ArrayList<>();
+//        categoryList.add("헬스");
+//        categoryList.add("PT");
+//        FacilityDto.request facilityReq = new FacilityDto.request(
+//                "미니미헬스장",
+//                "미니미 헬스장 입니다.",
+//                "서울특별시 강남구",
+//                "www.minimi-health.kr",
+//                "010-0000-0000",
+//                "36.123456, 119.123456",
+//                categoryList);
+//        String content = gson.toJson(facilityReq);
+
         ResultActions actions = mockMvc.perform(
-                post("/facility")
+                multipart(HttpMethod.POST,"/facility")
+                        .file(multipartFile2)
+                        .file(request)
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
                         .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(content)
-        );
-        actions.andExpect(status().isCreated())
-                .andDo(document(
+                        .characterEncoding("UTF-8"));
+
+        actions.andExpect(status().isCreated()).andDo(document(
                         "post-facility",
                         getRequestPreProcessor(),
-                        requestFields(
-                                List.of(
-                                        fieldWithPath("facilityName").description("운동시설 이름"),
-                                        fieldWithPath("facilityPhoto").description("운동시설 대표이미지"),
-                                        fieldWithPath("facilityPhotoList").description("운동시설 이미지 리스트"),
-                                        fieldWithPath("facilityInfo").description("운동시설 상세안내"),
-                                        fieldWithPath("address").description("운동시설 주소"),
-                                        fieldWithPath("website").description("운동시설 웹사이트"),
-                                        fieldWithPath("phone").description("운동시설 연락처"),
-                                        fieldWithPath("location").description("운동시설 좌표"),
-                                        fieldWithPath("categoryList").description("운동시설 카테고리 리스트")
-                                ))
+                        requestParts(
+                                partWithName("file").description("upload files"),
+                                partWithName("request").description("facilityDto Request")
+                        )
                 ));
     }
     @Test
     public void patchFacility() throws Exception {
-        Long facilityId = 1L;
-        List<String> photoList = new ArrayList<>();
-        photoList.add("이미지");
-        List<String> categoryList = new ArrayList<>();
-        categoryList.add("헬스");
-        categoryList.add("PT");
-        FacilityDto.request facilityReq = new FacilityDto.request(
+        MockMultipartFile multipartFile1 = new MockMultipartFile(
+                "minimitest","minimitest.png","image/png",new FileInputStream("src/testimg/minimitest.png"));
+        MockMultipartFile multipartFile2 = new MockMultipartFile(
+                "file","minimitest.png","application/octet-stream",new byte[0]);
+
+        List<MultipartFile> multipartFileList = new ArrayList<>();
+        multipartFileList.add(multipartFile1);
+        multipartFileList.add(multipartFile2);
+        FacilityDto.patch facilityReq = new FacilityDto.patch(
                 "미니미헬스장",
-                "대표이미지",
-                photoList,
                 "미니미 헬스장 입니다.",
                 "서울특별시 강남구",
                 "www.minimi-health.kr",
                 "010-0000-0000",
                 "36.123456, 119.123456",
-                categoryList);
-        String content = gson.toJson(facilityReq);
+                new ArrayList<>());
+        String requestDtoJson =  gson.toJson(facilityReq);
+        MockMultipartFile request = new MockMultipartFile("request","request","application/json",requestDtoJson.getBytes(StandardCharsets.UTF_8));
+        Long facilityId = 1L;
+
         ResultActions actions = mockMvc.perform(
-                patch("/facility/{facilityId}",facilityId)
+                multipart(HttpMethod.PATCH,"/facility/1")
+                        .file(multipartFile2)
+                        .file(request)
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
                         .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(content)
+                        .characterEncoding("UTF-8")
+
         );
-        actions.andExpect(status().isResetContent())
-                .andDo(document(
+        actions.andExpect(status().isResetContent()).andDo(document(
                         "patch-facility",
                         getRequestPreProcessor(),
-                        pathParameters(
-                                parameterWithName("facilityId").description("운동시설 ID")
-                        ),
-                        requestFields(
-                                List.of(
-                                        fieldWithPath("facilityName").description("(Optional)운동시설 이름"),
-                                        fieldWithPath("facilityPhoto").description("(Optional)운동시설 대표이미지"),
-                                        fieldWithPath("facilityPhotoList").description("(Optional)운동시설 이미지 리스트"),
-                                        fieldWithPath("facilityInfo").description("(Optional)운동시설 상세안내"),
-                                        fieldWithPath("address").description("(Optional)운동시설 주소"),
-                                        fieldWithPath("website").description("(Optional)운동시설 웹사이트"),
-                                        fieldWithPath("phone").description("(Optional)운동시설 연락처"),
-                                        fieldWithPath("location").description("(Optional)운동시설 좌표"),
-                                        fieldWithPath("categoryList").description("(Optional)운동시설 카테고리 리스트")
-                                ))
+//                        pathParameters(
+//                                parameterWithName("facilityId").description("운동시설 ID")
+//                        ),
+                        requestParts(
+                                partWithName("file").description("upload files"),
+                                partWithName("request").description("facilityDto patch Request")
+                        )
                 ));
     }
+//    private MockMultipartHttpServletRequestBuilder multipartPatchBuilder(final String url, Object... urlVariables){
+//        final MockMultipartHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(url,urlVariables);
+//        builder.with(request1 -> {
+//            request1.setMethod(HttpMethod.PATCH.name());
+//            return request1;
+//        });
+//        return builder;
+//    }
     @Test
     public void deleteFacility() throws Exception {
         Long facilityId = 1L;
