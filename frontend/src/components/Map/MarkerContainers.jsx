@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMap, MapMarker } from 'react-kakao-maps-sdk';
 import { MarkerIconStyle } from '../../styles/components/IconStyles';
 import { useSelector } from 'react-redux';
-import Pin from '../../assets/icon/map-pin.png';
+
 
 const MarkerContainer = ({ position, content, main, custom }) => {
   const map = useMap();
@@ -26,7 +26,13 @@ const MarkerContainer = ({ position, content, main, custom }) => {
                   height: 25,
                 },
               }
-            : ''//custom일 때 이미지 다르게
+            : custom? {
+              src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 마커이미지의 주소입니다
+              size: {
+                width: 24,
+                height: 35,
+              },
+            }:''
         }
       >
         {isHover && <MarkerIconStyle>{content}</MarkerIconStyle>}

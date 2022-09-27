@@ -6,7 +6,7 @@ import MarkerContainer from './MarkerContainers';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
 
-//test
+
 
 const MapContainer = ({ location }) => {
   const dispatch = useDispatch();
@@ -29,6 +29,15 @@ const MapContainer = ({ location }) => {
     console.log(locationState);
   };
 
+  const testFunction = (_t, mouseEvent) => {
+    setCustomMarker({
+      lat: mouseEvent.latLng.getLat(),
+      lng: mouseEvent.latLng.getLng(),
+    });
+    //여기에 center로 panning시키는 + axios 요청 함수를 써보려고 console.log()함수를 테스트로 먼저 넣어봤는데
+    //작동이 안되었습니다.
+  };
+
   return (
     <>
       <button onClick={resetLoca}>RESET</button>
@@ -42,12 +51,8 @@ const MapContainer = ({ location }) => {
         }}
         level={3}
         onClick={
-          (_t, mouseEvent) =>
-            setCustomMarker({
-              lat: mouseEvent.latLng.getLat(),
-              lng: mouseEvent.latLng.getLng(),
-            })
-          //dispatch :: custom location coords
+          testFunction
+          
         }
       >
         {customMarker && (
