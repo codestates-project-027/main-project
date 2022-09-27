@@ -7,8 +7,7 @@ import CommunityCard from '../components/Card/CommunityCard';
 import Button from '../components/Button/CommunityBtn';
 
 const CommunityPage = () => {
-  const postings = useSelector((store) => store.postings);
-  console.log(postings);
+  const postings = useSelector((store) => store.community);
 
   //axios
   // const url :
@@ -16,16 +15,12 @@ const CommunityPage = () => {
   //   url:
   // })
 
-  // const postings = [
-  //   { id: '1', username: '내가만든쿠키', content: '플로깅 하실분' },
-  //   { id: '2', username: '한강에서하자', content: '플로깅이 뭐죠?' },
-  // ];
 
   const renderCard = () =>
     postings.map((posting) => (
       <div key={posting.title}>
         <Link to="/community-posting">
-          <CommunityCard />
+          <CommunityCard username={posting.title} post={posting.contents} />
         </Link>
       </div>
     ));
