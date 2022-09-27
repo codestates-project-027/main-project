@@ -6,8 +6,6 @@ import MarkerContainer from './MarkerContainers';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
 
-
-
 const MapContainer = ({ location }) => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
@@ -50,10 +48,7 @@ const MapContainer = ({ location }) => {
           marginBottom: '20px',
         }}
         level={3}
-        onClick={
-          testFunction
-          
-        }
+        onClick={testFunction}
       >
         {customMarker && (
           <MarkerContainer
