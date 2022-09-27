@@ -58,16 +58,15 @@ public class CommentControllerTest {
                                         fieldWithPath("contentsId").description("게시글 아이디"),
                                         fieldWithPath("username").description("댓글 작성자"),
                                         fieldWithPath("userProfile").description("프로필 사진"),
-                                        fieldWithPath("contents").description("댓글 내용")
+                                        fieldWithPath("content").description("댓글 내용")
                                 ))
                 ));
     }
 
     @Test
     public void patchComment() throws Exception {
-        CommentDTO.patch commentPatch = new CommentDTO.patch(
-                "댓글 수정");
-        String content = gson.toJson(commentPatch);
+        CommentDTO patch = new CommentDTO("댓글 수정");
+        String content = gson.toJson(patch);
         ResultActions actions = mockMvc.perform(
                 patch("/comment/{commentId}", 1L)
                         .accept(MediaType.APPLICATION_JSON)
@@ -83,7 +82,7 @@ public class CommentControllerTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("contents").description("댓글 수정 ")
+                                        fieldWithPath("content").description("댓글 수정 ")
                                 ))
                 ));
     }

@@ -21,13 +21,16 @@ public class ContentsDTO {
     private List<CommentDTO.comment> comment;
 
     @Builder
-    public ContentsDTO(Long contentsId, String title, String contents, String username){
+    public ContentsDTO(Long contentsId, String title, String contents, String username,LocalDateTime createdAt,String userProfile,int views,int likes,List<CommentDTO.comment> comment){
         this.contentsId=contentsId;
         this.title=title;
         this.contents=contents;
         this.username=username;
-        this.views=0;
-        this.likes=0;
+        this.createdAt=createdAt;
+        this.userProfile=userProfile;
+        this.views=views;
+        this.likes=likes;
+        this.comment=comment;
     }
 
     @AllArgsConstructor
