@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import Button from '../components/Button/CommunityBtn';
 import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
 import { WritingPost } from '../redux/CommunitySlice/CommunitySlice';
@@ -18,7 +19,7 @@ const WritingPage = () => {
     setValues({ title: '', contents: '' });
     dispatch(
       WritingPost({
-        id: '3',
+        id: uuidv4(),
         title: values.title,
         contents: values.contents,
       })
