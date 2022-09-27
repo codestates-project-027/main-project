@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,11 +10,6 @@ import { Posting, Location } from '../styles/components/CardStyle';
 
 const CommunityPage = () => {
   const postings = useSelector((store) => store.community);
-
-  // const url :
-  // axios ({
-  //   url:
-  // })
 
   const renderCard = () =>
     postings.map((posting) => (

@@ -6,8 +6,11 @@ import {
   Location,
 } from '../../styles/components/CardStyle';
 
+import { EditPostBtn } from '../Button/Btns';
+
 const CommunityCard = () => {
   const postings = useSelector((store) => store.community);
+
   return (
     <>
       <CommunityCardGlobal>
@@ -28,6 +31,12 @@ const CommunityCard = () => {
         <Location>
           <div className="date">2022.10.03</div>
         </Location>
+        <div>
+          <EditPostBtn />
+        </div>
+        <div>
+          <button>삭제</button>
+        </div>
       </CommunityCardGlobal>
     </>
   );

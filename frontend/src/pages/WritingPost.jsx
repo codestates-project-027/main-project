@@ -13,7 +13,14 @@ const WritingPage = () => {
   const [values, setValues] = useState({
     title: '',
     contents: '',
+    // username: ''; 회원가입 후 유저아이디
   });
+
+  const url = 'http://localhost:8080/contents';
+
+  const GET_COMMUNITY = 'GET_COMMUNITY';
+  const POST_COMMUNITY = 'POST_COMMUNITY';
+  const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
   const handleWriting = () => {
     setValues({ title: '', contents: '' });
@@ -22,8 +29,23 @@ const WritingPage = () => {
         id: uuidv4(),
         title: values.title,
         contents: values.contents,
+        username: 'username',
       })
     );
+    // const postCommunity = async function(){
+
+    // try {
+    // axios.post({
+    //   method: 'post',
+    //   url: url,
+    //   data: {
+    //     title: 'title',
+    //     contents: 'contents',
+    //     username: 'username',
+    //   },
+    // });
+    // console.log(res);
+
     navigate('/community');
   };
 

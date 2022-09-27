@@ -101,3 +101,15 @@ export const StickyBtn = styled(BasicBtn)`
   white-space: pre;
   box-shadow: 24;
 `;
+
+export const Button = ({ onClick, children }) => {
+  return <button onClick={onClick}>{children}</button>;
+};
+
+export const EditPostBtn = () => {
+  return <button>수정</button>
+}
+
+export const DeletePostBtn = () => {
+  return <button>삭제</button>
+}
