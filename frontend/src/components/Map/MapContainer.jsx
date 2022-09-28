@@ -11,7 +11,7 @@ const MapContainer = () => {
   const locationState = useSelector((state) => state.location);
   const [main, setMain] = useState(true);
   const [custom, setCustom] = useState(true);
-  const [customMarker, setCustomMarker] = useState();
+  const [customMarker, setCustomMarker] = useState({ lat: 0, lng: 0 });
 
   const myLoca = {
     lat: locationState.currentLocation.latitude,

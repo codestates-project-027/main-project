@@ -6,18 +6,18 @@ import { FacilityCard } from '../components/Card/FacilityCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
+import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 
 const MapPage = () => {
-  //두번 클릭해야 작동하고 새로고침해야 화면이 나오는 문제
   const dispatch = useDispatch();
-  const locationState = useSelector((state) => state.location);
-  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
   const [error, setError] = useState('');
   const { geolocation } = navigator;
+  const [loading, setLoading] = useState(false);
 
   const handleSuccess = (pos) => {
     const { latitude, longitude } = pos.coords;
     dispatch(getLocation({ currentLocation: { latitude, longitude } }));
+    setLoading(false);
   };
 
   const handleError = (error) => {
@@ -29,9 +29,8 @@ const MapPage = () => {
       setError('Geolocation is not supported.');
       return;
     }
+    setLoading(true);
     geolocation.getCurrentPosition(handleSuccess, handleError);
-
-    console.log('located');
   };
 
   return (
@@ -47,6 +46,7 @@ const MapPage = () => {
             />
           }
         />
+        {loading ? <CircularProgressWithLabel /> : ''}
         <MapContainer />
         <FacilityCard Flex={'Flex'} />
         <FacilityCard Flex={'Flex'} />
