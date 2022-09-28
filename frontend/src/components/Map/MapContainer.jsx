@@ -24,7 +24,6 @@ const MapContainer = () => {
         currentLocation: { latitude: 33.450701, longitude: 126.570667 },
       })
     );
-    console.log(locationState);
   };
 
   const testFunction = (_t, mouseEvent) => {
@@ -32,8 +31,8 @@ const MapContainer = () => {
       lat: mouseEvent.latLng.getLat(),
       lng: mouseEvent.latLng.getLng(),
     });
-    //여기에 center로 panning시키는 + axios 요청 함수를 써보려고 console.log()함수를 테스트로 먼저 넣어봤는데
-    //작동이 안되었습니다.
+    console.log('clicked')
+    //get 요청 보내기.. star 자리로부터 거리계산기
   };
 
   useEffect(() => {}, [locationState]);

@@ -20,13 +20,13 @@ const DistanceCalc = (currentLocation) => {
       Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; //distance in km, 유효자리 2자리
-  const answer = distance < 1 ? (distance * 100).toFixed(0)*10 : distance.toFixed(1);
+  const answer = distance < 1 ? (distance * 100).toFixed(0)*10+10 : distance.toFixed(1)+0.1;
 
   lat1 && lng1 && lat2 && lng2 && console.log(lat2);
 
   return (
     <div>
-      {answer}&nbsp; {distance < 1 ? 'm' : 'km'}
+      {answer}&nbsp; {distance < 1 ? 'm 이내' : 'km 이내'}
     </div>
   );
   //console.log(test)=>    {currenLocation: {…}, facilityLocation: '33.450936, 126.569477'}
