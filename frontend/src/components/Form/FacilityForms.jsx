@@ -63,8 +63,15 @@ export const RegisterFacilityForm = () => {
     const file = {
       facilityPhotoList: images.map((el) => el.file) || null,
     };
-
-    const res = await axiosInstance.post(`/facility`, request, file);
+    const fileConfig = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+    try { await axiosInstance.post(`/facility`, request, file, fileConfig);}
+    catch (err){console.log(err)}
+   
+    // console.log(request,file)
   };
 
   const onSubmit = async () => {

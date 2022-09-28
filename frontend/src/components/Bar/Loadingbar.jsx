@@ -9,7 +9,7 @@ export default function CircularIndeterminate() {
     <ThemeProvider theme={theme}>
       <ModalBackdropStyle>
         <Box sx={{ BoxStyle }}>
-          <CircularProgress color="primary"/>
+          <CircularProgress color="yellow"/>
         </Box>
       </ModalBackdropStyle>
     </ThemeProvider>
