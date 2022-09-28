@@ -1,7 +1,7 @@
 //기능 구현 후 합칠 예정
-
 import { Outlet } from 'react-router-dom';
 import { StyledLink } from '../styles/components/TextStyles';
+import styled from 'styled-components';
 
 import {
   TopNavPosition,
@@ -61,7 +61,6 @@ export const LayoutCurrentMenu = () => {
 };
 
 export const LayoutCurrentMenuSearch = () => {
-  //LayoutForFacilities
   return (
     <>
       <TopNavPosition>
@@ -93,3 +92,4 @@ export const LayoutCommunity = () => {
     </>
   );
 };
+

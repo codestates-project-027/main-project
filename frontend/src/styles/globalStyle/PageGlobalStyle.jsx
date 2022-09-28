@@ -4,17 +4,17 @@ import { PADDING } from '../../constants/style';
 export const PageGlobalBase = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 40px;
   flex-direction: column;
   padding: 30px;
-  min-height: 720px;
+  margin-bottom: 40px;
 `;
 
 export const AppPageGlobal = styled(PageGlobalBase)`
   align-items: center;
-  height: 100vh;
+  height: 100%;
   padding: 0;
 `;
-
 
 export const MainPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
