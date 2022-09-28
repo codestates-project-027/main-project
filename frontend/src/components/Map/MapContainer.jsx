@@ -6,17 +6,17 @@ import MarkerContainer from './MarkerContainers';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
 
-const MapContainer = ({ location }) => {
+const MapContainer = () => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [main, setMain] = useState(true);
   const [custom, setCustom] = useState(true);
   const [customMarker, setCustomMarker] = useState();
 
-  const [myLoca, setMyLoca] = useState({
+  const myLoca = {
     lat: locationState.currentLocation.latitude,
     lng: locationState.currentLocation.longitude,
-  });
+  };
 
   const resetLoca = () => {
     dispatch(
@@ -35,6 +35,8 @@ const MapContainer = ({ location }) => {
     //여기에 center로 panning시키는 + axios 요청 함수를 써보려고 console.log()함수를 테스트로 먼저 넣어봤는데
     //작동이 안되었습니다.
   };
+
+  useEffect(() => {}, [locationState]);
 
   return (
     <>
