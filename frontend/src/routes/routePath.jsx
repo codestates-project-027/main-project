@@ -24,11 +24,7 @@ const PATH = {
   REGISTERFACILITY: '/registerfac',
   EDITFACILITY: '/editfac',
 
-  REGISTERFACILITY:'/registerfac',
-  EDITFACILITY:'/editfac',
-
-  ADMIN:'/admin'
-
+  ADMIN: '/admin',
 };
 
 export default PATH;

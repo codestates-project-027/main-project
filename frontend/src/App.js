@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //API Call
@@ -47,6 +47,14 @@ function App() {
       <div className="App">
         <AppPageGlobal>
           <Routes>
+            {/* community */}
+            <Route element={<LayoutCommunity />}>
+              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
+              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
+            </Route>
+
             <Route element={<LayoutBase />}>
               <Route path={PATH.TEST} element={<TestPage />} />
               <Route path={PATH.SIGNUP} element={<SignUpPage />} />
@@ -74,14 +82,6 @@ function App() {
               />
               <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
               <Route path={PATH.ADMIN} element={<AdminPage />} />
-            </Route>
-
-            {/* community */}
-            <Route element={<LayoutCommunity />}>
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

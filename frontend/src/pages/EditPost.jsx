@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 // import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../components/Button/Btns';
-import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
+import {
+  TitleTextField,
+  ContentsTextField,
+} from '../components/InputTextarea/MuiTextFileds';
 // import { AddPost } from '../redux/CommunitySlice/CommunitySlice';
 import { editPost } from '../redux/CommunitySlice/CommunitySlice';
 
@@ -60,7 +63,7 @@ const EditPostPage = () => {
   return (
     <div className="form">
       <div className="wrapper">
-        <CommunityTextField
+        <TitleTextField
           value={values.title}
           inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
           onChange={(e) => setValues({ ...values, title: e.target.value })}
@@ -68,7 +71,7 @@ const EditPostPage = () => {
       </div>
       <br />
       <div className="wrapper">
-        <CommunityTextField
+        <ContentsTextField
           value={values.contents}
           inputProps={{ type: 'text', placeholder: '내용을 입력해주세요' }}
           onChange={(e) => setValues({ ...values, contents: e.target.value })}

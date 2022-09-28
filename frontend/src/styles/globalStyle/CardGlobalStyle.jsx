@@ -65,10 +65,17 @@ export const ReviewCardGlobal = styled.div`
 export const CommunityCardGlobal = styled.div`
   display: flex;
   align-items: center;
-  width: 600px;
+  width: 500px;
   height: 100px;
   color: yellow;
   font-size: 10px;
   background-color: var(--main-navy);
   border-radius: 10px;
+  margin-left: 1rem;
+  @media screen and (max-width: 790px) {
+    display: flex;
+    width: 20rem;
+    position: relative;
+    right: 2rem;
+  }
 `;

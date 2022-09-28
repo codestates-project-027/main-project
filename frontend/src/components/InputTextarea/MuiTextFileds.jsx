@@ -22,9 +22,40 @@ export const BasicTextField = ({ text }) => {
   );
 };
 
-export const CommunityTextField = ({ text, onChange, value, inputProps }) => {
+export const TitleTextField = ({ text, onChange, value, inputProps }) => {
   return (
-    <TextField {...inputProps} onChange={onChange} value={value} fullWidth>
+    <TextField
+      id="standard-textarea"
+      placeholder="Placeholder"
+      multiline
+      variant="standard"
+      {...inputProps}
+      onChange={onChange}
+      value={value}
+      sx={{
+        width: '40ch',
+      }}
+    >
+      {text}
+    </TextField>
+  );
+};
+
+export const ContentsTextField = ({ text, onChange, value, inputProps }) => {
+  return (
+    <TextField
+      id="filled-multiline-static"
+      multiline
+      rows={10}
+      defaultValue="Default Value"
+      variant="filled"
+      {...inputProps}
+      onChange={onChange}
+      value={value}
+      sx={{
+        width: '60ch',
+      }}
+    >
       {text}
     </TextField>
   );

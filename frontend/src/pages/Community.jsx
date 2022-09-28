@@ -72,6 +72,9 @@ const UpperBar = styled.div`
 `;
 
 const Render = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-top: 5rem;
   width: 50vw;
   height: 50vh;

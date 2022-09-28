@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../components/Button/Btns';
-import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
+import {
+  TitleTextField,
+  ContentsTextField,
+} from '../components/InputTextarea/MuiTextFileds';
 import { AddPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const WritingPage = () => {
@@ -16,11 +19,11 @@ const WritingPage = () => {
     // username: ''; 회원가입 후 유저아이디
   });
 
-  const url = 'http://localhost:8080/contents';
+  // const url = 'http://localhost:8080/contents';
 
-  const GET_COMMUNITY = 'GET_COMMUNITY';
-  const POST_COMMUNITY = 'POST_COMMUNITY';
-  const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
+  // const GET_COMMUNITY = 'GET_COMMUNITY';
+  // const POST_COMMUNITY = 'POST_COMMUNITY';
+  // const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
   const handleWriting = () => {
     setValues({ title: '', contents: '' });
@@ -50,50 +53,57 @@ const WritingPage = () => {
   };
 
   return (
-    <Div>
-      <Form>
-        <div className="wrapper">
-          <CommunityTextField
-            value={values.title}
-            inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
-            onChange={(e) => setValues({ ...values, title: e.target.value })}
-          />
-        </div>
-        <br />
-        <div className="wrapper">
-          <CommunityTextField
-            value={values.contents}
-            inputProps={{
-              type: 'text',
-              placeholder: '내용을 입력해주세요',
-            }}
-            onChange={(e) => setValues({ ...values, contents: e.target.value })}
-          />
-        </div>
+    <PostWrapper>
+      <Title>
+        <TitleTextField
+          value={values.title}
+          inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
+          onChange={(e) => setValues({ ...values, title: e.target.value })}
+        />
+      </Title>
+      <Contents>
+        <ContentsTextField
+          value={values.contents}
+          inputProps={{
+            type: 'text',
+            placeholder: '내용을 입력해주세요',
+          }}
+          onChange={(e) => setValues({ ...values, contents: e.target.value })}
+        />
+      </Contents>
+      <ButtonCSS>
         <Button onClick={handleWriting}>글쓰기</Button>
-        {/* 태그기능 */}
-      </Form>
-    </Div>
+      </ButtonCSS>
+      {/* 태그기능 */}
+    </PostWrapper>
   );
 };
 
 export default WritingPage;
 
-const Div = styled.div`
+const PostWrapper = styled.div`
   display: flex;
-  position: sticky;
-  bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 7rem;
 `;
 
-const Form = styled.div`
-  width: 93vw;
-  height: 93vh;
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
 
-  .wrapper {
-    height: 10rem;
-  }
+const Contents = styled.div`
+  align-items: center;
+`;
 
-  .inputProps {
-    height: 10rem;
-  }
+const ButtonCSS = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 1rem;
 `;
