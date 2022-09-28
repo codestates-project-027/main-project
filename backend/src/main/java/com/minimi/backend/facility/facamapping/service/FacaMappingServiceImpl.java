@@ -45,7 +45,13 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
         List<ResponseFacilityDto.facilityPageFromCategory> resultList = new ArrayList<>();
         facaMappingSlice.getContent().forEach(facaMapping -> {
-            resultList.add(facaMappingMapper.FacilityToResponseFacilityDto(facaMapping.getFacility()));
+            ResponseFacilityDto.facilityPageFromCategory reqDto = facaMappingMapper.FacilityToResponseFacilityDto(facaMapping.getFacility());
+
+            if (!facaMapping.getFacility().getFacilityPhotoList().isEmpty()){
+                reqDto.setFacilityPhoto(facaMapping.getFacility().getFacilityPhotoList().get(0));
+            }
+
+            resultList.add(reqDto);
         });
         return new SliceImpl<>(resultList,facaMappingSlice.getPageable(),facaMappingSlice.hasNext());
     }

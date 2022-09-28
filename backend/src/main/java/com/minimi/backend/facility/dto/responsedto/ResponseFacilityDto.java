@@ -5,6 +5,7 @@ import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class ResponseFacilityDto {
     @AllArgsConstructor
     @Getter
+    @Setter
     @Builder
     public static class facilityPageFromCategory{
         private Long facilityId;
