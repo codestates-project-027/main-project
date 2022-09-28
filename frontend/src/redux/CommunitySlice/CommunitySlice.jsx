@@ -8,10 +8,18 @@ export const communitySlice = createSlice({
   name: 'community',
   initialState,
   reducers: {
-    WritingPost: (state, action) => {
+    AddPost: (state, action) => {
       state.push(action.payload);
+    },
+    editUser: (state, action) => {
+      const { id, title, contents } = action.payload;
+      const existingPost = state.find((post) => post.id === id);
+      if (existingPost) {
+        existingPost.title = title;
+        existingPost.contents = contents;
+      }
     },
   },
 });
 
-export const { WritingPost } = communitySlice.actions;
+export const { AddPost, editPost } = communitySlice.actions;

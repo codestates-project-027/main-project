@@ -1,20 +1,28 @@
 import React from 'react';
 // import styled from 'styled-components';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../components/Button/Btns';
 import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
-import { WritingPost } from '../redux/CommunitySlice/CommunitySlice';
+// import { AddPost } from '../redux/CommunitySlice/CommunitySlice';
+import { editPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const EditPostPage = () => {
+  const postings = useSelector((store) => store.community);
+  const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  console.log(postings);
+  const existingPost = postings.filter((post) => post.id === params.id);
+  console.log(existingPost);
+  const { title, contents, username } = existingPost[0];
   const [values, setValues] = useState({
-    title: '',
-    contents: '',
-    // username: ''; 회원가입 후 유저아이디
+    title,
+    contents,
+    username,
   });
 
   //   const url = 'http://localhost:8080/contents';
@@ -24,17 +32,16 @@ const EditPostPage = () => {
   //   const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
   const handleEditPost = () => {
-    const params = useParams;
-    console.log(params.id);
-    setValues({ title: '', contents: '' });
+    setValues({ title: '', contents: '', username: '' });
     dispatch(
-      WritingPost({
-        id: uuidv4(),
+      editPost({
+        id: params.id,
         title: values.title,
         contents: values.contents,
         username: 'username',
       })
     );
+    navigate('/community');
     // const postCommunity = async function(){
 
     // try {
@@ -48,8 +55,6 @@ const EditPostPage = () => {
     //   },
     // });
     // console.log(res);
-
-    navigate('/community');
   };
 
   return (

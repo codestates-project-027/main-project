@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../components/Button/Btns';
 import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
-import { WritingPost } from '../redux/CommunitySlice/CommunitySlice';
+import { AddPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const WritingPage = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const WritingPage = () => {
   const handleWriting = () => {
     setValues({ title: '', contents: '' });
     dispatch(
-      WritingPost({
+      AddPost({
         id: uuidv4(),
         title: values.title,
         contents: values.contents,

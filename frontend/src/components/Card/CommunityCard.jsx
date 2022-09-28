@@ -1,6 +1,6 @@
 import { CommunityCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {
   UserImageCard,
   Posting,
@@ -11,6 +11,7 @@ import { EditPostBtn } from '../Button/Btns';
 
 const CommunityCard = () => {
   const postings = useSelector((store) => store.community);
+  console.log(postings);
 
   return (
     <>

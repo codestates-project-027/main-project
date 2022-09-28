@@ -35,7 +35,7 @@ import EditFacilityPage from './pages/EditFacility';
 import AdminPage from './pages/Admin';
 
 import CommunityPage from './pages/Community';
-import WritingPage from './pages/WritingPost';
+import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
 
