@@ -80,7 +80,6 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  min-height: 635px;
 
   .tags--wrapper {
     display: flex;

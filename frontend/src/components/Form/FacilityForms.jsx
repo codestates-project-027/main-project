@@ -50,29 +50,21 @@ export const RegisterFacilityForm = () => {
   };
 
   const postFacilityAXIOS = async () => {
-    // const body = { //photoList가 모여있을 때
-    //   facilityName,
-    //   facilityPhotoList: images.map((el) => el.file),
-    //   facilityInfo,
-    //   address: `${facilityState.address} ${address2}`,
-    //   website,
-    //   phone,
-    //   location: facilityState.location,
-    //   tags: tagsList,
-    // };
-    const body = { //photoList 따로 둘 때
+    const request = {
       facilityName,
-      facilityPhoto: imagesResolved[0],
-      facilityPhotoList: imagesResolved.slice(1),
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
       website,
       phone,
       location: facilityState.location,
-      tags: tagsList,
+      categoryList: tagsList,
     };
-    // const res = await axiosInstance.post(`/facility`, body);
-    console.log(body)
+
+    const file = {
+      facilityPhotoList: images.map((el) => el.file) || null,
+    };
+
+    const res = await axiosInstance.post(`/facility`, request, file);
   };
 
   const onSubmit = async () => {
