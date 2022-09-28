@@ -6,31 +6,8 @@
   font-style: normal;
 }
 
-* {
-  --main-yellow: #ffeb3b;
-  --logo-yellow: #fae316;
-  /* --light-yellow: #ffff72; */
-  --dark-yellow: #f5e131;
-
-  --box-shoadow: #bdbdbd;
-  --hover-box-shadow: #a1a1a1;
-
-  --main-navy: #37474f;
-  --light-navy: #62727b;
-  --dark-navy: #102027;
-
-  --light-gray: rgb(240, 240, 240);
-
-  --attended: lightgreen;
-  --absent: lightgray;
-
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  /* transition: all 0.2s ease-in-out; */
-  /* color: var(--main-navy); */
-  text-align: center;
-}
+/* nanumsquare */
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
 /* .App-logo {
   height: 40vmin;

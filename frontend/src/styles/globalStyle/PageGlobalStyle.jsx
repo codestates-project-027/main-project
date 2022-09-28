@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { PADDING } from '../../constants/style';
 
+
 export const PageGlobalBase = styled.div`
   display: flex;
   justify-content: center;
