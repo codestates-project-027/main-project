@@ -21,11 +21,6 @@ public class Facility {
     @Column
     private String facilityName;
 
-
-    //todo 삭제 (dto로 이동) 클라이언트의 요구사항에의해 엔티티가 오염되면안됨
-    @Column
-    private String facilityPhoto;
-
     @ElementCollection
     private List<String> facilityPhotoList;
 
@@ -60,11 +55,10 @@ public class Facility {
     private FacilityStatus facilityStatus;
 
     @Builder
-    public Facility(String facilityName, String facilityPhoto, List<String> facilityPhotoList,
+    public Facility(String facilityName, List<String> facilityPhotoList,
                     String facilityInfo, String address, String website, String phone,
                     String location, List<String> categoryList){
         this.facilityName=facilityName;
-        this.facilityPhoto=facilityPhoto;
         this.facilityPhotoList=facilityPhotoList;
         this.facilityInfo=facilityInfo;
         this.address=address;

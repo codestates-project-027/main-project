@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facility.service;
 
 
+import com.minimi.backend.facility.aws.service.S3UploadService;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
@@ -13,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +35,9 @@ public class FacilityServicePatchTests {
     private FacilityRepository facilityRepository;
 
     @Mock
+    private S3UploadService s3UploadService;
+
+    @Mock
     private FacilityCategoryCheckListener facilityCategoryCheckListener;
 
     @Mock
@@ -49,42 +54,45 @@ public class FacilityServicePatchTests {
     private FacilityDto.patch facilityDtoReq;
     private Long facilityId;
 
+    private List<MultipartFile> multipartFileList;
+
     @BeforeEach
     public void setup () {
         facilityId = 1L;
         facility = new Facility(
-                1L,"미니미헬스장","대표이미지",
+                1L,"미니미헬스장",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                 "시설정보","서울특별시 강남구","www.website.com",
                 "010-0000-0000","34.12345, 119.12345", 4,
                 new ArrayList<>(Arrays.asList("헬스", "PT")), FacilityStatus.ACTIVE
         );
-        facilityDtoReq = new FacilityDto.patch("미니미헬스장2","대표이미지2",
-                new ArrayList<>(Arrays.asList("이미지1", "이미지22")),
+        facilityDtoReq = new FacilityDto.patch("미니미헬스장2",
                 "시설정보2","서울특별시 강남구2", "www.website.com2",
                 "010-0000-0002","34.12345, 119.123452",
                 new ArrayList<>(Arrays.asList("헬스", "요가")));
         facilityResult = new Facility(
-                1L,"미니미헬스장2","대표이미지2",
+                1L,"미니미헬스장2",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지22")),
                 "시설정보2","서울특별시 강남구","www.website.com2",
                 "010-0000-0002","34.12345, 119.123452", 4,
                 new ArrayList<>(Arrays.asList("헬스", "요가")), FacilityStatus.ACTIVE
         );
         facilityResult2 = new Facility(
-                1L,"미니미헬스장2","대표이미지2",
+                1L,"미니미헬스장2",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                 "시설정보2","서울특별시 강남구","www.website.com",
                 "010-0000-0000","34.12345, 119.12345", 4,
                 new ArrayList<>(Arrays.asList("헬스", "요가")), FacilityStatus.ACTIVE
         );
         facilityResult3 = new Facility(
-                1L,"미니미헬스장2","이미지22",
+                1L,"미니미헬스장2",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                 "시설정보","서울특별시 강남구","www.website.com",
                 "010-0000-0000","34.12345, 119.12345", 4,
                 new ArrayList<>(Arrays.asList("헬스", "요가")), FacilityStatus.ACTIVE
         );
+
+
     }
 
     @Nested
@@ -98,7 +106,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult);
 
-            facilityService.patchFacility(facilityId, facilityDtoReq);
+            facilityService.patchFacility(facilityId, multipartFileList, facilityDtoReq);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -112,15 +120,13 @@ public class FacilityServicePatchTests {
         public void successPatchFacility2() throws Exception {
             FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
-            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("시설정보2");
 
-            facilityDtoReqContainNull.setFacilityPhotoList(new ArrayList<>(Arrays.asList("이미지1", "이미지22")));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -134,7 +140,6 @@ public class FacilityServicePatchTests {
         public void successPatchFacility3() throws Exception {
             FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
-            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("시설정보2");
             facilityDtoReqContainNull.setCategoryList(new ArrayList<>(Arrays.asList("헬스", "요가")));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
@@ -142,7 +147,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult2);
 
-            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -158,14 +163,12 @@ public class FacilityServicePatchTests {
         public void successPatchFacility4() throws Exception {
             FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
-            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("");
-            facilityDtoReqContainNull.setFacilityPhotoList(new ArrayList<>(Arrays.asList("이미지1", "이미지22")));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -178,7 +181,6 @@ public class FacilityServicePatchTests {
         public void successPatchFacility5() throws Exception {
             FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
-            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("");
             facilityDtoReqContainNull.setCategoryList(new ArrayList<>(Arrays.asList("헬스", "요가")));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
@@ -186,7 +188,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(facility)).willReturn(facilityResult3);
 
-            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, multipartFileList, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -201,14 +203,13 @@ public class FacilityServicePatchTests {
         public void successPatchFacility6() throws Exception {
             FacilityDto.patch facilityDtoReqContainNull = new FacilityDto.patch();
             facilityDtoReqContainNull.setFacilityName("미니미헬스장2");
-            facilityDtoReqContainNull.setFacilityPhoto("이미지22");
             facilityDtoReqContainNull.setFacilityInfo("");
             facilityDtoReqContainNull.setCategoryList(new ArrayList<>(List.of()));
             given(facilityRepository.existsById(facilityId)).willReturn(true);
             given(facilityRepository.findById(facilityId)).willReturn(Optional.ofNullable(facility));
             given(facilityRepository.save(facility)).willReturn(Mockito.any(Facility.class));
 
-            facilityService.patchFacility(facilityId, facilityDtoReqContainNull);
+            facilityService.patchFacility(facilityId, multipartFileList, facilityDtoReqContainNull);
 
             then(facilityRepository)
                     .should(times(1)).existsById(anyLong());
@@ -228,7 +229,7 @@ public class FacilityServicePatchTests {
             given(facilityRepository.existsById(facilityId)).willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityService.patchFacility(facilityId, facilityDtoReq);
+                facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReq);
             });
 
             then(facilityRepository)
@@ -244,7 +245,7 @@ public class FacilityServicePatchTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityService.patchFacility(facilityId, facilityDtoReq);
+                facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReq);
             });
 
             then(facilityRepository)
@@ -262,7 +263,7 @@ public class FacilityServicePatchTests {
             given(facilityRepository.findById(facilityId)).willThrow(new NullPointerException("Not Found Facility"));
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityService.patchFacility(facilityId, facilityDtoReq);
+                facilityService.patchFacility(facilityId,multipartFileList, facilityDtoReq);
             });
 
             then(facilityRepository)

@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facility.service;
 
 
+import com.minimi.backend.facility.aws.service.S3UploadService;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
@@ -15,13 +16,17 @@ import com.minimi.backend.facility.facility.service.pub.FacilityPostReviewEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +41,8 @@ public class FacilityServiceImpl implements FacilityService {
     private final FacaMappingGetListener facaMappingGetListener;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final FacilityMapper facilityMapper;
+
+    private final S3UploadService s3UploadService;
 
 
     @Override
@@ -60,8 +67,16 @@ public class FacilityServiceImpl implements FacilityService {
         return facaMappingGetListener.getFacilityFromCategory(categoryCode, page);
     }
 
+    @SneakyThrows
     @Override
-    public void postFacility(FacilityDto.request facilityDtoReq) {
+    public void postFacility(List<MultipartFile> multipartFileList, FacilityDto.request facilityDtoReq) {
+
+        List<String> imageList = new ArrayList<>();
+
+
+        if (multipartFileList != null && !multipartFileList.get(0).isEmpty()) {
+            imageList = s3UploadService.upload(multipartFileList);
+        }
 
         facilityDtoReq.setCategoryList(
                 facilityDtoReq.getCategoryList().stream().distinct().collect(Collectors.toList()));
@@ -70,8 +85,7 @@ public class FacilityServiceImpl implements FacilityService {
         Facility facility =facilityRepository.save(Facility.builder()
                 .facilityName(facilityDtoReq.getFacilityName())
                 .facilityInfo(facilityDtoReq.getFacilityInfo())
-                .facilityPhoto(facilityDtoReq.getFacilityPhoto())
-                .facilityPhotoList(facilityDtoReq.getFacilityPhotoList())
+                .facilityPhotoList(imageList)
                 .address(facilityDtoReq.getAddress())
                 .website(facilityDtoReq.getWebsite())
                 .phone(facilityDtoReq.getPhone())
@@ -83,11 +97,20 @@ public class FacilityServiceImpl implements FacilityService {
         publishPostEventList(facility);
     }
 
+    @SneakyThrows
     @Override
     @Transactional
-    public void patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
+    public void patchFacility(Long facilityId, List<MultipartFile> multipartFileList, FacilityDto.patch facilityDtoPat) {
+
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
+
+
+        if (multipartFileList != null && !multipartFileList.get(0).isEmpty()) {
+            List<String> imageList = new ArrayList<>();
+            imageList = s3UploadService.upload(multipartFileList);
+            facility.setFacilityPhotoList(imageList);
+        }
 
 
         if((facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {

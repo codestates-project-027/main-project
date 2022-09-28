@@ -122,10 +122,10 @@ include::{snippets}/get-facility/response-fields.adoc[]
 include::{snippets}/post-facility/httpie-request.adoc[]
 .http-request
 include::{snippets}/post-facility/http-request.adoc[]
+.request-parts
+include::{snippets}/post-facility/request-parts.adoc[]
 .request-body
 include::{snippets}/post-facility/request-body.adoc[]
-.request-fields
-include::{snippets}/post-facility/request-fields.adoc[]
 ==== Response
 .http-response
 include::{snippets}/post-facility/http-response.adoc[]
@@ -138,12 +138,10 @@ include::{snippets}/post-facility/response-body.adoc[]
 include::{snippets}/patch-facility/httpie-request.adoc[]
 .http-request
 include::{snippets}/patch-facility/http-request.adoc[]
-.path-parameters
-include::{snippets}/patch-facility/path-parameters.adoc[]
+.request-parts
+include::{snippets}/patch-facility/request-parts.adoc[]
 .request-body
 include::{snippets}/patch-facility/request-body.adoc[]
-.request-fields
-include::{snippets}/patch-facility/request-fields.adoc[]
 ==== Response
 .http-response
 include::{snippets}/patch-facility/http-response.adoc[]

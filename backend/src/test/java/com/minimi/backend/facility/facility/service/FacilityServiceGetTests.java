@@ -59,7 +59,7 @@ public class FacilityServiceGetTests {
     public void setup() {
         facilityId = 1L;
         facility = new Facility(
-                1L, "미니미헬스장", "대표이미지",
+                1L, "미니미헬스장",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                 "시설정보", "서울특별시 강남구", "www.web.com",
                 "010-0000-0000", "34.12345, 119.12345", 4,
