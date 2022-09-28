@@ -6,19 +6,17 @@ import MarkerContainer from './MarkerContainers';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
 
-
-
-const MapContainer = ({ location }) => {
+const MapContainer = () => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [main, setMain] = useState(true);
   const [custom, setCustom] = useState(true);
-  const [customMarker, setCustomMarker] = useState();
+  const [customMarker, setCustomMarker] = useState({ lat: 0, lng: 0 });
 
-  const [myLoca, setMyLoca] = useState({
+  const myLoca = {
     lat: locationState.currentLocation.latitude,
     lng: locationState.currentLocation.longitude,
-  });
+  };
 
   const resetLoca = () => {
     dispatch(
@@ -38,6 +36,8 @@ const MapContainer = ({ location }) => {
     //작동이 안되었습니다.
   };
 
+  useEffect(() => {}, [locationState]);
+
   return (
     <>
       <button onClick={resetLoca}>RESET</button>
@@ -50,10 +50,7 @@ const MapContainer = ({ location }) => {
           marginBottom: '20px',
         }}
         level={3}
-        onClick={
-          testFunction
-          
-        }
+        onClick={testFunction}
       >
         {customMarker && (
           <MarkerContainer

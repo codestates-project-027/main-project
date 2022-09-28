@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  currentLocation: '',
+  currentLocation: { latitude: 0, longitude: 0 },
 };
 
 //상세 목록
