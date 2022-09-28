@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //API Call
-import api from './api/api-toEdit';
 
 //Routes
 import PATH from './routes/routePath';
@@ -41,19 +40,7 @@ import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
 
 function App() {
-  const [test, setTest] = useState('');
-
-  const getData = () => {
-    api.Test.get().then((data) => {
-      setTest(data);
-    });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  console.log(test); // server OK
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -76,6 +63,10 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+
+              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
+              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
 
               <Route
                 path={PATH.REGISTERFACILITY}

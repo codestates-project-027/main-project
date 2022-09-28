@@ -28,7 +28,9 @@ export const TopNavbar = ({ type }) => {
           </IconWrapper>
         </div>
         <div className="icon--wrapper">
-          <BiBell size="23" />
+          <Link to="alarms">
+            <BiBell size="23" />
+          </Link>
         </div>
       </TopNavbarGlobal>
     </>

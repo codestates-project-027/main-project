@@ -1,6 +1,7 @@
 //기능 구현 후 합칠 예정
 
 import { Outlet } from 'react-router-dom';
+import { StyledLink } from '../styles/components/TextStyles';
 
 import {
   TopNavPosition,
@@ -69,9 +70,10 @@ export const LayoutCurrentMenuSearch = () => {
       <LayoutBaseForFacilities />
 
       <StickyBtn>
-        시설
-        <br />
-        등록
+        <StyledLink to="/registerfac">
+          시설 <br />
+          등록
+        </StyledLink>
       </StickyBtn>
 
       <BottomNavPosition>

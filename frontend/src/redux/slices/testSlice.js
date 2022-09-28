@@ -1,14 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  list: [],
-  categoryCode: '',
-  categoryTitle: '',
-  categoryStatus: '',
-};
+    facilityName: '',
+    facilityPhotoList: [],
+    facilityInfo: '',
+    address: '',
+    website: '',
+    phone: '',
+    starRate: 0,
+    location: '',
+    categoryList: [],
+    facilityStatus: '',
+  };
 
-export const categorySlice = createSlice({
-  name: 'category',
+export const testSlice = createSlice({
+  name: 'test',
   initialState,
   reducers: {
     getCategory: (state, action) => {
@@ -26,4 +32,4 @@ export const categorySlice = createSlice({
   },
 });
 
-export const { getCategory } = categorySlice.actions;
+export const { getCategory } = testSlice.actions;

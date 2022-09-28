@@ -1,20 +1,8 @@
-import MinimiClient from './Interceptor';
-import { useState } from 'react';
+import axios from 'axios';
+import axiosInstance from './Interceptor';
 
 export const apiPath = {
-  API_GetCategory: '/category',
-  API_PostCategory: '/category',
+  GET_Category: '/category',
+  POST_Category: '/category',
 };
 
-//states
-
-// export const getCategory = async () => {
-//   const response = await MinimiClient.get(apiPath.API_GetCategory);
-//   console.log(response);
-// };
-
-export const AXIOSCategory = {
-  GET: async () => {
-    const { data } = await MinimiClient.get(apiPath.API_GetCategory);
-  },
-};

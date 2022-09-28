@@ -69,3 +69,4 @@ const X = styled.div`
   margin-left: 5px;
   cursor: pointer;
 `;
+

@@ -13,9 +13,8 @@ const PATH = {
   MAP: '/map',
   ALARMS: '/alarms',
 
-  EDITMY: '/setting',
-  POSTREVIEW: '/postreview',
-  EDITREVIEW: '/editreview',
+  EDITMY: '/editMyFac',
+  // POSTREVIEW, EDITREVIEW-> Modal창
 
   COMMUNITY: '/community',
   COMMUNITIYWRITING: '/community-writing',
@@ -25,7 +24,11 @@ const PATH = {
   REGISTERFACILITY: '/registerfac',
   EDITFACILITY: '/editfac',
 
-  ADMIN: '/admin',
+  REGISTERFACILITY:'/registerfac',
+  EDITFACILITY:'/editfac',
+
+  ADMIN:'/admin'
+
 };
 
 export default PATH;

@@ -35,6 +35,7 @@ export const WhiteInputGlobal = styled(NavyInputGlobal)`
   margin-bottom: 3px;
   .input {
     color: var(--main-navy);
+    width: 300px;
   }
   .input::placeholder {
     color: lightgray;
