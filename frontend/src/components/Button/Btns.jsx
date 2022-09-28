@@ -88,6 +88,7 @@ export const BigBtn = styled(BasicBtn)`
   height: ${(props) => props.height || '35px'};
   margin-right: ${(props) => props.marginRight || '0px'};
   font-weight: ${(props) => props.fontWeight || '400'};
+  font-size: ${(props) => props.fontSize || '10px'};
 `;
 
 export const StickyBtn = styled(BasicBtn)`
@@ -103,13 +104,13 @@ export const StickyBtn = styled(BasicBtn)`
 `;
 
 export const Button = ({ onClick, children }) => {
-  return <button onClick={onClick}>{children}</button>;
+  return <BigBtn onClick={onClick}>{children}</BigBtn>;
 };
 
 export const EditPostBtn = () => {
-  return <button>수정</button>
-}
+  return <button>수정</button>;
+};
 
 export const DeletePostBtn = () => {
-  return <button>삭제</button>
-}
+  return <button>삭제</button>;
+};

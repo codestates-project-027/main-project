@@ -6,15 +6,11 @@ import { SearchbarGroupStyle } from '../../styles/components/ComponentGroupStyle
 import TextLogo from '../../assets/logo/minimi-text.png';
 import { SquareBtn } from '../../components/Button/Btns';
 
-export const Searchbar = () => {
+export const Searchbar = ({ placeholder }) => {
   return (
     <>
       <SearchbarGlobal>
-        <Input
-          type="text"
-          className="searchbar"
-          placeholder="어떤 운동을 찾으세요?"
-        />
+        <Input type="text" className="searchbar" placeholder={placeholder} />
         <IconWrapper marginRight={'13px'}>
           <BiSearch size="20" />
         </IconWrapper>

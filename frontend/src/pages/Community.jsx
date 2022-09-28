@@ -7,6 +7,7 @@ import { CommunityCardGlobal } from '../styles/globalStyle/CardGlobalStyle';
 import { UserImageCard } from '../styles/components/CardStyle';
 import { Button } from '../components/Button/Btns';
 import { Posting, Location } from '../styles/components/CardStyle';
+import { Searchbar } from '../components/Bar/Searchbar';
 
 const CommunityPage = () => {
   const postings = useSelector((store) => store.community);
@@ -39,27 +40,35 @@ const CommunityPage = () => {
     ));
   return (
     <>
-      <Div>
+      <CommunityWrapper>
+        <UpperBar>
+          <Searchbar placeholder="우리동네 소식찾기" />
+          <Link to="/community-writing">
+            <Button>글쓰기</Button>
+          </Link>
+        </UpperBar>
         <Render>
           {postings.length ? renderCard() : <p>등록 된 글이 없습니다.</p>}
         </Render>
-        <Link to="/community-writing">
-          <span>
-            <Button>글쓰기</Button>
-          </span>
-        </Link>
-      </Div>
+      </CommunityWrapper>
     </>
   );
 };
 
 export default CommunityPage;
 
-const Div = styled.div`
+const CommunityWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0rem 5rem 0 5rem;
   align-items: center;
-  bottom: 0;
+`;
+
+const UpperBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
 `;
 
 const Render = styled.div`

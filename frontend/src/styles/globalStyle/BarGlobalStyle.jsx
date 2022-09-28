@@ -56,3 +56,22 @@ export const TopNavbarGlobal = styled(BottomNavbarGlobal)`
     display: flex;
   }
 `;
+
+export const CommunityTopNavbarGlobal = styled(BottomNavbarGlobal)`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  width: 100%;
+  background-color: var(--main-yellow);
+  .tab--wrapper {
+    display: flex;
+    margin-left: 20px;
+  }
+  .icon--wrapper {
+    margin-right: 20px;
+  }
+  @media screen {
+    display: flex;
+  }
+`;

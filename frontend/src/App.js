@@ -17,6 +17,7 @@ import {
   LayoutMain,
   LayoutCurrentMenu,
   LayoutCurrentMenuSearch,
+  LayoutCommunity,
 } from './layouts/Layouts';
 
 //Pages
@@ -76,16 +77,20 @@ function App() {
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
 
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
               <Route
                 path={PATH.REGISTERFACILITY}
                 element={<RegisterFacilityPage />}
               />
               <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
               <Route path={PATH.ADMIN} element={<AdminPage />} />
+            </Route>
+
+            {/* community */}
+            <Route element={<LayoutCommunity />}>
+              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
+              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>
