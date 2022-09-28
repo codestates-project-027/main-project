@@ -88,7 +88,9 @@ export const BigBtn = styled(BasicBtn)`
   height: ${(props) => props.height || '35px'};
   margin-right: ${(props) => props.marginRight || '0px'};
   font-weight: ${(props) => props.fontWeight || '400'};
+  font-size: ${(props) => props.fontSize};
   margin-top: ${(props) => props.marginTop};
+
 `;
 
 export const StickyBtn = styled(BasicBtn)`
@@ -102,3 +104,15 @@ export const StickyBtn = styled(BasicBtn)`
   white-space: pre;
   box-shadow: 24;
 `;
+
+export const Button = ({ onClick, children }) => {
+  return <BigBtn onClick={onClick}>{children}</BigBtn>;
+};
+
+export const EditPostBtn = () => {
+  return <button>수정</button>;
+};
+
+export const DeletePostBtn = () => {
+  return <button>삭제</button>;
+};

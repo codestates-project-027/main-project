@@ -207,6 +207,8 @@ export const ReviewCardStyle = styled.div`
   }
 `;
 
+//community
+
 export const UserImageCard = styled.div`
   border: 1px solid white;
   width: 5rem;

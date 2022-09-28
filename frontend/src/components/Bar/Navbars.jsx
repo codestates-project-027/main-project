@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import {
+  CommunityTopNavbarGlobal,
   TopNavbarGlobal,
   BottomNavbarGlobal,
 } from '../../styles/globalStyle/BarGlobalStyle';
@@ -32,6 +33,24 @@ export const TopNavbar = ({ type }) => {
           </Link>
         </div>
       </TopNavbarGlobal>
+    </>
+  );
+};
+
+export const CommunityTopNavbar = ({ type }) => {
+  return (
+    <>
+      <CommunityTopNavbarGlobal>
+        <div className="tab--wrapper">
+          {type}
+          <IconWrapper marginLeft={'10px'}>
+            <IoIosArrowDown size="23" />
+          </IconWrapper>
+        </div>
+        <div className="icon--wrapper">
+          <BiBell size="23" />
+        </div>
+      </CommunityTopNavbarGlobal>
     </>
   );
 };

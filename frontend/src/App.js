@@ -16,6 +16,7 @@ import {
   LayoutMain,
   LayoutCurrentMenu,
   LayoutCurrentMenuSearch,
+  LayoutCommunity,
 } from './layouts/Layouts';
 
 //Pages
@@ -34,8 +35,9 @@ import EditFacilityPage from './pages/EditFacility';
 import AdminPage from './pages/Admin';
 
 import CommunityPage from './pages/Community';
-import WritingPage from './pages/WritingPost';
+import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
+import EditPostPage from './pages/EditPost';
 
 function App() {
   useEffect(() => {}, []);
@@ -72,6 +74,14 @@ function App() {
               />
               <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
               <Route path={PATH.ADMIN} element={<AdminPage />} />
+            </Route>
+
+            {/* community */}
+            <Route element={<LayoutCommunity />}>
+              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
+              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
             </Route>
 
             <Route element={<LayoutCurrentMenuSearch />}>

@@ -19,12 +19,16 @@ const PATH = {
   COMMUNITY: '/community',
   COMMUNITIYWRITING: '/community-writing',
   COMMUNITIYPOSTING: '/community-posting',
+  EDITCOMMUNITIY: 'edit-community',
 
+  REGISTERFACILITY: '/registerfac',
+  EDITFACILITY: '/editfac',
 
   REGISTERFACILITY:'/registerfac',
   EDITFACILITY:'/editfac',
 
   ADMIN:'/admin'
+
 };
 
 export default PATH;

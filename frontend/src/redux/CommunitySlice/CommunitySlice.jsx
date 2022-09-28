@@ -2,15 +2,24 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [
-  { id: '1', username: '내가만든쿠키', content: '플로깅 하실분' },
-  { id: '2', username: '한강에서하자', content: '플로깅이 뭐죠?' },
-];
+const initialState = [];
 
-const communitySlice = createSlice({
-  name: 'username',
-  postings: 'postings',
+export const communitySlice = createSlice({
+  name: 'community',
   initialState,
+  reducers: {
+    AddPost: (state, action) => {
+      state.push(action.payload);
+    },
+    editUser: (state, action) => {
+      const { id, title, contents } = action.payload;
+      const existingPost = state.find((post) => post.id === id);
+      if (existingPost) {
+        existingPost.title = title;
+        existingPost.contents = contents;
+      }
+    },
+  },
 });
 
-export default communitySlice.reducer;
+export const { AddPost, editPost } = communitySlice.actions;

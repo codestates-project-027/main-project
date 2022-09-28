@@ -11,9 +11,10 @@ export const PageGlobalBase = styled.div`
 
 export const AppPageGlobal = styled(PageGlobalBase)`
   align-items: center;
-  height: 100%;
+  height: 100vh;
   padding: 0;
 `;
+
 
 export const MainPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
@@ -161,8 +162,8 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
   }
 `;
 
-export const RegisterFacGlobal = styled(PageGlobalBase)``
+export const RegisterFacGlobal = styled(PageGlobalBase)``;
 
-export const EditFacGlobal = styled(RegisterFacGlobal)``
+export const EditFacGlobal = styled(RegisterFacGlobal)``;
 
-export const AdminGlobal = styled(PageGlobalBase)``
+export const AdminGlobal = styled(PageGlobalBase)``;

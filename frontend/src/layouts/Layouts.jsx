@@ -9,7 +9,11 @@ import {
   BottomNavPosition,
 } from '../styles/position/LayoutPositions';
 
-import { TopNavbar, BottomNavbar } from '../components/Bar/Navbars';
+import {
+  TopNavbar,
+  BottomNavbar,
+  CommunityTopNavbar,
+} from '../components/Bar/Navbars';
 
 import { StickyBtn } from '../components/Button/Btns';
 
@@ -75,6 +79,17 @@ export const LayoutCurrentMenuSearch = () => {
       <BottomNavPosition>
         <BottomNavbar />
       </BottomNavPosition>
+    </>
+  );
+};
+
+export const LayoutCommunity = () => {
+  return (
+    <>
+      <TopNavPosition>
+        <CommunityTopNavbar type={'커뮤니티'} />
+      </TopNavPosition>
+      <LayoutBase />
     </>
   );
 };
