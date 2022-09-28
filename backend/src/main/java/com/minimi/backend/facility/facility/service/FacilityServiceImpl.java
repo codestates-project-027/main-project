@@ -1,6 +1,7 @@
 package com.minimi.backend.facility.facility.service;
 
 
+import com.minimi.backend.facility.aws.service.S3UploadService;
 import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
@@ -11,18 +12,24 @@ import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListe
 import com.minimi.backend.facility.facility.service.listener.FacilityReviewGetListener;
 import com.minimi.backend.facility.facility.service.pub.FacilityDeleteEvent;
 import com.minimi.backend.facility.facility.service.pub.FacilityPostEvent;
+import com.minimi.backend.facility.facility.service.pub.FacilityPostReviewEvent;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
-import com.minimi.backend.facility.review.ReviewDto;
+import com.minimi.backend.facility.review.domain.ReviewDto;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +41,8 @@ public class FacilityServiceImpl implements FacilityService {
     private final FacaMappingGetListener facaMappingGetListener;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final FacilityMapper facilityMapper;
+
+    private final S3UploadService s3UploadService;
 
 
     @Override
@@ -58,16 +67,25 @@ public class FacilityServiceImpl implements FacilityService {
         return facaMappingGetListener.getFacilityFromCategory(categoryCode, page);
     }
 
+    @SneakyThrows
     @Override
-    public Facility postFacility(FacilityDto.request facilityDtoReq) {
+    public void postFacility(List<MultipartFile> multipartFileList, FacilityDto.request facilityDtoReq) {
 
+        List<String> imageList = new ArrayList<>();
+
+
+        if (multipartFileList != null && !multipartFileList.get(0).isEmpty()) {
+            imageList = s3UploadService.upload(multipartFileList);
+        }
+
+        facilityDtoReq.setCategoryList(
+                facilityDtoReq.getCategoryList().stream().distinct().collect(Collectors.toList()));
         checkCategory(facilityDtoReq.getCategoryList());
 
         Facility facility =facilityRepository.save(Facility.builder()
                 .facilityName(facilityDtoReq.getFacilityName())
                 .facilityInfo(facilityDtoReq.getFacilityInfo())
-                .facilityPhoto(facilityDtoReq.getFacilityPhoto())
-                .facilityPhotoList(facilityDtoReq.getFacilityPhotoList())
+                .facilityPhotoList(imageList)
                 .address(facilityDtoReq.getAddress())
                 .website(facilityDtoReq.getWebsite())
                 .phone(facilityDtoReq.getPhone())
@@ -75,27 +93,43 @@ public class FacilityServiceImpl implements FacilityService {
                 .categoryList(facilityDtoReq.getCategoryList())
                 .build());
 
-        facility.getCategoryList().forEach(categoryTitle -> {
-            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
-            applicationEventPublisher.publishEvent(new FacilityPostEvent(facilityCategory,facility));
-        });
-
-        return facility;
+        applicationEventPublisher.publishEvent(new FacilityPostReviewEvent(facility.getFacilityId()));
+        publishPostEventList(facility);
     }
 
+    @SneakyThrows
     @Override
-    public Facility patchFacility(Long facilityId ,FacilityDto.patch facilityDtoPat) {
+    @Transactional
+    public void patchFacility(Long facilityId, List<MultipartFile> multipartFileList, FacilityDto.patch facilityDtoPat) {
+
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         Facility facility  = checkedFindFacility(facilityId);
 
-        if(!(facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {
-            checkCategory(facilityDtoPat.getCategoryList());
+
+        if (multipartFileList != null && !multipartFileList.get(0).isEmpty()) {
+            List<String> imageList = new ArrayList<>();
+            imageList = s3UploadService.upload(multipartFileList);
+            facility.setFacilityPhotoList(imageList);
         }
+
+
+        if((facilityDtoPat.getCategoryList()==null||facilityDtoPat.getCategoryList().size()==0)) {
+            Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
+
+            facilityRepository.save(patchedFacility);
+            return;
+        }
+
+        facilityDtoPat.setCategoryList(
+                facilityDtoPat.getCategoryList().stream().distinct().collect(Collectors.toList()));
+        checkCategory(facilityDtoPat.getCategoryList());
 
         Facility patchedFacility = facilityBeanWrapper(facilityDtoPat, facility);
 
-        facilityRepository.save(patchedFacility);
-        return patchedFacility;
+        Facility resultFacility = facilityRepository.save(patchedFacility);
+
+        applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
+        publishPostEventList(resultFacility);
     }
 
     @Override
@@ -103,7 +137,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void deleteFacility(Long facilityId) {
         checkData(facilityRepository.existsById(facilityId), "Not Found Facility");
         applicationEventPublisher.publishEvent(new FacilityDeleteEvent(facilityId));
-
+        
         facilityRepository.deleteById(facilityId);
     }
 
@@ -134,5 +168,13 @@ public class FacilityServiceImpl implements FacilityService {
             }
         });
         return facility;
+    }
+
+    public void publishPostEventList(Facility facility) {
+        facility.getCategoryList().forEach(categoryTitle -> {
+            FacilityCategory facilityCategory = facilityCategoryCheckListener.getFacilityCategoryByTitle(categoryTitle);
+            applicationEventPublisher.publishEvent(
+                    new FacilityPostEvent(facilityCategory, facility));
+        });
     }
 }

@@ -52,12 +52,11 @@ public class FacilityCategoryServicePostTests {
             given(facilityCategoryRepository.existsByCategoryCode(Mockito.anyString())).willReturn(false);
             given(facilityCategoryRepository.save(Mockito.any(FacilityCategory.class))).willReturn(facilityCategory);
 
-            FacilityCategory result = facilityCategoryService.postFacilityCategory(categoryCode, categoryTitle);
+            facilityCategoryService.postFacilityCategory(categoryCode, categoryTitle);
 
             then(facilityCategoryRepository).should(times(1)).save(any());
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(any());
             then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(any());
-            assertThat(result, equalTo(facilityCategory));
         }
     }
 

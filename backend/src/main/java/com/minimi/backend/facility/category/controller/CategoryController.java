@@ -39,8 +39,8 @@ public class CategoryController {
 
     //getall categorys
     @GetMapping("")
-    public ResponseEntity<List<CategoryDto.response>> getCategoryTitles(){
-        return new ResponseEntity<>(categoryService.getCategoryTitles(), HttpStatus.OK);
+    public ResponseEntity<List<CategoryDto.response>> getCategoryTitles(@RequestParam Boolean active){
+        return new ResponseEntity<>(categoryService.getCategoryTitles(active), HttpStatus.OK);
     }
 
     //get category

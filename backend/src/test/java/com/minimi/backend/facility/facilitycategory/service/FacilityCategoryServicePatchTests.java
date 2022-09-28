@@ -58,18 +58,15 @@ public class FacilityCategoryServicePatchTests {
                     .willReturn(facilityCategory);
             given(facilityCategoryRepository.existsByCategoryTitle(Mockito.anyString()))
                     .willReturn(false);
-            given(facilityCategoryRepository.save(Mockito.any(FacilityCategory.class)))
+            given(facilityCategoryRepository.save(facilityCategory))
                     .willReturn(facilityCategoryResult);
 
-            FacilityCategory result = facilityCategoryService.patchFacilityCategory(categoryCode,categoryTitle);
+            facilityCategoryService.patchFacilityCategory(categoryCode,categoryTitle);
 
             then(facilityCategoryRepository).should(times(1)).existsByCategoryCode(anyString());
             then(facilityCategoryRepository).should(times(1)).findByCategoryCode(any());
             then(facilityCategoryRepository).should(times(1)).existsByCategoryTitle(any());
             then(facilityCategoryRepository).should(times(1)).save(any());
-            assertThat(result.getFacilityCategoryId(), equalTo(facilityCategoryResult.getFacilityCategoryId()));
-            assertThat(result.getCategoryCode(), equalTo(facilityCategoryResult.getCategoryCode()));
-            assertThat(result.getCategoryTitle(), equalTo(facilityCategoryResult.getCategoryTitle()));
         }
     }
 

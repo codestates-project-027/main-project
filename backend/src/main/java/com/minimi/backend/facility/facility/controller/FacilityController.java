@@ -7,8 +7,12 @@ import com.minimi.backend.facility.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/facility")
@@ -24,16 +28,18 @@ public class FacilityController {
     }
     //post facility
     @PostMapping("")
-    public ResponseEntity postFacility(@RequestBody FacilityDto.request facilityReq){
-        facilityService.postFacility(facilityReq);
+    public ResponseEntity postFacility(@RequestPart(value = "request") FacilityDto.request facilityReq,
+                                       @RequestPart(value = "file", required = false) List<MultipartFile> multipartFileList){
+        facilityService.postFacility(multipartFileList, facilityReq);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     //patch facility
     @PatchMapping("/{facilityId}")
     public ResponseEntity patchFacility(@PathVariable Long facilityId,
-                                        @RequestBody FacilityDto.patch facilityPatch){
-        facilityService.patchFacility(facilityId, facilityPatch);
+                                        @RequestPart("request") FacilityDto.patch facilityPatch,
+                                        @RequestPart(name = "file", required = false) List<MultipartFile> multipartFileList){
+        facilityService.patchFacility(facilityId, multipartFileList, facilityPatch);
         return new ResponseEntity(HttpStatus.RESET_CONTENT);
     }
     //delete facility

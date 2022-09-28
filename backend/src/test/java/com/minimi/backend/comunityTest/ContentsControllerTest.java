@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ContentsController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class ContentsControllerTest implements helper {
+public class ContentsControllerTest{
 
     @Autowired
     private MockMvc mockMvc;
@@ -125,7 +125,7 @@ public class ContentsControllerTest implements helper {
 
         given(contentsService.getContents(Mockito.anyLong())).willReturn(response);
         ResultActions actions = mockMvc.perform(
-                get("/contents/{contentsId}", 1L)
+                get("/contents/test/{contentsId}", 1L)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -138,12 +138,12 @@ public class ContentsControllerTest implements helper {
                 .andExpect(jsonPath("userProfile").value(response.getUserProfile()))
                 .andExpect(jsonPath("comment[0].commentId").value(1L))
                 .andExpect(jsonPath("comment[0].contentsId").value(1L))
-                .andExpect(jsonPath("comment[0].contents").value("댓글내용"))
+                .andExpect(jsonPath("comment[0].content").value("댓글내용"))
                 .andExpect(jsonPath("comment[0].username").value("댓글작성자"))
                 .andExpect(jsonPath("comment[0].createdAt").value("2022-09-16T12:32:01.000000001"))
                 .andExpect(jsonPath("comment[1].commentId").value(2L))
                 .andExpect(jsonPath("comment[1].contentsId").value(1L))
-                .andExpect(jsonPath("comment[1].contents").value("댓글내용2"))
+                .andExpect(jsonPath("comment[1].content").value("댓글내용2"))
                 .andExpect(jsonPath("comment[1].username").value("댓글작성자2"))
                 .andExpect(jsonPath("comment[1].createdAt").value("2022-09-16T12:42:01.000000001"))
                 .andDo(document(
@@ -164,7 +164,7 @@ public class ContentsControllerTest implements helper {
                                 fieldWithPath("likes").type(JsonFieldType.NUMBER).description("작성자 프로필 사진"),
                                 fieldWithPath("comment[0].commentId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
                                 fieldWithPath("comment[0].contentsId").type(JsonFieldType.NUMBER).description("게시글 아이디"),
-                                fieldWithPath("comment[0].contents").type(JsonFieldType.STRING).description("댓글 내용"),
+                                fieldWithPath("comment[0].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                 fieldWithPath("comment[0].username").type(JsonFieldType.STRING).description("댓글 작성자"),
                                 fieldWithPath("comment[0].createdAt").type(JsonFieldType.STRING).description("댓글 작성 시간")
                         )

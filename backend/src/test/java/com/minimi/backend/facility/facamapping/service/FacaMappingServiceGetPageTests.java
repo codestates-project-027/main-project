@@ -8,6 +8,8 @@ import com.minimi.backend.facility.facamapping.service.listener.FacilityCategory
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -47,6 +49,9 @@ public class FacaMappingServiceGetPageTests {
     @Mock
     private FacaMappingMapper facaMappingMapper;
 
+    @Mock
+    private FacilityCategoryMapper facilityCategoryMapper;
+
     @InjectMocks
     private FacaMappingServiceImpl facaMappingService;
 
@@ -64,10 +69,12 @@ public class FacaMappingServiceGetPageTests {
     private int page;
 
     private FacilityCategory facilityCategory;
+    private FacilityCategoryDto.response facilityCategoryDtoRes;
 
     @BeforeEach
     public void setup(){
         facilityCategory = new FacilityCategory(1L, "220901", "헬스");
+        facilityCategoryDtoRes = new FacilityCategoryDto.response(1L,"220901", "헬스");
         categoryCode = "220901";
         page = 1;
         nullFacaSlice = new SliceImpl<>(new ArrayList<>());
@@ -76,7 +83,7 @@ public class FacaMappingServiceGetPageTests {
                         new FacaMapping(1L,1L,1L,
                                 facilityCategory,
                                 new Facility(
-                                        1L,"파워헬스장","대표이미지",
+                                        1L,"파워헬스장",
                                         new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                                         "시설정보","서울특별시 강남구","www.website.com",
                                         "010-0000-0000","35.123456, 119.123456", 3,
@@ -85,7 +92,7 @@ public class FacaMappingServiceGetPageTests {
                         new FacaMapping(1L,1L,2L,
                                 facilityCategory,
                                 new Facility(
-                                        2L,"종국헬스장","대표이미지",
+                                        2L,"종국헬스장",
                                         new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                                         "시설정보","서울특별시 강북구","www.website.com",
                                         "010-0000-0000","35.123456, 120.123456", 2,
@@ -93,7 +100,7 @@ public class FacaMappingServiceGetPageTests {
                                 )),new FacaMapping(1L,1L,3L,
                                 facilityCategory,
                                 new Facility(
-                                        3L,"미니미헬스장","대표이미지",
+                                        3L,"미니미헬스장",
                                         new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                                         "시설정보","서울특별시 강남구","www.website.com",
                                         "010-0000-0000","35.123456, 119.123456", 5,

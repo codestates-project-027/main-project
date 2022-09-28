@@ -2,6 +2,7 @@ package com.minimi.backend.facility.facility.service;
 
 
 
+import com.minimi.backend.facility.aws.service.S3UploadService;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
@@ -14,9 +15,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -39,27 +43,31 @@ public class FacilityServicePostTests {
     @Mock
     private ApplicationEventPublisher eventPublisher;
 
+    @Mock
+    private S3UploadService s3UploadService;
+
     @InjectMocks
     private FacilityServiceImpl facilityService;
 
 
     private Facility facility;
     private FacilityDto.request facilityDtoReq;
+    private List<MultipartFile> multipartFileList;
 
     @BeforeEach
     public void setup () {
         facility = new Facility(
-                1L,"미니미헬스장","대표이미지",
+                1L,"미니미헬스장",
                 new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
                 "시설정보","서울특별시 강남구","www.website.com",
                 "010-0000-0000","34.12345, 119.12345", 4,
                 new ArrayList<>(Arrays.asList("헬스", "PT")), FacilityStatus.PENDING
                 );
-        facilityDtoReq = new FacilityDto.request("미니미헬스장","대표이미지",
-                new ArrayList<>(Arrays.asList("이미지1", "이미지2")),
+        facilityDtoReq = new FacilityDto.request("미니미헬스장",
                 "시설정보","서울특별시 강남구", "www.website.com",
                 "0110-0000-0000","34.12345, 119.12345",
                 new ArrayList<>(Arrays.asList("헬스", "PT")));
+
     }
 
     @Nested
@@ -71,10 +79,9 @@ public class FacilityServicePostTests {
             given(facilityCategoryCheckListener.checkExistsByCategoryTitle(Mockito.anyString())).willReturn(true);
             given(facilityRepository.save(Mockito.any(Facility.class))).willReturn(facility);
 
-            Facility result = facilityService.postFacility(facilityDtoReq);
+            facilityService.postFacility(multipartFileList, facilityDtoReq);
 
             then(facilityRepository).should(times(1)).save(any());
-            assertThat(result, equalTo(facility));
         }
     }
     @Nested
@@ -87,7 +94,7 @@ public class FacilityServicePostTests {
                     .willReturn(true);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityService.postFacility(facilityDtoReq);
+                facilityService.postFacility(multipartFileList, facilityDtoReq);
             });
 
             then(facilityCategoryCheckListener)
@@ -103,7 +110,7 @@ public class FacilityServicePostTests {
                     .willReturn(false);
 
             Exception exception = Assertions.assertThrows(Exception.class, () -> {
-                facilityService.postFacility(facilityDtoReq);
+                facilityService.postFacility(multipartFileList, facilityDtoReq);
             });
 
             then(facilityCategoryCheckListener)

@@ -13,19 +13,21 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "comment_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
+    @Column
     private Long commentId;
-
+    @Column
     private String content;
+    @Column
     private String username;
+    @Column
     private LocalDateTime createdAt;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "contents_id")
+    @JoinColumn(name = "contentsId")
     private Contents contents;
 
     @Builder
@@ -33,6 +35,7 @@ public class Comment {
         this.content = content;
         this.username = username;
         this.contents = contents;
+        this.createdAt = LocalDateTime.now();
     }
 
 }

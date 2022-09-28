@@ -21,9 +21,6 @@ public class Facility {
     @Column
     private String facilityName;
 
-    @Column
-    private String facilityPhoto;
-
     @ElementCollection
     private List<String> facilityPhotoList;
 
@@ -39,9 +36,13 @@ public class Facility {
     @Column
     private String phone;
 
+
+    //todo location객체 만들어서  String 대신 쓰기 (원시타입지양) 변화에 유연하게 만들기
     @Column
     private String location;
 
+
+    //todo 삭제 (starRate객체 생성 후 dto에 주입)
     @Column
     private int starRate;
 
@@ -54,11 +55,10 @@ public class Facility {
     private FacilityStatus facilityStatus;
 
     @Builder
-    public Facility(String facilityName, String facilityPhoto, List<String> facilityPhotoList,
+    public Facility(String facilityName, List<String> facilityPhotoList,
                     String facilityInfo, String address, String website, String phone,
                     String location, List<String> categoryList){
         this.facilityName=facilityName;
-        this.facilityPhoto=facilityPhoto;
         this.facilityPhotoList=facilityPhotoList;
         this.facilityInfo=facilityInfo;
         this.address=address;

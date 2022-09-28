@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
-@EnableAsync
 @Component
 @RequiredArgsConstructor
+@EnableAsync
 public class FacilityPostSubImpl implements FacilityPostSub {
 
     private final FacaMappingService facaMappingService;

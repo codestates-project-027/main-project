@@ -15,11 +15,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "contents_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Contents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contents_id")
+    @Column
     private Long contentsId;
     @Column
     private String title;
@@ -29,6 +29,8 @@ public class Contents {
     private String username;
     @Column
     private String userProfile;
+    @Column
+    private int commentNumber;
     @Column
     private LocalDateTime createdAt;
     @Column

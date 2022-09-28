@@ -7,6 +7,8 @@ import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facilitycategory.domain.FacilityCategory;
 import com.minimi.backend.facility.facamapping.domain.FacaMapping;
 import com.minimi.backend.facility.facamapping.domain.FacaMappingRepository;
+import com.minimi.backend.facility.facilitycategory.domain.FacilityCategoryDto;
+import com.minimi.backend.facility.facilitycategory.mapper.FacilityCategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -26,13 +28,13 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     private final FacaMappingRepository facaMappingRepository;
     private final FacilityCategoryGetIdListener facilityCategoryGetIdListener;
     private final FacaMappingMapper facaMappingMapper;
+    private final FacilityCategoryMapper facilityCategoryMapper;
 
 
     @Override
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacilitySlice(String categoryCode, int page) {
 
-        FacilityCategory facilityCategory = facilityCategoryGetIdListener
-                .getFacilityCategoryByCategoryCode(categoryCode);
+        FacilityCategory facilityCategory = facilityCategoryGetIdListener.getFacilityCategoryByCategoryCode(categoryCode);
 
 
         Slice<FacaMapping> facaMappingSlice =facaMappingRepository
@@ -43,20 +45,26 @@ public class FacaMappingServiceImpl implements FacaMappingService {
 
         List<ResponseFacilityDto.facilityPageFromCategory> resultList = new ArrayList<>();
         facaMappingSlice.getContent().forEach(facaMapping -> {
-            resultList.add(facaMappingMapper.FacilityToResponseFacilityDto(facaMapping.getFacility()));
+            ResponseFacilityDto.facilityPageFromCategory reqDto = facaMappingMapper.FacilityToResponseFacilityDto(facaMapping.getFacility());
+
+            if (!facaMapping.getFacility().getFacilityPhotoList().isEmpty()){
+                reqDto.setFacilityPhoto(facaMapping.getFacility().getFacilityPhotoList().get(0));
+            }
+
+            resultList.add(reqDto);
         });
         return new SliceImpl<>(resultList,facaMappingSlice.getPageable(),facaMappingSlice.hasNext());
     }
 
     @Override
-    public FacaMapping postFacaMapping(FacilityCategory facilityCategory, Facility facility) {
+    public void postFacaMapping(FacilityCategory facilityCategory, Facility facility) {
         //null blank check
         blankAndNullCheck(facilityCategory);
         blankAndNullCheck(facility);
         blankAndNullCheck(facilityCategory.getFacilityCategoryId());
         blankAndNullCheck(facility.getFacilityId());
 
-        return facaMappingRepository.save(FacaMapping
+        facaMappingRepository.save(FacaMapping
                 .builder()
                 .facilityCategory(facilityCategory)
                 .facility(facility)
@@ -68,7 +76,29 @@ public class FacaMappingServiceImpl implements FacaMappingService {
     @Override
     @Transactional
     public void deleteFacaMapping(Long facilityId) {
+
+        if (!facaMappingRepository.existsByFaId(facilityId)) return;
+
         facaMappingRepository.deleteAllByFaId(facilityId);
+    }
+
+    @Override
+    @Transactional
+    public void patchFacaMapping(Long facilityId, FacilityCategoryDto.response facilityCategoryDtoRes) {
+
+        blankAndNullCheck(facilityId);
+        blankAndNullCheck(facilityCategoryDtoRes);
+
+        if (!facaMappingRepository.existsByFaId(facilityId)) throw new NullPointerException("Not Found FacaMapping");
+
+        FacilityCategory facilityCategory = facilityCategoryMapper
+                .facilityCategoryDtoResponseToFacilityCategory(facilityCategoryDtoRes);
+        FacaMapping facaMapping = facaMappingRepository
+                .findByFaIdAndFacaId(facilityId, facilityCategory.getFacilityCategoryId());
+
+        facaMapping.setFacilityCategory(facilityCategory);
+        facaMapping.setFacaId(facilityCategory.getFacilityCategoryId());
+        facaMappingRepository.save(facaMapping);
     }
 
     public Boolean blankAndNullCheck(Object value) {

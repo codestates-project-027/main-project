@@ -3,6 +3,7 @@ package com.minimi.backend.facility.category.service;
 import com.minimi.backend.facility.category.domain.Category;
 import com.minimi.backend.facility.category.domain.CategoryDto;
 import com.minimi.backend.facility.category.domain.CategoryRepository;
+import com.minimi.backend.facility.category.domain.CategoryStatus;
 import com.minimi.backend.facility.category.mapper.CategoryMapper;
 import com.minimi.backend.facility.category.service.listener.CategoryFacilityGetListener;
 import com.minimi.backend.facility.category.service.pub.CategoryPatchEvent;
@@ -26,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
-    public Category postCategory(CategoryDto.request categoryDtoRequest) {
+    public void postCategory(CategoryDto.request categoryDtoRequest) {
 
         blankAndNullCheck(categoryDtoRequest.getCategoryCode());
         blankAndNullCheck(categoryDtoRequest.getCategoryTitle());
@@ -43,11 +44,10 @@ public class CategoryServiceImpl implements CategoryService {
                 .build());
 
         eventPublisher.publishEvent(new CategoryPostEvent(category.getCategoryCode(), category.getCategoryTitle()));
-        return category;
     }
 
     @Override
-    public Category patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
+    public void patchCategory(String categoryCode, CategoryDto.patch categoryDtoPatch) {
 
         Category category = getCategory(categoryCode);
 
@@ -63,12 +63,16 @@ public class CategoryServiceImpl implements CategoryService {
         Category patchedCategory = categoryRepository.save(category);
         eventPublisher.publishEvent(
                 new CategoryPatchEvent(patchedCategory.getCategoryCode(), patchedCategory.getCategoryTitle()));
-        return patchedCategory;
     }
 
     @Override
-    public List<CategoryDto.response> getCategoryTitles() {
-        return categoryMapper.categoryListToCategoryDtoResponseList(categoryRepository.findAll());
+    public List<CategoryDto.response> getCategoryTitles(Boolean active) {
+        if (active) {
+            return categoryMapper.categoryListToCategoryDtoResponseList(
+                    categoryRepository.findAllByCategoryStatus(CategoryStatus.ACTIVE));
+        }
+        return categoryMapper.categoryListToCategoryDtoResponseList(
+                categoryRepository.findAll());
     }
 
     @Override

@@ -40,6 +40,10 @@ public class ContentsController {
         Contents contents = contentsService.findContents(contentsId);
         return new ResponseEntity(contents,HttpStatus.CREATED);
     }
+    @GetMapping("/test/{contentsId}")
+    public ResponseEntity<ContentsDTO.response> gettestContents(@PathVariable Long contentsId){
+        return new ResponseEntity(contentsService.getContents(contentsId),HttpStatus.CREATED);
+    }
     //get Contents
     @GetMapping("")
     public ResponseEntity<Slice<Contents>> getContentsList(@RequestParam int page, Pageable pageable){

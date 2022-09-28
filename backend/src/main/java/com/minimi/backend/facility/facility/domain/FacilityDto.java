@@ -1,10 +1,7 @@
 package com.minimi.backend.facility.facility.domain;
 
-import com.minimi.backend.facility.review.ReviewDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.minimi.backend.facility.review.domain.ReviewDto;
+import lombok.*;
 
 import java.util.List;
 
@@ -51,11 +48,11 @@ public class FacilityDto {
     }
 
     @Getter
+    @Setter
+    @ToString
     @AllArgsConstructor
     public static class request{
         private String facilityName;
-        private String facilityPhoto;
-        private List<String> facilityPhotoList;
         private String facilityInfo;
         private String address;
         private String website;
@@ -65,11 +62,10 @@ public class FacilityDto {
     }
     @Getter
     @Setter
+    @ToString
     @AllArgsConstructor
     public static class patch{
         private String facilityName;
-        private String facilityPhoto;
-        private List<String> facilityPhotoList;
         private String facilityInfo;
         private String address;
         private String website;
