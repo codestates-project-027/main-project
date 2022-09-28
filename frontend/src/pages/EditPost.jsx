@@ -10,13 +10,13 @@ import { CommunityTextField } from '../components/InputTextarea/MuiTextFileds';
 import { editPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const EditPostPage = () => {
-  const postings = useSelector((store) => store.community);
+  const posting = useSelector((store) => store.community);
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(postings);
-  const existingPost = postings.filter((post) => post.id === params.id);
+  console.log(posting);
+  const existingPost = posting.filter((post) => post.id === params.id);
   console.log(existingPost);
   const { title, contents, username } = existingPost[0];
   const [values, setValues] = useState({

@@ -39,21 +39,31 @@ const CommunityPage = () => {
     ));
   return (
     <>
-      <CSS>
-        {postings.length ? renderCard() : <p>등록 된 글이 없습니다.</p>}
+      <Div>
+        <Render>
+          {postings.length ? renderCard() : <p>등록 된 글이 없습니다.</p>}
+        </Render>
         <Link to="/community-writing">
-          <Button>글쓰기</Button>
+          <span>
+            <Button>글쓰기</Button>
+          </span>
         </Link>
-      </CSS>
+      </Div>
     </>
   );
 };
 
 export default CommunityPage;
 
-const CSS = styled.div`
+const Div = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 95%;
+  align-items: center;
+  bottom: 0;
+`;
+
+const Render = styled.div`
+  margin-top: 5rem;
+  width: 50vw;
+  height: 50vh;
 `;

@@ -56,7 +56,6 @@ export const AlarmCardGlobal = styled.div`
   width: 100%;
 `;
 
-
 export const ReviewCardGlobal = styled.div`
   display: flex;
   background: lightgreen;
@@ -65,10 +64,9 @@ export const ReviewCardGlobal = styled.div`
 
 export const CommunityCardGlobal = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 30rem;
-  height: 7rem;
+  width: 600px;
+  height: 100px;
   color: yellow;
   font-size: 10px;
   background-color: var(--main-navy);

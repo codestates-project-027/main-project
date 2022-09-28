@@ -1,4 +1,4 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -50,26 +50,50 @@ const WritingPage = () => {
   };
 
   return (
-    <div className="form">
-      <div className="wrapper">
-        <CommunityTextField
-          value={values.title}
-          inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
-          onChange={(e) => setValues({ ...values, title: e.target.value })}
-        />
-      </div>
-      <br />
-      <div className="wrapper">
-        <CommunityTextField
-          value={values.contents}
-          inputProps={{ type: 'text', placeholder: '내용을 입력해주세요' }}
-          onChange={(e) => setValues({ ...values, contents: e.target.value })}
-        />
-      </div>
-      <Button onClick={handleWriting}>글쓰기</Button>
-      {/* 태그기능 */}
-    </div>
+    <Div>
+      <Form>
+        <div className="wrapper">
+          <CommunityTextField
+            value={values.title}
+            inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
+            onChange={(e) => setValues({ ...values, title: e.target.value })}
+          />
+        </div>
+        <br />
+        <div className="wrapper">
+          <CommunityTextField
+            value={values.contents}
+            inputProps={{
+              type: 'text',
+              placeholder: '내용을 입력해주세요',
+            }}
+            onChange={(e) => setValues({ ...values, contents: e.target.value })}
+          />
+        </div>
+        <Button onClick={handleWriting}>글쓰기</Button>
+        {/* 태그기능 */}
+      </Form>
+    </Div>
   );
 };
 
 export default WritingPage;
+
+const Div = styled.div`
+  display: flex;
+  position: sticky;
+  bottom: 0;
+`;
+
+const Form = styled.div`
+  width: 93vw;
+  height: 93vh;
+
+  .wrapper {
+    height: 10rem;
+  }
+
+  .inputProps {
+    height: 10rem;
+  }
+`;
