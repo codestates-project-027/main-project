@@ -18,7 +18,7 @@ export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
-  const imagesResolved = images.map((el) => el.file);
+  // const imagesResolved = images.map((el) => el.file);
   const [tagsList, setTagsList] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
@@ -49,7 +49,34 @@ export const RegisterFacilityForm = () => {
     });
   };
 
+  //EXAMPLE
+  // const postFacilityAXIOS = async () => {
+  //   const request = {
+  //     facilityName,
+  //     facilityInfo,
+  //     address: `${facilityState.address} ${address2}`,
+  //     website,
+  //     phone,
+  //     location: facilityState.location,
+  //     categoryList: tagsList,
+  //   };
+
+  //   const file = {
+  //     facilityPhotoList: images.map((el) => el.file) || null,
+  //   };
+  //   const fileConfig = {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //   };
+  //   try { await axiosInstance.post(`/facility`, request, file, fileConfig);}
+  //   catch (err){console.log(err)}
+
+  //   // console.log(request,file)
+  // };
+
   const postFacilityAXIOS = async () => {
+    //
     const request = {
       facilityName,
       facilityInfo,
@@ -61,17 +88,26 @@ export const RegisterFacilityForm = () => {
     };
 
     const file = {
-      facilityPhotoList: images.map((el) => el.file) || null,
+      facilityPhotoList:
+        images.length === 0 ? null : images.map((el) => el.file),
     };
-    const fileConfig = {
+
+    const formData = new FormData();
+    formData.append('request', request);
+    formData.append('file', file);
+
+    const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'application/json;charset=UTF-8',
       },
     };
-    try { await axiosInstance.post(`/facility`, request, file, fileConfig);}
-    catch (err){console.log(err)}
-   
-    // console.log(request,file)
+    try {
+      await axiosInstance.post(`/facility`, formData, config);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log(request, file);
   };
 
   const onSubmit = async () => {
