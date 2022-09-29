@@ -1,4 +1,5 @@
 //api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
+//
 
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
@@ -13,12 +14,13 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axiosInstance from '../../api/Interceptor';
+import axios from 'axios';
 
 export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
-  const imagesResolved = images.map((el) => el.file);
+  // const imagesResolved = images.map((el) => el.file);
   const [tagsList, setTagsList] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
@@ -49,35 +51,69 @@ export const RegisterFacilityForm = () => {
     });
   };
 
+  //EXAMPLE
+  // const postFacilityAXIOS = async () => {
+  //   const request = {
+  //     facilityName,
+  //     facilityInfo,
+  //     address: `${facilityState.address} ${address2}`,
+  //     website,
+  //     phone,
+  //     location: facilityState.location,
+  //     categoryList: tagsList,
+  //   };
+
+  //   const file = {
+  //     facilityPhotoList: images.map((el) => el.file) || null,
+  //   };
+  //   const fileConfig = {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //   };
+  //   try { await axiosInstance.post(`/facility`, request, file, fileConfig);}
+  //   catch (err){console.log(err)}
+
+  //   // console.log(request,file)
+  // };
+
   const postFacilityAXIOS = async () => {
-    // const body = { //photoList가 모여있을 때
-    //   facilityName,
-    //   facilityPhotoList: images.map((el) => el.file),
-    //   facilityInfo,
-    //   address: `${facilityState.address} ${address2}`,
-    //   website,
-    //   phone,
-    //   location: facilityState.location,
-    //   tags: tagsList,
-    // };
-    const body = { //photoList 따로 둘 때
+    const dataSet = {
       facilityName,
-      facilityPhoto: imagesResolved[0],
-      facilityPhotoList: imagesResolved.slice(1),
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
       website,
       phone,
       location: facilityState.location,
-      tags: tagsList,
+      categoryList: tagsList,
     };
-    // const res = await axiosInstance.post(`/facility`, body);
-    console.log(body)
+
+    const file = images.length === 0 ? null : images.map((el) => el.file);
+
+    const formData = new FormData();
+    formData.append(
+      'request',
+      new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
+    );
+    // formData.append('file', file);
+
+    try {
+      await axiosInstance.post(`/facility`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log(
+      new Blob([JSON.stringify(dataSet), { type: 'application/json' }])
+    );
   };
 
   const onSubmit = async () => {
     postFacilityAXIOS();
-    // console.log(imagesResolved[0],imagesResolved.slice(1))
   };
 
   return (

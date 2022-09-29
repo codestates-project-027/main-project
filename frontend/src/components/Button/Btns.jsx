@@ -90,16 +90,15 @@ export const BigBtn = styled(BasicBtn)`
   font-weight: ${(props) => props.fontWeight || '400'};
   font-size: ${(props) => props.fontSize};
   margin-top: ${(props) => props.marginTop};
-
 `;
 
 export const StickyBtn = styled(BasicBtn)`
   width: 57px;
   height: 57px;
   border-radius: 100%;
-  position: sticky;
-  margin-bottom: 30px;
-  margin-right: -90%;
+  position: absolute;
+  bottom: 10%;
+  right: 3%;
   word-break: break-all;
   white-space: pre;
   box-shadow: 24;

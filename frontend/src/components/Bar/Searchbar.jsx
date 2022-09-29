@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { SearchbarGroupStyle } from '../../styles/components/ComponentGroupStyle';
 import TextLogo from '../../assets/logo/minimi-text.png';
 import { SquareBtn } from '../../components/Button/Btns';
+import { StyledLink } from '../../styles/components/TextStyles';
 
 export const Searchbar = ({ placeholder }) => {
   return (
@@ -22,7 +23,9 @@ export const Searchbar = ({ placeholder }) => {
 export const SearchbarWBtn = ({ Icon, noIcon }) => {
   return (
     <SearchbarGroupStyle margin="30px">
-      <Img alt="logo" src={TextLogo} />
+      <StyledLink to="/">
+        <Img alt="logo" src={TextLogo} />
+      </StyledLink>
       <Searchbar />
       {noIcon ? null : <SquareBtn>{Icon}</SquareBtn>}
     </SearchbarGroupStyle>

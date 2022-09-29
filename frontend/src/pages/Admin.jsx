@@ -23,14 +23,15 @@ const AdminPage = () => {
   // };
 
   const getCategoryAXIOS = useCallback(async () => {
-    await axiosInstance.get('/category').then((res) => {
+    await axiosInstance.get('/category?active=false').then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
+    console.log(categoryState)
   }, []);
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, [getCategoryAXIOS]);
+  }, []); //categoryState : 무한렌더링
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

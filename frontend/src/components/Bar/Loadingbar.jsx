@@ -8,15 +8,15 @@ export default function CircularIndeterminate() {
   return (
     <ThemeProvider theme={theme}>
       <ModalBackdropStyle>
-        <Box sx={{ style }}>
-          <CircularProgress color="success" />
+        <Box sx={{ BoxStyle }}>
+          <CircularProgress color="yellow"/>
         </Box>
       </ModalBackdropStyle>
     </ThemeProvider>
   );
 }
 
-const style = {
+const BoxStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',

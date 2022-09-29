@@ -1,7 +1,7 @@
 //기능 구현 후 합칠 예정
-
 import { Outlet } from 'react-router-dom';
 import { StyledLink } from '../styles/components/TextStyles';
+import GlobalStyle from '../styles/globalStyle/GlobalStyle';
 
 import {
   TopNavPosition,
@@ -20,6 +20,7 @@ import { StickyBtn } from '../components/Button/Btns';
 export const LayoutBaseForFacilities = () => {
   return (
     <>
+      <GlobalStyle />
       <OutletPosition>
         <Outlet />
       </OutletPosition>
@@ -61,7 +62,6 @@ export const LayoutCurrentMenu = () => {
 };
 
 export const LayoutCurrentMenuSearch = () => {
-  //LayoutForFacilities
   return (
     <>
       <TopNavPosition>

@@ -90,7 +90,7 @@ const MainPage = () => {
 
         <MainPageBtnsGroupStyle>
           <H3 maxWidth="790px" marginTop="20px" marginBottom="30px">
-            Miracle near me
+            <StyledLink to="/map">Miracle near me</StyledLink>
           </H3>
         </MainPageBtnsGroupStyle>
 

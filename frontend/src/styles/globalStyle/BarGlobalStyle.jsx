@@ -30,19 +30,24 @@ export const SearchbarGlobal = styled.div`
 `;
 
 export const BottomNavbarGlobal = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8vh;
+  height: 70px;
   width: 100%;
   background-color: var(--main-yellow);
 `;
 
-export const TopNavbarGlobal = styled(BottomNavbarGlobal)`
+export const TopNavbarGlobal = styled.div`
   display: none;
+  margin-top: -40px;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 70px;
   width: 100%;
   background-color: var(--main-yellow);
   .tab--wrapper {
