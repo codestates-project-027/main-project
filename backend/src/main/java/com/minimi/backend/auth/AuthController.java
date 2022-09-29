@@ -23,8 +23,8 @@ public class AuthController {
     //join
     @PostMapping("/join")
     private ResponseEntity<AuthDTO.response> createMember(@RequestBody AuthDTO.request request){
-
-        return new ResponseEntity<>(authService.createMember(request),HttpStatus.CREATED);
+        authService.createMember(request);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

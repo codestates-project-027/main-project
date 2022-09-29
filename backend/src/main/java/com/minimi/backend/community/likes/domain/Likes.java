@@ -1,16 +1,29 @@
 package com.minimi.backend.community.likes.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.minimi.backend.auth.domain.Auth;
+import lombok.*;
+import org.springframework.lang.NonNull;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Likes {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long likesId;
-    private String username;
-    private Boolean likes;
+    @Column
+    @NonNull
+    private Long contentsId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "username")
+    private Auth auth;
+
+
 }
