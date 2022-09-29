@@ -10,22 +10,24 @@ import {
   ContentsTextField,
 } from '../components/InputTextarea/MuiTextFileds';
 // import { AddPost } from '../redux/CommunitySlice/CommunitySlice';
-import { editPost } from '../redux/CommunitySlice/CommunitySlice';
+import { EditPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const EditPostPage = () => {
-  const posting = useSelector((store) => store.community);
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(posting);
-  const existingPost = posting.filter((post) => post.id === params.id);
+  const postings = useSelector((store) => store.community);
+  console.log(postings);
+  const existingPost = postings.filter((post) => post.id === params.id);
   console.log(existingPost);
-  const { title, contents, username } = existingPost[0];
+  const { title, contents } = existingPost[0];
+  console.log(existingPost[0]);
+
   const [values, setValues] = useState({
     title,
     contents,
-    username,
+    // username,
   });
 
   //   const url = 'http://localhost:8080/contents';
@@ -37,7 +39,7 @@ const EditPostPage = () => {
   const handleEditPost = () => {
     setValues({ title: '', contents: '', username: '' });
     dispatch(
-      editPost({
+      EditPost({
         id: params.id,
         title: values.title,
         contents: values.contents,
@@ -65,16 +67,16 @@ const EditPostPage = () => {
       <div className="wrapper">
         <TitleTextField
           value={values.title}
-          inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
           onChange={(e) => setValues({ ...values, title: e.target.value })}
+          inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
         />
       </div>
       <br />
       <div className="wrapper">
         <ContentsTextField
           value={values.contents}
-          inputProps={{ type: 'text', placeholder: '내용을 입력해주세요' }}
           onChange={(e) => setValues({ ...values, contents: e.target.value })}
+          inputProps={{ type: 'text', placeholder: '내용을 입력해주세요' }}
         />
       </div>
       <Button onClick={handleEditPost}>수정</Button>

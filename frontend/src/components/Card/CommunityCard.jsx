@@ -11,8 +11,6 @@ import { EditPostBtn } from '../Button/Btns';
 
 const CommunityCard = () => {
   const postings = useSelector((store) => store.community);
-  console.log(postings);
-
   return (
     <>
       <CommunityCardGlobal>
