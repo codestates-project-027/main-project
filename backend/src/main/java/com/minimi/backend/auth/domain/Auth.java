@@ -30,11 +30,4 @@ public class Auth {
             mappedBy = "auth",
             cascade = CascadeType.ALL)
     private List<Likes> likes;
-//    @Builder
-//    public Auth(String email, String username, String password, String role){
-//        this.email=email;
-//        this.username=username;
-//        this.password=password;
-//        this.role=role;
-//    }
 }

@@ -21,8 +21,10 @@ public class Likes {
     @Column
     @NonNull
     private Long contentsId;
+    @Column
+    private String username;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "memberId")
     private Auth auth;
 
 
