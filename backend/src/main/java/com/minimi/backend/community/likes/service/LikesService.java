@@ -33,6 +33,12 @@ public class LikesService {
         contents.setLikes(contents.getLikes()+1);
         likesRepository.save(likes);
     }
+    public void deleteLikes(Long likesId){
+        Likes likes = likesRepository.findById(likesId).orElseThrow();
+        likesRepository.deleteById(likesId);
+        Contents contents = contentsRepository.findById(likes.getContentsId()).orElseThrow();
+        contents.setLikes(contents.getLikes()-1);
+    }
 
     public Optional<Likes> findLikes(LikesDTO likesDTO){
         return likesRepository.findLikesByAuthAndContentsId(auth,likesDTO.getContentsId());

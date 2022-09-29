@@ -67,27 +67,22 @@ public class ContentsService {
      **/
     @Transactional
     public void viewCountUp(Long id, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("1");
         Cookie oldCookie = null;
         Cookie[] cookies = request.getCookies();
-        System.out.println(cookies);
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("postView")) {
                     oldCookie = cookie;
-                    System.out.println("2");
                 }
             }
         }
 
         if (oldCookie != null) {
-            System.out.println("3");
             if (!oldCookie.getValue().contains("[" + id.toString() + "]")) {
                 oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
                 oldCookie.setPath("/contents/{contentsId}");
                 oldCookie.setMaxAge(60 * 60 * 24);
                 response.addCookie(oldCookie);
-                System.out.println("4");
                 updateViews(id);
             }
         } else {
@@ -95,7 +90,6 @@ public class ContentsService {
             newCookie.setPath("/contents/{contentsId}");
             newCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(newCookie);
-            System.out.println("5");
             updateViews(id);
         }
     }

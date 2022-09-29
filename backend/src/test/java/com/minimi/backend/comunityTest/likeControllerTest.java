@@ -39,7 +39,7 @@ public class likeControllerTest {
 
     @Test
     public void postLikes() throws Exception{
-        LikesDTO.request request = new LikesDTO.request(1L,"닉네임", Boolean.TRUE);
+        LikesDTO request = new LikesDTO(1L,"닉네임");
         String content = gson.toJson(request);
         ResultActions actions = mockMvc.perform(
                 post("/likes")
@@ -54,15 +54,14 @@ public class likeControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("contentsId").description("게시글 아이디"),
-                                        fieldWithPath("username").description("유저 닉네임"),
-                                        fieldWithPath("likes").description("좋아요")
+                                        fieldWithPath("username").description("유저 닉네임")
                                 ))
                 ));
     }
     @Test
     public void deleteLike() throws Exception {
         ResultActions actions = mockMvc.perform(
-                delete("/likes/{contentId}",1L)
+                delete("/likes/{likesId}",1L)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -71,6 +70,6 @@ public class likeControllerTest {
                         "delete-likes",
                         getRequestPreProcessor(),
                         pathParameters(
-                                parameterWithName("contentId").description("게시글 아이디")
+                                parameterWithName("likesId").description("게시글 아이디")
                         )));
 }}

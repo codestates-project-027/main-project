@@ -22,7 +22,7 @@ public class LikesController {
     }
     //delete like
         @DeleteMapping("/{contentId}")
-        private ResponseEntity deleteLikes(@PathVariable Long contentId){
+        private ResponseEntity deleteLikes(@PathVariable Long likesId){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 }
