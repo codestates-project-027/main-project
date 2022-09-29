@@ -38,6 +38,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	//h2 database
 	runtimeOnly 'com.h2database:h2'
+	//mysql
+	implementation 'mysql:mysql-connector-java'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//mapstruct
@@ -83,9 +85,12 @@ jacoco {
 	toolVersion = "0.8.5"
 }
 test {
+	exclude 'com/minimi/backend/facility/category/repository**'
+	exclude 'com/minimi/backend/facility/facilitycategory/repository**'
 	useJUnitPlatform()
 	finalizedBy 'jacocoTestReport'
 }
+
 jacocoTestReport {
 	reports {
 		html.required.set(true)
