@@ -27,11 +27,11 @@ const AdminPage = () => {
       dispatch(getCategory({ list: res.data }));
     });
     console.log(categoryState)
-  }, []);
+  }, [categoryState]);
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, []); //categoryState : 무한렌더링
+  }, [dispatch]); //categoryState : 무한렌더링
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

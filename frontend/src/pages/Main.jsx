@@ -27,42 +27,42 @@ const MainPage = () => {
   const activeCategory = [
     {
       idx: 1,
-      text: categoryState.list[0].categoryTitle,
+      text: categoryState.list[1].categoryTitle,
       icon: <IoIosFitness size="23px" />,
     },
     {
       idx: 2,
-      text: categoryState.list[1].categoryTitle,
+      text: categoryState.list[2].categoryTitle,
       icon: <GrYoga size="20px" />,
     },
     {
       idx: 3,
-      text: categoryState.list[2].categoryTitle,
+      text: categoryState.list[3].categoryTitle,
       icon: <MdSportsTennis size="20px" />,
     },
     {
       idx: 4,
-      text: categoryState.list[3].categoryTitle,
+      text: categoryState.list[4].categoryTitle,
       icon: <IoGolfOutline size="20px" />,
     },
     {
       idx: 5,
-      text: categoryState.list[4].categoryTitle,
+      text: categoryState.list[5].categoryTitle,
       icon: <RiBoxingFill size="20px" />,
     },
     {
       idx: 6,
-      text: categoryState.list[5].categoryTitle,
+      text: categoryState.list[6].categoryTitle,
       icon: <BsEmojiSmile size="20px" />,
     },
     {
       idx: 7,
-      text: categoryState.list[6].categoryTitle,
+      text: categoryState.list[7].categoryTitle,
       icon: <TbSoccerField size="23px" />,
     },
     {
       idx: 8,
-      text: categoryState.list[7].categoryTitle,
+      text: categoryState.list[8].categoryTitle,
       icon: <BiDotsHorizontalRounded size="23px" />,
     },
   ];

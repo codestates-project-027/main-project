@@ -51,33 +51,8 @@ export const RegisterFacilityForm = () => {
     });
   };
 
-  //EXAMPLE
-  // const postFacilityAXIOS = async () => {
-  //   const request = {
-  //     facilityName,
-  //     facilityInfo,
-  //     address: `${facilityState.address} ${address2}`,
-  //     website,
-  //     phone,
-  //     location: facilityState.location,
-  //     categoryList: tagsList,
-  //   };
-
-  //   const file = {
-  //     facilityPhotoList: images.map((el) => el.file) || null,
-  //   };
-  //   const fileConfig = {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   };
-  //   try { await axiosInstance.post(`/facility`, request, file, fileConfig);}
-  //   catch (err){console.log(err)}
-
-  //   // console.log(request,file)
-  // };
-
   const postFacilityAXIOS = async () => {
+    const formData = new FormData();
     const dataSet = {
       facilityName,
       facilityInfo,
@@ -85,22 +60,20 @@ export const RegisterFacilityForm = () => {
       website,
       phone,
       location: facilityState.location,
-      categoryList: [],
-      // categeryList: tagsList,
+      // categoryList: JSON.stringify(tagsList),
+      // categoryList: [],
+      // categoryList: tagsList,
+      categoryList: []
     };
-    const tag = tagsList.map((el) => el);
+    // tagsList.map(el=>dataSet.categoryList.push(el))
 
     const file = images.length === 0 ? null : images.map((el) => el.file);
 
-    const formData = new FormData();
     formData.append(
       'request',
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
-    // formData.append(
-    //   'request',
-    //   new Blob([JSON.stringify(tag)], { type: 'application/json' })
-    // );
+
     formData.append('file', file);
 
     try {
@@ -111,9 +84,8 @@ export const RegisterFacilityForm = () => {
           },
         })
         .then((res) => console.log('status:', res.status));
-      // console.log(formData.getAll('request'));
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 
