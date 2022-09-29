@@ -31,7 +31,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, [categoryState]);
+  }, []); //categoryState : 무한렌더링
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

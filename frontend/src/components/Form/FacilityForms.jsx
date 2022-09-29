@@ -1,4 +1,6 @@
 //api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
+//
+import qs from 'qs';
 
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
@@ -13,6 +15,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axiosInstance from '../../api/Interceptor';
+import axios from 'axios';
 
 export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
@@ -76,7 +79,6 @@ export const RegisterFacilityForm = () => {
   // };
 
   const postFacilityAXIOS = async () => {
-    //
     const request = {
       facilityName,
       facilityInfo,
@@ -87,32 +89,53 @@ export const RegisterFacilityForm = () => {
       categoryList: tagsList,
     };
 
-    const file = {
-      facilityPhotoList:
-        images.length === 0 ? null : images.map((el) => el.file),
+    const requestTest = {
+      'facilityName': 'name',
+      'facilityInfo': 'info',
+      'address': `address`,
+      'website': 'web',
+      'phone': 'phone',
+      'location': 'lat, lng',
+      'categoryList': [],
     };
+
+    const file = images.length === 0 ? null : images.map((el) => el.file);
 
     const formData = new FormData();
-    formData.append('request', request);
-    formData.append('file', file);
+    formData.append('request', requestTest);
+    // formData.append('file', file);
 
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        // 'Content-Type': 'application/json;charset=UTF-8',
-      },
-    };
     try {
-      await axiosInstance.post(`/facility`, formData, config);
+      // 415 (Unsupported Media Type) 에러
+      await axiosInstance.post(`/facility`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     } catch (err) {
       console.log(err);
     }
-    console.log(request, file);
+
+    // try {
+    //   //404 (Not Found) 에러
+    //   await axios.post({
+    //     method: 'POST',
+    //     url: `https://minimi-place.duckdns.org/facility`,
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //     data: formData,
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    // console.log('request:',JSON.stringify(request), 'file:',file);
+    console.log(requestTest);
   };
 
   const onSubmit = async () => {
     postFacilityAXIOS();
-    // console.log(imagesResolved[0],imagesResolved.slice(1))
   };
 
   return (

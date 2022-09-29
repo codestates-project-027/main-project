@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 //Request interceptor
 axiosInstance.interceptors.request.use(
   function (config) {
-    config.headers['Content-Type'] = 'application/json; charset=utf-8';
+    // config.headers['Content-Type'] = 'application/json; charset=utf-8';
     // config.headers['Authorization'] = `Bearer 토큰값`; ->수정하기
     return config;
   },
