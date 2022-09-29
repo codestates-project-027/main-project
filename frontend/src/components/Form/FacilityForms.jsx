@@ -1,6 +1,5 @@
 //api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
 //
-import qs from 'qs';
 
 import { RegisterFailityForm } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
@@ -79,7 +78,7 @@ export const RegisterFacilityForm = () => {
   // };
 
   const postFacilityAXIOS = async () => {
-    const request = {
+    const dataSet = {
       facilityName,
       facilityInfo,
       address: `${facilityState.address} ${address2}`,
@@ -89,24 +88,16 @@ export const RegisterFacilityForm = () => {
       categoryList: tagsList,
     };
 
-    const requestTest = {
-      'facilityName': 'name',
-      'facilityInfo': 'info',
-      'address': `address`,
-      'website': 'web',
-      'phone': 'phone',
-      'location': 'lat, lng',
-      'categoryList': [],
-    };
-
     const file = images.length === 0 ? null : images.map((el) => el.file);
 
     const formData = new FormData();
-    formData.append('request', requestTest);
+    formData.append(
+      'request',
+      new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
+    );
     // formData.append('file', file);
 
     try {
-      // 415 (Unsupported Media Type) 에러
       await axiosInstance.post(`/facility`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -116,22 +107,9 @@ export const RegisterFacilityForm = () => {
       console.log(err);
     }
 
-    // try {
-    //   //404 (Not Found) 에러
-    //   await axios.post({
-    //     method: 'POST',
-    //     url: `https://minimi-place.duckdns.org/facility`,
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //     data: formData,
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-
-    // console.log('request:',JSON.stringify(request), 'file:',file);
-    console.log(requestTest);
+    console.log(
+      new Blob([JSON.stringify(dataSet), { type: 'application/json' }])
+    );
   };
 
   const onSubmit = async () => {
