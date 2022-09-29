@@ -85,8 +85,10 @@ export const RegisterFacilityForm = () => {
       website,
       phone,
       location: facilityState.location,
-      categoryList: tagsList,
+      categoryList: [],
+      // categeryList: tagsList,
     };
+    const tag = tagsList.map((el) => el);
 
     const file = images.length === 0 ? null : images.map((el) => el.file);
 
@@ -95,21 +97,24 @@ export const RegisterFacilityForm = () => {
       'request',
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
-    // formData.append('file', file);
+    // formData.append(
+    //   'request',
+    //   new Blob([JSON.stringify(tag)], { type: 'application/json' })
+    // );
+    formData.append('file', file);
 
     try {
-      await axiosInstance.post(`/facility`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      await axiosInstance
+        .post(`/facility`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => console.log('status:', res.status));
+      // console.log(formData.getAll('request'));
     } catch (err) {
       console.log(err);
     }
-
-    console.log(
-      new Blob([JSON.stringify(dataSet), { type: 'application/json' }])
-    );
   };
 
   const onSubmit = async () => {
