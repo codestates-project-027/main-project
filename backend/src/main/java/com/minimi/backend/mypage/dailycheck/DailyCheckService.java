@@ -1,6 +1,5 @@
-package com.minimi.backend.mypage.service;
+package com.minimi.backend.mypage.dailycheck;
 
-import com.minimi.backend.mypage.domain.DailyCheckDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

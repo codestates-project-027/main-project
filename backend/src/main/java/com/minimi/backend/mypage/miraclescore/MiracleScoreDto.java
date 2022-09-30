@@ -1,4 +1,4 @@
-package com.minimi.backend.mypage.domain;
+package com.minimi.backend.mypage.miraclescore;
 
 
 import lombok.AllArgsConstructor;

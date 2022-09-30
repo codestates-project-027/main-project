@@ -1,6 +1,5 @@
-package com.minimi.backend.mypage.service;
+package com.minimi.backend.mypage.miraclescore;
 
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
