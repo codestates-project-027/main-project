@@ -12,7 +12,7 @@ import AddressUploader from '../Address/AddressUploader';
 import { BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
 import axios from 'axios';
 
@@ -62,8 +62,8 @@ export const RegisterFacilityForm = () => {
       location: facilityState.location,
       // categoryList: JSON.stringify(tagsList),
       // categoryList: [],
-      // categoryList: tagsList,
-      categoryList: []
+      categoryList: tagsList,
+      // categoryList: []
     };
     // tagsList.map(el=>dataSet.categoryList.push(el))
 
@@ -93,6 +93,7 @@ export const RegisterFacilityForm = () => {
     postFacilityAXIOS();
   };
 
+  useEffect(()=>{},[])
   return (
     <>
       <RegisterFailityForm>
