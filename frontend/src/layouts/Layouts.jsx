@@ -70,7 +70,7 @@ export const LayoutCurrentMenuSearch = () => {
       <LayoutBaseForFacilities />
 
       <StickyBtn>
-        <StyledLink to="/registerfac">
+        <StyledLink to="/facility/register">
           시설 <br />
           등록
         </StyledLink>
