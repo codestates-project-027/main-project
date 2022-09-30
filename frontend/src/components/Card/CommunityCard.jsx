@@ -1,42 +1,37 @@
 import { CommunityCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
-import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import {
   UserImageCard,
   Posting,
   Location,
 } from '../../styles/components/CardStyle';
+// import { DeletePostBtn, EditPostBtn } from '../components/Button/Btns';
+import { Link } from 'react-router-dom';
 
-import { EditPostBtn } from '../Button/Btns';
-
-const CommunityCard = () => {
-  const postings = useSelector((store) => store.community);
+const CommunityCard = ({ userimg, title, location, contents, time }) => {
   return (
     <>
       <CommunityCardGlobal>
         <UserImageCard>
-          <div className="img--wrapper">유저이미지</div>
+          <div className="img--wrapper">{userimg}</div>
         </UserImageCard>
         <Posting>
           <div className="content--wrapper">
             <div className="name--wrapper">
-              <span className="username">{postings.title}</span>
-              <span className="location">서대문구 충현동</span>
+              <span className="username">{title}</span>
+              <span className="location">{location}</span>
             </div>
             <Location>
-              <div className="post">{postings.contents}</div>
+              <div className="post">{contents}</div>
             </Location>
           </div>
         </Posting>
         <Location>
-          <div className="date">2022.10.03</div>
+          <div className="date">{time}</div>
         </Location>
         <div>
-          <EditPostBtn />
+          <Link to="edit-community">{/* <button>수정</button> */}</Link>
         </div>
-        <div>
-          <button>삭제</button>
-        </div>
+        <div>{/* <button>삭제</button> */}</div>
       </CommunityCardGlobal>
     </>
   );

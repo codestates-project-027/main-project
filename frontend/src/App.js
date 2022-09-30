@@ -34,7 +34,7 @@ import RegisterFacilityPage from './pages/RegisterFacility';
 import EditFacilityPage from './pages/EditFacility';
 import AdminPage from './pages/Admin';
 
-import CommunityPage from './pages/Community';
+import CommunityList from './pages/Community';
 import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
@@ -49,7 +49,7 @@ function App() {
           <Routes>
             {/* community */}
             <Route element={<LayoutCommunity />}>
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+              <Route path={PATH.COMMUNITY} element={<CommunityList />} />
               <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
               <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
               <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
@@ -71,10 +71,6 @@ function App() {
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
-
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
 
               <Route
                 path={PATH.REGISTERFACILITY}

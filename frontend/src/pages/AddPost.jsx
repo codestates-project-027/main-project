@@ -16,7 +16,7 @@ const WritingPage = () => {
   const [values, setValues] = useState({
     title: '',
     contents: '',
-    // username: ''; 회원가입 후 유저아이디
+    username: '',
   });
 
   // const url = 'http://localhost:8080/contents';

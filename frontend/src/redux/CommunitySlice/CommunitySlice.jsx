@@ -2,10 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [
-  { id: '1', title: '플로깅 하실분', contents: '저랑 같이 해주세요' },
-  { id: '2', title: '커피 맛있다', contents: '투샷은 먹어야...' },
-];
+const initialState = [];
 
 export const communitySlice = createSlice({
   name: 'community',
@@ -15,11 +12,13 @@ export const communitySlice = createSlice({
       state.push(action.payload);
     },
     EditPost: (state, action) => {
-      const { id, title, contents } = action.payload;
+      const { id, title, contents, location, time } = action.payload;
       const existingPost = state.find((post) => post.id === id);
       if (existingPost) {
         existingPost.title = title;
         existingPost.contents = contents;
+        existingPost.location = location;
+        existingPost.time = time;
       }
     },
     DeletePost: (state, action) => {
