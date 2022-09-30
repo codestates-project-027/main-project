@@ -142,7 +142,7 @@ export const RegisterFacilityForm = () => {
         <div className="tags--wrapper">
           <Div>태그</Div>
           <TagSelectbar
-            data={categoryState.list}
+            data={categoryState.list.slice(1)}
             tagsList={tagsList}
             setTagsList={setTagsList}
           />
