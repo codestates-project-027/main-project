@@ -22,10 +22,11 @@ public class DailyCheckDto {
         private Long facilityId;
         private Boolean check;
     }
+
     @AllArgsConstructor
     @Getter
     public static class ResponseCalendar {
         private String username;
-        private List<Boolean> dailyCheckList;
+        private List<String> checkList;
     }
 }

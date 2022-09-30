@@ -57,7 +57,6 @@ public class MyFacilityService {
             myFacilityRepository.save(new MyFacility(username,facilityIdList));
             return;
         }
-
         MyFacility myFacility = myFacilityRepository.findByUsername(username);
         if (myFacility.getFacilityIdList().contains(facilityId)){
             return;
