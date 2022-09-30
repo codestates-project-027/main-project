@@ -20,8 +20,10 @@ const MapContainer = () => {
 
   const resetLoca = () => {
     dispatch(
-      getLocation({
-        currentLocation: { latitude: 33.450701, longitude: 126.570667 },
+      getLocation({ 
+        //광명 { latitude: 37.47814, longitude: 126.86058 }
+        //제주 { latitude: 33.450701, longitude: 126.570667 }
+        currentLocation: { latitude: 37.478147, longitude: 126.860580 },
       })
     );
   };

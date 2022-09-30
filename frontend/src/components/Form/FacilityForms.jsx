@@ -22,7 +22,6 @@ export const RegisterFacilityForm = () => {
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
-  // const imagesResolved = images.map((el) => el.file);
   const [tagsList, setTagsList] = useState([]);
   const [registerFac, setRegisterFac] = useState({
     facilityName: '',
@@ -62,12 +61,8 @@ export const RegisterFacilityForm = () => {
       website,
       phone,
       location: facilityState.location,
-      // categoryList: JSON.stringify(tagsList),
-      // categoryList: [],
       categoryList: tagsList,
-      // categoryList: []
     };
-    // tagsList.map(el=>dataSet.categoryList.push(el))
 
     const file = images.length === 0 ? null : images.map((el) => el.file);
 
@@ -89,17 +84,17 @@ export const RegisterFacilityForm = () => {
     // } catch (err) {
     //   console.log(err.response);
     // }
-    console.log('dataSet:',dataSet)
+    console.log('dataSet:',dataSet, file)
   };
 
   const onSubmit = async () => {
     postFacilityAXIOS();
-    dispatch(
-      postFacility({
-        address: '',
-        location: '',
-      })
-    );
+    // dispatch(
+    //   postFacility({
+    //     address: '',
+    //     location: '',
+    //   })
+    // );
   
   };
 

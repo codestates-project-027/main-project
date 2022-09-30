@@ -33,8 +33,8 @@ const AddressUploader = ({ facilityState }) => {
       const callback = function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
           setCoord({
-            lat: result[0].road_address.y.slice(0, -7),
-            lng: result[0].road_address.x.slice(0, -6),
+            lat: result[0].road_address.y,
+            lng: result[0].road_address.x,
           });
           dispatch(
             postFacility({
