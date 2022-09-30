@@ -1,8 +1,6 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-//API Call
 
 //Routes
 import PATH from './routes/routePath';

@@ -11,12 +11,14 @@ import ImageUploader from '../Image/ImageUploader';
 import AddressUploader from '../Address/AddressUploader';
 import { BigBtn } from '../Button/Btns';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
 import axios from 'axios';
+import { postFacility } from '../../redux/slices/facilitySlice';
 
 export const RegisterFacilityForm = () => {
+  const dispatch = useDispatch()
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
@@ -76,21 +78,29 @@ export const RegisterFacilityForm = () => {
 
     formData.append('file', file);
 
-    try {
-      await axiosInstance
-        .post(`/facility`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then((res) => console.log('status:', res.status));
-    } catch (err) {
-      console.log(err.response);
-    }
+    // try {
+    //   await axiosInstance
+    //     .post(`/facility`, formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     })
+    //     .then((res) => console.log('status:', res.status));
+    // } catch (err) {
+    //   console.log(err.response);
+    // }
+    console.log('dataSet:',dataSet)
   };
 
   const onSubmit = async () => {
     postFacilityAXIOS();
+    dispatch(
+      postFacility({
+        address: '',
+        location: '',
+      })
+    );
+  
   };
 
   useEffect(()=>{},[])

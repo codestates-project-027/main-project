@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
 import CircularProgressWithLabel from '../components/Bar/Loadingbar';
+import axiosInstance from '../api/Interceptor';
 
 const MapPage = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,16 @@ const MapPage = () => {
     geolocation.getCurrentPosition(handleSuccess, handleError);
   };
 
+  //example
+  const getFacilityAXIOS = async () => {
+    await axiosInstance.get('/facility/80').then((res) => console.log(res.data.facilityId,res.data.facilityName,res.data.location, res.data.categoryList));
+    // console.log(categoryState);
+  };
+
+  const deleteFacilityAXIOS = async () => { //28
+    await axiosInstance.delete('/facility/71').then((res) => console.log(res.status));
+  }
+
   return (
     <>
       <FacilitiesPageGlobal>
@@ -48,6 +59,8 @@ const MapPage = () => {
         />
         {loading ? <CircularProgressWithLabel /> : ''}
         <MapContainer />
+        <button onClick={getFacilityAXIOS}>get</button>
+        <button onClick={deleteFacilityAXIOS}>delete</button>
         <FacilityCard Flex={'Flex'} />
         <FacilityCard Flex={'Flex'} />
         <FacilityCard Flex={'Flex'} />
