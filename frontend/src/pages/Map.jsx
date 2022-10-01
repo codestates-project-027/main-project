@@ -36,7 +36,7 @@ const MapPage = () => {
 
   //example - 시설 빠르게 지우기
   const getFacilityAXIOS = async () => { //76부터 시작
-    await axiosInstance.get('/facility/76').then((res) => console.log(res.data.facilityId,res.data));
+    await axiosInstance.get('/facility/77').then((res) => console.log(res.data.facilityId,res.data));
     // console.log(categoryState);
   };
 

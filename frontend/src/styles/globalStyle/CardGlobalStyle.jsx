@@ -7,7 +7,6 @@ export const FCardGlobal = styled(Link)`
   margin: 8px;
   width: 37%;
   height: 20%;
-  background-color: aliceblue;
   text-decoration: none;
 
   @media screen and (max-width: 3000px) {

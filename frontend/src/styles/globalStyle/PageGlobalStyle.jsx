@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { PADDING } from '../../constants/style';
 
-
 export const PageGlobalBase = styled.div`
   display: flex;
   justify-content: center;
@@ -162,8 +161,10 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
   }
 `;
 
-export const RegisterFacGlobal = styled(PageGlobalBase)``;
-
-export const EditFacGlobal = styled(RegisterFacGlobal)``;
+export const FacilityGlobal = styled(PageGlobalBase)``;
 
 export const AdminGlobal = styled(PageGlobalBase)``;
+
+// export const RegisterFacGlobal = styled(PageGlobalBase)``;
+
+// export const EditFacGlobal = styled(RegisterFacGlobal)``;

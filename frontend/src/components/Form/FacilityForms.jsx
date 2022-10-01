@@ -1,7 +1,7 @@
 //api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
 //
 
-import { RegisterFailityForm } from '../../styles/components/FormStyle';
+import { FacilityFormStyle } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
 import { Input } from '../InputTextarea/FormInputs';
 import { Textarea } from '../InputTextarea/FormTextarea';
@@ -14,11 +14,10 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
-import axios from 'axios';
-import { postFacility } from '../../redux/slices/facilitySlice';
+import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
 
-export const RegisterFacilityForm = () => {
-  const dispatch = useDispatch()
+export const FacilityForm = ({ mode }) => {
+  const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
@@ -71,38 +70,89 @@ export const RegisterFacilityForm = () => {
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
 
-    formData.append('file', file);
+    formData.append('file', new Blob(file));
 
-    // try {
-    //   await axiosInstance
-    //     .post(`/facility`, formData, {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //       },
-    //     })
-    //     .then((res) => console.log('status:', res.status));
-    // } catch (err) {
-    //   console.log(err.response);
-    // }
-    console.log('dataSet:',dataSet, file)
+    try {
+      await axiosInstance
+        .post(`/facility`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => console.log('status:', res.status));
+    } catch (err) {
+      console.log(err.response);
+    }
+    console.log('dataSet:', dataSet, file);
+  };
+
+  //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
+  const EditFacilityAXIOS = async () => {
+    const formData = new FormData();
+    const dataSet = {
+      facilityName,
+      facilityInfo,
+      address: `${facilityState.address} ${address2}`,
+      website,
+      phone,
+      location: facilityState.location,
+      categoryList: tagsList,
+    };
+
+    formData.append(
+      'request',
+      new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
+    );
+
+    const file = images.length === 0 ? null : images.map((el) => el.file);
+    formData.append('file', new Blob(file)); //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
+    //사진을 넣으면 413 에러가 난다.
+
+    try {
+      //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
+      await axiosInstance
+        .patch(`/facility/76`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => console.log('edit status:', res.status));
+    } catch (err) {
+      console.log(err.response);
+    }
+    console.log('edit dataSet:', dataSet, images);
   };
 
   const onSubmit = async () => {
     postFacilityAXIOS();
-    // dispatch(
-    //   postFacility({
-    //     address: '',
-    //     location: '',
-    //   })
-    // );
-  
+    dispatch(
+      postFacility({
+        address: '',
+        location: '',
+      })
+    );
+    //navigate :: facilities
   };
 
-  useEffect(()=>{},[])
+  const onSubmitEdit = async () => {
+    EditFacilityAXIOS();
+    dispatch(
+      patchFacility({
+        address: '',
+        location: '',
+      })
+    );
+    //navigate :: facility
+  };
+
+  useEffect(() => {}, []);
+
   return (
+    //edit mode일 때,... facility page에 보이는 부분 -> state에 저장한거 가져와서 보여주기.(localstorage)
+    //주소랑 태그는 꼭 입력해야 갱신됨 -> localstorage로 처리하기
     <>
-      <RegisterFailityForm>
-        <H2>시설 등록하기</H2>
+      <FacilityFormStyle>
+        <H2>{mode === 'edit' ? '시설 변경하기' : '시설 등록하기'}</H2>
         <div className="input--wrapper">
           <Label htmlFor="name">이름</Label>
           <Input
@@ -153,69 +203,71 @@ export const RegisterFacilityForm = () => {
           />
         </div>
         <div className="btn--wrapper">
-          <BigBtn onClick={onSubmit}>시설 등록</BigBtn>
+          <BigBtn onClick={mode === 'edit' ? onSubmitEdit : onSubmit}>
+            {mode === 'edit' ? '시설 변경' : '시설 등록'}
+          </BigBtn>
         </div>
-      </RegisterFailityForm>
+      </FacilityFormStyle>
     </>
   );
 };
 
-export const EditFacilityForm = () => {
-  const data = [
-    {
-      categoryCode: '220811',
-      categoryTitle: '헬스',
-      categoryStatus: '활성',
-    },
-    {
-      categoryCode: '220901',
-      categoryTitle: '요가',
-      categoryStatus: '비활성',
-    },
-  ];
+// export const EditFacilityForm = () => {
+//   const data = [
+//     {
+//       categoryCode: '220811',
+//       categoryTitle: '헬스',
+//       categoryStatus: '활성',
+//     },
+//     {
+//       categoryCode: '220901',
+//       categoryTitle: '요가',
+//       categoryStatus: '비활성',
+//     },
+//   ];
 
-  return (
-    //로컬스토리지에서 정보 가져오기 -> 수정 -> api로 수정요청
-    <>
-      <RegisterFailityForm>
-        <H2>시설 정보 변경하기</H2>
-        <div className="input--wrapper">
-          <Label htmlFor="Fname">이름</Label>
-          <Input label={'Fname'} />
-        </div>
-        <div className="input--wrapper">
-          <ImageUploader />
-        </div>
-        <div className="input--wrapper">
-          <Label htmlFor="desc">설명</Label>
-          <Textarea type="facility" />
-        </div>
-        <div className="input--wrapper">
-          <Label htmlFor="address">주소</Label>
-          <AddressWrapper>
-            <AddressUploader />
-            <Input placeholder={'상세주소 입력'} label={'address'} />
-          </AddressWrapper>
-        </div>
-        <div className="input--wrapper">
-          <Label htmlFor="webpage">web</Label>
-          <Input label={'webpage'} />
-        </div>
-        <div className="input--wrapper">
-          <Label htmlFor="phonenum">전화</Label>
-          <Input label={'phonenum'} />
-        </div>
-        <div className="tags--wrapper">
-          <Div>태그</Div>
-          <TagSelectbar data={data} />
-        </div>
-        <div className="btn--wrapper">
-          <BigBtn>시설 정보 변경</BigBtn>
-        </div>
-      </RegisterFailityForm>
-    </>
-  );
-};
+//   return (
+//     //로컬스토리지에서 정보 가져오기 -> 수정 -> api로 수정요청
+//     <>
+//       <RegisterFailityForm>
+//         <H2>시설 정보 변경하기</H2>
+//         <div className="input--wrapper">
+//           <Label htmlFor="Fname">이름</Label>
+//           <Input label={'Fname'} />
+//         </div>
+//         <div className="input--wrapper">
+//           <ImageUploader />
+//         </div>
+//         <div className="input--wrapper">
+//           <Label htmlFor="desc">설명</Label>
+//           <Textarea type="facility" />
+//         </div>
+//         <div className="input--wrapper">
+//           <Label htmlFor="address">주소</Label>
+//           <AddressWrapper>
+//             <AddressUploader />
+//             <Input placeholder={'상세주소 입력'} label={'address'} />
+//           </AddressWrapper>
+//         </div>
+//         <div className="input--wrapper">
+//           <Label htmlFor="webpage">web</Label>
+//           <Input label={'webpage'} />
+//         </div>
+//         <div className="input--wrapper">
+//           <Label htmlFor="phonenum">전화</Label>
+//           <Input label={'phonenum'} />
+//         </div>
+//         <div className="tags--wrapper">
+//           <Div>태그</Div>
+//           <TagSelectbar data={data} />
+//         </div>
+//         <div className="btn--wrapper">
+//           <BigBtn>시설 정보 변경</BigBtn>
+//         </div>
+//       </RegisterFailityForm>
+//     </>
+//   );
+// };
 
 const Label = styled.label`
   margin-right: 15px;
