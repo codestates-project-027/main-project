@@ -14,9 +14,9 @@ export const MainQuickBtnGroup = ({ category }) => {
   return (
     <>
       <MainPageBIGroupStyle>
-        {category.map((el) => {
+        {category.map((el, idx) => {
           return (
-            <StyledLink to={`/category/${el.code}`}>
+            <StyledLink key={idx} to={`/category/${el.code}`}>
               <MainQuickBtn
                 key={el.idx}
                 textProp={el.text}
