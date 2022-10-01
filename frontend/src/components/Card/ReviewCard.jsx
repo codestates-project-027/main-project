@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { ReviewCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
-import { RiPencilFill } from 'react-icons/ri';
-import { AiOutlineCloseSquare } from 'react-icons/ai';
 import { IconWrapper } from '../../styles/components/IconStyles';
 
 export const ReviewCard = () => {

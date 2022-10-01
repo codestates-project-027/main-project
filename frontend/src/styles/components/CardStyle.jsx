@@ -180,7 +180,7 @@ export const ReviewCardStyle = styled.div`
     .content--wrapper {
       display: inline-block;
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       white-space: normal;
       overflow-wrap: break-word;
     }

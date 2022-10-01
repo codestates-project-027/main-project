@@ -28,6 +28,8 @@ import axiosInstance from '../api/Interceptor';
 const FacilityPage = () => {
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
+  const [tags, setTags] = useState([]);
+  const [imgs, setImgs] = useState([]);
   const [data, setData] = useState([
     {
       facilityId: 0,
@@ -42,16 +44,19 @@ const FacilityPage = () => {
       categoryList: [],
     },
   ]);
+  const handleData = (res) => {
+    setData(res.data);
+    setTags(res.data.categoryList);
+    setImgs(res.data.facilityPhotoList);
+  };
 
   const getFacilityAXIOS = async () => {
-    await axiosInstance.get('/facility/' + id).then((res) => setData(res.data));
+    await axiosInstance.get('/facility/' + id).then((res) => handleData(res));
   };
 
   useEffect(() => {
     getFacilityAXIOS();
   }, []);
-
-  const tags = ['헬스', 'PT'];
 
   const facility = [
     {
@@ -93,7 +98,11 @@ const FacilityPage = () => {
     {
       idx: 5,
       value: (
-        <TagGroup backGround="#e4d5f8" margin="-4px 10px 13px 0px" tags={tags} />
+        <TagGroup
+          backGround="#e4d5f8"
+          margin="-4px 10px 13px 0px"
+          tags={tags}
+        />
       ),
       icon: (
         <IconWrapperFac>
@@ -112,11 +121,11 @@ const FacilityPage = () => {
     },
   ];
 
-  const imgs = [
-    //tags, imgs
-    `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
-    `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
-  ];
+  // const imgs = [
+  //   //tags, imgs
+  //   `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
+  //   `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
+  // ];
 
   return (
     <>
@@ -145,7 +154,6 @@ const FacilityPage = () => {
             )}
           </div>
           <FacilityDescGroup facility={facility} />
-
           <div className="btns--wrapper">
             <BigBtn marginRight="15px">찜</BigBtn>
             <BigBtn>내 시설 등록</BigBtn>
@@ -162,7 +170,6 @@ const FacilityPage = () => {
     </>
   );
 };
-
 
 export default FacilityPage;
 
