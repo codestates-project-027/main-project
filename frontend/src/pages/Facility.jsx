@@ -13,19 +13,50 @@ import { IoCallOutline } from 'react-icons/io5';
 import { TbFileDescription } from 'react-icons/tb';
 import { AiFillTag } from 'react-icons/ai';
 import { IconWrapperFac } from '../styles/components/IconStyles';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import DistanceCalc from '../components/Calculator/DistanceCalc'
 
 import StarsCalc from '../components/Calculator/StarsCalc';
 import { CarouselComponent } from '../components/Image/CarouselComponent';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
+import axiosInstance from '../api/Interceptor';
 
 const FacilityPage = () => {
+  const { id } = useParams();
+  const locationState = useSelector((state) => state.location);
+  const [data, setData] = useState([
+    {
+      facilityId: 0,
+      facilityName: '',
+      facilityPhotoList: [],
+      facilityInfo: '',
+      address: '',
+      website: '',
+      phone: '',
+      starRate: 0,
+      location: '',
+      categoryList: [],
+    },
+  ]);
+
+  const getFacilityAXIOS = async () => {
+    await axiosInstance.get('/facility/' + id).then((res) => setData(res.data));
+  };
+
+  useEffect(() => {
+    getFacilityAXIOS();
+  }, []);
+
   const tags = ['헬스', 'PT'];
+
   const facility = [
     {
       idx: 1,
-      value: '소개 bla bla bla bla bla bla bla bla bla bla bla bla bla',
+      value: data.facilityInfo,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <TbFileDescription size="20" />
@@ -34,7 +65,7 @@ const FacilityPage = () => {
     },
     {
       idx: 2,
-      value: '주소',
+      value: data.address,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <BiMap size="20" />
@@ -43,7 +74,7 @@ const FacilityPage = () => {
     },
     {
       idx: 3,
-      value: 'www.healthclub.com',
+      value: data.website,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <CgWebsite size="20" />
@@ -52,7 +83,7 @@ const FacilityPage = () => {
     },
     {
       idx: 4,
-      value: '02-1111-1111',
+      value: data.phone,
       icon: (
         <IconWrapperFac marginBottom="20px">
           <IoCallOutline size="20" />
@@ -72,7 +103,7 @@ const FacilityPage = () => {
     },
     {
       idx: 6,
-      value: '휴업',
+      value: '영업 중',
       icon: (
         <IconWrapperFac>
           <BiBell size="20" />
@@ -82,6 +113,7 @@ const FacilityPage = () => {
   ];
 
   const imgs = [
+    //tags, imgs
     `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
     `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
   ];
@@ -90,18 +122,27 @@ const FacilityPage = () => {
     <>
       <FacilityPageGlobal>
         <ThemeProvider theme={theme}>
-          <CarouselComponent imgs={imgs}>
-            FacilityImage : http...경로로 불러오기
-          </CarouselComponent>
+          <CarouselComponent imgs={imgs} />
           <div className="Fname--distance--wrapper">
-            <H2>OO동 헬스클럽</H2>
-            <H4>0.3km</H4> {/*거리계산 컴포넌트*/}
+            <H2>{data.facilityName}</H2>
+            <H4>
+              <DistanceCalc
+                currentLocation={locationState}
+                facilityLocation={data.location}
+              />
+            </H4>
           </div>
           <div className="minimi--score--wrapper">
-            <H3>미니미 만족도</H3>
-            <H4 marginLeft="15px">
-              <StarsCalc starValue={4} />
-            </H4>
+            {data.starRate === 0 ? (
+              ''
+            ) : (
+              <>
+                <H3>미니미 만족도</H3>
+                <H4 marginLeft="15px">
+                  <StarsCalc starValue={data.starRate} />
+                </H4>
+              </>
+            )}
           </div>
           <FacilityDescGroup facility={facility} />
 
