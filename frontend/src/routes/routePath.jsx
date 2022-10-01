@@ -7,8 +7,8 @@ const PATH = {
   LOGIN: '/login',
   MYPAGE: '/mypage',
 
-  FACILITY: '/facility', //->facility/:id
-  FACILITIES: '/facilities', //facility
+  FACILITY: '/facility/:id', 
+  FACILITIES: '/facility', //facility
 
   REGISTERFACILITY: '/facility/register',
   EDITFACILITY: '/editfac', //->facility/edit/:id

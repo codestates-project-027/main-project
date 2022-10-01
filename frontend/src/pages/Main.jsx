@@ -41,6 +41,7 @@ const MainPage = () => {
     activeCategory.push({
       idx: i,
       text: categoryState.list[i].categoryTitle,
+      code: categoryState.list[i].categoryCode,
       icon: iconSet[i],
     });
   }

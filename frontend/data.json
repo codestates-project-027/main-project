@@ -16,7 +16,7 @@
       "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/24b909f7-edd6-40b1-8baa-3ea8621cca5d-blob",
       "address": "서울특별시 강북구",
       "starRate": 3,
-      "location": "37.4769, 126.8608", 
+      "location": "37.4769, 126.8608",
       "categoryList": ["헬스", "PT"],
       "facilityStatus": "INACTIVE"
     },

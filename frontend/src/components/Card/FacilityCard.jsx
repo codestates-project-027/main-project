@@ -12,7 +12,7 @@ import {
 } from '../../styles/components/CardStyle';
 
 import { BigBtn } from '../../components/Button/Btns';
-import { H4 } from '../Text/Head';
+import { H4, H4Link } from '../Text/Head';
 import axios from 'axios';
 import StarsCalc from '../Calculator/StarsCalc';
 import { TagGroup } from '../Group/BtnAndTagGroup';
@@ -48,7 +48,7 @@ export const FBaseCard = ({ Detail }) => {
     <>
       {data.map((el, idx) => {
         return (
-          <div key={idx}>
+          <div key={el.facilityId}>
             <div className="wrapper">
               <div className="img--wrapper">
                 <img
@@ -60,7 +60,7 @@ export const FBaseCard = ({ Detail }) => {
               </div>
               <div className="content--wrapper">
                 <div className="name--wrapper">
-                  <H4>{el.facilityName}</H4>
+                  <H4Link to={`/facility/${el.facilityId}`}>{el.facilityName}</H4Link>
                   <div className="distance">
                     <DistanceCalc
                       currentLocation={locationState}
@@ -97,7 +97,7 @@ export const FBaseCard = ({ Detail }) => {
 export const FacilityCard = ({ Flex, Detail }) => {
   return Flex ? (
     <>
-      <FCardFlexGlobal to="/facility">
+      <FCardFlexGlobal>
         <FCardFlexStyle>
           <FBaseCard />
         </FCardFlexStyle>
@@ -105,7 +105,7 @@ export const FacilityCard = ({ Flex, Detail }) => {
     </>
   ) : Detail ? (
     <>
-      <FCardFlexGlobal to="/facility">
+      <FCardFlexGlobal>
         <FCardFlexStyle>
           <FBaseCard Detail={'Detail'} />
         </FCardFlexStyle>
@@ -113,7 +113,7 @@ export const FacilityCard = ({ Flex, Detail }) => {
     </>
   ) : (
     <>
-      <FCardGlobal to="/facility">
+      <FCardGlobal>
         <FCardStyle>
           <FBaseCard />
         </FCardStyle>

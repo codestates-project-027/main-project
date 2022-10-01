@@ -96,7 +96,7 @@ export const FacilityForm = ({ mode }) => {
       website,
       phone,
       location: facilityState.location,
-      categoryList: tagsList,
+      // categoryList: tagsList,
     };
 
     formData.append(
@@ -105,7 +105,7 @@ export const FacilityForm = ({ mode }) => {
     );
 
     const file = images.length === 0 ? null : images.map((el) => el.file);
-    formData.append('file', new Blob(file)); //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
+    formData.append('file', new Blob([file])); //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
     //사진을 넣으면 413 에러가 난다.
 
     try {
