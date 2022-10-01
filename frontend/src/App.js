@@ -86,6 +86,10 @@ function App() {
 
             <Route element={<LayoutCurrentMenuSearch />}>
               <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
+              <Route
+                path={PATH.CATEGORY}
+                element={<FacilitiesPage mode="category" />}
+              />
             </Route>
           </Routes>
         </AppPageGlobal>

@@ -58,7 +58,7 @@ export const FCardFlexStyle = styled(FCardStyle)`
     display: flex;
     width: 320px;
     margin-left: -25px;
-    background-color: red;
+ 
   }
 `;
 
