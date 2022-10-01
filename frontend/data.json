@@ -5,8 +5,8 @@
       "facilityName": "파워헬스장",
       "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/24b909f7-edd6-40b1-8baa-3ea8621cca5d-blob",
       "address": "서울특별시 강남구 fghfgh",
-      "starRate": 4,
-      "location": "35.123456, 119.123456",
+      "starRate": 3,
+      "location": "37.4773, 126.8601",
       "categoryList": ["헬스"],
       "facilityStatus": "ACTIVE"
     },
@@ -15,8 +15,8 @@
       "facilityName": "종국헬스장",
       "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/24b909f7-edd6-40b1-8baa-3ea8621cca5d-blob",
       "address": "서울특별시 강북구",
-      "starRate": 2,
-      "location": "35.123457, 120.123457",
+      "starRate": 3,
+      "location": "37.4769, 126.8608", 
       "categoryList": ["헬스", "PT"],
       "facilityStatus": "INACTIVE"
     },
@@ -26,7 +26,17 @@
       "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/24b909f7-edd6-40b1-8baa-3ea8621cca5d-blob",
       "address": "서울특별시 강남구",
       "starRate": 5,
-      "location": "35.123458, 119.123458",
+      "location": "37.4758, 126.8605",
+      "categoryList": ["헬스", "요가"],
+      "facilityStatus": "ACTIVE"
+    },
+    {
+      "facilityId": 4,
+      "facilityName": "맹헬스장",
+      "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/24b909f7-edd6-40b1-8baa-3ea8621cca5d-blob",
+      "address": "서울특별시 강남구",
+      "starRate": 5,
+      "location": "37.4734, 126.8572",
       "categoryList": ["헬스", "요가"],
       "facilityStatus": "ACTIVE"
     }

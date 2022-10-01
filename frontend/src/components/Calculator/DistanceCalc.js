@@ -1,10 +1,9 @@
-const DistanceCalc = (currentLocation) => {
-  const test = currentLocation;
+const DistanceCalc = ({ currentLocation, facilityLocation }) => {
   const lat1 = currentLocation.currentLocation.latitude;
   const lng1 = currentLocation.currentLocation.longitude;
-  const lat2 = Number(currentLocation.facilityLocation.split(',')[0]);
-  const lng2 = Number(currentLocation.facilityLocation.split(',')[1]);
-
+  const lat2 = facilityLocation && Number(facilityLocation.split(',')[0]);
+  const lng2 = facilityLocation && Number(facilityLocation.split(',')[1]);
+  // latitude: 37.47814, longitude: 126.8605
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
@@ -20,15 +19,20 @@ const DistanceCalc = (currentLocation) => {
       Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; //distance in km, 유효자리 2자리
-  const answer = distance < 1 ? (distance * 100).toFixed(0)*10+10 : distance.toFixed(1)+0.1;
 
-  lat1 && lng1 && lat2 && lng2 && console.log(lat2);
+  const answer =
+    distance < 1
+      ? (distance * 100).toFixed(0) * 10 + 10
+      : distance.toFixed(1) + 0.1;
 
   return (
     <div>
-      {answer}&nbsp; {distance < 1 ? 'm 이내' : 'km 이내'}
+      {distance <= 0.2
+        ? `${answer} m 이내`
+        : distance > 0.2 && distance < 1
+        ? `${answer} m`
+        : `${answer} km`}
     </div>
   );
-  //console.log(test)=>    {currenLocation: {…}, facilityLocation: '33.450936, 126.569477'}
 };
 export default DistanceCalc;

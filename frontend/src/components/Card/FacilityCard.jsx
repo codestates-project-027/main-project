@@ -16,8 +16,11 @@ import { H4 } from '../Text/Head';
 import axios from 'axios';
 import StarsCalc from '../Calculator/StarsCalc';
 import { TagGroup } from '../Group/BtnAndTagGroup';
+import { useSelector } from 'react-redux';
+import DistanceCalc from '../Calculator/DistanceCalc';
 
 export const FBaseCard = ({ Detail }) => {
+  const locationState = useSelector((state) => state.location);
   const [data, setData] = useState([
     {
       facilityId: 0,
@@ -58,7 +61,12 @@ export const FBaseCard = ({ Detail }) => {
               <div className="content--wrapper">
                 <div className="name--wrapper">
                   <H4>{el.facilityName}</H4>
-                  <div className="distance">거리</div>
+                  <div className="distance">
+                    <DistanceCalc
+                      currentLocation={locationState}
+                      facilityLocation={el.location}
+                    />
+                  </div>
                 </div>
                 <div className="rest--wrapper">
                   {Detail ? (
@@ -71,10 +79,11 @@ export const FBaseCard = ({ Detail }) => {
                   )}
 
                   <div className="stars">
-                    <StarsCalc starValue={el.starRate} />
+                    {el.starRate && <StarsCalc starValue={el.starRate} />}
                   </div>
                   <div className="tags">
-                  <TagGroup tags={el.categoryList.slice(0,3)} /></div>
+                    <TagGroup tags={el.categoryList.slice(0, 3)} />
+                  </div>
                 </div>
               </div>
             </div>
