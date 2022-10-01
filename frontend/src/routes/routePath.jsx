@@ -19,7 +19,7 @@ const PATH = {
   COMMUNITY: '/community',
   COMMUNITIYWRITING: '/community-writing',
   COMMUNITIYPOSTING: '/community-posting',
-  EDITCOMMUNITIY: 'edit-community',
+  EDITCOMMUNITIY: '/community-posting/edit-community/:id',
 
   REGISTERFACILITY: '/registerfac',
   EDITFACILITY: '/editfac',

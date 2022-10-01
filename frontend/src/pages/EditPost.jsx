@@ -14,22 +14,23 @@ import { EditPost } from '../redux/CommunitySlice/CommunitySlice';
 
 const EditPostPage = () => {
   const params = useParams();
+  console.log(params);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const postings = useSelector((store) => store.community);
   const existingPost = postings.filter((post) => {
+    console.log(params.id);
     return post.id === params.id;
   });
 
-  console.log(postings);
   console.log(existingPost);
-  const { title, contents } = existingPost[0];
-
+  const { id, title, contents, username } = existingPost[0];
   const [values, setValues] = useState({
-    title,
-    contents,
-    // username,
+    id: '',
+    title: '',
+    contents: '',
+    username: '',
   });
 
   //   const url = 'http://localhost:8080/contents';
@@ -69,7 +70,6 @@ const EditPostPage = () => {
     <div className="form">
       <div className="wrapper">
         <TitleTextField
-          id={params.id}
           value={values.title}
           onChange={(e) => setValues({ ...values, title: e.target.value })}
           inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
@@ -78,7 +78,6 @@ const EditPostPage = () => {
       <br />
       <div className="wrapper">
         <ContentsTextField
-          id={params.id}
           value={values.contents}
           onChange={(e) => setValues({ ...values, contents: e.target.value })}
           inputProps={{ type: 'text', placeholder: '내용을 입력해주세요' }}

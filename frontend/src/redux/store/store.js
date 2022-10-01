@@ -15,15 +15,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-
 const logger = createLogger();
 
 const rootReducer = combineReducers({
   category: categorySlice.reducer,
   community: communitySlice.reducer,
   facility: facilitySlice.reducer,
-  location: locationSlice.reducer
-
+  location: locationSlice.reducer,
 });
 
 const persistConfig = { key: 'root', storage };
@@ -38,6 +36,7 @@ const store = configureStore(
         serializableCheck: false,
       }).concat(logger),
   },
+  { reducer: { community: communitySlice } },
   // applyMiddleware(ReduxThunk),
   composeWithDevTools()
 );

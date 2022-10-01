@@ -14,6 +14,7 @@ const WritingPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState({
+    id: '',
     title: '',
     contents: '',
     username: '',
@@ -26,7 +27,7 @@ const WritingPage = () => {
   // const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
   const handleWriting = () => {
-    setValues({ title: '', contents: '' });
+    setValues({ id: '', title: '', contents: '', username: '' });
     dispatch(
       AddPost({
         id: uuidv4(),
@@ -56,6 +57,7 @@ const WritingPage = () => {
     <PostWrapper>
       <Title>
         <TitleTextField
+          id={uuidv4()}
           value={values.title}
           inputProps={{ type: 'text', placeholder: '제목을 입력해주세요' }}
           onChange={(e) => setValues({ ...values, title: e.target.value })}

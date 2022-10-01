@@ -5,7 +5,7 @@ import {
   Location,
 } from '../../styles/components/CardStyle';
 // import { DeletePostBtn, EditPostBtn } from '../components/Button/Btns';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const CommunityCard = ({ userimg, title, location, contents, time }) => {
   return (
@@ -28,10 +28,6 @@ const CommunityCard = ({ userimg, title, location, contents, time }) => {
         <Location>
           <div className="date">{time}</div>
         </Location>
-        <div>
-          <Link to="edit-community">{/* <button>수정</button> */}</Link>
-        </div>
-        <div>{/* <button>삭제</button> */}</div>
       </CommunityCardGlobal>
     </>
   );
