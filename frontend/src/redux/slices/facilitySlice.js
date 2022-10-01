@@ -41,7 +41,7 @@ export const facilitySlice = createSlice({
       state.location = action.payload.location;
       state.categoryList = action.payload.categoryList;
     },
-    patchCategory: (state, action) => {
+    patchFacility: (state, action) => {
       state.facilityName = action.payload.facilityName;
       state.facilityPhotoList = action.payload.facilityPhotoList;
       state.facilityInfo = action.payload.facilityInfo;
@@ -54,5 +54,5 @@ export const facilitySlice = createSlice({
   },
 });
 
-export const { getFacility, postFacility, patchCategory } =
+export const { getFacility, postFacility, patchFacility } =
   facilitySlice.actions;

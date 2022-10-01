@@ -3,73 +3,53 @@ import { PADDING } from '../../constants/style';
 
 export const FCardStyle = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
 
-  .img--wrapper {
+  .wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 15px;
-    background-color: blanchedalmond;
-    border-radius: 4px;
-    width: 170px;
-    height: 110px;
-  }
-  .content--wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 70%;
-    height: 85%;
-    margin-left: 15px;
-    background-color: bisque;
-    border-radius: 3px;
-    padding: 15px;
-    .name--wrapper {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      .distance {
-        font-size: 15px;
-        margin-right: 10px;
-        @media screen and (max-width: 1097px) {
-          margin-right: 5px;
-        }
-      }
+    width: 500px;
+    height: 200px;
+    background-color: #f8f7f7;
+    margin: 0 0 20px 30px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px lightgray;
+    .img--wrapper {
+      margin-left: 25px;
     }
-    .score--wrapper {
-      display: flex;
-      margin-bottom: 20px;
-      .score {
-        font-size: 15px;
-        @media screen and (max-width: 1097px) {
-          display: none;
-        }
+    .content--wrapper {
+      width: 100%;
+      margin-left: 27px;
+      .name--wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 30px 25px 0;
+      }
+      .rest--wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: left;
+      }
+      .address {
+        display: flex;
+        margin-bottom: 10px;
       }
       .stars {
         display: flex;
-        margin-left: 20px;
-        @media screen and (max-width: 1097px) {
-          margin-left: 0;
-        }
       }
-    }
-    .tag--wrapper {
-      display: flex;
       .tags {
-        font-size: 15px;
+        display: flex;
+        margin-left: -10px;
       }
     }
   }
-  @media screen and (max-width: 3000px) {
+  .contents {
     display: flex;
-  }
-
-  @media screen and (max-width: 790px) {
-    display: none;
+    flex-direction: column;
   }
 `;
 

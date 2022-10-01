@@ -40,6 +40,7 @@ export const BottomNavbarGlobal = styled.div`
   height: 70px;
   width: 100%;
   background-color: var(--main-yellow);
+  z-index:20;
 `;
 
 export const TopNavbarGlobal = styled.div`

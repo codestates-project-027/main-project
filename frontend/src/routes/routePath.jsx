@@ -7,28 +7,23 @@ const PATH = {
   LOGIN: '/login',
   MYPAGE: '/mypage',
 
-  FACILITY: '/facility',
-  FACILITIES: '/facilities',
+  FACILITY: '/facility/:id', 
+  FACILITIES: '/facility', //facility
+
+  REGISTERFACILITY: '/facility/register',
+  EDITFACILITY: '/editfac', //->facility/edit/:id
+  EDITMY: '/facility/my',
+  // POSTREVIEW, EDITREVIEW-> Modal창
 
   MAP: '/map',
   ALARMS: '/alarms',
-
-  EDITMY: '/editMyFac',
-  // POSTREVIEW, EDITREVIEW-> Modal창
 
   COMMUNITY: '/community',
   COMMUNITIYWRITING: '/community-writing',
   COMMUNITIYPOSTING: '/community-posting',
   EDITCOMMUNITIY: 'edit-community',
 
-  REGISTERFACILITY: '/registerfac',
-  EDITFACILITY: '/editfac',
-
-  REGISTERFACILITY:'/registerfac',
-  EDITFACILITY:'/editfac',
-
-  ADMIN:'/admin'
-
+  ADMIN: '/admin',
 };
 
 export default PATH;

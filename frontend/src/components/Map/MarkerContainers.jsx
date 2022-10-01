@@ -22,8 +22,8 @@ const MarkerContainer = ({ position, content, main, custom }) => {
             ? {
                 src: 'https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f535.png', // 마커이미지의 주소입니다
                 size: {
-                  width: 25,
-                  height: 25,
+                  width: 20,
+                  height: 20,
                 },
               }
             : custom

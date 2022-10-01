@@ -7,13 +7,22 @@ import { H4 } from '../../components/Text/Head';
 import { TagStyle } from '../../styles/components/TagStyle';
 import styled from 'styled-components';
 
+import axiosInstance from '../../api/Interceptor';
+import { useNavigate, Link } from 'react-router-dom';
+
 export const MainQuickBtnGroup = ({ category }) => {
   return (
     <>
       <MainPageBIGroupStyle>
         {category.map((el) => {
           return (
-            <MainQuickBtn key={el.idx} textProp={el.text} iconProp={el.icon} />
+            <StyledLink to={`/category/${el.code}`}>
+              <MainQuickBtn
+                key={el.idx}
+                textProp={el.text}
+                iconProp={el.icon}
+              />
+            </StyledLink>
           );
         })}
       </MainPageBIGroupStyle>
@@ -43,8 +52,21 @@ export const TagGroup = ({
   backGround,
   margin,
 }) => {
+  const navigate = useNavigate();
   const handleRemove = (idxToRemove) => {
     setTagsList(tagsList.filter((_, index) => index !== idxToRemove));
+  };
+
+  const moveTo = async (el) => {
+    const response = await axiosInstance('/category?active=false').then(
+      (res) => res.data
+    );
+
+    for (let i = 0; i < response.length; i++) {
+      if (response[i].categoryTitle === el) {
+        navigate(`/category/${response[i].categoryCode}`);
+      }
+    }
   };
 
   return (
@@ -52,7 +74,17 @@ export const TagGroup = ({
       {tags.map((el, idx) => {
         return (
           <TagStyle backGround={backGround} margin={margin} key={idx}>
-            {el}
+            {close ? (
+              <>{el}</>
+            ) : (
+              <div
+                onClick={() => {
+                  moveTo(el);
+                }}
+              >
+                {el}
+              </div>
+            )}
             {close ? <X onClick={() => handleRemove(idx)}>x</X> : null}
           </TagStyle>
         );
@@ -70,3 +102,6 @@ const X = styled.div`
   cursor: pointer;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;

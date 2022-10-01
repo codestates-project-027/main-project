@@ -26,12 +26,12 @@ const AdminPage = () => {
     await axiosInstance.get('/category?active=false').then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
-    console.log(categoryState)
-  }, []);
+    console.log(categoryState);
+  }, [categoryState]);
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, []); //categoryState : 무한렌더링
+  }, []);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

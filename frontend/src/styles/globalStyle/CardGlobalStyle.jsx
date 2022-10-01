@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const FCardGlobal = styled(Link)`
+export const FCardGlobal = styled.div`
   display: flex;
   align-items: center;
   margin: 8px;
   width: 37%;
   height: 20%;
-  background-color: aliceblue;
   text-decoration: none;
 
   @media screen and (max-width: 3000px) {

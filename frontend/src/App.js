@@ -1,8 +1,6 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-//API Call
 
 //Routes
 import PATH from './routes/routePath';
@@ -30,8 +28,10 @@ import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
 import TestPage from './pages/Test';
 import EditMyFacilityPage from './pages/EditMyFacility';
-import RegisterFacilityPage from './pages/RegisterFacility';
-import EditFacilityPage from './pages/EditFacility';
+
+import { RegisterFacilityPage } from './pages/HandleFacility';
+import { EditFacilityPage } from './pages/HandleFacility';
+
 import AdminPage from './pages/Admin';
 
 import CommunityPage from './pages/Community';

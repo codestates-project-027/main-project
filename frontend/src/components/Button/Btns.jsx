@@ -96,7 +96,7 @@ export const StickyBtn = styled(BasicBtn)`
   width: 57px;
   height: 57px;
   border-radius: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 10%;
   right: 3%;
   word-break: break-all;

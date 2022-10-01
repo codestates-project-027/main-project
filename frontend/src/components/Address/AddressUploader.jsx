@@ -10,7 +10,7 @@ const { kakao } = window;
 
 const AddressUploader = ({ facilityState }) => {
   const dispatch = useDispatch();
-
+  
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState('');
   const [coord, setCoord] = useState({});
@@ -27,8 +27,8 @@ const AddressUploader = ({ facilityState }) => {
   };
 
   useEffect(() => {
-    const geoCoding = () => {
-      const geocoder = new kakao.maps.services.Geocoder();
+    const geoCoding = () => { //
+      const geocoder = new kakao.maps.services.Geocoder(); //axios call -> action 내부에서 써야함
 
       const callback = function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
@@ -39,7 +39,7 @@ const AddressUploader = ({ facilityState }) => {
           dispatch(
             postFacility({
               address: address,
-              location: `${result[0].road_address.y}, ${result[0].road_address.x}`,
+              location: `${result[0].road_address.y.slice(0, -7)}, ${result[0].road_address.x.slice(0, -6)}`,
             })
           );
         }

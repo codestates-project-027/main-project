@@ -46,7 +46,7 @@ const MyPage = () => {
         </div>
         <div className="facility--wrapper">
           <H3 marginBottom="30px">사용중인 시설</H3>
-          <Link to="/editMyFac">
+          <Link to="/facility/my">
             <IconWrapper marginRight="10px">
               <AiFillSetting />
             </IconWrapper>
