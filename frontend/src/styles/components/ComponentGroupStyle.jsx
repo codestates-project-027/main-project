@@ -67,7 +67,7 @@ export const MainPageBIGroupStyle = styled.div`
 export const FacilityPageDescGroupStyle = styled.div`
   display: flex;
   padding: ${PADDING.BASIC};
-  background-color: aliceblue;
+  background-color: #f3f3f3; //#def5fb
   flex-direction: column;
   justify-content: center;
 `;

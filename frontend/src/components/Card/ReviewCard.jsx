@@ -24,10 +24,9 @@ export const ReviewCard = () => {
           <div className="rest--wrapper">
             {isHover ? (
               <div className="edit--wrapper">
-                <IconWrapper marginRight="15px">
-                  <RiPencilFill />
-                </IconWrapper>
-                <AiOutlineCloseSquare />
+                <IconWrapper marginRight="3px">🖋</IconWrapper>
+                <IconWrapper >✖️</IconWrapper>
+                
               </div>
             ) : null}
             <div className="name--wrapper">

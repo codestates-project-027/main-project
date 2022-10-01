@@ -16,7 +16,7 @@ import { IconWrapperFac } from '../styles/components/IconStyles';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import DistanceCalc from '../components/Calculator/DistanceCalc'
+import DistanceCalc from '../components/Calculator/DistanceCalc';
 
 import StarsCalc from '../components/Calculator/StarsCalc';
 import { CarouselComponent } from '../components/Image/CarouselComponent';
@@ -93,7 +93,7 @@ const FacilityPage = () => {
     {
       idx: 5,
       value: (
-        <TagGroup backGround="bisque" margin="-4px 10px 13px 0px" tags={tags} />
+        <TagGroup backGround="#e4d5f8" margin="-4px 10px 13px 0px" tags={tags} />
       ),
       icon: (
         <IconWrapperFac>
@@ -124,7 +124,7 @@ const FacilityPage = () => {
         <ThemeProvider theme={theme}>
           <CarouselComponent imgs={imgs} />
           <div className="Fname--distance--wrapper">
-            <H2>{data.facilityName}</H2>
+            <H2 marginTop={'15px'}>{data.facilityName}</H2>
             <H4>
               <DistanceCalc
                 currentLocation={locationState}
@@ -162,6 +162,7 @@ const FacilityPage = () => {
     </>
   );
 };
+
 
 export default FacilityPage;
 

@@ -9,6 +9,7 @@ export const H1 = styled.div`
 
 export const H2 = styled(H1)`
   font-size: 1.3rem;
+  margin-top: ${(props) => props.marginTop};
 `;
 
 export const H3 = styled(H1)`
