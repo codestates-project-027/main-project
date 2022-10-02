@@ -1,15 +1,48 @@
-import { useState } from 'react';
-import Box from '@mui/material/Box';
+import axiosInstance from '../../api/Interceptor';
+import styled from 'styled-components';
+import { useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 import { ModalBoxStyle } from '../../styles/components/Modalstyle';
 import { Textarea } from '../InputTextarea/FormTextarea';
 import { RoundBtn, BigBtn } from '../Button/Btns';
-import styled from 'styled-components';
 
 //기능 구현 후 합칠 예정
-export const CReviewModal = () => {
+export const CReviewModal = ({ setReview }) => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const { id } = useParams();
+  const body = {
+    facilityId: id,
+    username: '미니미회원',
+    contents: value,
+  };
+
+  // const getReview = async () => {
+  //   await axiosInstance.get('/review/' + id + '?page=1').then((res) => {
+  //     dispatch(getReview({ list: res.data }));
+  //   });
+  // };
+
+  const getReview = async () => {
+    await axiosInstance.get('/review/' + id + '?page=1').then((res) => {
+      setReview(res.data);
+    });
+  };
+
+  const createReview = async () => {
+    await axiosInstance
+      .post('/review', body)
+      .then((res) => console.log(res.status));
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    getReview();
+  }, [setOpen]);
 
   return (
     <>
@@ -33,8 +66,14 @@ export const CReviewModal = () => {
             리뷰 작성하기
           </Typography>
           <Div>
-            <Textarea type="review" />
-            <BigBtn>리뷰 작성</BigBtn>
+            <Textarea type="review" value={value} setValue={setValue} />
+            <BigBtn
+              onClick={() => {
+                createReview();
+              }}
+            >
+              리뷰 작성
+            </BigBtn>
           </Div>
         </Box>
       </Modal>
@@ -92,9 +131,7 @@ export const ImgUploadModal = () => {
         aria-labelledby="modal-upload-img"
         aria-describedby="modal-upload-img"
       >
-        <Box sx={ModalBoxStyle}>
-         이미지 모음
-        </Box>
+        <Box sx={ModalBoxStyle}>이미지 모음</Box>
       </Modal>
     </>
   );
@@ -106,5 +143,3 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-

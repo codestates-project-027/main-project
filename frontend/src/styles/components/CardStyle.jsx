@@ -147,11 +147,11 @@ export const ReviewCardStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    background-color: lightblue;
+    background-color: #caedfe;
     border-radius: 4px;
-    width: 170px;
-    height: 110px;
+    width: 90px;
+    height: 100px;
+    margin-left: -20px;
   }
   .rest--wrapper {
     display: flex;

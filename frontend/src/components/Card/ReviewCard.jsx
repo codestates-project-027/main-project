@@ -3,9 +3,11 @@ import { ReviewCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
 import { IconWrapper } from '../../styles/components/IconStyles';
+import CharLogo from '../../assets/logo/minimi-char2.png'
 
-export const ReviewCard = () => {
+export const ReviewCard = ({review}) => {
   const [isHover, setIsHover] = useState(false);
+  
 
   return (
     <>
@@ -18,7 +20,9 @@ export const ReviewCard = () => {
             setIsHover(false);
           }}
         >
-          <div className="img--wrapper">img</div>
+          <div className="img--wrapper">
+            <img src={CharLogo} width="60px" alt="review"/>
+          </div>
           <div className="rest--wrapper">
             {isHover ? (
               <div className="edit--wrapper">
@@ -28,12 +32,11 @@ export const ReviewCard = () => {
               </div>
             ) : null}
             <div className="name--wrapper">
-              <H4>username</H4>
-              <div className="createdAt">날짜</div>
+              <H4>{review.username}</H4>
+              <div className="createdAt">{review.createdAt}</div>
             </div>
             <div className="content--wrapper">
-              내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용
-              내용 내용 내용 내용 내용 내용 내용 내용 aasefas
+            {review.contents}
             </div>
           </div>
         </ReviewCardStyle>

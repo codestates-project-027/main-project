@@ -15,15 +15,9 @@ const AdminPage = () => {
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
 
-  // const getCategoryAXIOS = async () => {
-  //   await axiosInstance.get('/category').then((res) => {
-  //     dispatch(getCategory({ list: res.data }));
-  //     console.log('categoryState:', categoryState);
-  //   });
-  // };
-
   const getCategoryAXIOS = useCallback(async () => {
-    await axiosInstance.get('/category?active=false').then((res) => {
+    await axiosInstance.get('/category?active=false')
+    .then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
     console.log(categoryState);

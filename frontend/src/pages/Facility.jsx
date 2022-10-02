@@ -32,6 +32,12 @@ const FacilityPage = () => {
   const locationState = useSelector((state) => state.location);
   const [tags, setTags] = useState([]);
   const [imgs, setImgs] = useState([]);
+  const [review, setReview] = useState({
+    reviewId: 0,
+    contents: '',
+    createdAt: '',
+    username: '',
+  });
   const [data, setData] = useState([
     {
       facilityId: 0,
@@ -179,11 +185,14 @@ const FacilityPage = () => {
             <BigBtn>내 시설 등록</BigBtn>
           </div>
           <Div className="reviews--wrapper" marginTop="30px">
-            <ReviewCard />
-            <ReviewCard />
+            {Array.isArray(review)
+              ? review.map((el) => {
+                  return <ReviewCard key={el.reviewId} review={el} />;
+                })
+              : null}
           </Div>
           <Div className="btns--wrapper" marginTop="15px">
-            <CReviewModal />
+            <CReviewModal setReview={setReview} />
           </Div>
         </ThemeProvider>
       </FacilityPageGlobal>
