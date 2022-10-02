@@ -4,7 +4,6 @@ import { PADDING } from '../../constants/style';
 export const SearchbarGroupStyle = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 60%;
   margin: ${(props) => props.margin};
   @media screen and (max-width: 790px) {

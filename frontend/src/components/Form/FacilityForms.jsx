@@ -14,8 +14,7 @@ import AddressUploader from '../Address/AddressUploader';
 import axiosInstance from '../../api/Interceptor';
 import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
 
-export const FacilityForm = ({ mode }) => {
-  const patchFacilityState = useSelector((state) => state.facility);
+export const FacilityForm = ({ mode, setFin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,7 +37,7 @@ export const FacilityForm = ({ mode }) => {
           address2: '',
           website: facilityState.website,
           phone: facilityState.phone,
-          tags: tagsList, 
+          tags: tagsList,
         }
       : {
           facilityName: '',
@@ -99,6 +98,7 @@ export const FacilityForm = ({ mode }) => {
           },
         })
         .then((res) => console.log('status:', res.status));
+      setFin(true);
     } catch (err) {
       console.log(err.response);
     }
@@ -119,16 +119,16 @@ export const FacilityForm = ({ mode }) => {
       categoryList: tagsList,
     };
 
-    //변경하기 -> 사진 안보임. 새로고침해야 보임..
-    //한장만 업로드 가능,,.. 
+    //새로고침해야 보임..
+    //한장만 업로드 가능,,..
+
     formData.append(
       'request',
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
     const file = images.length === 0 ? null : images.map((el) => el.file);
+    //img경로인 애를 file로 만들어야함..
     formData.append('file', new Blob(file));
-
-    // formData.append('file', new Blob([file]));
 
     //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
 
@@ -142,6 +142,7 @@ export const FacilityForm = ({ mode }) => {
         })
 
         .then((res) => console.log('edit data:', res.data));
+      setFin(true);
     } catch (err) {
       console.log(err.response);
     }
@@ -185,8 +186,6 @@ export const FacilityForm = ({ mode }) => {
     DeleteFacilityAXIOS();
     navigate('/facility');
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>

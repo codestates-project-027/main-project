@@ -1,9 +1,9 @@
 import ImageUploading from 'react-images-uploading';
-import { useState } from 'react';
+
 import styled from 'styled-components';
 
 const ImageUploader = ({ images, setImages, mode }) => {
-  console.log('uploader:,',images)
+  console.log('uploader:,',typeof images)
   const maxNumber = 5;
 
   const onChange = (imageList) => {

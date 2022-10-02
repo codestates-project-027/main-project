@@ -40,6 +40,8 @@ import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
 
 function App() {
+  
+
   useEffect(() => {}, []);
 
   return (
@@ -59,7 +61,19 @@ function App() {
 
             <Route element={<LayoutCurrentMenu />}>
               <Route path={PATH.MYPAGE} element={<MyPage />} />
-              <Route path={PATH.FACILITY} element={<FacilityPage />} />
+              <Route
+                path={PATH.FACILITY}
+                element={<FacilityPage  />}
+              />
+              <Route
+                path={PATH.REGISTERFACILITY}
+                element={<RegisterFacilityPage  />}
+              />
+              <Route
+                path={PATH.EDITFACILITY}
+                element={<EditFacilityPage  />}
+              />
+
               <Route path={PATH.MAP} element={<MapPage />} />
               <Route path={PATH.ALARMS} element={<AlarmsPage />} />
               <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
@@ -68,11 +82,6 @@ function App() {
               <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
               <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
 
-              <Route
-                path={PATH.REGISTERFACILITY}
-                element={<RegisterFacilityPage />}
-              />
-              <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
               <Route path={PATH.ADMIN} element={<AdminPage />} />
             </Route>
 
