@@ -1,8 +1,9 @@
 package com.minimi.backend.mypage;
 
 import com.google.gson.Gson;
-import com.minimi.backend.mypage.domain.DailyCheckDto;
-import com.minimi.backend.mypage.service.DailyCheckService;
+import com.minimi.backend.mypage.dailycheck.DailyCheckController;
+import com.minimi.backend.mypage.dailycheck.DailyCheckDto;
+import com.minimi.backend.mypage.dailycheck.DailyCheckService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,8 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static com.minimi.backend.ApiDocumentUtils.getRequestPreProcessor;
 import static com.minimi.backend.ApiDocumentUtils.getResponsePreProcessor;
