@@ -2,9 +2,11 @@ package com.minimi.backend.mypage.dailycheck;
 
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.mypage.dailycheck.pub.MiracleScoreAddEvent;
 import com.minimi.backend.mypage.myfacility.MyFacility;
 import com.minimi.backend.mypage.myfacility.MyFacilityRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ public class DailyCheckService {
     private final DailyCheckMapper dailyCheckMapper;
     private final MyFacilityRepository myFacilityRepository;
     private final FacilityRepository facilityRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
 
     public DailyCheckDto.response postCheck(DailyCheckDto.request dailyCheckDtoRequest) {
@@ -41,8 +44,8 @@ public class DailyCheckService {
             List<String> checklist = new ArrayList<>();
             checklist.add("true");
             LocalDate localDate = LocalDate.now();
-            System.out.println(location);
             dailyCheckRepository.save(new DailyCheck(username,checklist,localDate));
+            eventPublisher.publishEvent(new MiracleScoreAddEvent(username));
             return null;
         }
 
@@ -54,6 +57,7 @@ public class DailyCheckService {
         dailyCheck.getCheckList().add("true");
         dailyCheck.setUpdate(LocalDate.now());
         dailyCheckRepository.save(dailyCheck);
+        eventPublisher.publishEvent(new MiracleScoreAddEvent(username));
         return null;
     }
 
@@ -80,12 +84,8 @@ public class DailyCheckService {
 
     private void locationCheck(String location, Facility facility) {
         String facilityLocation = facility.getLocation();
-        System.out.println(facilityLocation);
         String[] facilityLocations = facilityLocation.split(", ");
-        System.out.println(Arrays.toString(facilityLocations));
-        System.out.println(location);
         String[] locations = location.split(", ");
-        System.out.println(Arrays.toString(locations));
         if (!facilityLocations[0].substring(0, 6).equals(locations[0].substring(0, 6)) || !facilityLocations[1].substring(0, 7).equals(locations[1].substring(0, 7))) {
             throw new RuntimeException("not equal location");
         }
