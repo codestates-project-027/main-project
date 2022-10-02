@@ -214,18 +214,8 @@ export const FacilityForm = ({ mode }) => {
         <div className="input--wrapper">
           <Label htmlFor="address">주소</Label>
           <AddressWrapper>
-            {mode === 'edit' ? (
-              <AddressUploader
-                value={registerFac.address}
-                facilityState={facilityState}
-                mode="edit"
-              />
-            ) : (
-              <AddressUploader
-                value={registerFac.address}
-                facilityState={facilityState}
-              />
-            )}
+            <AddressUploader facilityState={facilityState} />
+
             <Input
               placeholder={'상세주소 입력'}
               name="address2"
@@ -257,7 +247,7 @@ export const FacilityForm = ({ mode }) => {
           <Div>태그</Div>
           <TagSelectbar
             data={categoryState.list.slice(1)}
-            tagsList={mode==='edit'? facilityState.categoryList:tagsList}
+            tagsList={tagsList}
             setTagsList={setTagsList}
           />
         </div>
