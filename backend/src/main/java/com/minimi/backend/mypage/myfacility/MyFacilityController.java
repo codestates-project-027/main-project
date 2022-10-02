@@ -1,7 +1,6 @@
-package com.minimi.backend.mypage.myFacility;
+package com.minimi.backend.mypage.myfacility;
 
 
-import com.minimi.backend.facility.bookmark.BookmarkDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +13,15 @@ public class MyFacilityController {
     private final MyFacilityService myFacilityService;
 
     @PostMapping("")
-    public ResponseEntity postMyFacility(@RequestBody BookmarkDto.request bookmarkReq){
+    public ResponseEntity postMyFacility(@RequestBody MyFacilityDto.request myFacilityDtoReq){
+        myFacilityService.postMyFacilitys(myFacilityDtoReq);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     //delete bookmark
-    @DeleteMapping("/{facilityId}")
-    public ResponseEntity deleteMyFacility(@PathVariable Long facilityId){
+    @DeleteMapping("/{facilityId}/{username}")
+    public ResponseEntity deleteMyFacility(@PathVariable Long facilityId,
+                                           @PathVariable String username){
+        myFacilityService.deleteyFacilitys(facilityId, username);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

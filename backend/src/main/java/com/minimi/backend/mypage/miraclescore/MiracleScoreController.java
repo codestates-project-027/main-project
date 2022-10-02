@@ -1,8 +1,6 @@
-package com.minimi.backend.mypage;
+package com.minimi.backend.mypage.miraclescore;
 
 
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
-import com.minimi.backend.mypage.service.MiracleScoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,9 @@
 package com.minimi.backend.mypage;
 
 import com.google.gson.Gson;
-import com.minimi.backend.mypage.domain.MiracleScoreDto;
-import com.minimi.backend.mypage.service.MiracleScoreService;
+import com.minimi.backend.mypage.miraclescore.MiracleScoreDto;
+import com.minimi.backend.mypage.miraclescore.MiracleScoreController;
+import com.minimi.backend.mypage.miraclescore.MiracleScoreService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

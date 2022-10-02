@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -36,8 +38,9 @@ public class ContentsController {
     }
     //get Content
     @GetMapping("/{contentsId}")
-    public ResponseEntity<ContentsDTO.response> getContents(@PathVariable Long contentsId){
+    public ResponseEntity<ContentsDTO.response> getContents(@PathVariable Long contentsId, HttpServletRequest request, HttpServletResponse response){
         Contents contents = contentsService.findContents(contentsId);
+        contentsService.viewCountUp(contentsId,request,response);
         return new ResponseEntity(contents,HttpStatus.CREATED);
     }
     @GetMapping("/test/{contentsId}")
