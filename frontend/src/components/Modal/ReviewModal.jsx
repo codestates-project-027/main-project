@@ -81,24 +81,33 @@ export const CReviewModal = ({ setReview }) => {
   );
 };
 
-export const UReviewModal = () => {
+export const UReviewModal = ({ RVcontents, setRVContents, review }) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { id } = useParams();
+  const body = {
+    reviewId: review.reviewId,
+    contents: RVcontents,
+  };
+
+  //콘솔로그
+  console.log(body);
+
+  const editReview = async () => {
+    await axiosInstance
+      .patch('/review/' + id + '/' + review.reviewId, body)
+      .then((res) => console.log(res.status));
+    setOpen(false);
+  };
 
   return (
     <div>
-      <button //mui pen icon
-        variant="contained"
-        sx={{ borderRadius: '16px' }}
-        color="yellow"
-        style={{ width: '113px', marginBottom: '15px' }}
-        onClick={handleOpen}
-      />
+      <EditIcon variant="contained" onClick={() => setOpen(true)}>
+        🖋
+      </EditIcon>
 
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-edit-review"
         aria-describedby="modal-edit-review"
       >
@@ -107,9 +116,18 @@ export const UReviewModal = () => {
             리뷰 수정하기
           </Typography>
           <Div>
-            <Textarea type="review" />{' '}
-            {/*로컬스토리지로 클릭한 id의 내용 넣어주기*/}
-            <BigBtn>리뷰 수정</BigBtn>
+            <Textarea
+              type="reviewEdit"
+              RVcontents={RVcontents}
+              setRVContents={setRVContents}
+            />
+            <BigBtn
+              onClick={() => {
+                editReview();
+              }}
+            >
+              리뷰 수정
+            </BigBtn>
           </Div>
         </Box>
       </Modal>
@@ -117,29 +135,58 @@ export const UReviewModal = () => {
   );
 };
 
-export const ImgUploadModal = () => {
+export const ChoiceModal = ({ text, btn, review }) => {
   const [open, setOpen] = useState(false);
+  const { id } = useParams();
+
+  //delete RV
+  const deleteReview = async () => {
+    await axiosInstance
+      .delete('/review/' + id + '/' + review.reviewId)
+      .then((res) => console.log(res.status));
+    setOpen(false);
+  };
 
   return (
-    <>
-      <button>업로드</button>
+    <div>
+      <EditIcon variant="contained" onClick={() => setOpen(true)}>
+        {btn}
+      </EditIcon>
+
       <Modal
         open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-        aria-labelledby="modal-upload-img"
-        aria-describedby="modal-upload-img"
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-delete-review"
+        aria-describedby="modal-delete-review"
       >
-        <Box sx={ModalBoxStyle}>이미지 모음</Box>
+        <Box sx={ModalBoxStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {text}
+          </Typography>
+          <Div flexDirection="row">
+            <BigBtn
+              marginRight="15px"
+              onClick={() => {
+                deleteReview();
+              }}
+            >
+              예
+            </BigBtn>
+            <BigBtn onClick={() => setOpen(false)}>아니오</BigBtn>
+          </Div>
+        </Box>
       </Modal>
-    </>
+    </div>
   );
 };
 
 const Div = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => props.flexDirection || 'column'};
   justify-content: center;
   align-items: center;
+`;
+
+const EditIcon = styled.div`
+  cursor: pointer;
 `;
