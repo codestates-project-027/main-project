@@ -30,6 +30,7 @@ const FacilityPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
+
   const [tags, setTags] = useState([]);
   const [imgs, setImgs] = useState([]);
   const [data, setData] = useState([

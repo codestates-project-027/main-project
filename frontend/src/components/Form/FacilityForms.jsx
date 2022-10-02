@@ -24,7 +24,9 @@ export const FacilityForm = ({ mode }) => {
   const { id } = useParams();
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
-  const [images, setImages] = useState(mode === 'edit' ? facilityState.facilityPhotoList : []);
+  const [images, setImages] = useState(
+    mode === 'edit' ? facilityState.facilityPhotoList : []
+  );
   const [tagsList, setTagsList] = useState(
     mode === 'edit' ? facilityState.categoryList : []
   );
@@ -34,11 +36,11 @@ export const FacilityForm = ({ mode }) => {
           facilityName: facilityState.facilityName,
           facilityPhotoList: [], //넣기
           facilityInfo: facilityState.facilityInfo,
-          address: facilityState.address.split(' ').slice(0, 4).join(' '),
+          address: facilityState.address,
           address2: '',
           website: facilityState.website,
           phone: facilityState.phone,
-          tags: facilityState.categoryList, //넣기
+          tags: tagsList, //넣기
         }
       : {
           facilityName: '',
@@ -117,7 +119,7 @@ export const FacilityForm = ({ mode }) => {
       website,
       phone,
       location: facilityState.location,
-      // categoryList: tagsList,
+      categoryList: tagsList,
     };
 
     formData.append(
@@ -174,7 +176,7 @@ export const FacilityForm = ({ mode }) => {
         location: '',
       })
     );
-    navigate(`/facility/${id}`)
+    navigate(`/facility/${id}`);
   };
 
   const onDelete = async () => {
@@ -185,8 +187,6 @@ export const FacilityForm = ({ mode }) => {
   useEffect(() => {}, []);
 
   return (
-    //edit mode일 때,... facility page에 보이는 부분 -> state에 저장한거 가져와서 보여주기.(localstorage)
-    //주소랑 태그는 꼭 입력해야 갱신됨 -> localstorage로 처리하기
     <>
       <FacilityFormStyle>
         <H2>{mode === 'edit' ? '시설 변경하기' : '시설 등록하기'}</H2>
