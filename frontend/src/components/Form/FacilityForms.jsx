@@ -15,24 +15,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
 import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const FacilityForm = ({ mode }) => {
+  const patchFacilityState = useSelector((state) => state.facility);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
   const [images, setImages] = useState([]);
   const [tagsList, setTagsList] = useState([]);
-  const [registerFac, setRegisterFac] = useState({
-    facilityName: '',
-    facilityPhotoList: [],
-    facilityInfo: '',
-    address2: '',
-    website: '',
-    phone: '',
-    location: '',
-    tags: [],
-  });
+  const [registerFac, setRegisterFac] = useState(
+    mode === 'edit'
+      ? {
+          facilityName: facilityState.facilityName,
+          facilityPhotoList: [], //넣기
+          facilityInfo: facilityState.facilityInfo,
+          address: facilityState.address.split(' ').slice(0, 4).join(' '),
+          address2: facilityState.address.split(' ').slice(4),
+          website: facilityState.website,
+          phone: facilityState.phone,
+          tags: facilityState.categoryList, //넣기
+        }
+      : {
+          facilityName: '',
+          facilityPhotoList: [],
+          facilityInfo: '',
+          address2: '',
+          website: '',
+          phone: '',
+          location: '',
+          tags: [],
+        }
+  );
 
+  console.log(patchFacilityState);
   const {
     facilityName,
     facilityPhotoList,
@@ -87,6 +105,7 @@ export const FacilityForm = ({ mode }) => {
   };
 
   //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
+
   const EditFacilityAXIOS = async () => {
     const formData = new FormData();
     const dataSet = {
@@ -123,6 +142,17 @@ export const FacilityForm = ({ mode }) => {
     console.log('edit dataSet:', dataSet, images);
   };
 
+  const DeleteFacilityAXIOS = async () => {
+    try {
+      //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
+      await axiosInstance
+        .delete(`/facility/` + id)
+        .then((res) => console.log('edit status:', res.status));
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   const onSubmit = async () => {
     postFacilityAXIOS();
     dispatch(
@@ -143,6 +173,11 @@ export const FacilityForm = ({ mode }) => {
       })
     );
     //navigate :: facility
+  };
+
+  const onDelete = async () => {
+    DeleteFacilityAXIOS();
+    navigate('/facility');
   };
 
   useEffect(() => {}, []);
@@ -169,7 +204,9 @@ export const FacilityForm = ({ mode }) => {
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
           <Textarea
+            mode="edit"
             type="facility"
+            value={facilityInfo}
             registerFac={registerFac}
             setRegisterFac={setRegisterFac}
           />
@@ -177,22 +214,44 @@ export const FacilityForm = ({ mode }) => {
         <div className="input--wrapper">
           <Label htmlFor="address">주소</Label>
           <AddressWrapper>
-            <AddressUploader facilityState={facilityState} />
+            {mode === 'edit' ? (
+              <AddressUploader
+                value={registerFac.address}
+                facilityState={facilityState}
+                mode="edit"
+              />
+            ) : (
+              <AddressUploader
+                value={registerFac.address}
+                facilityState={facilityState}
+              />
+            )}
             <Input
               placeholder={'상세주소 입력'}
               name="address2"
               label={'address'}
+              value={address2}
               onChange={onChange}
             />
           </AddressWrapper>
         </div>
         <div className="input--wrapper">
           <Label htmlFor="website">web</Label>
-          <Input label={'website'} name="website" onChange={onChange} />
+          <Input
+            label={'website'}
+            name="website"
+            value={website}
+            onChange={onChange}
+          />
         </div>
         <div className="input--wrapper">
           <Label htmlFor="phone">전화</Label>
-          <Input label={'phone'} name="phone" onChange={onChange} />
+          <Input
+            label={'phone'}
+            name="phone"
+            value={phone}
+            onChange={onChange}
+          />
         </div>
         <div className="tags--wrapper">
           <Div>태그</Div>
@@ -203,8 +262,19 @@ export const FacilityForm = ({ mode }) => {
           />
         </div>
         <div className="btn--wrapper">
-          <BigBtn onClick={mode === 'edit' ? onSubmitEdit : onSubmit}>
+          <BigBtn
+            marginRight="40px"
+            onClick={mode === 'edit' ? onSubmitEdit : onSubmit}
+          >
             {mode === 'edit' ? '시설 변경' : '시설 등록'}
+          </BigBtn>
+
+          <BigBtn
+            color="red"
+            hoverBg="black"
+            onClick={mode === 'edit' ? onDelete : ''}
+          >
+            {mode === 'edit' ? '삭제' : ''}
           </BigBtn>
         </div>
       </FacilityFormStyle>

@@ -13,7 +13,8 @@ const PATH = {
   FACILITIES: '/facility', 
 
   REGISTERFACILITY: '/facility/register',
-  EDITFACILITY: '/editfac', //->facility/edit/:id
+  // EDITFACILITY: '/editfac', //->facility/edit/:id
+  EDITFACILITY: '/facility/edit/:id', //->facility/edit/:id
   EDITMY: '/facility/my',
   // POSTREVIEW, EDITREVIEW-> Modal창
 

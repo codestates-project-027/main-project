@@ -5,7 +5,7 @@ import {
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export const Textarea = ({ type, registerFac, setRegisterFac }) => {
+export const Textarea = ({ type, registerFac, setRegisterFac, value, mode }) => {
   //ReviewTXT : 리뷰 작성 textarea
   //FacilityTXT : 시설 등록 textarea
 
@@ -33,6 +33,7 @@ export const Textarea = ({ type, registerFac, setRegisterFac }) => {
             name="facilityInfo"
             maxLength={200}
             onChange={(e) => handleChange(e)}
+            value={mode==='edit'? value: ''}
           />
           <P>{count}/200</P>
         </Div>

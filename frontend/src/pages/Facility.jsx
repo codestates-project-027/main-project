@@ -11,11 +11,11 @@ import { CgWebsite } from 'react-icons/cg';
 import { BiMap, BiBell } from 'react-icons/bi';
 import { IoCallOutline } from 'react-icons/io5';
 import { TbFileDescription } from 'react-icons/tb';
-import { AiFillTag } from 'react-icons/ai';
+import { AiFillTag, AiFillSetting } from 'react-icons/ai';
 import { IconWrapperFac } from '../styles/components/IconStyles';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DistanceCalc from '../components/Calculator/DistanceCalc';
 
 import StarsCalc from '../components/Calculator/StarsCalc';
@@ -24,8 +24,10 @@ import { CarouselComponent } from '../components/Image/CarouselComponent';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
 import axiosInstance from '../api/Interceptor';
+import { patchFacility } from '../redux/slices/facilitySlice';
 
 const FacilityPage = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
   const [tags, setTags] = useState([]);
@@ -44,10 +46,23 @@ const FacilityPage = () => {
       categoryList: [],
     },
   ]);
+
   const handleData = (res) => {
     setData(res.data);
     setTags(res.data.categoryList);
     setImgs(res.data.facilityPhotoList);
+    dispatch(
+      patchFacility({
+        facilityName: res.data.facilityName,
+        facilityPhotoList: res.data.facilityPhotoList,
+        facilityInfo: res.data.facilityInfo,
+        address: res.data.address,
+        website: res.data.website,
+        phone: res.data.phone,
+        location: res.data.location,
+        categoryList: res.data.categoryList,
+      })
+    );
   };
 
   const getFacilityAXIOS = async () => {
@@ -131,6 +146,11 @@ const FacilityPage = () => {
     <>
       <FacilityPageGlobal>
         <ThemeProvider theme={theme}>
+          <div className="setIcon--wrapper">
+            <Link to={`/facility/edit/${id}`}>
+              <AiFillSetting className="setIcon--wrapper" />
+            </Link>
+          </div>
           <CarouselComponent imgs={imgs} />
           <div className="Fname--distance--wrapper">
             <H2 marginTop={'15px'}>{data.facilityName}</H2>
