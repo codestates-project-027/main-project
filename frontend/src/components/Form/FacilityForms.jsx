@@ -1,21 +1,18 @@
-//api 구현하고 합치기.. -> axios.post일 경우 시설 등록페이지 , axios.patch일 경우 시설 수정페이지
-//
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { FacilityFormStyle } from '../../styles/components/FormStyle';
 import { H2 } from '../Text/Head';
+import { BigBtn } from '../Button/Btns';
 import { Input } from '../InputTextarea/FormInputs';
 import { Textarea } from '../InputTextarea/FormTextarea';
 import { TagSelectbar } from '../Bar/Selectbar';
 import ImageUploader from '../Image/ImageUploader';
-
 import AddressUploader from '../Address/AddressUploader';
-import { BigBtn } from '../Button/Btns';
-import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
 import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
-import { useNavigate, useParams } from 'react-router-dom';
 
 export const FacilityForm = ({ mode }) => {
   const patchFacilityState = useSelector((state) => state.facility);
@@ -30,17 +27,18 @@ export const FacilityForm = ({ mode }) => {
   const [tagsList, setTagsList] = useState(
     mode === 'edit' ? facilityState.categoryList : []
   );
+
   const [registerFac, setRegisterFac] = useState(
     mode === 'edit'
       ? {
           facilityName: facilityState.facilityName,
-          facilityPhotoList: [], //넣기
+          facilityPhotoList: facilityState.facilityPhotoList,
           facilityInfo: facilityState.facilityInfo,
           address: facilityState.address,
           address2: '',
           website: facilityState.website,
           phone: facilityState.phone,
-          tags: tagsList, //넣기
+          tags: tagsList, 
         }
       : {
           facilityName: '',
@@ -54,7 +52,6 @@ export const FacilityForm = ({ mode }) => {
         }
   );
 
-  console.log(patchFacilityState);
   const {
     facilityName,
     facilityPhotoList,
@@ -122,14 +119,18 @@ export const FacilityForm = ({ mode }) => {
       categoryList: tagsList,
     };
 
+    //변경하기 -> 사진 안보임. 새로고침해야 보임..
+    //한장만 업로드 가능,,.. 
     formData.append(
       'request',
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
-
     const file = images.length === 0 ? null : images.map((el) => el.file);
-    formData.append('file', new Blob([file])); //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
-    //사진을 넣으면 413 에러가 난다.
+    formData.append('file', new Blob(file));
+
+    // formData.append('file', new Blob([file]));
+
+    //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
 
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
@@ -139,7 +140,8 @@ export const FacilityForm = ({ mode }) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-        .then((res) => console.log('edit status:', res.status));
+
+        .then((res) => console.log('edit data:', res.data));
     } catch (err) {
       console.log(err.response);
     }
@@ -165,7 +167,7 @@ export const FacilityForm = ({ mode }) => {
         location: '',
       })
     );
-    //navigate :: facilities
+    navigate('/facility');
   };
 
   const onSubmitEdit = async () => {
@@ -201,7 +203,16 @@ export const FacilityForm = ({ mode }) => {
           />
         </div>
         <div className="input--wrapper">
-          <ImageUploader images={images} setImages={setImages} />
+          {mode === 'edit' ? (
+            <ImageUploader mode="edit" images={images} setImages={setImages} />
+          ) : (
+            <ImageUploader
+              registerFac={registerFac}
+              setRegisterFac={setRegisterFac}
+              images={images}
+              setImages={setImages}
+            />
+          )}
         </div>
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
@@ -273,14 +284,15 @@ export const FacilityForm = ({ mode }) => {
           >
             {mode === 'edit' ? '시설 변경' : '시설 등록'}
           </BigBtn>
-
-          <BigBtn
-            color="red"
-            hoverBg="black"
-            onClick={mode === 'edit' ? onDelete : ''}
-          >
-            {mode === 'edit' ? '삭제' : ''}
-          </BigBtn>
+          {mode === 'edit' ? (
+            <BigBtn
+              color="red"
+              hoverBg="black"
+              onClick={mode === 'edit' ? onDelete : ''}
+            >
+              삭제
+            </BigBtn>
+          ) : null}
         </div>
       </FacilityFormStyle>
     </>

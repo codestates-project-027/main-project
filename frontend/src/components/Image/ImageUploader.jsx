@@ -2,7 +2,8 @@ import ImageUploading from 'react-images-uploading';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const ImageUploader = ({ images, setImages }) => {
+const ImageUploader = ({ images, setImages, mode }) => {
+  console.log('uploader:,',images)
   const maxNumber = 5;
 
   const onChange = (imageList) => {
@@ -30,17 +31,17 @@ const ImageUploader = ({ images, setImages }) => {
             <>
               <div className="upload__image--wrapper">
                 <button onClick={onImageUpload} {...dragProps}>
-                  Click or Drop here
+                  Click or Drop
                 </button>
                 &nbsp;
-                <button onClick={onImageRemoveAll}>Remove all images</button>
+                <button onClick={onImageRemoveAll}>Remove ALL</button>
                 <div className="img--wrapper">
                   {imageList.map((image, index) => (
                     <div key={index} className="image-item">
                       {index === 0 ? (
                         <>
                           <MainImg
-                            src={image['data_url']}
+                            src={image['data_url']? image['data_url']: image}
                             alt=""
                             width="100px"
                             height="100px"

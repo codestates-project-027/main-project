@@ -61,7 +61,7 @@ const MainPage = () => {
         />
         <MainPageBtnsGroupStyle>
           <H3 maxWidth="790px" marginTop="40px">
-            <StyledLink to="/facilities">바로가기</StyledLink>
+            <StyledLink to="/facility">바로가기</StyledLink>
           </H3>
           {split.map((el, idx) => {
             return <MainQuickBtnGroup key={idx} category={el} />;
