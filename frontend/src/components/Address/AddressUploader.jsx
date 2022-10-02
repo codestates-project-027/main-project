@@ -9,6 +9,7 @@ import { postFacility } from '../../redux/slices/facilitySlice';
 const { kakao } = window;
 
 const AddressUploader = ({ facilityState, value, mode }) => {
+  const patchFacilityState = useSelector((state) => state.facility);
   const dispatch = useDispatch();
 
   const [openPostcode, setOpenPostcode] = useState(false);
@@ -57,7 +58,7 @@ const AddressUploader = ({ facilityState, value, mode }) => {
 
   return (
     <Div>
-      {mode === 'edit' ? value : address}
+      {facilityState.address}
       <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
         주소검색
       </BasicBtn>

@@ -24,8 +24,10 @@ export const FacilityForm = ({ mode }) => {
   const { id } = useParams();
   const categoryState = useSelector((state) => state.category);
   const facilityState = useSelector((state) => state.facility);
-  const [images, setImages] = useState([]);
-  const [tagsList, setTagsList] = useState([]);
+  const [images, setImages] = useState(mode === 'edit' ? facilityState.facilityPhotoList : []);
+  const [tagsList, setTagsList] = useState(
+    mode === 'edit' ? facilityState.categoryList : []
+  );
   const [registerFac, setRegisterFac] = useState(
     mode === 'edit'
       ? {
@@ -33,7 +35,7 @@ export const FacilityForm = ({ mode }) => {
           facilityPhotoList: [], //넣기
           facilityInfo: facilityState.facilityInfo,
           address: facilityState.address.split(' ').slice(0, 4).join(' '),
-          address2: facilityState.address.split(' ').slice(4),
+          address2: '',
           website: facilityState.website,
           phone: facilityState.phone,
           tags: facilityState.categoryList, //넣기
@@ -130,7 +132,7 @@ export const FacilityForm = ({ mode }) => {
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
       await axiosInstance
-        .patch(`/facility/76`, formData, {
+        .patch(`/facility/${id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -172,7 +174,7 @@ export const FacilityForm = ({ mode }) => {
         location: '',
       })
     );
-    //navigate :: facility
+    navigate(`/facility/${id}`)
   };
 
   const onDelete = async () => {
@@ -214,7 +216,11 @@ export const FacilityForm = ({ mode }) => {
         <div className="input--wrapper">
           <Label htmlFor="address">주소</Label>
           <AddressWrapper>
-            <AddressUploader facilityState={facilityState} />
+            {mode === 'edit' ? (
+              <AddressUploader facilityState={facilityState} mode={'edit'} />
+            ) : (
+              <AddressUploader facilityState={facilityState} />
+            )}
 
             <Input
               placeholder={'상세주소 입력'}
@@ -245,11 +251,20 @@ export const FacilityForm = ({ mode }) => {
         </div>
         <div className="tags--wrapper">
           <Div>태그</Div>
-          <TagSelectbar
-            data={categoryState.list.slice(1)}
-            tagsList={tagsList}
-            setTagsList={setTagsList}
-          />
+          {mode === 'edit' ? (
+            <TagSelectbar
+              mode="edit"
+              data={categoryState.list.slice(1)}
+              tagsList={tagsList}
+              setTagsList={setTagsList}
+            />
+          ) : (
+            <TagSelectbar
+              data={categoryState.list.slice(1)}
+              tagsList={tagsList}
+              setTagsList={setTagsList}
+            />
+          )}
         </div>
         <div className="btn--wrapper">
           <BigBtn
@@ -271,63 +286,6 @@ export const FacilityForm = ({ mode }) => {
     </>
   );
 };
-
-// export const EditFacilityForm = () => {
-//   const data = [
-//     {
-//       categoryCode: '220811',
-//       categoryTitle: '헬스',
-//       categoryStatus: '활성',
-//     },
-//     {
-//       categoryCode: '220901',
-//       categoryTitle: '요가',
-//       categoryStatus: '비활성',
-//     },
-//   ];
-
-//   return (
-//     //로컬스토리지에서 정보 가져오기 -> 수정 -> api로 수정요청
-//     <>
-//       <RegisterFailityForm>
-//         <H2>시설 정보 변경하기</H2>
-//         <div className="input--wrapper">
-//           <Label htmlFor="Fname">이름</Label>
-//           <Input label={'Fname'} />
-//         </div>
-//         <div className="input--wrapper">
-//           <ImageUploader />
-//         </div>
-//         <div className="input--wrapper">
-//           <Label htmlFor="desc">설명</Label>
-//           <Textarea type="facility" />
-//         </div>
-//         <div className="input--wrapper">
-//           <Label htmlFor="address">주소</Label>
-//           <AddressWrapper>
-//             <AddressUploader />
-//             <Input placeholder={'상세주소 입력'} label={'address'} />
-//           </AddressWrapper>
-//         </div>
-//         <div className="input--wrapper">
-//           <Label htmlFor="webpage">web</Label>
-//           <Input label={'webpage'} />
-//         </div>
-//         <div className="input--wrapper">
-//           <Label htmlFor="phonenum">전화</Label>
-//           <Input label={'phonenum'} />
-//         </div>
-//         <div className="tags--wrapper">
-//           <Div>태그</Div>
-//           <TagSelectbar data={data} />
-//         </div>
-//         <div className="btn--wrapper">
-//           <BigBtn>시설 정보 변경</BigBtn>
-//         </div>
-//       </RegisterFailityForm>
-//     </>
-//   );
-// };
 
 const Label = styled.label`
   margin-right: 15px;
