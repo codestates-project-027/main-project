@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { TagGroup } from '../../components/Group/BtnAndTagGroup';
 import styled from 'styled-components';
 
-export const TagSelectbar = ({ data, tagsList, setTagsList }) => {
-  
+export const TagSelectbar = ({ data, tagsList, setTagsList}) => {
+ 
+ 
 
   const handleChangeSelect = (e) => {
     const repeated = tagsList.filter((el) => el === e.target.value);

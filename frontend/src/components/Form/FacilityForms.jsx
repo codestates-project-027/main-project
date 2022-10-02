@@ -257,7 +257,7 @@ export const FacilityForm = ({ mode }) => {
           <Div>태그</Div>
           <TagSelectbar
             data={categoryState.list.slice(1)}
-            tagsList={tagsList}
+            tagsList={mode==='edit'? facilityState.categoryList:tagsList}
             setTagsList={setTagsList}
           />
         </div>
