@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  list: [],
   facilityName: '',
   facilityPhotoList: [],
   facilityInfo: '',
-  address:'',
+  address: '',
   website: '',
   phone: '',
   starRate: 0,
@@ -19,6 +20,7 @@ export const facilitySlice = createSlice({
   initialState,
   reducers: {
     getFacility: (state, action) => {
+      state.list = action.payload.list;
       state.facilityName = action.payload.facilityName;
       state.facilityPhotoList = action.payload.facilityPhotoList;
       state.facilityInfo = action.payload.facilityInfo;

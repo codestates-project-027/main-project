@@ -7,7 +7,8 @@ import { FacilityCard } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
 
 const FacilitiesPage = ({mode}) => {
-  const tags = ['헬스', '테니스', '킥복싱'];
+  const tags = ['헬스', '수영', '킥복싱', '탁구'];
+  
   return (
     <>
       <FacilitiesPageGlobal>

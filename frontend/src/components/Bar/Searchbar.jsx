@@ -50,7 +50,6 @@ export const Searchbar = ({ placeholder }) => {
   };
  
   const confirmCode = () => {
-    // codeList.map((el) => (el.title === options ? setCode(el.code) : null));
     codeList.map((el) => (el.title === options.toString() ? setCode(el.code) : null));
   };
 
@@ -67,21 +66,6 @@ export const Searchbar = ({ placeholder }) => {
   };
 
   const handleKeyUp = (event) => {
-    if (
-      event.getModifierState('Fn') ||
-      event.getModifierState('Hyper') ||
-      event.getModifierState('OS') ||
-      event.getModifierState('Super') ||
-      event.getModifierState('Win')
-    )
-      return;
-    if (
-      event.getModifierState('Control') +
-        event.getModifierState('Alt') +
-        event.getModifierState('Meta') >
-      1
-    )
-      return;
     if (hasText) {
       if (event.code === 'ArrowDown' && options.length - 1 > selected) {
         setSelected(selected + 1);

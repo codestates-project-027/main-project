@@ -7,6 +7,7 @@ import { TagGroup } from '../Group/BtnAndTagGroup';
 import { useSelector } from 'react-redux';
 import DistanceCalc from '../Calculator/DistanceCalc';
 import StarsCalc from '../Calculator/StarsCalc';
+import CircularProgressWithLabel from '../../components/Bar/Loadingbar'
 
 import {
   FCardGlobal,
@@ -41,8 +42,7 @@ export const FBaseCard = ({ Detail, mode }) => {
   const getFacilitiesAXIOS = async () => {
     await axios
       .get('http://localhost:8080/facility')
-      .then((res) => setData(res.data))
-      
+      .then((res) => setData(res.data));
   };
 
   const getCategoryAXIOS = async () => {
@@ -66,9 +66,7 @@ export const FBaseCard = ({ Detail, mode }) => {
   return (
     <>
       {data.map((el) => {
-        return el.facilityName === '' ? (
-          ''
-        ) : (
+        return el.facilityName === '' ? null : (
           <div key={el.facilityId}>
             {el.facilityId}
             <div className="wrapper">
@@ -120,7 +118,7 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard setPending={setPending}/>
+          <FBaseCard setPending={setPending} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>
@@ -128,7 +126,7 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard Detail={'Detail'} mode={mode} setPending={setPending}/>
+          <FBaseCard Detail={'Detail'} mode={mode} setPending={setPending} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>

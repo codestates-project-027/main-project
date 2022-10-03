@@ -88,7 +88,7 @@ export const FacilityForm = ({ mode, setFin }) => {
       new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
     );
 
-    formData.append('file', new Blob(file));
+    formData.append('file', !file? null : new Blob(file));
 
     try {
       await axiosInstance

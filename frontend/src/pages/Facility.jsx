@@ -75,6 +75,10 @@ const FacilityPage = () => {
     await axiosInstance.get('/facility/' + id).then((res) => handleData(res));
   };
 
+  const RETRIEVE = async () => {
+    await axiosInstance.get('/facility/' + id);
+  };
+
   useEffect(() => {
     getFacilityAXIOS();
   }, []);
@@ -159,7 +163,9 @@ const FacilityPage = () => {
           </div>
           <CarouselComponent imgs={imgs} />
           <div className="Fname--distance--wrapper">
-            <H2 marginTop={'15px'}>{data.facilityName}</H2>
+            <H2 marginTop={'15px'}>
+              {data.facilityName}
+            </H2>
             <H4>
               <DistanceCalc
                 currentLocation={locationState}

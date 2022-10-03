@@ -65,6 +65,7 @@ export const TagGroup = ({
     for (let i = 0; i < response.length; i++) {
       if (response[i].categoryTitle === el) {
         navigate(`/category/${response[i].categoryCode}`);
+        window.location.reload()
       }
     }
   };
