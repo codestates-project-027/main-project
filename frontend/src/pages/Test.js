@@ -1,185 +1,20 @@
-import { SearchbarGlobal } from '../styles/globalStyle/BarGlobalStyle';
-import { IconWrapper } from '../styles/components/IconStyles';
-import { BiSearch } from 'react-icons/bi';
-import styled from 'styled-components';
-
-//auto
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getTest } from '../redux/slices/testSlice';
 
 const TestPage = () => {
-  const list = [];
-  const categoryState = useSelector((state) => state.category.list);
+  const dispatch = useDispatch();
+  const testState = useSelector((state) => state.testSlice);
 
-  for (let i = 1; i < categoryState.length; i++) {
-    list.push(categoryState[i].categoryTitle);
-  }
+  useEffect(()=>{
+    dispatch(getTest())
+  },[])
 
-  const [hasText, setHasText] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [options, setOptions] = useState(list);
-  const [selected, setSelected] = useState(-1);
-
-  useEffect(() => {
-    if (inputValue === '') {
-      setHasText(false);
-    }
-  }, [inputValue]);
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    if (value.includes('\\')) return;
-
-    // input에 텍스트가 있는지 없는지 확인하는 코드
-    value ? setHasText(true) : setHasText(false);
-
-    // updateText
-    setInputValue(value);
-
-    // dropdown을 위한 기능
-    const filterRegex = new RegExp(value, 'i');
-    const resultOptions = list.filter((option) => option.match(filterRegex));
-    setOptions(resultOptions);
-    console.log(resultOptions);
-  };
-
-  const handleDropDownClick = (clickedOption) => {
-    setInputValue(clickedOption);
-    const resultOptions = options.filter((option) => option === clickedOption);
-    setOptions(resultOptions);
-  };
-
-  const handleDeleteButtonClick = () => {
-    setInputValue('');
-  };
-
-  const handleKeyUp = (event) => {
-    // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#example
-    // eslint-disable-next-line
-    if (
-      event.getModifierState('Fn') ||
-      event.getModifierState('Hyper') ||
-      event.getModifierState('OS') ||
-      event.getModifierState('Super') ||
-      event.getModifierState('Win')
-    )
-      return;
-    if (
-      event.getModifierState('Control') +
-        event.getModifierState('Alt') +
-        event.getModifierState('Meta') >
-      1
-    )
-      return;
-    if (hasText) {
-      if (event.code === 'ArrowDown' && options.length - 1 > selected) {
-        setSelected(selected + 1);
-      }
-      if (event.code === 'ArrowUp' && selected >= 0) {
-        setSelected(selected - 1);
-      }
-      if (event.code === 'Enter' && selected >= 0) {
-        handleDropDownClick(options[selected]);
-        setSelected(-1);
-      }
-    }
-  };
-
-  console.log(inputValue);
-
-  return (
-    <>
-      <Div> //추가
-        <SearchbarGlobal onKeyUp={handleKeyUp} hasText={hasText}>
-          <Input
-            type="text"
-            className="searchbar"
-            placeholder="무엇 검색"
-            onChange={handleInputChange}
-            value={inputValue}
-          />
-          {hasText ? (
-            <div className="delete-button" onClick={handleDeleteButtonClick}>
-              &times;
-            </div>
-          ) : null}
-
-          <IconWrapper marginRight={'13px'}>
-            <BiSearch size="20" />
-          </IconWrapper>
-        </SearchbarGlobal>
-        {hasText ? (
-          <DropDown
-            options={options}
-            handleDropDownClick={handleDropDownClick}
-            selected={selected}
-          />
-        ) : null}
-      </Div>
-    </>
-  );
+  console.log(testState)
 };
 
 export default TestPage;
 
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-export const DropDown = ({ options, handleDropDownClick, selected }) => {
-  return (
-    <DropDownContainer>
-      {options.map((option, idx) => (
-        <li
-          key={idx}
-          onClick={() => handleDropDownClick(option)}
-          className={selected === idx ? 'selected' : ''}
-        >
-          {option}
-        </li>
-      ))}
-    </DropDownContainer>
-  );
-};
-
-const Input = styled.input`
-  text-align: start;
-`;
-
-export const DropDownContainer = styled.ul`
-  background-color: #ffffff;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  list-style-type: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 0px;
-  margin-top: -1px;
-  padding: 0.5rem 0;
-  border: 1px solid rgb(223, 225, 229);
-  border-radius: 0 0 1rem 1rem;
-  box-shadow: 3px 3px 3px lightgray;
-  z-index: 3;
-  width: 100%;
-  cursor: pointer;
-
-  > li {
-    padding: 0 1rem;
-    text-align: left;
-    width: 100%;
-
-    &:hover {
-      background-color: #eee;
-    }
-
-    &.selected {
-      background-color: #ebe5f9;
-    }
-  }
-`;
 // //infinite scroll
 // import axios from 'axios';
 // import {useState, useRef, useEffect} from 'react'

@@ -45,8 +45,18 @@
   "home": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "thunk-test",
+      "author": "A1"
+    },
+    {
+      "id": 2,
+      "title": "test",
+      "author": "A2"
+    },
+    {
+      "id": 3,
+      "title": "test",
+      "author": "A3"
     }
   ],
   "facilities": [

@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -39,69 +39,81 @@ import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
 
-function App() {
-  
+//Loading
+import CircularIndeterminate from './components/Bar/Loadingbar';
 
-  useEffect(() => {}, []);
+function App() {
+  const [pending, setPending] = useState(true);
 
   return (
     <>
       <div className="App">
-        <AppPageGlobal>
-          <Routes>
-            <Route element={<LayoutBase />}>
-              <Route path={PATH.TEST} element={<TestPage />} />
-              <Route path={PATH.SIGNUP} element={<SignUpPage />} />
-              <Route path={PATH.LOGIN} element={<LoginPage />} />
-            </Route>
+        <Suspense fallback={<CircularIndeterminate />}>
+          <AppPageGlobal>
+            <Routes>
+              <Route element={<LayoutBase />}>
+                <Route path={PATH.TEST} element={<TestPage />} />
+                <Route path={PATH.SIGNUP} element={<SignUpPage />} />
+                <Route path={PATH.LOGIN} element={<LoginPage />} />
+              </Route>
 
-            <Route element={<LayoutMain />}>
-              <Route path={PATH.MAIN} element={<MainPage />} />
-            </Route>
+              <Route element={<LayoutMain />}>
+                <Route path={PATH.MAIN} element={<MainPage />} />
+              </Route>
 
-            <Route element={<LayoutCurrentMenu />}>
-              <Route path={PATH.MYPAGE} element={<MyPage />} />
-              <Route
-                path={PATH.FACILITY}
-                element={<FacilityPage  />}
-              />
-              <Route
-                path={PATH.REGISTERFACILITY}
-                element={<RegisterFacilityPage  />}
-              />
-              <Route
-                path={PATH.EDITFACILITY}
-                element={<EditFacilityPage  />}
-              />
+              <Route element={<LayoutCurrentMenu />}>
+                <Route path={PATH.MYPAGE} element={<MyPage />} />
+                <Route path={PATH.FACILITY} element={<FacilityPage />} />
+                <Route
+                  path={PATH.REGISTERFACILITY}
+                  element={<RegisterFacilityPage />}
+                />
+                <Route
+                  path={PATH.EDITFACILITY}
+                  element={<EditFacilityPage />}
+                />
 
-              <Route path={PATH.MAP} element={<MapPage />} />
-              <Route path={PATH.ALARMS} element={<AlarmsPage />} />
-              <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+                <Route path={PATH.MAP} element={<MapPage />} />
+                <Route path={PATH.ALARMS} element={<AlarmsPage />} />
+                <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
 
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+                <Route
+                  path={PATH.COMMUNITIYWRITING}
+                  element={<WritingPage />}
+                />
+                <Route
+                  path={PATH.COMMUNITIYPOSTING}
+                  element={<PostingPage />}
+                />
 
-              <Route path={PATH.ADMIN} element={<AdminPage />} />
-            </Route>
+                <Route path={PATH.ADMIN} element={<AdminPage />} />
+              </Route>
 
-            {/* community */}
-            <Route element={<LayoutCommunity />}>
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
-            </Route>
+              {/* community */}
+              <Route element={<LayoutCommunity />}>
+                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+                <Route
+                  path={PATH.COMMUNITIYWRITING}
+                  element={<WritingPage />}
+                />
+                <Route
+                  path={PATH.COMMUNITIYPOSTING}
+                  element={<PostingPage />}
+                />
+                <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
+              </Route>
 
-            <Route element={<LayoutCurrentMenuSearch />}>
-              <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
-              <Route
-                path={PATH.CATEGORY}
-                element={<FacilitiesPage mode="category" />}
-              />
-            </Route>
-          </Routes>
-        </AppPageGlobal>
+              <Route element={<LayoutCurrentMenuSearch />}>
+                <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
+                <Route
+                  path={PATH.CATEGORY}
+                  element={<FacilitiesPage mode="category" />}
+                />
+              </Route>
+            </Routes>
+          </AppPageGlobal>
+        </Suspense>
       </div>
     </>
   );

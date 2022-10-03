@@ -10,6 +10,8 @@ import { categorySlice } from '../slices/categorySlice';
 import { communitySlice } from '../CommunitySlice/CommunitySlice';
 import { facilitySlice } from '../slices/facilitySlice';
 import { locationSlice } from '../slices/locationSlice';
+import { testSlice } from '../slices/testSlice';
+
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import storage from 'redux-persist/lib/storage';
@@ -22,7 +24,8 @@ const rootReducer = combineReducers({
   category: categorySlice.reducer,
   community: communitySlice.reducer,
   facility: facilitySlice.reducer,
-  location: locationSlice.reducer
+  location: locationSlice.reducer,
+  test: testSlice.reducer
 
 });
 
