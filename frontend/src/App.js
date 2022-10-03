@@ -62,20 +62,35 @@ function App() {
               </Route>
 
               <Route element={<LayoutCurrentMenu />}>
-                <Route path={PATH.MYPAGE} element={<MyPage />} />
-                <Route path={PATH.FACILITY} element={<FacilityPage />} />
+                <Route
+                  path={PATH.MYPAGE}
+                  element={<MyPage type="마이 페이지" />}
+                />
+                <Route
+                  path={PATH.FACILITY}
+                  element={<FacilityPage type="운동 시설" />}
+                />
                 <Route
                   path={PATH.REGISTERFACILITY}
-                  element={<RegisterFacilityPage />}
+                  element={<RegisterFacilityPage type="시설 등록" />}
                 />
                 <Route
                   path={PATH.EDITFACILITY}
-                  element={<EditFacilityPage />}
+                  element={<EditFacilityPage type="시설 변경" />}
                 />
 
-                <Route path={PATH.MAP} element={<MapPage />} />
-                <Route path={PATH.ALARMS} element={<AlarmsPage />} />
-                <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+                <Route
+                  path={PATH.MAP}
+                  element={<MapPage type="지도로 보기" />}
+                />
+                <Route
+                  path={PATH.ALARMS}
+                  element={<AlarmsPage type="알림" />}
+                />
+                <Route
+                  path={PATH.EDITMY}
+                  element={<EditMyFacilityPage type="내 정보 수정" />}
+                />
 
                 <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
                 <Route
@@ -87,7 +102,10 @@ function App() {
                   element={<PostingPage />}
                 />
 
-                <Route path={PATH.ADMIN} element={<AdminPage />} />
+                <Route
+                  path={PATH.ADMIN}
+                  element={<AdminPage type="관리자 페이지" />}
+                />
               </Route>
 
               {/* community */}
