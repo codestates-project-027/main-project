@@ -7,7 +7,7 @@ export const CarouselGlobal = styled.div`
   align-items: center;
 
   .window {
-    background: bisque;
+    background: #f3f3f3;
     width: 550px;
     height: 350px;
     overflow: hidden;
@@ -27,7 +27,7 @@ export const CarouselGlobal = styled.div`
     flex: none;
   } */
   img {
-    background-color: lightgreen;
+    background-color: #aefaae;
     width: 550px;
     height: 300px;
     object-fit: contain;

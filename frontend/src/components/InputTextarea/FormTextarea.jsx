@@ -5,14 +5,30 @@ import {
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export const Textarea = ({ type, registerFac, setRegisterFac }) => {
-  //ReviewTXT : 리뷰 작성 textarea
-  //FacilityTXT : 시설 등록 textarea
-
+export const Textarea = ({
+  type,
+  registerFac,
+  setRegisterFac,
+  value,
+  setValue,
+  mode,
+  RVcontents,
+  setRVContents,
+}) => {
   const [count, setCount] = useState(0);
   const handleChange = (e) => {
-    setRegisterFac({...registerFac, [e.target.name]:e.target.value})
+    setRegisterFac({ ...registerFac, [e.target.name]: e.target.value });
     setCount(e.target.value.length);
+  };
+
+  const handleChangeReview = (e) => {
+    if (type === 'review') {
+      setCount(e.target.value.length);
+      setValue(e.target.value);
+    } else if (type === 'reviewEdit') {
+      setCount(e.target.value.length);
+      setRVContents(e.target.value);
+    }
   };
 
   if (type === 'review') {
@@ -20,10 +36,22 @@ export const Textarea = ({ type, registerFac, setRegisterFac }) => {
       <>
         <ReviewTXTStyle
           maxLength={100}
-          onChange={(e) => setCount(e.target.value.length)}
+          onChange={(e) => handleChangeReview(e)}
+          value={value}
         />
-        <P marginBottom="20px">{count}/100</P>
-      </> //desc 다시
+        {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
+      </>
+    );
+  } else if (type === 'reviewEdit') {
+    return (
+      <>
+        <ReviewTXTStyle
+          maxLength={100}
+          onChange={(e) => handleChangeReview(e)}
+          value={RVcontents}
+        />
+        {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
+      </>
     );
   } else if (type === 'facility') {
     return (
@@ -33,8 +61,9 @@ export const Textarea = ({ type, registerFac, setRegisterFac }) => {
             name="facilityInfo"
             maxLength={200}
             onChange={(e) => handleChange(e)}
+            value={mode === 'edit' ? value : ''}
           />
-          <P>{count}/200</P>
+          {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
         </Div>
       </>
     );

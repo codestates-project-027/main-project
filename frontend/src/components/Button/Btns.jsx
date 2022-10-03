@@ -90,6 +90,12 @@ export const BigBtn = styled(BasicBtn)`
   font-weight: ${(props) => props.fontWeight || '400'};
   font-size: ${(props) => props.fontSize};
   margin-top: ${(props) => props.marginTop};
+  background: ${(props) => props.backGround};
+  &:hover{
+    background: ${(props) => props.hoverBg};
+    color:${(props) => props.hoverColor};
+    font-weight: bold;
+  }
 `;
 
 export const StickyBtn = styled(BasicBtn)`

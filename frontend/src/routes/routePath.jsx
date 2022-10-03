@@ -7,11 +7,13 @@ const PATH = {
   LOGIN: '/login',
   MYPAGE: '/mypage',
 
+  CATEGORY: '/category/:id',
+
   FACILITY: '/facility/:id', 
-  FACILITIES: '/facility', //facility
+  FACILITIES: '/facility', 
 
   REGISTERFACILITY: '/facility/register',
-  EDITFACILITY: '/editfac', //->facility/edit/:id
+  EDITFACILITY: '/facility/edit/:id', //->facility/edit/:id
   EDITMY: '/facility/my',
   // POSTREVIEW, EDITREVIEW-> Modal창
 

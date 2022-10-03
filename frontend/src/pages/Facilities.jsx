@@ -6,8 +6,9 @@ import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
 
-const FacilitiesPage = () => {
-  const tags = ['배드민턴', '테니스', '탁구', '수영'];
+const FacilitiesPage = ({mode}) => {
+  const tags = ['헬스', '수영', '킥복싱', '탁구'];
+  
   return (
     <>
       <FacilitiesPageGlobal>
@@ -17,7 +18,7 @@ const FacilitiesPage = () => {
           <Div className="title">인기</Div>
           <TagGroup tags={tags} />
         </div>
-        <FacilityCard Detail={'Detail'} />
+        <FacilityCard Detail={'Detail'} mode={mode} />
       </FacilitiesPageGlobal>
     </>
   );

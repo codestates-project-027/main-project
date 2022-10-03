@@ -1,7 +1,9 @@
 import { FacilityForm } from '../components/Form/FacilityForms';
 import { FacilityGlobal } from '../styles/globalStyle/PageGlobalStyle';
 
+
 export const RegisterFacilityPage = () => {
+
   return (
     <>
       <FacilityGlobal>
@@ -11,11 +13,12 @@ export const RegisterFacilityPage = () => {
   );
 };
 
-export const EditFacilityPage = () => {
+export const EditFacilityPage = ({setFin}) => {
+
   return (
     <>
       <FacilityGlobal>
-        <FacilityForm mode={'edit'} />
+        <FacilityForm mode={'edit'}  />
       </FacilityGlobal>
     </>
   );

@@ -14,9 +14,9 @@ export const MainQuickBtnGroup = ({ category }) => {
   return (
     <>
       <MainPageBIGroupStyle>
-        {category.map((el) => {
+        {category.map((el, idx) => {
           return (
-            <StyledLink to={`/category/${el.code}`}>
+            <StyledLink key={idx} to={`/category/${el.code}`}>
               <MainQuickBtn
                 key={el.idx}
                 textProp={el.text}
@@ -65,6 +65,7 @@ export const TagGroup = ({
     for (let i = 0; i < response.length; i++) {
       if (response[i].categoryTitle === el) {
         navigate(`/category/${response[i].categoryCode}`);
+        window.location.reload()
       }
     }
   };

@@ -1,26 +1,31 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { BigBtn } from '../../components/Button/Btns';
+import { H4, H4Link } from '../Text/Head';
+import { TagGroup } from '../Group/BtnAndTagGroup';
+import { useSelector } from 'react-redux';
+import DistanceCalc from '../Calculator/DistanceCalc';
+import StarsCalc from '../Calculator/StarsCalc';
+import CircularProgressWithLabel from '../../components/Bar/Loadingbar'
+
 import {
   FCardGlobal,
   FCardFlexGlobal,
 } from '../../styles/globalStyle/CardGlobalStyle';
-
-import { useEffect, useState } from 'react';
 
 import {
   FCardStyle,
   FCardFlexStyle,
   FDescCardStyle,
 } from '../../styles/components/CardStyle';
+import axiosInstance from '../../api/Interceptor';
 
-import { BigBtn } from '../../components/Button/Btns';
-import { H4, H4Link } from '../Text/Head';
-import axios from 'axios';
-import StarsCalc from '../Calculator/StarsCalc';
-import { TagGroup } from '../Group/BtnAndTagGroup';
-import { useSelector } from 'react-redux';
-import DistanceCalc from '../Calculator/DistanceCalc';
-
-export const FBaseCard = ({ Detail }) => {
+export const FBaseCard = ({ Detail, mode }) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const locationState = useSelector((state) => state.location);
+  const [error, setError] = useState(false);
   const [data, setData] = useState([
     {
       facilityId: 0,
@@ -40,15 +45,30 @@ export const FBaseCard = ({ Detail }) => {
       .then((res) => setData(res.data));
   };
 
+  const getCategoryAXIOS = async () => {
+    try {
+      await axiosInstance
+        .get('/category/' + id + '?page=1')
+        .then((res) => setData(res.data.content));
+    } catch (err) {
+      setError(true);
+      if (err.response.status === 500) {
+        alert(`해당 카테고리의 시설이 없습니다`);
+        navigate('/');
+      }
+    }
+  };
+
   useEffect(() => {
-    getFacilitiesAXIOS();
+    mode === 'category' ? getCategoryAXIOS() : getFacilitiesAXIOS();
   }, []);
 
   return (
     <>
-      {data.map((el, idx) => {
-        return (
+      {data.map((el) => {
+        return el.facilityName === '' ? null : (
           <div key={el.facilityId}>
+            {el.facilityId}
             <div className="wrapper">
               <div className="img--wrapper">
                 <img
@@ -60,7 +80,9 @@ export const FBaseCard = ({ Detail }) => {
               </div>
               <div className="content--wrapper">
                 <div className="name--wrapper">
-                  <H4Link to={`/facility/${el.facilityId}`}>{el.facilityName}</H4Link>
+                  <H4Link to={`/facility/${el.facilityId}`}>
+                    {el.facilityName}
+                  </H4Link>
                   <div className="distance">
                     <DistanceCalc
                       currentLocation={locationState}
@@ -69,17 +91,14 @@ export const FBaseCard = ({ Detail }) => {
                   </div>
                 </div>
                 <div className="rest--wrapper">
-                  {Detail ? (
-                    <div className="address">
-                      {el.address.split(' ')[0]} &nbsp;
-                      {el.address.split(' ')[1]}
-                    </div>
-                  ) : (
-                    ''
-                  )}
+                  {Detail ? <div className="address">{el.address}</div> : ''}
 
                   <div className="stars">
-                    {el.starRate && <StarsCalc starValue={el.starRate} />}
+                    {el.starRate === 0 ? (
+                      ''
+                    ) : (
+                      <StarsCalc starValue={el.starRate} />
+                    )}
                   </div>
                   <div className="tags">
                     <TagGroup tags={el.categoryList.slice(0, 3)} />
@@ -94,12 +113,12 @@ export const FBaseCard = ({ Detail }) => {
   );
 };
 
-export const FacilityCard = ({ Flex, Detail }) => {
+export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
   return Flex ? (
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard />
+          <FBaseCard setPending={setPending} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>
@@ -107,7 +126,7 @@ export const FacilityCard = ({ Flex, Detail }) => {
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard Detail={'Detail'} />
+          <FBaseCard Detail={'Detail'} mode={mode} setPending={setPending} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>

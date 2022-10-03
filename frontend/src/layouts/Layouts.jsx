@@ -50,18 +50,18 @@ export const LayoutMain = () => {
   );
 };
 
-export const LayoutCurrentMenu = () => {
+export const LayoutCurrentMenu = ({type}) => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type={'현재 메뉴'} />
+        <TopNavbar type='현재 메뉴' />
       </TopNavPosition>
       <LayoutBase />
     </>
   );
 };
 
-export const LayoutCurrentMenuSearch = () => {
+export const LayoutCurrentMenuSearch = ({type}) => {
   return (
     <>
       <TopNavPosition>

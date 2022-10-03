@@ -57,8 +57,9 @@ export const AlarmCardGlobal = styled.div`
 
 export const ReviewCardGlobal = styled.div`
   display: flex;
-  background: lightgreen;
-  margin-bottom: 10px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #dbdbdb;
+  margin : 10px 0 17px 0;
 `;
 
 export const CommunityCardGlobal = styled.div`

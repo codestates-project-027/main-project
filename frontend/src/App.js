@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -39,56 +39,99 @@ import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
 import EditPostPage from './pages/EditPost';
 
+//Loading
+import CircularIndeterminate from './components/Bar/Loadingbar';
+
 function App() {
-  useEffect(() => {}, []);
+  const [pending, setPending] = useState(true);
 
   return (
     <>
       <div className="App">
-        <AppPageGlobal>
-          <Routes>
-            <Route element={<LayoutBase />}>
-              <Route path={PATH.TEST} element={<TestPage />} />
-              <Route path={PATH.SIGNUP} element={<SignUpPage />} />
-              <Route path={PATH.LOGIN} element={<LoginPage />} />
-            </Route>
+        <Suspense fallback={<CircularIndeterminate />}>
+          <AppPageGlobal>
+            <Routes>
+              <Route element={<LayoutBase />}>
+                <Route path={PATH.TEST} element={<TestPage />} />
+                <Route path={PATH.SIGNUP} element={<SignUpPage />} />
+                <Route path={PATH.LOGIN} element={<LoginPage />} />
+              </Route>
 
-            <Route element={<LayoutMain />}>
-              <Route path={PATH.MAIN} element={<MainPage />} />
-            </Route>
+              <Route element={<LayoutMain />}>
+                <Route path={PATH.MAIN} element={<MainPage />} />
+              </Route>
 
-            <Route element={<LayoutCurrentMenu />}>
-              <Route path={PATH.MYPAGE} element={<MyPage />} />
-              <Route path={PATH.FACILITY} element={<FacilityPage />} />
-              <Route path={PATH.MAP} element={<MapPage />} />
-              <Route path={PATH.ALARMS} element={<AlarmsPage />} />
-              <Route path={PATH.EDITMY} element={<EditMyFacilityPage />} />
+              <Route element={<LayoutCurrentMenu />}>
+                <Route
+                  path={PATH.MYPAGE}
+                  element={<MyPage type="마이 페이지" />}
+                />
+                <Route
+                  path={PATH.FACILITY}
+                  element={<FacilityPage type="운동 시설" />}
+                />
+                <Route
+                  path={PATH.REGISTERFACILITY}
+                  element={<RegisterFacilityPage type="시설 등록" />}
+                />
+                <Route
+                  path={PATH.EDITFACILITY}
+                  element={<EditFacilityPage type="시설 변경" />}
+                />
 
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
+                <Route
+                  path={PATH.MAP}
+                  element={<MapPage type="지도로 보기" />}
+                />
+                <Route
+                  path={PATH.ALARMS}
+                  element={<AlarmsPage type="알림" />}
+                />
+                <Route
+                  path={PATH.EDITMY}
+                  element={<EditMyFacilityPage type="내 정보 수정" />}
+                />
 
-              <Route
-                path={PATH.REGISTERFACILITY}
-                element={<RegisterFacilityPage />}
-              />
-              <Route path={PATH.EDITFACILITY} element={<EditFacilityPage />} />
-              <Route path={PATH.ADMIN} element={<AdminPage />} />
-            </Route>
+                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+                <Route
+                  path={PATH.COMMUNITIYWRITING}
+                  element={<WritingPage />}
+                />
+                <Route
+                  path={PATH.COMMUNITIYPOSTING}
+                  element={<PostingPage />}
+                />
 
-            {/* community */}
-            <Route element={<LayoutCommunity />}>
-              <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-              <Route path={PATH.COMMUNITIYWRITING} element={<WritingPage />} />
-              <Route path={PATH.COMMUNITIYPOSTING} element={<PostingPage />} />
-              <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
-            </Route>
+                <Route
+                  path={PATH.ADMIN}
+                  element={<AdminPage type="관리자 페이지" />}
+                />
+              </Route>
 
-            <Route element={<LayoutCurrentMenuSearch />}>
-              <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
-            </Route>
-          </Routes>
-        </AppPageGlobal>
+              {/* community */}
+              <Route element={<LayoutCommunity />}>
+                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
+                <Route
+                  path={PATH.COMMUNITIYWRITING}
+                  element={<WritingPage />}
+                />
+                <Route
+                  path={PATH.COMMUNITIYPOSTING}
+                  element={<PostingPage />}
+                />
+                <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
+              </Route>
+
+              <Route element={<LayoutCurrentMenuSearch />}>
+                <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
+                <Route
+                  path={PATH.CATEGORY}
+                  element={<FacilitiesPage mode="category" />}
+                />
+              </Route>
+            </Routes>
+          </AppPageGlobal>
+        </Suspense>
       </div>
     </>
   );

@@ -1,4 +1,17 @@
-const TestPage = () => {};
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getTest } from '../redux/slices/testSlice';
+
+const TestPage = () => {
+  const dispatch = useDispatch();
+  const testState = useSelector((state) => state.testSlice);
+
+  useEffect(()=>{
+    dispatch(getTest())
+  },[])
+
+  console.log(testState)
+};
 
 export default TestPage;
 

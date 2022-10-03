@@ -15,25 +15,11 @@ const AdminPage = () => {
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
 
-  // const getCategoryAXIOS = async () => {
-  //   await axiosInstance.get('/category').then((res) => {
-  //     dispatch(getCategory({ list: res.data }));
-  //     console.log('categoryState:', categoryState);
-  //   });
-  // };
-
   const getCategoryAXIOS = useCallback(async () => {
     await axiosInstance.get('/category?active=false').then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
-    console.log(categoryState);
   }, [categoryState]);
-
-  useEffect(() => {
-    getCategoryAXIOS();
-  }, []);
-
-  const btnContent = ['Read', 'Create', 'Edit'];
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
@@ -44,6 +30,12 @@ const AdminPage = () => {
       setType('생성');
     } else setType('수정');
   };
+
+  useEffect(() => {
+    getCategoryAXIOS();
+  }, [clickBtn]);
+
+  const btnContent = ['Read', 'Create', 'Edit'];
 
   return (
     <>

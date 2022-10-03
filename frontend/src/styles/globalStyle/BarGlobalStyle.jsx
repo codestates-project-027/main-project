@@ -4,7 +4,7 @@ export const SearchbarGlobal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 93%;
   height: 43px;
   border-radius: 3px;
   margin-left: 20px;
@@ -26,6 +26,9 @@ export const SearchbarGlobal = styled.div`
   }
   &:focus-within {
     border: 1.5px solid var(--logo-yellow);
+  }
+  .delete{
+    cursor: pointer;
   }
 `;
 

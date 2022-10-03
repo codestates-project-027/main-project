@@ -20,7 +20,6 @@ export const ReadCategoryForm = ({ data }) => {
         <Table sx={{ minWidth: 400 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              {/* map */}
               <TableCell align="center">Code</TableCell>
               <TableCell align="center">Title</TableCell>
               <TableCell align="center">Status</TableCell>

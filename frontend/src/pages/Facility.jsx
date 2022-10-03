@@ -11,21 +11,82 @@ import { CgWebsite } from 'react-icons/cg';
 import { BiMap, BiBell } from 'react-icons/bi';
 import { IoCallOutline } from 'react-icons/io5';
 import { TbFileDescription } from 'react-icons/tb';
-import { AiFillTag } from 'react-icons/ai';
+import { AiFillTag, AiFillSetting } from 'react-icons/ai';
 import { IconWrapperFac } from '../styles/components/IconStyles';
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import DistanceCalc from '../components/Calculator/DistanceCalc';
 
 import StarsCalc from '../components/Calculator/StarsCalc';
 import { CarouselComponent } from '../components/Image/CarouselComponent';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/mui/theme';
+import axiosInstance from '../api/Interceptor';
+import { patchFacility } from '../redux/slices/facilitySlice';
 
 const FacilityPage = () => {
-  const tags = ['헬스', 'PT'];
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const locationState = useSelector((state) => state.location);
+  const [tags, setTags] = useState([]);
+  const [imgs, setImgs] = useState([]);
+  const [review, setReview] = useState({
+    reviewId: 0,
+    contents: '',
+    createdAt: '',
+    username: '',
+  });
+  const [data, setData] = useState([
+    {
+      facilityId: 0,
+      facilityName: '',
+      facilityPhotoList: [],
+      facilityInfo: '',
+      address: '',
+      website: '',
+      phone: '',
+      starRate: 0,
+      location: '',
+      categoryList: [],
+    },
+  ]);
+
+  const handleData = (res) => {
+    setData(res.data);
+    setTags(res.data.categoryList);
+    setImgs(res.data.facilityPhotoList);
+    dispatch(
+      patchFacility({
+        facilityName: res.data.facilityName,
+        facilityPhotoList: res.data.facilityPhotoList,
+        facilityInfo: res.data.facilityInfo,
+        address: res.data.address,
+        website: res.data.website,
+        phone: res.data.phone,
+        location: res.data.location,
+        categoryList: res.data.categoryList,
+      })
+    );
+  };
+
+  const getFacilityAXIOS = async () => {
+    await axiosInstance.get('/facility/' + id).then((res) => handleData(res));
+  };
+
+  const RETRIEVE = async () => {
+    await axiosInstance.get('/facility/' + id);
+  };
+
+  useEffect(() => {
+    getFacilityAXIOS();
+  }, []);
+
   const facility = [
     {
       idx: 1,
-      value: '소개 bla bla bla bla bla bla bla bla bla bla bla bla bla',
+      value: data.facilityInfo,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <TbFileDescription size="20" />
@@ -34,7 +95,7 @@ const FacilityPage = () => {
     },
     {
       idx: 2,
-      value: '주소',
+      value: data.address,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <BiMap size="20" />
@@ -43,7 +104,7 @@ const FacilityPage = () => {
     },
     {
       idx: 3,
-      value: 'www.healthclub.com',
+      value: data.website,
       icon: (
         <IconWrapperFac display="flex" alignItems="center" marginBottom="20px">
           <CgWebsite size="20" />
@@ -52,7 +113,7 @@ const FacilityPage = () => {
     },
     {
       idx: 4,
-      value: '02-1111-1111',
+      value: data.phone,
       icon: (
         <IconWrapperFac marginBottom="20px">
           <IoCallOutline size="20" />
@@ -62,7 +123,11 @@ const FacilityPage = () => {
     {
       idx: 5,
       value: (
-        <TagGroup backGround="bisque" margin="-4px 10px 13px 0px" tags={tags} />
+        <TagGroup
+          backGround="#e4d5f8"
+          margin="-4px 10px 13px 0px"
+          tags={tags}
+        />
       ),
       icon: (
         <IconWrapperFac>
@@ -72,7 +137,7 @@ const FacilityPage = () => {
     },
     {
       idx: 6,
-      value: '휴업',
+      value: '영업 중',
       icon: (
         <IconWrapperFac>
           <BiBell size="20" />
@@ -81,40 +146,59 @@ const FacilityPage = () => {
     },
   ];
 
-  const imgs = [
-    `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
-    `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
-  ];
+  // const imgs = [
+  //   //tags, imgs
+  //   `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
+  //   `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
+  // ];
 
   return (
     <>
       <FacilityPageGlobal>
         <ThemeProvider theme={theme}>
-          <CarouselComponent imgs={imgs}>
-            FacilityImage : http...경로로 불러오기
-          </CarouselComponent>
-          <div className="Fname--distance--wrapper">
-            <H2>OO동 헬스클럽</H2>
-            <H4>0.3km</H4> {/*거리계산 컴포넌트*/}
+          <div className="setIcon--wrapper">
+            <Link to={`/facility/edit/${id}`}>
+              <AiFillSetting className="setIcon--wrapper" />
+            </Link>
           </div>
-          <div className="minimi--score--wrapper">
-            <H3>미니미 만족도</H3>
-            <H4 marginLeft="15px">
-              <StarsCalc starValue={4} />
+          <CarouselComponent imgs={imgs} />
+          <div className="Fname--distance--wrapper">
+            <H2 marginTop={'15px'}>
+              {data.facilityName}
+            </H2>
+            <H4>
+              <DistanceCalc
+                currentLocation={locationState}
+                facilityLocation={data.location}
+              />
             </H4>
           </div>
+          <div className="minimi--score--wrapper">
+            {data.starRate === 0 ? (
+              ''
+            ) : (
+              <>
+                <H3>미니미 만족도</H3>
+                <H4 marginLeft="15px">
+                  <StarsCalc starValue={data.starRate} />
+                </H4>
+              </>
+            )}
+          </div>
           <FacilityDescGroup facility={facility} />
-
           <div className="btns--wrapper">
             <BigBtn marginRight="15px">찜</BigBtn>
             <BigBtn>내 시설 등록</BigBtn>
           </div>
           <Div className="reviews--wrapper" marginTop="30px">
-            <ReviewCard />
-            <ReviewCard />
+            {Array.isArray(review)
+              ? review.map((el) => {
+                  return <ReviewCard key={el.reviewId} review={el} />;
+                })
+              : null}
           </Div>
           <Div className="btns--wrapper" marginTop="15px">
-            <CReviewModal />
+            <CReviewModal setReview={setReview} />
           </Div>
         </ThemeProvider>
       </FacilityPageGlobal>

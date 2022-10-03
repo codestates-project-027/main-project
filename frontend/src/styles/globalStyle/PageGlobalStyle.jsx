@@ -99,7 +99,16 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
 `;
 
 export const FacilityPageGlobal = styled(PageGlobalBase)`
-  background-color: bisque;
+  background-color: #f3f3f3; //#fffdb9
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px lightgray;
+  .setIcon--wrapper {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+    color: #7b7b7b;
+  }
+
   .Fname--distance--wrapper {
     display: flex;
     align-items: center;

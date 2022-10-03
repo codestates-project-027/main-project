@@ -8,9 +8,10 @@ import { postFacility } from '../../redux/slices/facilitySlice';
 
 const { kakao } = window;
 
-const AddressUploader = ({ facilityState }) => {
+const AddressUploader = ({ facilityState, value, mode }) => {
+  const patchFacilityState = useSelector((state) => state.facility);
   const dispatch = useDispatch();
-  
+
   const [openPostcode, setOpenPostcode] = useState(false);
   const [address, setAddress] = useState('');
   const [coord, setCoord] = useState({});
@@ -27,7 +28,8 @@ const AddressUploader = ({ facilityState }) => {
   };
 
   useEffect(() => {
-    const geoCoding = () => { //
+    const geoCoding = () => {
+      //
       const geocoder = new kakao.maps.services.Geocoder(); //axios call -> action 내부에서 써야함
 
       const callback = function (result, status) {
@@ -39,7 +41,10 @@ const AddressUploader = ({ facilityState }) => {
           dispatch(
             postFacility({
               address: address,
-              location: `${result[0].road_address.y.slice(0, -7)}, ${result[0].road_address.x.slice(0, -6)}`,
+              location: `${result[0].road_address.y.slice(
+                0,
+                -7
+              )}, ${result[0].road_address.x.slice(0, -6)}`,
             })
           );
         }
@@ -53,7 +58,7 @@ const AddressUploader = ({ facilityState }) => {
 
   return (
     <Div>
-      {address}
+      {mode === 'edit' ? facilityState.address : address}
       <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
         주소검색
       </BasicBtn>

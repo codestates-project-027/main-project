@@ -62,8 +62,6 @@ const MapPage = () => {
         <button onClick={getFacilityAXIOS}>get</button>
         <button onClick={deleteFacilityAXIOS}>delete</button>
         <FacilityCard Flex={'Flex'} />
-        <FacilityCard Flex={'Flex'} />
-        <FacilityCard Flex={'Flex'} />
       </FacilitiesPageGlobal>
     </>
   );

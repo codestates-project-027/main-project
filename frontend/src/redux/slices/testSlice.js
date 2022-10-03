@@ -1,35 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    facilityName: '',
-    facilityPhotoList: [],
-    facilityInfo: '',
-    address: '',
-    website: '',
-    phone: '',
-    starRate: 0,
-    location: '',
-    categoryList: [],
-    facilityStatus: '',
-  };
+  id: 0,
+  title: '',
+  author: '',
+};
 
 export const testSlice = createSlice({
   name: 'test',
   initialState,
   reducers: {
-    getCategory: (state, action) => {
-      state.list = action.payload.list;
-    },
-    postCategory: (state, action) => {
-      state.categoryCode = action.payload.categoryCode;
-      state.categoryTitle = action.payload.categoryTitle;
-      state.categoryStatus = action.payload.categoryStatus;
-    },
-    patchCategory: (state, action) => {
-      state.categoryTitle = action.payload.categoryTitle;
-      state.categoryStatus = action.payload.categoryStatus;
+    getTest: (state, action) => {
+      state.id = action.payload.id;
+      state.title = action.payload.title;
+      state.author = action.payload.author;
     },
   },
 });
 
-export const { getCategory } = testSlice.actions;
+export const { getTest } = testSlice.actions;

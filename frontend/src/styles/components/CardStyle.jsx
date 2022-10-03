@@ -58,7 +58,7 @@ export const FCardFlexStyle = styled(FCardStyle)`
     display: flex;
     width: 320px;
     margin-left: -25px;
-    background-color: red;
+ 
   }
 `;
 
@@ -147,11 +147,11 @@ export const ReviewCardStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    background-color: lightblue;
+    background-color: #caedfe;
     border-radius: 4px;
-    width: 170px;
-    height: 110px;
+    width: 90px;
+    height: 100px;
+    margin-left: -20px;
   }
   .rest--wrapper {
     display: flex;
@@ -180,7 +180,7 @@ export const ReviewCardStyle = styled.div`
     .content--wrapper {
       display: inline-block;
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       white-space: normal;
       overflow-wrap: break-word;
     }

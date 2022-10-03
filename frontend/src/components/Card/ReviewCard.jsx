@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import CharLogo from '../../assets/logo/minimi-char2.png';
 import { ReviewCardGlobal } from '../../styles/globalStyle/CardGlobalStyle';
 import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
-import { RiPencilFill } from 'react-icons/ri';
-import { AiOutlineCloseSquare } from 'react-icons/ai';
-import { IconWrapper } from '../../styles/components/IconStyles';
+import { UReviewModal, ChoiceModal } from '../../components/Modal/ReviewModal';
 
-export const ReviewCard = () => {
+export const ReviewCard = ({ review }) => {
   const [isHover, setIsHover] = useState(false);
+  // const [RVId, setRVId] = useState(0);
+  const [RVcontents, setRVContents] = useState(review.contents);
 
   return (
     <>
@@ -20,24 +21,32 @@ export const ReviewCard = () => {
             setIsHover(false);
           }}
         >
-          <div className="img--wrapper">img</div>
+          <div className="img--wrapper">
+            <img src={CharLogo} width="60px" alt="review" />
+          </div>
           <div className="rest--wrapper">
             {isHover ? (
               <div className="edit--wrapper">
-                <IconWrapper marginRight="15px">
-                  <RiPencilFill />
-                </IconWrapper>
-                <AiOutlineCloseSquare />
+                <UReviewModal
+                  review={review}
+                  type="reviewEdit"
+                  RVcontents={RVcontents}
+                  setRVContents={setRVContents}
+                />
+                <div style={{ marginLeft: '13px' }}>
+                  <ChoiceModal
+                    text={'삭제하시겠습니까?'}
+                    btn={'✖️'}
+                    review={review}
+                  />
+                </div>
               </div>
             ) : null}
             <div className="name--wrapper">
-              <H4>username</H4>
-              <div className="createdAt">날짜</div>
+              <H4>{review.username}</H4>
+              <div className="createdAt">{review.createdAt}</div>
             </div>
-            <div className="content--wrapper">
-              내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용 내용
-              내용 내용 내용 내용 내용 내용 내용 내용 aasefas
-            </div>
+            <div className="content--wrapper">{review.contents}</div>
           </div>
         </ReviewCardStyle>
       </ReviewCardGlobal>
