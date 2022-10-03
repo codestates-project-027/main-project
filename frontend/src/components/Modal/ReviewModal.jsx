@@ -42,7 +42,7 @@ export const CReviewModal = ({ setReview }) => {
 
   useEffect(() => {
     getReview();
-  }, [setOpen]);
+  }, [createReview]);
 
   return (
     <>
