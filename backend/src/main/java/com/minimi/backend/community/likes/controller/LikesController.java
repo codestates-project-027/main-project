@@ -23,6 +23,7 @@ public class LikesController {
     //delete like
         @DeleteMapping("/{contentId}")
         private ResponseEntity deleteLikes(@PathVariable Long likesId){
+            likesService.deleteLikes(likesId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 }
