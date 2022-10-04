@@ -20,18 +20,13 @@ const DistanceCalc = ({ currentLocation, facilityLocation }) => {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; //distance in km, 유효자리 2자리
 
-  const answer =
-    distance < 1
-      ? (distance * 100).toFixed(0) * 10 + 10
-      : distance.toFixed(1) + 0.1;
-
   return (
     <div>
       {distance <= 0.2
-        ? `${answer} m 이내`
-        : distance > 0.2 && distance < 1
-        ? `${answer} m`
-        : `${answer} km`}
+        ? `${(distance * 100).toFixed(0) * 10 + 10} m 이내`
+        : distance >= 0.2 && distance < 1
+        ? `${(distance * 1000).toFixed(0)} m`
+        : `${distance.toFixed(1)} km`}
     </div>
   );
 };
