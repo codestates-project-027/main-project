@@ -1,6 +1,5 @@
 package com.minimi.backend.mypage.miraclescore;
 
-import com.minimi.backend.auth.domain.Auth;
 import lombok.*;
 
 import javax.persistence.*;

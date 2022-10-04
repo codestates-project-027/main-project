@@ -1,6 +1,5 @@
 package com.minimi.backend.mypage.dailycheck;
 
-import com.minimi.backend.auth.domain.Auth;
 import lombok.*;
 
 import javax.persistence.*;

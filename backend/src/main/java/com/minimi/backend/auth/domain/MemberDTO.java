@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthDTO {
+public class MemberDTO {
     private Long id;
     private String email; //id로 사용
     private String username; //nickname으로 사용
