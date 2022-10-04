@@ -75,10 +75,6 @@ const FacilityPage = () => {
     await axiosInstance.get('/facility/' + id).then((res) => handleData(res));
   };
 
-  const RETRIEVE = async () => {
-    await axiosInstance.get('/facility/' + id);
-  };
-
   useEffect(() => {
     getFacilityAXIOS();
   }, []);
@@ -152,6 +148,15 @@ const FacilityPage = () => {
   //   `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
   // ];
 
+  const postMyFacility = async () => {
+    const body ={
+      username: "MinimiUser",
+      facilityId: id
+    }
+    await axiosInstance.post('/myfacility',body).then(res=>alert(`나의 시설에 추가되었습니다`))
+    
+  }
+
   return (
     <>
       <FacilityPageGlobal>
@@ -163,9 +168,7 @@ const FacilityPage = () => {
           </div>
           <CarouselComponent imgs={imgs} />
           <div className="Fname--distance--wrapper">
-            <H2 marginTop={'15px'}>
-              {data.facilityName}
-            </H2>
+            <H2 marginTop={'15px'}>{data.facilityName}</H2>
             <H4>
               <DistanceCalc
                 currentLocation={locationState}
@@ -187,8 +190,8 @@ const FacilityPage = () => {
           </div>
           <FacilityDescGroup facility={facility} />
           <div className="btns--wrapper">
-            <BigBtn marginRight="15px">찜</BigBtn>
-            <BigBtn>내 시설 등록</BigBtn>
+            {/* <BigBtn marginRight="15px">찜</BigBtn> */}
+            <BigBtn onClick={postMyFacility}>내 시설 등록</BigBtn>
           </div>
           <Div className="reviews--wrapper" marginTop="30px">
             {Array.isArray(review)

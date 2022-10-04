@@ -1,4 +1,4 @@
-import axios from 'axios';
+import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BigBtn } from '../../components/Button/Btns';
@@ -7,7 +7,7 @@ import { TagGroup } from '../Group/BtnAndTagGroup';
 import { useSelector } from 'react-redux';
 import DistanceCalc from '../Calculator/DistanceCalc';
 import StarsCalc from '../Calculator/StarsCalc';
-import CircularProgressWithLabel from '../../components/Bar/Loadingbar'
+import CircularProgressWithLabel from '../../components/Bar/Loadingbar';
 
 import {
   FCardGlobal,
@@ -40,9 +40,19 @@ export const FBaseCard = ({ Detail, mode }) => {
   ]);
 
   const getFacilitiesAXIOS = async () => {
-    await axios
-      .get('http://localhost:8080/facility')
-      .then((res) => setData(res.data));
+    // await axios
+    //   .get('http://localhost:8080/facility')
+    // .then((res) => setData(res.data));
+    await axiosInstance
+      //locationState
+      .get(
+        '/facility?location=' +
+          locationState.currentLocation.latitude +
+          '%2C' +
+          locationState.currentLocation.longitude +
+          '&page=1'
+      )
+      .then((res) => setData(res.data.content));
   };
 
   const getCategoryAXIOS = async () => {
@@ -141,15 +151,61 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
   );
 };
 
-export const FacilityDescCard = ({ text, backGround, color }) => {
+export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
+  const checkLocation = useSelector((state) => state.location.currentLocation);
+  const dailyCheck = async () => {
+    const body = {
+      username: 'minimiUser',
+      location: `${checkLocation.latitude}, ${checkLocation.longitude}`,
+      facilityId: el.facilityId,
+    };
+    try {
+      await axiosInstance.post('/dailycheck', body);
+      alert(`출석 되었습니다.`);
+    } catch (err) {
+      alert(`Location failure: 현재 위치가 해당 시설과 멀리 있습니다.`);
+    }
+  };
+
+  const cancelMyFac = async () => {
+    try {
+      const response = await axiosInstance.delete(
+        '/myfacility/' + el.facilityId + '/minimiUser'
+      );
+      alert(`나의 운동시설에서 삭제되었습니다.`);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <FDescCardStyle>
-        <H4 alignItems="center">OO동 헬스클럽</H4>
-        <BigBtn backGround={backGround} color={color}>
-          {text}
-        </BigBtn>
+        <H4 alignItems="center">{el.facilityName}</H4>
+        <BtnWrapper>
+          <BigBtn onClick={dailyCheck} backGround={backGround} color={color}>
+            {text}
+          </BigBtn>
+          {show ? (
+            <BigBtn
+              onClick={cancelMyFac}
+              marginLeft="10px"
+              padding={'13px'}
+              backGround={'black'}
+              color={'red'}
+              hoverBg={'black'}
+            >
+              삭제
+            </BigBtn>
+          ) : null}
+        </BtnWrapper>
       </FDescCardStyle>
     </>
   );
 };
+
+const BtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;

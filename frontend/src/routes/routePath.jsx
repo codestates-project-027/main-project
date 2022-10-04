@@ -14,7 +14,6 @@ const PATH = {
 
   REGISTERFACILITY: '/facility/register',
   EDITFACILITY: '/facility/edit/:id', //->facility/edit/:id
-  EDITMY: '/facility/my',
   // POSTREVIEW, EDITREVIEW-> Modal창
 
   MAP: '/map',

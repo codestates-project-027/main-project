@@ -88,10 +88,9 @@ export const AttendanceCardStyle = styled.div`
     align-items: flex-start;
     flex-direction: column;
   }
-  /* .sub--wrapper {
+  .sub--wrapper {
     display: flex;
-    color: red;
-  } */
+  }
   .label {
     display: flex;
     justify-content: center;

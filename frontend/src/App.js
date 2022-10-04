@@ -27,7 +27,6 @@ import MyPage from './pages/MyPage';
 import AlarmsPage from './pages/Alarms';
 import MapPage from './pages/Map';
 import TestPage from './pages/Test';
-import EditMyFacilityPage from './pages/EditMyFacility';
 
 import { RegisterFacilityPage } from './pages/HandleFacility';
 import { EditFacilityPage } from './pages/HandleFacility';
@@ -87,10 +86,10 @@ function App() {
                   path={PATH.ALARMS}
                   element={<AlarmsPage type="알림" />}
                 />
-                <Route
+                {/* <Route
                   path={PATH.EDITMY}
                   element={<EditMyFacilityPage type="내 정보 수정" />}
-                />
+                /> */}
 
                 <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
                 <Route

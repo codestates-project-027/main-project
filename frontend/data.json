@@ -3,7 +3,7 @@
     {
       "facilityId": 1,
       "facilityName": "파워헬스장",
-      "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/e559b09a-6e06-42d4-ade6-f19a8edc02ad-blob",
+      "facilityPhoto": "img",
       "address": "경기 광명시",
       "starRate": 3,
       "location": "37.4773, 126.8601",
@@ -13,7 +13,7 @@
     {
       "facilityId": 2,
       "facilityName": "종국헬스장",
-      "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/e559b09a-6e06-42d4-ade6-f19a8edc02ad-blob",
+      "facilityPhoto": "img",
       "address": "경기 광명시",
       "starRate": 3,
       "location": "37.4769, 126.8608",
@@ -23,7 +23,7 @@
     {
       "facilityId": 3,
       "facilityName": "미니미헬스장",
-      "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/e559b09a-6e06-42d4-ade6-f19a8edc02ad-blob",
+      "facilityPhoto": "img",
       "address": "경기 광명시",
       "starRate": 5,
       "location": "37.4758, 126.8605",
@@ -33,7 +33,7 @@
     {
       "facilityId": 4,
       "facilityName": "맹헬스장",
-      "facilityPhoto": "https://minimi-place.s3.ap-northeast-2.amazonaws.com/e559b09a-6e06-42d4-ade6-f19a8edc02ad-blob",
+      "facilityPhoto": "img",
       "address": "경기 광명시",
       "starRate": 5,
       "location": "37.4734, 126.8572",

@@ -84,16 +84,18 @@ export const MainQuickBtn = ({ iconProp, textProp }) => {
 };
 
 export const BigBtn = styled(BasicBtn)`
+  
   padding: ${(props) => props.padding || '20px'};
   height: ${(props) => props.height || '35px'};
   margin-right: ${(props) => props.marginRight || '0px'};
+  margin-left: ${(props) => props.marginLeft || '0px'};
   font-weight: ${(props) => props.fontWeight || '400'};
   font-size: ${(props) => props.fontSize};
   margin-top: ${(props) => props.marginTop};
   background: ${(props) => props.backGround};
-  &:hover{
+  &:hover {
     background: ${(props) => props.hoverBg};
-    color:${(props) => props.hoverColor};
+    color: ${(props) => props.hoverColor};
     font-weight: bold;
   }
 `;

@@ -57,11 +57,7 @@ const MapContainer = () => {
       console.log(err.response);
     }
   };
-  //76: photoList, status, location, website : 무에타이
-  //77: photolist, status,, location: 37,478134, 126.861461 : 탁구
-  //78: pthotoList, info, status, phone, web, loca: 37.477953, 126.860214" : 수영
-  //요청 보낼 때 파일 담기
-  //79: photoList.. 다시 담기
+ 
 
   useEffect(() => {}, [locationState]);
 

@@ -2,6 +2,7 @@
 import { Outlet } from 'react-router-dom';
 import { StyledLink } from '../styles/components/TextStyles';
 import GlobalStyle from '../styles/globalStyle/GlobalStyle';
+import { useSelector } from 'react-redux';
 
 import {
   TopNavPosition,
@@ -43,29 +44,29 @@ export const LayoutMain = () => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type={'우리 동네 주소'} />
+        <TopNavbar type={'현재 주소'} />
       </TopNavPosition>
       <LayoutBase />
     </>
   );
 };
 
-export const LayoutCurrentMenu = ({type}) => {
+export const LayoutCurrentMenu = () => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type='현재 메뉴' />
+        <TopNavbar type="현재 메뉴" />
       </TopNavPosition>
       <LayoutBase />
     </>
   );
 };
 
-export const LayoutCurrentMenuSearch = ({type}) => {
+export const LayoutCurrentMenuSearch = ({ type }) => {
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type={'현재 메뉴 + search icon'} />
+        <TopNavbar type={'시설 목록'} />
       </TopNavPosition>
       <LayoutBaseForFacilities />
 
