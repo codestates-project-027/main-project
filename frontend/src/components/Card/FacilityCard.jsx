@@ -7,7 +7,6 @@ import { TagGroup } from '../Group/BtnAndTagGroup';
 import { useSelector } from 'react-redux';
 import DistanceCalc from '../Calculator/DistanceCalc';
 import StarsCalc from '../Calculator/StarsCalc';
-import CircularProgressWithLabel from '../../components/Bar/Loadingbar';
 
 import {
   FCardGlobal,
@@ -169,7 +168,7 @@ export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
 
   const cancelMyFac = async () => {
     try {
-      const response = await axiosInstance.delete(
+      await axiosInstance.delete(
         '/myfacility/' + el.facilityId + '/minimiUser'
       );
       alert(`나의 운동시설에서 삭제되었습니다.`);

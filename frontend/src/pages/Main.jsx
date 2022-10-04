@@ -51,7 +51,9 @@ const MainPage = () => {
   return (
     <>
       <MainPageGlobal>
-        <MemberCard />
+        <Link to="/mypage">
+          <MemberCard />
+        </Link>
         <SearchbarWBtn
           Icon={
             <Link to="/map">

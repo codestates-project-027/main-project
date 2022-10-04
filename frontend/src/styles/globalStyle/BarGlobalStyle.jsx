@@ -27,7 +27,7 @@ export const SearchbarGlobal = styled.div`
   &:focus-within {
     border: 1.5px solid var(--logo-yellow);
   }
-  .delete{
+  .delete {
     cursor: pointer;
   }
 `;
@@ -43,10 +43,11 @@ export const BottomNavbarGlobal = styled.div`
   height: 70px;
   width: 100%;
   background-color: var(--main-yellow);
-  z-index:20;
+  z-index: 20;
 `;
 
 export const TopNavbarGlobal = styled.div`
+  position: fixed;
   display: none;
   margin-top: -40px;
   justify-content: space-between;
@@ -54,6 +55,7 @@ export const TopNavbarGlobal = styled.div`
   height: 70px;
   width: 100%;
   background-color: var(--main-yellow);
+  z-index: 20;
   .tab--wrapper {
     display: flex;
     margin-left: 20px;

@@ -27,7 +27,7 @@ const AttendanceCard = ({ days }) => {
                   className="day"
                   key={idx}
                   style={
-                    el === true
+                    el === 'true'
                       ? { background: 'var(--attended)' }
                       : { background: 'var(--absent)' }
                   }

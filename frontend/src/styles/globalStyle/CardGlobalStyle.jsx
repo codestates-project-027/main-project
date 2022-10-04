@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const FCardGlobal = styled.div`
   display: flex;
@@ -39,10 +38,79 @@ export const MCardGlobal = styled.div`
   @media screen and (max-width: 790px) {
     //429px
     display: flex;
+    div {
+    color: wheat;
+    color: var(--main-yellow);
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px;
+    .img--wrapper {
+      width: 30%;
+      img {
+        border: 5px solid #454546;
+        border-radius: 8px;
+      }
+    }
+    .content--wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: 60%;
+      text-align: left;
+      div:nth-child(1) {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      div:nth-child(2) {
+        margin-bottom: 20px;
+      }
+    }
+  }
   }
 `;
 
 export const MCardFlexGlobal = styled(MCardGlobal)`
+  div {
+    color: wheat;
+    color: var(--main-yellow);
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px;
+    .img--wrapper {
+      width: 30%;
+      img {
+        border: 5px solid #454546;
+        border-radius: 8px;
+      }
+    }
+    .content--wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: 60%;
+      text-align: left;
+      div:nth-child(1) {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      div:nth-child(2) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
   @media screen and (min-width: 790px) {
     display: flex;
   }
@@ -59,7 +127,7 @@ export const ReviewCardGlobal = styled.div`
   display: flex;
   background: #f3f3f3;
   border-bottom: 1px solid #dbdbdb;
-  margin : 10px 0 17px 0;
+  margin: 10px 0 17px 0;
 `;
 
 export const CommunityCardGlobal = styled.div`

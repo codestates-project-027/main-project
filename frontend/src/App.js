@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -42,7 +42,6 @@ import EditPostPage from './pages/EditPost';
 import CircularIndeterminate from './components/Bar/Loadingbar';
 
 function App() {
-  const [pending, setPending] = useState(true);
 
   return (
     <>
