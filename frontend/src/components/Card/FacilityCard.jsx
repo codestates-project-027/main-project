@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { BigBtn } from '../../components/Button/Btns';
 import { H4, H4Link } from '../Text/Head';
 import { TagGroup } from '../Group/BtnAndTagGroup';
 import { useSelector } from 'react-redux';
+import { getFacilities } from '../../redux/slices/facilityListSlice';
 import DistanceCalc from '../Calculator/DistanceCalc';
 import StarsCalc from '../Calculator/StarsCalc';
 
@@ -21,6 +23,7 @@ import {
 import axiosInstance from '../../api/Interceptor';
 
 export const FBaseCard = ({ Detail, mode }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
@@ -39,11 +42,7 @@ export const FBaseCard = ({ Detail, mode }) => {
   ]);
 
   const getFacilitiesAXIOS = async () => {
-    // await axios
-    //   .get('http://localhost:8080/facility')
-    // .then((res) => setData(res.data));
     await axiosInstance
-      //locationState
       .get(
         '/facility?location=' +
           locationState.currentLocation.latitude +
@@ -77,7 +76,7 @@ export const FBaseCard = ({ Detail, mode }) => {
       {data.map((el) => {
         return el.facilityName === '' ? null : (
           <div key={el.facilityId}>
-            {el.facilityId}
+            {/* {el.facilityId} */}
             <div className="wrapper">
               <div className="img--wrapper">
                 <img
@@ -167,15 +166,9 @@ export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
   };
 
   const cancelMyFac = async () => {
-    try {
-      await axiosInstance.delete(
-        '/myfacility/' + el.facilityId + '/minimiUser'
-      );
-      alert(`나의 운동시설에서 삭제되었습니다.`);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
+    await axiosInstance.delete('/myfacility/' + el.facilityId + '/minimiUser');
+    alert(`나의 운동시설에서 삭제되었습니다.`);
+    window.location.reload();
   };
 
   return (

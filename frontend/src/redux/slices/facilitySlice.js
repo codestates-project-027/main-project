@@ -31,7 +31,6 @@ export const facilitySlice = createSlice({
       state.location = action.payload.location;
       state.categoryList = action.payload.categoryList;
       state.facilityStatus = action.payload.facilityStatus;
-      //리뷰 부분 -> 아직임.
     },
     postFacility: (state, action) => {
       state.facilityName = action.payload.facilityName;

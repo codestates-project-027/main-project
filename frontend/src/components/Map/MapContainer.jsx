@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
 import axiosInstance from '../../api/Interceptor';
 
-const MapContainer = () => {
+const MapContainer = ({ locaForMarkers }) => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [main, setMain] = useState(true);
@@ -22,8 +22,6 @@ const MapContainer = () => {
   const resetLoca = () => {
     dispatch(
       getLocation({
-        //광명 { latitude: 37.47814, longitude: 126.86058 }
-        //제주 { latitude: 33.450701, longitude: 126.570667 }
         currentLocation: { latitude: 37.478147, longitude: 126.86058 },
       })
     );
@@ -38,16 +36,6 @@ const MapContainer = () => {
     //get 요청 보내기.. star 자리로부터 거리계산기
   };
 
-  const getFacilitiesAXIOS = async () => {
-    try {
-      await axiosInstance
-        .get(`/facility?location=${37.478147}%2C+${126.86058}&page=1`)
-        .then((res) => console.log(res));
-    } catch (err) {
-      console.log(err.response);
-    }
-  };
-
   const checkAXIOS = async () => {
     try {
       await axiosInstance
@@ -57,15 +45,16 @@ const MapContainer = () => {
       console.log(err.response);
     }
   };
- 
 
   useEffect(() => {}, [locationState]);
 
   return (
     <>
-      <button onClick={resetLoca}>RESET</button>
-      <button onClick={getFacilitiesAXIOS}>GET FACILS</button>
-      <button onClick={checkAXIOS}>check Facils</button>
+      <button style={{ marginBottom: '20px' }} onClick={resetLoca}>
+        RESET
+      </button>
+      {/* <button onClick={getFacilitiesAXIOS}>GET FACILS</button>
+      <button onClick={checkAXIOS}>check Facils</button> */}
 
       <Map
         center={myLoca}
@@ -90,9 +79,9 @@ const MapContainer = () => {
           main={main}
           content={'현재 위치'}
         />
-        {data.map((el) => (
+        {locaForMarkers.map((el) => (
           <MarkerContainer
-            key={`MarkerCont-${el.latlng.lat}-${el.latlng.lng}`}
+            key={`MarkerCont-${el.id}`}
             position={el.latlng}
             content={el.title}
           />

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMap, MapMarker } from 'react-kakao-maps-sdk';
 import { MarkerIconStyle } from '../../styles/components/IconStyles';
-import { useSelector } from 'react-redux';
 
 const MarkerContainer = ({ position, content, main, custom }) => {
   const map = useMap();

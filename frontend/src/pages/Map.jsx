@@ -8,12 +8,16 @@ import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
 import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 import axiosInstance from '../api/Interceptor';
+import { getFacilities } from '../redux/slices/facilityListSlice';
 
 const MapPage = () => {
   const dispatch = useDispatch();
+  const locationState = useSelector((state) => state.location);
   const [error, setError] = useState('');
   const { geolocation } = navigator;
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({ content: [] });
+  const locaForMarkers = [];
 
   const handleSuccess = (pos) => {
     const { latitude, longitude } = pos.coords;
@@ -35,14 +39,47 @@ const MapPage = () => {
   };
 
   //example - 시설 빠르게 지우기
-  const getFacilityAXIOS = async () => { //76부터 시작
-    await axiosInstance.get('/facility/77').then((res) => console.log(res.data.facilityId,res.data));
+  const getFacilityAXIOS = async () => {
+    //76부터 시작
+    await axiosInstance
+      .get('/facility/77')
+      .then((res) => console.log(res.data.facilityId, res.data));
     // console.log(categoryState);
   };
 
-  const deleteFacilityAXIOS = async () => { //28
-    await axiosInstance.delete('/facility/').then((res) => console.log(res.status));
+  const deleteFacilityAXIOS = async () => {
+    //28
+    await axiosInstance
+      .delete('/facility/')
+      .then((res) => console.log(res.status));
+  };
+
+  const getFacilitiesAXIOS = async () => {
+    const response = await axiosInstance.get(
+      '/facility?location=' +
+        locationState.currentLocation.latitude +
+        '%2C' +
+        locationState.currentLocation.longitude +
+        '&page=1'
+    );
+    setData(response.data.content);
+  };
+
+  if (data.length !== undefined) {
+    data.map((el) =>
+      locaForMarkers.push({
+        id: el.facilityId,
+        title: el.facilityName,
+        latlng:{lat:el.location.split(',')[0], lng:el.location.split(',')[1]},
+      })
+    );
   }
+
+  console.log(locaForMarkers);
+
+  useEffect(() => {
+    getFacilitiesAXIOS();
+  }, []);
 
   return (
     <>
@@ -58,9 +95,9 @@ const MapPage = () => {
           }
         />
         {loading ? <CircularProgressWithLabel /> : ''}
-        <MapContainer />
-        <button onClick={getFacilityAXIOS}>get</button>
-        <button onClick={deleteFacilityAXIOS}>delete</button>
+        <MapContainer locaForMarkers={locaForMarkers} />
+        {/* <button onClick={getFacilityAXIOS}>get</button>
+        <button onClick={deleteFacilityAXIOS}>delete</button> */}
         <FacilityCard Flex={'Flex'} />
       </FacilitiesPageGlobal>
     </>

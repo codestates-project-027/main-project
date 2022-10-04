@@ -84,7 +84,6 @@ export const MainQuickBtn = ({ iconProp, textProp }) => {
 };
 
 export const BigBtn = styled(BasicBtn)`
-  
   padding: ${(props) => props.padding || '20px'};
   height: ${(props) => props.height || '35px'};
   margin-right: ${(props) => props.marginRight || '0px'};
@@ -123,3 +122,15 @@ export const EditPostBtn = () => {
 export const DeletePostBtn = () => {
   return <button>삭제</button>;
 };
+
+export const ImgBtn = styled.button`
+  border: none;
+  background: #a3f9a3;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: ${(props) => props.marginLeft};
+  &:hover {
+    background: #99e699;
+    transition: all 0.3s ease-in-out;
+  }
+`;
