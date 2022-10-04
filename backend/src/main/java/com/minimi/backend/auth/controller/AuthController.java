@@ -32,5 +32,9 @@ public class AuthController {
         return authService.createMember(member);
     }
     //join
+    @PatchMapping("/patchmember")
+    private ResponseEntity patchMember(@RequestBody MemberDTO.request request){
 
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

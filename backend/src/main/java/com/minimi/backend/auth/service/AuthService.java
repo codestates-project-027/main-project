@@ -36,7 +36,19 @@ public class AuthService {
             return new ResponseEntity<>("email 중복", HttpStatus.BAD_REQUEST);
         }
     }
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
+    public Member updateMember(Member member) {
+        Member findMember = findVerifiedMember(member.getMemberId());
 
+        Optional.ofNullable(member.getUsername())
+                .ifPresent(username -> findMember.setUsername(username));
+        Optional.ofNullable(member.getPassword())
+                .ifPresent(password -> findMember.setPassword(password));
+        Optional.ofNullable(member.getUserProfile())
+                .ifPresent(userprofile -> findMember.setUserProfile(userprofile));
+
+        return memberRepository.save(findMember);
+    }
 
     @Transactional(readOnly = true)
     public Member findVerifiedMember(long memberId) {
