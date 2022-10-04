@@ -24,6 +24,13 @@ public class MemberDTO {
         private String password;
         private String userProfile;
     }
+    @AllArgsConstructor
+    @Getter
+    public static class patch {
+        private String username;
+        private String password;
+        private String userProfile;
+    }
     @Getter
     @AllArgsConstructor
     public static class response {

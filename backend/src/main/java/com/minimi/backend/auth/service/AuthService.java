@@ -37,8 +37,8 @@ public class AuthService {
         }
     }
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-    public Member updateMember(Member member) {
-        Member findMember = findVerifiedMember(member.getMemberId());
+    public Member updateMember(MemberDTO.patch member, Long memberId) {
+        Member findMember = findVerifiedMember(memberId);
 
         Optional.ofNullable(member.getUsername())
                 .ifPresent(username -> findMember.setUsername(username));
@@ -49,6 +49,7 @@ public class AuthService {
 
         return memberRepository.save(findMember);
     }
+
 
     @Transactional(readOnly = true)
     public Member findVerifiedMember(long memberId) {

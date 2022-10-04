@@ -32,12 +32,12 @@ public class PrincipalDetails implements UserDetails {
         return member.getPassword();
     }
 
-    @Override
+
     public String getUsername() {
         return member.getEmail();
     }
 
-    public String getUserName() {
+    public String getCheckUsername() {
         return member.getUsername();
     }
 

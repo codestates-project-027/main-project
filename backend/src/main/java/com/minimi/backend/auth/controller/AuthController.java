@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,9 +29,9 @@ public class AuthController {
         return authService.createMember(member);
     }
     //join
-    @PatchMapping("/patchmember")
-    private ResponseEntity patchMember(@RequestBody MemberDTO.request request){
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PatchMapping("/patchmember/{memberId}")
+    private ResponseEntity patchMember(@PathVariable Long memberId, @RequestBody MemberDTO.patch member){
+        authService.updateMember(member, memberId);
+        return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 }

@@ -5,6 +5,7 @@ import com.minimi.backend.community.contents.domain.ContentsDTO;
 //import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
+import com.minimi.backend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.prefs.BackingStoreException;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class ContentsService {
     private  final ContentsMapper contentsMapper;
 
     public void crateContents(ContentsDTO contentsDTO){
+
         Contents contents = contentsRepository.save(
                 contentsMapper.contentsDTOToContents(contentsDTO));
     }
