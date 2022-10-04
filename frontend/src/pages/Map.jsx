@@ -75,8 +75,6 @@ const MapPage = () => {
     );
   }
 
-  console.log(locaForMarkers);
-
   useEffect(() => {
     getFacilitiesAXIOS();
   }, []);
