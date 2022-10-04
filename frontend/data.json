@@ -1,9 +1,62 @@
 {
+  "facility": [
+    {
+      "facilityId": 1,
+      "facilityName": "파워헬스장",
+      "facilityPhoto": "img",
+      "address": "경기 광명시",
+      "starRate": 3,
+      "location": "37.4773, 126.8601",
+      "categoryList": ["헬스"],
+      "facilityStatus": "ACTIVE"
+    },
+    {
+      "facilityId": 2,
+      "facilityName": "종국헬스장",
+      "facilityPhoto": "img",
+      "address": "경기 광명시",
+      "starRate": 3,
+      "location": "37.4769, 126.8608",
+      "categoryList": ["헬스", "PT", "크로스핏"],
+      "facilityStatus": "INACTIVE"
+    },
+    {
+      "facilityId": 3,
+      "facilityName": "미니미헬스장",
+      "facilityPhoto": "img",
+      "address": "경기 광명시",
+      "starRate": 5,
+      "location": "37.4758, 126.8605",
+      "categoryList": ["헬스", "GX"],
+      "facilityStatus": "ACTIVE"
+    },
+    {
+      "facilityId": 4,
+      "facilityName": "맹헬스장",
+      "facilityPhoto": "img",
+      "address": "경기 광명시",
+      "starRate": 5,
+      "location": "37.4734, 126.8572",
+      "categoryList": ["헬스", "요가"],
+      "facilityStatus": "ACTIVE"
+    }
+  ],
+
   "home": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "thunk-test",
+      "author": "A1"
+    },
+    {
+      "id": 2,
+      "title": "test",
+      "author": "A2"
+    },
+    {
+      "id": 3,
+      "title": "test",
+      "author": "A3"
     }
   ],
   "facilities": [
@@ -18,5 +71,82 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "rest": [
+    {
+      "name": "A1",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A2",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A3",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A4",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A5",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A6",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A7",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A8",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A9",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A10",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A11",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A12",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A13",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A14",
+      "phone": "B",
+      "age": "C"
+    },
+    {
+      "name": "A15",
+      "phone": "B",
+      "age": "C"
+    }
+  ]
 }
