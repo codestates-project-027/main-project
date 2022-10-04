@@ -5,11 +5,13 @@ export const FacilityFormStyle = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  background-color: bisque;
+  background-color: #f3f3f3;
   flex-direction: column;
-  width: 550px;
+  width: 580px;
   height: fit-content;
-  padding: 25px;
+  padding: 37px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px lightgray;
   .input--wrapper {
     display: flex;
     align-items: center;

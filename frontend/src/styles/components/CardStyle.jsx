@@ -82,16 +82,16 @@ export const FDescCardStyle = styled.div`
 
 export const AttendanceCardStyle = styled.div`
   display: flex;
-  background-color: bisque;
+  background-color: #f3f3f3;
   .wrapper {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
   }
-  .sub--wrapper {
+  /* .sub--wrapper {
     display: flex;
     color: red;
-  }
+  } */
   .label {
     display: flex;
     justify-content: center;

@@ -25,6 +25,7 @@ const MainPage = () => {
   const categoryState = useSelector((state) => state.category);
   const iconSet = [
     <></>,
+    <></>,
     <IoIosFitness size="23px" />,
     <GrYoga size="20px" />,
     <MdSportsTennis size="20px" />,
@@ -36,7 +37,7 @@ const MainPage = () => {
   ];
 
   const activeCategory = [];
-  for (let i = 1; i < iconSet.length; i++) {
+  for (let i = 2; i < iconSet.length; i++) {
     activeCategory.push({
       idx: i,
       text: categoryState.list[i].categoryTitle,

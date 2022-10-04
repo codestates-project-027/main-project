@@ -33,7 +33,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, [clickBtn]);
+  }, []);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 

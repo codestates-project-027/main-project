@@ -59,7 +59,7 @@ const AddressUploader = ({ facilityState, value, mode }) => {
   return (
     <Div>
       {mode === 'edit' ? facilityState.address : address}
-      <BasicBtn backGround={'lightgreen'} onClick={handleAddress.clickButton}>
+      <BasicBtn backGround={'var(--main-yellow)'} onClick={handleAddress.clickButton}>
         주소검색
       </BasicBtn>
 

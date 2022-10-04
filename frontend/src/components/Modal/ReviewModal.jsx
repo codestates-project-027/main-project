@@ -17,7 +17,7 @@ export const CReviewModal = ({ setReview }) => {
   const { id } = useParams();
   const body = {
     facilityId: id,
-    username: '미니미회원',
+    username: 'MinimiUser',
     contents: value,
   };
 

@@ -35,9 +35,14 @@ export const FacilityDescGroup = ({ facility }) => {
     <FacilityPageDescGroupStyle>
       {facility.map((el) => {
         return (
-          <H4 key={el.idx}>
-            {el.icon} {el.value}
-          </H4>
+          <Div key={el.idx}>
+            <div className="icon">{el.icon}</div>
+            {el.idx === 1 ? (
+              <pre>{el.value}</pre>
+            ) : (
+              <div className="value">{el.value}</div>
+            )}
+          </Div>
         );
       })}
     </FacilityPageDescGroupStyle>
@@ -65,7 +70,7 @@ export const TagGroup = ({
     for (let i = 0; i < response.length; i++) {
       if (response[i].categoryTitle === el) {
         navigate(`/category/${response[i].categoryCode}`);
-        window.location.reload()
+        window.location.reload();
       }
     }
   };
@@ -105,4 +110,18 @@ const X = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+const Div = styled.div`
+  display: flex;
+  pre {
+    text-align: left;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    letter-spacing: 1.1px;
+  }
+  .value{
+    display: flex;
+
+  }
 `;
