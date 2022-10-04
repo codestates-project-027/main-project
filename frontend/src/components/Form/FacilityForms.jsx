@@ -264,13 +264,13 @@ export const FacilityForm = ({ mode, setFin }) => {
           {mode === 'edit' ? (
             <TagSelectbar
               mode="edit"
-              data={categoryState.list.slice(1)}
+              data={categoryState.list.slice(2)}
               tagsList={tagsList}
               setTagsList={setTagsList}
             />
           ) : (
             <TagSelectbar
-              data={categoryState.list.slice(1)}
+              data={categoryState.list.slice(2)}
               tagsList={tagsList}
               setTagsList={setTagsList}
             />

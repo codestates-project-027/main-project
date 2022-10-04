@@ -29,7 +29,7 @@ export const NavyInputGlobal = styled.div`
 
 export const WhiteInputGlobal = styled(NavyInputGlobal)`
   background: white;
-  width: 430px;
+  width: 460px;
   height: 40px;
   box-shadow: 3px 3px 3px lightgray;
   margin-bottom: 3px;

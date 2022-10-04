@@ -12,9 +12,9 @@ import {
   IconWrapper,
 } from '../../styles/components/IconStyles';
 
-import { BiBell } from 'react-icons/bi';
+import { BiBell, BiBuildingHouse } from 'react-icons/bi';
 import { HiHome } from 'react-icons/hi'; //HiOutlineHome
-import { BsPeople, BsPerson } from 'react-icons/bs'; //BsFillPeopleFill, BsFillPersonFill
+import { BsPerson } from 'react-icons/bs'; //BsFillPeopleFill, BsFillPersonFill
 import { AiOutlineHeart } from 'react-icons/ai'; //AiFillHeart
 
 export const TopNavbar = ({ type }) => {
@@ -62,8 +62,9 @@ export const BottomNavbar = () => {
         <Link to="/">
           <HiHome />
         </Link>
-
-        <BsPeople />
+        <Link to="/facility">
+          <BiBuildingHouse />
+        </Link>
         <AiOutlineHeart />
         <Link to="/login">
           <BsPerson />

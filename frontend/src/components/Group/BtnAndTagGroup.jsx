@@ -115,13 +115,14 @@ const StyledLink = styled(Link)`
 const Div = styled.div`
   display: flex;
   pre {
+    width: 500px;
     text-align: left;
     line-height: 1.4;
     margin-bottom: 30px;
     letter-spacing: 1.1px;
+    white-space: pre-line;
   }
-  .value{
+  .value {
     display: flex;
-
   }
 `;

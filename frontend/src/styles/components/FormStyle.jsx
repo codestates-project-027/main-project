@@ -7,7 +7,7 @@ export const FacilityFormStyle = styled.div`
   justify-content: center;
   background-color: #f3f3f3;
   flex-direction: column;
-  width: 580px;
+  width: 620px;
   height: fit-content;
   padding: 37px;
   border-radius: 10px;

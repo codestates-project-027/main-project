@@ -13,7 +13,7 @@ export const ReviewTXTStyle = styled.textarea`
 `;
 
 export const CreateFTXTStyle = styled(ReviewTXTStyle)`
-  width: 430px;
+  width: 480px;
   border: none;
   box-shadow: 3px 3px 3px lightgray;
   border-radius: 5px;
