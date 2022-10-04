@@ -58,18 +58,19 @@ public class likeControllerTest {
                                 ))
                 ));
     }
-    @Test
-    public void deleteLike() throws Exception {
-        ResultActions actions = mockMvc.perform(
-                delete("/likes/{likesId}",1L)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-        );
-        actions.andExpect(status().isNoContent())
-                .andDo(document(
-                        "delete-likes",
-                        getRequestPreProcessor(),
-                        pathParameters(
-                                parameterWithName("likesId").description("게시글 아이디")
-                        )));
-}}
+//    @Test
+//    public void deleteLike() throws Exception {
+//        ResultActions actions = mockMvc.perform(
+//                delete("/likes/{likesId}",1L)
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//        );
+//        actions.andExpect(status().isNoContent())
+//                .andDo(document(
+//                        "delete-likes",
+//                        getRequestPreProcessor(),
+//                        pathParameters(
+//                                parameterWithName("likesId").description("게시글 아이디")
+//                        )));
+//}
+}

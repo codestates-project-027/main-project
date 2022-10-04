@@ -51,7 +51,7 @@ public class FacilityController {
 
     //get nearFacilityList
     @GetMapping("")
-    public ResponseEntity<Slice<ResponseFacilityDto.facilityPageFromCategory>> getNearFacilityList(@RequestParam String location, int page){
+    public ResponseEntity<Slice<FacilityDto.responsePage>> getNearFacilityList(@RequestParam String location, int page){
         return new ResponseEntity<>(facilityService.getNearFacilityList(location, page), HttpStatus.OK);
     }
 }

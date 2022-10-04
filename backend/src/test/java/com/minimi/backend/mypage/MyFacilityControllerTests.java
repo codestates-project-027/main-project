@@ -70,8 +70,9 @@ public class MyFacilityControllerTests {
     @Test
     public void deleteMyFacility() throws Exception {
         Long facilityId = 1L;
+        String username = "username";
         ResultActions actions = mockMvc.perform(
-                delete("/myfacility/{facilityId}",facilityId)
+                delete("/myfacility/{facilityId}/{username}",facilityId, username)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -80,7 +81,8 @@ public class MyFacilityControllerTests {
                         "delete-myfacility",
                         getRequestPreProcessor(),
                         pathParameters(
-                                parameterWithName("facilityId").description("취소 시설 ID")
+                                parameterWithName("facilityId").description("취소 시설 ID"),
+                                parameterWithName("username").description("유저 아이디")
                         )));
     }
 

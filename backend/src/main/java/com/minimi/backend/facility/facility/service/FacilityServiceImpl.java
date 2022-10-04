@@ -6,6 +6,7 @@ import com.minimi.backend.facility.dto.responsedto.ResponseFacilityDto;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityDto;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
+import com.minimi.backend.facility.facility.domain.FacilityStatus;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
 import com.minimi.backend.facility.facility.service.listener.FacilityCategoryCheckListener;
 import com.minimi.backend.facility.facility.service.listener.FacaMappingGetListener;
@@ -20,7 +21,10 @@ import lombok.SneakyThrows;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,8 +62,22 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Slice<ResponseFacilityDto.facilityPageFromCategory> getNearFacilityList(String location, int page) {
-        return null;
+    public Slice<FacilityDto.responsePage> getNearFacilityList(String location, int page) {
+
+        Slice<Facility> facilitySlice = facilityRepository.findByFacilityStatus(FacilityStatus.PENDING,
+                PageRequest.of(page-1,30, Sort.by("facilityId").descending()));
+
+        List<FacilityDto.responsePage> responsePageContents = new ArrayList<>();
+        facilitySlice.getContent().forEach(facility ->{
+            FacilityDto.responsePage reqDto = facilityMapper.facilityToFacilityDtoResPage(facility);
+
+            if (!facility.getFacilityPhotoList().isEmpty()){
+                reqDto.setFacilityPhoto(facility.getFacilityPhotoList().get(0));
+            }
+
+            responsePageContents.add(reqDto);
+        });
+        return new SliceImpl<>(responsePageContents,facilitySlice.getPageable(),facilitySlice.hasNext());
     }
 
     @Override
