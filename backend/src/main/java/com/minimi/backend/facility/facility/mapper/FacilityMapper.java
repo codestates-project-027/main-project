@@ -9,4 +9,6 @@ public interface FacilityMapper {
     FacilityDto.response facilityToFacilityDtoResponse(Facility facility);
 
     FacilityDto.responseMyFacility facilityToFacilityDtoResMyFacility(Facility facility);
+
+    FacilityDto.responsePage facilityToFacilityDtoResPage(Facility facility);
 }
