@@ -1,4 +1,4 @@
-package com.minimi.backend.auth.domain;
+package com.minimi.backend.member.domain;
 
 import lombok.Builder;
 import lombok.Data;

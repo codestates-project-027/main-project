@@ -1,4 +1,4 @@
-package com.minimi.backend.auth.domain;
+package com.minimi.backend.member.domain;
 
 import com.minimi.backend.community.likes.domain.Likes;
 import lombok.*;
@@ -26,17 +26,11 @@ public class Member {
     private String password;
     @Column
     private String userProfile;
-    @Column
-    private String roles;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
     @OneToMany(
             mappedBy = "member",
             cascade = CascadeType.ALL)
     private List<Likes> likes;
 
-    public List<String> getRoleList() {
-        if(this.roles.length() > 0) {
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
 }

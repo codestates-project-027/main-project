@@ -3,8 +3,8 @@
 //
 //import com.google.gson.Gson;
 //import com.minimi.backend.auth.controller.AuthController;
-//import com.minimi.backend.auth.domain.MemberDTO;
-//import com.minimi.backend.auth.service.AuthService;
+//import com.minimi.backend.member.domain.MemberDTO;
+//import com.minimi.backend.member.service.AuthService;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;

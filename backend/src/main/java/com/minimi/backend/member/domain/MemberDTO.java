@@ -1,4 +1,4 @@
-package com.minimi.backend.auth.domain;
+package com.minimi.backend.member.domain;
 
 import lombok.*;
 
@@ -42,7 +42,6 @@ public class MemberDTO {
         private String userProfile;
     }
 
-    @AllArgsConstructor
     @Getter
     public static class loginRequest {
         private String email;

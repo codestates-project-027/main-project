@@ -1,25 +1,19 @@
 package com.minimi.backend.community.contents.controller;
 
-import com.minimi.backend.auth.principal.PrincipalDetails;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsDTO;
-import com.minimi.backend.community.contents.mapper.ContentsMapper;
 import com.minimi.backend.community.contents.service.ContentsService;
-import com.minimi.backend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.prefs.BackingStoreException;
 
 @RestController
 @RequiredArgsConstructor

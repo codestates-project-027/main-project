@@ -11,10 +11,7 @@ public class BackendApplication {
 	static {
 		System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
 	}
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}

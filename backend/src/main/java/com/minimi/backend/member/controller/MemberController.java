@@ -1,21 +1,19 @@
-package com.minimi.backend.auth.controller;
+package com.minimi.backend.member.controller;
 
-import com.minimi.backend.auth.domain.Member;
-import com.minimi.backend.auth.domain.MemberDTO;
-import com.minimi.backend.auth.domain.MemberRepository;
-import com.minimi.backend.auth.service.AuthService;
+import com.minimi.backend.member.domain.Member;
+import com.minimi.backend.member.domain.MemberDTO;
+import com.minimi.backend.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-public class AuthController {
-    private final AuthService authService;
+public class MemberController {
+    private final MemberService memberService;
 
     //login
     @PostMapping("/login")
@@ -26,12 +24,13 @@ public class AuthController {
     @PostMapping("/join")
     public ResponseEntity join(@Valid @RequestBody Member member) {
 
-        return authService.createMember(member);
+        memberService.createMember(member);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    //join
+
     @PatchMapping("/patchmember/{memberId}")
     private ResponseEntity patchMember(@PathVariable Long memberId, @RequestBody MemberDTO.patch member){
-        authService.updateMember(member, memberId);
+        memberService.updateMember(member, memberId);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 }

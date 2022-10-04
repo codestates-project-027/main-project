@@ -1,7 +1,7 @@
 package com.minimi.backend.community.likes.service;
 
-import com.minimi.backend.auth.domain.Member;
-import com.minimi.backend.auth.domain.MemberRepository;
+import com.minimi.backend.member.domain.Member;
+import com.minimi.backend.member.domain.MemberRepository;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.likes.domain.Likes;

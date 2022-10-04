@@ -1,6 +1,6 @@
 package com.minimi.backend.community.likes.domain;
 
-import com.minimi.backend.auth.domain.Member;
+import com.minimi.backend.member.domain.Member;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
