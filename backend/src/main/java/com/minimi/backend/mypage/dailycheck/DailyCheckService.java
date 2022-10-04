@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,21 +40,21 @@ public class DailyCheckService {
         locationCheck(location, facility);
 
         if (!dailyCheckRepository.existsByUsername(username)){
-            List<String> checklist = new ArrayList<>();
-            checklist.add("true");
-            LocalDate localDate = LocalDate.now();
-            dailyCheckRepository.save(new DailyCheck(username,checklist,localDate));
+            List<String> checkDailyList = new ArrayList<>();
+            checkDailyList.add("true");
+            String dailyUpdate = String.valueOf(LocalDate.now());
+            dailyCheckRepository.save(new DailyCheck(username,checkDailyList,dailyUpdate));
             eventPublisher.publishEvent(new MiracleScoreAddEvent(username));
             return null;
         }
 
         DailyCheck dailyCheck = dailyCheckRepository.findByUsername(username);
 
-        if (Objects.equals(dailyCheck.getUpdate(), LocalDate.now())){
+        if (Objects.equals(dailyCheck.getDailyUpdate(), String.valueOf(LocalDate.now()))){
             return null;
         }
-        dailyCheck.getCheckList().add("true");
-        dailyCheck.setUpdate(LocalDate.now());
+        dailyCheck.getCheckDailyList().add("true");
+        dailyCheck.setDailyUpdate(String.valueOf(LocalDate.now()));
         dailyCheckRepository.save(dailyCheck);
         eventPublisher.publishEvent(new MiracleScoreAddEvent(username));
         return null;
