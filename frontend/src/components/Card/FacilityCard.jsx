@@ -109,7 +109,7 @@ export const FBaseCard = ({ Detail, mode }) => {
                     )}
                   </div>
                   <div className="tags">
-                    <TagGroup tags={el.categoryList.slice(0, 3)} />
+                    <TagGroup tags={el.categoryList.slice(0, 4)} />
                   </div>
                 </div>
               </div>
