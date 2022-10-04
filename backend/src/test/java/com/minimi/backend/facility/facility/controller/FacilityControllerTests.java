@@ -267,20 +267,20 @@ public class FacilityControllerTests {
     public void getNearFacilityList() throws Exception{
         String location = "35.123456, 119.123456";
         int page = 1;
-        List<ResponseFacilityDto.facilityPageFromCategory> facilityList = new ArrayList<>();
-        ResponseFacilityDto.facilityPageFromCategory facility = new ResponseFacilityDto.facilityPageFromCategory(
+        List<FacilityDto.responsePage> facilityList = new ArrayList<>();
+        FacilityDto.responsePage facility = new FacilityDto.responsePage(
                 1L,"파워헬스장","대표이미지","서울특별시 강남구",3,"35.123456, 119.123456",
                 new ArrayList<>(Arrays.asList("헬스")) ,FacilityStatus.ACTIVE);
-        ResponseFacilityDto.facilityPageFromCategory facility1 = new ResponseFacilityDto.facilityPageFromCategory(
+        FacilityDto.responsePage facility1 = new FacilityDto.responsePage(
                 2L,"종국헬스장","대표이미지","서울특별시 강북구",2,"35.123456, 120.123456",
                 new ArrayList<>(Arrays.asList("헬스","PT")),FacilityStatus.INACTIVE);
-        ResponseFacilityDto.facilityPageFromCategory facility2 = new ResponseFacilityDto.facilityPageFromCategory(
+        FacilityDto.responsePage facility2 = new FacilityDto.responsePage(
                 3L,"미니미헬스장","대표이미지","서울특별시 강남구",5,"35.123456, 119.123456",
                 new ArrayList<>(Arrays.asList("헬스","요가")),FacilityStatus.ACTIVE);
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
-        Slice<ResponseFacilityDto.facilityPageFromCategory> facilitySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 5),false);
+        Slice<FacilityDto.responsePage> facilitySlice = new SliceImpl<>(facilityList, PageRequest.of(page-1, 30),false);
         given(facilityServiceImpl.getNearFacilityList(Mockito.anyString(),Mockito.anyInt())).willReturn(facilitySlice);
         ResultActions actions = mockMvc.perform(
                 get("/facility")

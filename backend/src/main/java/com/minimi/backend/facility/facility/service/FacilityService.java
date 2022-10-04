@@ -11,7 +11,7 @@ import java.util.List;
 public interface FacilityService {
     public FacilityDto.response getFacility(Long facilityId);
 
-    public Slice<ResponseFacilityDto.facilityPageFromCategory> getNearFacilityList(String location, int page);
+    public Slice<FacilityDto.responsePage> getNearFacilityList(String location, int page);
 
     public Slice<ResponseFacilityDto.facilityPageFromCategory> getCategoryFacility(String categoryCode, int page);
 
