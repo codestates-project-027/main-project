@@ -65,9 +65,7 @@ public class ContentsService {
     public int updateViews(Long id) {
         return contentsRepository.updateViews(id);
     }
-    /**
-     조회수 중복 방지
-     **/
+
     @Transactional
     public void viewCountUp(Long id, HttpServletRequest request, HttpServletResponse response) {
         Cookie oldCookie = null;

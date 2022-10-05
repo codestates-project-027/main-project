@@ -19,8 +19,8 @@ import java.util.Map;
 @Component
 public class JwtTokenizer {
     @Getter
-    // @Value("${jwt.secret-key}")
-    private String secretKey ="asdsadwafgwaighuasbgljadbgljasblfujhwalufghawuoilhflijkaskhnflkjasbnflikjawgbfldfshs";
+    @Value("${jwt.secret-key}")
+    private String secretKey ;
 
     @Getter
     @Value("${jwt.access-token-expiration-minutes}")

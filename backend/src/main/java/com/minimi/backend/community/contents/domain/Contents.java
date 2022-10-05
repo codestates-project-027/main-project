@@ -41,12 +41,12 @@ public class Contents {
     @OneToMany(mappedBy = "contents", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
     @Builder
-    public Contents(String title, String contents, String username){
+    public Contents(String title, String contents, String username, String userProfile){
         this.title = title;
         this.contents = contents;
         this.username = username;
         this.views = 0;
-        this.userProfile = "basicProfile";
+        this.userProfile = userProfile;
         this.createdAt = LocalDateTime.now();
     }
 }
