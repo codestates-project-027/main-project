@@ -54,7 +54,7 @@ const MyPage = () => {
         </div>
 
         <Div className="my--wrapper" marginBottom="20px">
-          {data.username !== ''
+          {data.facilityList !== undefined
             ? data.facilityList.map((el) => {
                 return (
                   <FacilityDescCard
@@ -65,7 +65,7 @@ const MyPage = () => {
                   />
                 );
               })
-            : null}
+            : ''}
         </Div>
 
         <H3 display="flex" marginBottom="30px" justifyContent="space-between">
