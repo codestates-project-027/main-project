@@ -25,7 +25,8 @@ public class ContentsController {
 
     //post Content
     @PostMapping("")
-    public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO){
+    public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO,
+                                                             @AuthenticationPrincipal MemberDetailsService.){
 
         contentsService.crateContents(contentsDTO);
         return new ResponseEntity(HttpStatus.CREATED);
