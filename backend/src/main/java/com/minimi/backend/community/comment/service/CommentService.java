@@ -26,7 +26,7 @@ public class CommentService {
 
 
     public void createComment(CommentDTO commentDTO){
-
+        checkName(commentDTO.getUsername());
         Contents contents = contentsRepository.findById(commentDTO.getContentsId()).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
         contents.setCommentNumber(contents.getCommentNumber()+1);
@@ -36,6 +36,7 @@ public class CommentService {
 
         Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
+        checkName(comment.getUsername());
         if (patch.getContent()!=null){
             comment.setContent(patch.getContent());
         }
@@ -45,6 +46,7 @@ public class CommentService {
 
         Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
+        checkName(comment.getUsername());
         commentRepository.deleteById(commentId);
         Contents contents = comment.getContents();
         contents.setCommentNumber(contents.getCommentNumber()-1);
