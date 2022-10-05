@@ -97,8 +97,7 @@ export const InputCategoryForm = ({ idx, type, setFin, fin }) => {
           return errors;
         }}
         onSubmit={(values) => {
-          idx === 1 ? categoryAXIOS.post(values) : categoryAXIOS.patch(values);
-          console.log(values);
+          idx === 0 ? categoryAXIOS.post(values) : categoryAXIOS.patch(values);
         }}
       >
         <Form>

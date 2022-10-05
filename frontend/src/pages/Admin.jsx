@@ -15,32 +15,30 @@ const AdminPage = () => {
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
   const [fin, setFin] = useState(false);
+  const [toggle, setToggle]=useState(false)
 
-  // const getCategoryAXIOS = useCallback(async () => {
-  //   await axiosInstance.get('/category?active=false').then((res) => {
-  //     dispatch(getCategory({ list: res.data }));
-  //   });
-  // }, [categoryState]);
+  const getCategoryAXIOS = useCallback(async () => {
+    await axiosInstance.get('/category?active=false').then((res) => {
+      dispatch(getCategory({ list: res.data }));
+    });
+  }, [dispatch]);
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
     if (idx === 0) {
-      // getCategoryAXIOS();
-      console.log('categoryState:', categoryState);
-    } else if (idx === 1) {
+      setToggle(!toggle)
       setType('생성');
-    } else setType('수정');
+    } else if (idx === 1) {
+      setToggle(!toggle)
+      setType('수정');
+    }
   };
 
   useEffect(() => {
-    axiosInstance.get('/category?active=false').then((res) => {
-      dispatch(getCategory({ list: res.data }));
-    });
+    getCategoryAXIOS();
   }, [fin]);
 
-  console.log(fin);
-
-  const btnContent = ['Read', 'Create', 'Edit'];
+  const btnContent = ['Create', 'Edit'];
 
   return (
     <>
@@ -64,7 +62,7 @@ const AdminPage = () => {
             );
           })}
         </BtnsWrapper>
-        {btnIdx !== 0 ? (
+        {toggle === true ? (
           <InputCategoryForm
             fin={fin}
             setFin={setFin}
