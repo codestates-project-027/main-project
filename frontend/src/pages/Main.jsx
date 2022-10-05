@@ -26,13 +26,17 @@ import { H3 } from '../components/Text/Head';
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const categoryState = useSelector((state) => state.category);
   const getCategoryAXIOS = useCallback(async () => {
     await axiosInstance.get('/category?active=false').then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
   }, [categoryState]);
 
-  const categoryState = useSelector((state) => state.category);
+  useEffect(() => {
+    getCategoryAXIOS();
+  }, []);
+
   const iconSet = [
     <></>,
     <></>,
@@ -55,11 +59,6 @@ const MainPage = () => {
       icon: iconSet[i],
     });
   }
-
-
-  useEffect(() => {
-    getCategoryAXIOS();
-  }, []);
 
   const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
 
