@@ -9,7 +9,7 @@ const PATH = {
 
   CATEGORY: '/category/:id',
 
-  FACILITY: '/facility/:id', 
+  FACILITY: '/facility/:id', //무한 요청
   FACILITIES: '/facility', 
 
   REGISTERFACILITY: '/facility/register',
