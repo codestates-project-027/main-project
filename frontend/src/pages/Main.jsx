@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SearchbarWBtn } from '../components/Bar/Searchbar';
@@ -38,12 +39,14 @@ const MainPage = () => {
 
   const activeCategory = [];
   for (let i = 2; i < iconSet.length; i++) {
-    activeCategory.push({
-      idx: i,
-      text: categoryState.list[i].categoryTitle,
-      code: categoryState.list[i].categoryCode,
-      icon: iconSet[i],
-    });
+    if (categoryState !== undefined) {
+      activeCategory.push({
+        idx: i,
+        text: categoryState.list[i].categoryTitle,
+        code: categoryState.list[i].categoryCode,
+        icon: iconSet[i],
+      });
+    }
   }
 
   const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
