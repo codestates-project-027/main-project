@@ -1,6 +1,5 @@
 package com.minimi.backend.community.likes.domain;
 
-import com.minimi.backend.auth.domain.Auth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

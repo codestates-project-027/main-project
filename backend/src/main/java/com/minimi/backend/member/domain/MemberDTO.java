@@ -1,4 +1,4 @@
-package com.minimi.backend.auth.domain;
+package com.minimi.backend.member.domain;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthDTO {
+public class MemberDTO {
     private Long id;
     private String email; //id로 사용
     private String username; //nickname으로 사용
@@ -24,6 +24,13 @@ public class AuthDTO {
         private String password;
         private String userProfile;
     }
+    @AllArgsConstructor
+    @Getter
+    public static class patch {
+        private String username;
+        private String password;
+        private String userProfile;
+    }
     @Getter
     @AllArgsConstructor
     public static class response {
@@ -35,7 +42,6 @@ public class AuthDTO {
         private String userProfile;
     }
 
-    @AllArgsConstructor
     @Getter
     public static class loginRequest {
         private String email;

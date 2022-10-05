@@ -1,7 +1,7 @@
 package com.minimi.backend.community.likes.service;
 
-import com.minimi.backend.auth.domain.Auth;
-import com.minimi.backend.auth.domain.MemberRepository;
+import com.minimi.backend.member.domain.Member;
+import com.minimi.backend.member.domain.MemberRepository;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.likes.domain.Likes;
@@ -18,7 +18,7 @@ public class LikesService {
     private final LikesRepository likesRepository;
     private final MemberRepository memberRepository;
     private final ContentsRepository contentsRepository;
-    private Auth auth;
+    private Member member;
 
     public void createLikes(LikesDTO likesDTO) {
         if (findLikes(likesDTO).isPresent()) {
@@ -28,7 +28,7 @@ public class LikesService {
             Likes likes = Likes.builder()
                     .contentsId(likesDTO.getContentsId())
                     .username(likesDTO.getUsername())
-                    .auth(memberRepository.findByUsername(likesDTO.getUsername()))
+                    .member(memberRepository.findByUsername(likesDTO.getUsername()))
                     .build();
             System.out.println(memberRepository.findByUsername(likesDTO.getUsername()));
             Contents contents = contentsRepository.findById(likes.getContentsId()).orElseThrow();

@@ -1,9 +1,11 @@
-package com.minimi.backend.auth.domain;
+package com.minimi.backend.member.domain;
 
 import com.minimi.backend.community.likes.domain.Likes;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,7 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Auth {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -24,10 +26,11 @@ public class Auth {
     private String password;
     @Column
     private String userProfile;
-    @Column
-    private String role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
     @OneToMany(
-            mappedBy = "auth",
+            mappedBy = "member",
             cascade = CascadeType.ALL)
     private List<Likes> likes;
+
 }

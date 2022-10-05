@@ -1,7 +1,6 @@
 package com.minimi.backend.mypage.myfacility;
 
 
-import com.minimi.backend.auth.domain.Auth;
 import com.minimi.backend.facility.facility.domain.Facility;
 import com.minimi.backend.facility.facility.domain.FacilityRepository;
 import com.minimi.backend.facility.facility.mapper.FacilityMapper;
