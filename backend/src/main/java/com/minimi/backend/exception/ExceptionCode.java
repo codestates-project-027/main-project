@@ -8,7 +8,7 @@ public enum ExceptionCode {
     EMAIL_EXISTS(409, "Email exists"),
     CONTENTS_NOT_FOUND(404, "Contents not found"),
     COMMENT_NOT_FOUND(404, "Comment not found"),
-    USER_NOT_EQUAL(403,"Username Not Equal"),
+    NO_PERMISSIONS(403,"No permissions"),
     LIKE_NOT_FOUND(404, "Like not found"),
     LIKE_EXISTS(409, "Like exists");
 

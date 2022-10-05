@@ -36,12 +36,13 @@ public class ContentsService {
 
     public void crateContents(ContentsDTO contentsDTO){
 
-        checkName(contentsDTO,getLoginName());
+        checkName(contentsDTO.getUsername());
         Contents contents = contentsRepository.save(
                 contentsMapper.contentsDTOToContents(contentsDTO));
     }
     public Contents patchContents(ContentsDTO.patch patch, Long contentsId){
         Contents contents = findContents(contentsId);
+        checkName(contents.getUsername());
         Optional.ofNullable(patch.getTitle())
                         .ifPresent(title -> contents.setTitle(title));
         Optional.ofNullable(patch.getContents())
@@ -50,7 +51,9 @@ public class ContentsService {
         return contentsRepository.save(contents);
     }
     public void deleteContents(Long contentsId){
-        contentsRepository.delete(findContents(contentsId));
+        Contents contents=findContents(contentsId);
+        checkName(contents.getUsername());
+        contentsRepository.delete(contents);
     }
 
     //---------------------------------------
@@ -103,14 +106,16 @@ public class ContentsService {
             updateViews(id);
         }
     }
-    public void checkName(ContentsDTO contentsDTO, String loginName){
-
+    public void checkName(String username){
+        if(!getLoginName().equals(username)) {
+            throw new BusinessLogicException(ExceptionCode.NO_PERMISSIONS);
+        }
     }
     public String getLoginName(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = (String) authentication.getName();
         Optional<Member> member = memberRepository.findByEmail(username);
-
-        return member.get().getUsername();
+        String loginName=member.get().getUsername();
+        return loginName;
     }
 }
