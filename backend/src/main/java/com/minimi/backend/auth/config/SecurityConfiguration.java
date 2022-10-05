@@ -57,20 +57,9 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/*/members").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/*/members/**").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
-                        .antMatchers(HttpMethod.POST, "/*/coffees").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PATCH, "/*/coffees/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/coffees/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/coffees").permitAll()
-                        .antMatchers(HttpMethod.DELETE, "/*/coffees").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST, "/*/orders").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/*/orders").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/orders/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/*/orders").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/patchmember/**","/contents/**","/comment/**","/likes").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/contents/**","/comment/**","/likes").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/contents/**","/comment/**","/likes").hasRole("USER")
                         .anyRequest().permitAll()
                 );
         return http.build();
