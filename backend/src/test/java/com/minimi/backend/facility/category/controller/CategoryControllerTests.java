@@ -150,7 +150,7 @@ public class CategoryControllerTests {
         facilityList.add(facility);
         facilityList.add(facility1);
         facilityList.add(facility2);
-        Slice<ResponseFacilityDto.facilityPageFromCategory> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 5),false);
+        Slice<ResponseFacilityDto.facilityPageFromCategory> categorySlice = new SliceImpl<>(facilityList,PageRequest.of(page-1, 10),false);
         given(categoryService.getCategory(Mockito.anyString(),Mockito.anyInt())).willReturn(categorySlice);
         ResultActions actions = mockMvc.perform(
                 get("/category/{categoryCode}", categoryCode)

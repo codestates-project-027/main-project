@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/dailyCheck")
+@RequestMapping("/dailycheck")
 @RequiredArgsConstructor
 public class DailyCheckController {
 

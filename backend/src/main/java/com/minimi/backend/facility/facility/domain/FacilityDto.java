@@ -9,6 +9,7 @@ public class FacilityDto {
 
     @AllArgsConstructor
     @Getter
+    @Setter
     public static class responsePage{
         private Long facilityId;
         private String facilityName;

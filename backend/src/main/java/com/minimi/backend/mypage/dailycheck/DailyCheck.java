@@ -17,23 +17,23 @@ public class DailyCheck {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
+    @Column
     private Long dailyCheckId;
 
     @Column(unique = true)
     private String username;
 
     @Column
-    private LocalDate update;
+    private String dailyUpdate;
 
     @Convert(converter = DailyCheckListConverter.class)
     @Column
-    private List<String> checkList;
+    private List<String> checkDailyList;
 
     @Builder
-    public DailyCheck(String username, List<String> checkList, LocalDate update){
+    public DailyCheck(String username, List<String> checkDailyList, String dailyUpdate){
         this.username = username;
-        this.checkList = checkList;
-        this.update = update;
+        this.checkDailyList = checkDailyList;
+        this.dailyUpdate = dailyUpdate;
     }
 }

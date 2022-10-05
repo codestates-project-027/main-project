@@ -54,7 +54,7 @@ public class DailyCheckControllerTests {
         given(dailyCheckService.postCheck(Mockito.any(DailyCheckDto.request.class))).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
-                post("/dailyCheck")
+                post("/dailycheck")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(content)
@@ -80,46 +80,42 @@ public class DailyCheckControllerTests {
         ));
     }
 
-//    @Test
-//    public void getDailyChecks() throws Exception {
-//        String username = "MiniMiUser";
-//        List<Boolean> dailyCheckList = new ArrayList<>();
-//        for (int i=0;i<31;i++) {
-//            dailyCheckList.add(false);
-//        }
-//        dailyCheckList.set(3, true);
-//        dailyCheckList.set(4, true);
-//        dailyCheckList.set(6, true);
-//        DailyCheckDto.ResponseCalendar responseCalendar = new DailyCheckDto.ResponseCalendar(username,dailyCheckList);
-//        given(dailyCheckService.getDailyChecks(Mockito.anyString())).willReturn(responseCalendar);
-//
-//        ResultActions actions = mockMvc.perform(
-//                get("/dailyCheck/{username}", username)
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//        );
-//        actions.andExpect(status().isOk())
-//                .andExpect(jsonPath(".username").value(username))
-//                .andExpect(jsonPath(".dailyCheckList[0]").value(dailyCheckList.get(0)))
-//                .andExpect(jsonPath(".dailyCheckList[1]").value(dailyCheckList.get(1)))
-//                .andExpect(jsonPath(".dailyCheckList[2]").value(dailyCheckList.get(2)))
-//                .andExpect(jsonPath(".dailyCheckList[3]").value(dailyCheckList.get(3)))
-//                .andExpect(jsonPath(".dailyCheckList[4]").value(dailyCheckList.get(4)))
-//                .andExpect(jsonPath(".dailyCheckList[5]").value(dailyCheckList.get(5)))
-//                .andExpect(jsonPath(".dailyCheckList[6]").value(dailyCheckList.get(6)))
-//                .andExpect(jsonPath(".dailyCheckList[30]").value(dailyCheckList.get(30)))
-//                .andDo(document(
-//                        "get-dailyChecks",
-//                        getResponsePreProcessor(),
-//                        pathParameters(
-//                                parameterWithName("username").description("회원 닉네임")
-//                        ),
-//                        responseFields(
-//                                List.of(
-//                                        fieldWithPath("username").type(JsonFieldType.STRING).description("회원 닉네임"),
-//                                        fieldWithPath("dailyCheckList").type(JsonFieldType.ARRAY).description("내 출석 리스트")
-//                                )
-//                        )
-//                ));
-//    }
+    @Test
+    public void getDailyChecks() throws Exception {
+        String username = "MiniMiUser";
+        List<String> dailyCheckList = new ArrayList<>();
+        dailyCheckList.add("true");
+        dailyCheckList.add("true");
+        dailyCheckList.add("false");
+        dailyCheckList.add("true");
+
+        DailyCheckDto.ResponseCalendar responseCalendar = new DailyCheckDto.ResponseCalendar(username,dailyCheckList);
+        given(dailyCheckService.getDailyChecks(Mockito.anyString())).willReturn(responseCalendar);
+
+        ResultActions actions = mockMvc.perform(
+                get("/dailycheck/{username}", username)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        actions.andExpect(status().isOk())
+                .andExpect(jsonPath(".username").value(username))
+                .andExpect(jsonPath(".checkDailyList[0]").value(dailyCheckList.get(0)))
+                .andExpect(jsonPath(".checkDailyList[1]").value(dailyCheckList.get(1)))
+                .andExpect(jsonPath(".checkDailyList[2]").value(dailyCheckList.get(2)))
+                .andExpect(jsonPath(".checkDailyList[3]").value(dailyCheckList.get(3)))
+                .andDo(document(
+                        "get-dailyChecks",
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("username").description("회원 닉네임")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("username").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("checkDailyList").type(JsonFieldType.ARRAY).description("내 출석 리스트")
+                                )
+                        )
+                ));
+    }
+
 }
