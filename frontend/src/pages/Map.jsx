@@ -38,22 +38,6 @@ const MapPage = () => {
     geolocation.getCurrentPosition(handleSuccess, handleError);
   };
 
-  //example - 시설 빠르게 지우기
-  // const getFacilityAXIOS = async () => {
-  //   //76부터 시작
-  //   await axiosInstance
-  //     .get('/facility/77')
-  //     .then((res) => console.log(res.data.facilityId, res.data));
-  //   // console.log(categoryState);
-  // };
-
-  // const deleteFacilityAXIOS = async () => {
-  //   //28
-  //   await axiosInstance
-  //     .delete('/facility/')
-  //     .then((res) => console.log(res.status));
-  // };
-
   const getFacilitiesAXIOS = async () => {
     const response = await axiosInstance.get(
       '/facility?location=' +
@@ -65,19 +49,18 @@ const MapPage = () => {
     setData(response.data.content);
   };
 
-  
-
   if (data.length !== undefined) {
     data.map((el) =>
       locaForMarkers.push({
         id: el.facilityId,
         title: el.facilityName,
-        latlng:{lat:el.location.split(',')[0], lng:el.location.split(',')[1]},
+        latlng: {
+          lat: el.location.split(',')[0],
+          lng: el.location.split(',')[1],
+        },
       })
     );
   }
-
-  console.log(data)
 
   useEffect(() => {
     getFacilitiesAXIOS();

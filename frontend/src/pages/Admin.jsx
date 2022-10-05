@@ -14,17 +14,18 @@ const AdminPage = () => {
   const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
+  const [fin, setFin] = useState(false);
 
-  const getCategoryAXIOS = useCallback(async () => {
-    await axiosInstance.get('/category?active=false').then((res) => {
-      dispatch(getCategory({ list: res.data }));
-    });
-  }, [categoryState]);
+  // const getCategoryAXIOS = useCallback(async () => {
+  //   await axiosInstance.get('/category?active=false').then((res) => {
+  //     dispatch(getCategory({ list: res.data }));
+  //   });
+  // }, [categoryState]);
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
     if (idx === 0) {
-      getCategoryAXIOS();
+      // getCategoryAXIOS();
       console.log('categoryState:', categoryState);
     } else if (idx === 1) {
       setType('생성');
@@ -32,8 +33,12 @@ const AdminPage = () => {
   };
 
   useEffect(() => {
-    getCategoryAXIOS();
-  }, []);
+    axiosInstance.get('/category?active=false').then((res) => {
+      dispatch(getCategory({ list: res.data }));
+    });
+  }, [fin]);
+
+  console.log(fin);
 
   const btnContent = ['Read', 'Create', 'Edit'];
 
@@ -59,7 +64,16 @@ const AdminPage = () => {
             );
           })}
         </BtnsWrapper>
-        {btnIdx !== 0 ? <InputCategoryForm type={type} idx={btnIdx} /> : ''}
+        {btnIdx !== 0 ? (
+          <InputCategoryForm
+            fin={fin}
+            setFin={setFin}
+            type={type}
+            idx={btnIdx}
+          />
+        ) : (
+          ''
+        )}
       </AdminGlobal>
     </>
   );
