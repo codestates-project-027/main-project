@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,10 @@ public class ContentsController {
     //post Content
     @PostMapping("")
     public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO){
-//        String checkName= memberDetails.getUserName();
-//        if(!contentsDTO.getUsername().equals(checkName)) throw new BusinessLogicException(ExceptionCode.USER_NOT_EQUAL);
+
+
+
+
                 contentsService.crateContents(contentsDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }

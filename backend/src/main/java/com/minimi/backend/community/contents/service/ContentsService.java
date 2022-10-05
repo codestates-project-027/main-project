@@ -8,11 +8,15 @@ import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
 import com.minimi.backend.exception.BusinessLogicException;
 import com.minimi.backend.exception.ExceptionCode;
+import com.minimi.backend.member.domain.Member;
+import com.minimi.backend.member.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -27,10 +31,12 @@ import java.util.prefs.BackingStoreException;
 public class ContentsService {
 
     private  final ContentsRepository contentsRepository;
+    private  final MemberRepository memberRepository;
     private  final ContentsMapper contentsMapper;
 
     public void crateContents(ContentsDTO contentsDTO){
 
+        checkName(contentsDTO,getLoginName());
         Contents contents = contentsRepository.save(
                 contentsMapper.contentsDTOToContents(contentsDTO));
     }
@@ -96,5 +102,15 @@ public class ContentsService {
             response.addCookie(newCookie);
             updateViews(id);
         }
+    }
+    public void checkName(ContentsDTO contentsDTO, String loginName){
+
+    }
+    public String getLoginName(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = (String) authentication.getName();
+        Optional<Member> member = memberRepository.findByEmail(username);
+
+        return member.get().getUsername();
     }
 }
