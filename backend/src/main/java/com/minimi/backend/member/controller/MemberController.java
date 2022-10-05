@@ -15,11 +15,6 @@ import javax.validation.Valid;
 public class MemberController {
     private final MemberService memberService;
 
-    //login
-    @PostMapping("/login")
-    public String login() {
-        return "로그인 완료";
-    }
 
     @PostMapping("/join")
     public ResponseEntity join(@Valid @RequestBody Member member) {

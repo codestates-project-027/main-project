@@ -1,10 +1,12 @@
 package com.minimi.backend.community.contents.service;
 
+import com.minimi.backend.auth.userdetails.MemberDetailsService;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsDTO;
 //import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
+import com.minimi.backend.exception.BusinessLogicException;
 import com.minimi.backend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -54,7 +56,8 @@ public class ContentsService {
 //--------------------------------------------------
     public Contents findContents(Long contentsId){
         Optional<Contents> contents = contentsRepository.findById(contentsId);
-        Contents findContents = contents.orElseThrow();
+        Contents findContents = contents.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.CONTENTS_NOT_FOUND));
         return findContents;
     }
     //test용

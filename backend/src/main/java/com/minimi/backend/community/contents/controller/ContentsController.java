@@ -4,6 +4,8 @@ import com.minimi.backend.auth.userdetails.MemberDetailsService;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsDTO;
 import com.minimi.backend.community.contents.service.ContentsService;
+import com.minimi.backend.exception.BusinessLogicException;
+import com.minimi.backend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -26,9 +28,9 @@ public class ContentsController {
     //post Content
     @PostMapping("")
     public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO){
-
-
-        contentsService.crateContents(contentsDTO);
+//        String checkName= memberDetails.getUserName();
+//        if(!contentsDTO.getUsername().equals(checkName)) throw new BusinessLogicException(ExceptionCode.USER_NOT_EQUAL);
+                contentsService.crateContents(contentsDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     //patch Content

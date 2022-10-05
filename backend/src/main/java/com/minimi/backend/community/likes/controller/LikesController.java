@@ -21,7 +21,7 @@ public class LikesController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     //delete like
-        @DeleteMapping("/{contentId}")
+        @DeleteMapping("/{likesId}")
         private ResponseEntity deleteLikes(@PathVariable Long likesId){
             likesService.deleteLikes(likesId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
