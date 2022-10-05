@@ -28,8 +28,6 @@ public class Contents {
     @Column
     private String username;
     @Column
-    private String userProfile;
-    @Column
     private int commentNumber;
     @Column
     private LocalDateTime createdAt;
@@ -41,12 +39,11 @@ public class Contents {
     @OneToMany(mappedBy = "contents", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
     @Builder
-    public Contents(String title, String contents, String username, String userProfile){
+    public Contents(String title, String contents, String username){
         this.title = title;
         this.contents = contents;
         this.username = username;
         this.views = 0;
-        this.userProfile = userProfile;
         this.createdAt = LocalDateTime.now();
     }
 }
