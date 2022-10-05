@@ -24,8 +24,6 @@ public class Member {
     private String username; //nickname으로 사용
     @Column
     private String password;
-    @Column
-    private String userProfile;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
     @OneToMany(

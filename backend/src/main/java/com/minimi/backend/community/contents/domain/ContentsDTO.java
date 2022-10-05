@@ -15,19 +15,17 @@ public class ContentsDTO {
     private String contents;
     private String username;
     private LocalDateTime createdAt;
-    private String userProfile;
     private int views;
     private int likes;
     private List<CommentDTO.comment> comment;
 
     @Builder
-    public ContentsDTO(Long contentsId, String title, String contents, String username,LocalDateTime createdAt,String userProfile,int views,int likes,List<CommentDTO.comment> comment){
+    public ContentsDTO(Long contentsId, String title, String contents, String username,LocalDateTime createdAt,int views,int likes,List<CommentDTO.comment> comment){
         this.contentsId=contentsId;
         this.title=title;
         this.contents=contents;
         this.username=username;
         this.createdAt=createdAt;
-        this.userProfile=userProfile;
         this.views=views;
         this.likes=likes;
         this.comment=comment;
@@ -50,7 +48,6 @@ public class ContentsDTO {
         private String contents;
         private String username;
         private LocalDateTime createdAt;
-        private String userProfile;
         private int views;
         private int likes;
         private List<CommentDTO.comment> comment;
