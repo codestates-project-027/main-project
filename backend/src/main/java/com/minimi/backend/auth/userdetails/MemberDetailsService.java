@@ -36,6 +36,7 @@ public class MemberDetailsService implements UserDetailsService {
         MemberDetails(Member member) {
             setMemberId(member.getMemberId());
             setEmail(member.getEmail());
+            setUsername(member.getUsername());
             setPassword(member.getPassword());
             setRoles(member.getRoles());
         }
@@ -49,6 +50,7 @@ public class MemberDetailsService implements UserDetailsService {
         public String getUsername() {
             return getEmail();
         }
+        public String getUserName(){return getUsername();}
 
         @Override
         public boolean isAccountNonExpired() {
