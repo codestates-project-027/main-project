@@ -47,6 +47,8 @@ const MainPage = () => {
       });
   }
 
+  console.log('entered')
+
   const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
 
   return (
