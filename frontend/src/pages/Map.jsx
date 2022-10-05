@@ -65,6 +65,8 @@ const MapPage = () => {
     setData(response.data.content);
   };
 
+  
+
   if (data.length !== undefined) {
     data.map((el) =>
       locaForMarkers.push({
@@ -74,6 +76,8 @@ const MapPage = () => {
       })
     );
   }
+
+  console.log(data)
 
   useEffect(() => {
     getFacilitiesAXIOS();

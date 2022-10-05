@@ -3,14 +3,12 @@ import { useEffect } from 'react';
 import { getTest } from '../redux/slices/testSlice';
 
 const TestPage = () => {
-  const dispatch = useDispatch();
-  const testState = useSelector((state) => state.testSlice);
-
-  useEffect(()=>{
-    dispatch(getTest())
-  },[])
-
-  console.log(testState)
+  return (
+    <form>
+      <input type="text" required></input>
+      <button type="submit">제출</button>
+    </form>
+  );
 };
 
 export default TestPage;
