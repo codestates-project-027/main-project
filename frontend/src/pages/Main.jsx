@@ -56,6 +56,7 @@ const MainPage = () => {
     });
   }
 
+
   useEffect(() => {
     getCategoryAXIOS();
   }, []);
