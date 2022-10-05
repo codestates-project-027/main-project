@@ -36,15 +36,15 @@ const MapContainer = ({ locaForMarkers }) => {
     //get 요청 보내기.. star 자리로부터 거리계산기
   };
 
-  const checkAXIOS = async () => {
-    try {
-      await axiosInstance
-        .get(`/facility/76`)
-        .then((res) => console.log(res.data));
-    } catch (err) {
-      console.log(err.response);
-    }
-  };
+  // const checkAXIOS = async () => {
+  //   try {
+  //     await axiosInstance
+  //       .get(`/facility/76`)
+  //       .then((res) => console.log(res.data));
+  //   } catch (err) {
+  //     console.log(err.response);
+  //   }
+  // };
 
   useEffect(() => {}, [locationState]);
 
