@@ -107,15 +107,13 @@ public class ContentsService {
         }
     }
     public void checkName(String username){
-        if(!getLoginName().equals(username)) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = (String) authentication.getName();
+        Optional<Member> member = memberRepository.findByEmail(name);
+        String loginName=member.get().getUsername();
+        if(!loginName.equals(username)) {
             throw new BusinessLogicException(ExceptionCode.NO_PERMISSIONS);
         }
     }
-    public String getLoginName(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = (String) authentication.getName();
-        Optional<Member> member = memberRepository.findByEmail(username);
-        String loginName=member.get().getUsername();
-        return loginName;
-    }
+
 }
