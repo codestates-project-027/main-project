@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { SearchbarWBtn } from '../components/Bar/Searchbar';
 
 import { FacilityCard } from '../components/Card/FacilityCard';
@@ -9,6 +9,8 @@ import { MainPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { MainPageBtnsGroupStyle } from '../styles/components/ComponentGroupStyle';
 import { MainQuickBtnGroup } from '../components/Group/BtnAndTagGroup';
 import { StyledLink } from '../styles/components/TextStyles';
+import axiosInstance from '../api/Interceptor';
+import { getCategory } from '../redux/slices/categorySlice';
 
 //icons
 import { IoIosFitness } from 'react-icons/io';
@@ -23,7 +25,20 @@ import { TbSoccerField } from 'react-icons/tb';
 import { H3 } from '../components/Text/Head';
 
 const MainPage = () => {
-  const categoryState = useSelector((state) => state.category);
+  const dispatch = useDispatch();
+  const [data, setData] = useState({ list: [] });
+  const getCategoryAXIOS = useCallback(async () => {
+    const response = await axiosInstance.get('/category?active=false');
+    setData({ list: response.data });
+    dispatch(getCategory({ list: response.data }));
+  }, [setData]);
+
+  useEffect(() => {
+    getCategoryAXIOS();
+  }, []);
+
+  console.log(data.list.length);
+
   const iconSet = [
     <></>,
     <></>,
@@ -39,12 +54,14 @@ const MainPage = () => {
 
   const activeCategory = [];
   for (let i = 2; i < iconSet.length; i++) {
+    if (data.list.length !== 0) {
       activeCategory.push({
         idx: i,
-        text: categoryState.list[i].categoryTitle,
-        code: categoryState.list[i].categoryCode,
+        text: data.list[i].categoryTitle,
+        code: data.list[i].categoryCode,
         icon: iconSet[i],
       });
+    }
   }
 
   const split = [activeCategory.slice(0, 4), activeCategory.slice(4)];
