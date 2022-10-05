@@ -9,12 +9,11 @@ const PATH = {
 
   CATEGORY: '/category/:id',
 
-  FACILITY: '/facility/:id', //무한 요청
+  FACILITY: '/facility/:id',
   FACILITIES: '/facility', 
 
   REGISTERFACILITY: '/facility/register',
-  EDITFACILITY: '/facility/edit/:id', //->facility/edit/:id
-  // POSTREVIEW, EDITREVIEW-> Modal창
+  EDITFACILITY: '/facility/edit/:id', 
 
   MAP: '/map',
   ALARMS: '/alarms',
