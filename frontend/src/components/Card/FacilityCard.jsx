@@ -108,7 +108,11 @@ export const FBaseCard = ({ Detail, mode, fin, setFin }) => {
                     )}
                   </div>
                   <div className="tags">
-                    <TagGroup tags={el.categoryList.slice(0, 4)} />
+                    <TagGroup
+                      tags={el.categoryList.slice(0, 4)}
+                      fin={fin}
+                      setFin={setFin}
+                    />
                   </div>
                 </div>
               </div>

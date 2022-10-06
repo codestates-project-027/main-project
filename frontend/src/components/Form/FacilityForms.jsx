@@ -75,8 +75,6 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   const dataSet = {
     facilityName,
     facilityInfo,
-    // address: `${facilityState.address} ${address2}`,
-    // registerFac
     address: mode==='edit'? `${facilityState.address} ${address2}` : registerFac.address,
     website,
     phone,
@@ -107,7 +105,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     } catch (err) {
       console.log(err.response);
     }
-    console.log('dataSet:', dataSet, file);
+    // console.log('dataSet:', dataSet, file);
   };
 
   const postHandler = () => {
@@ -130,8 +128,6 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     } else onSubmitEdit();
   };
 
-  console.log(dataSet.address);
-  //////////////////
   //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
 
   const EditFacilityAXIOS = async () => {
