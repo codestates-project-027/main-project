@@ -11,21 +11,15 @@ import { Textarea } from '../InputTextarea/FormTextarea';
 import { RoundBtn, BigBtn } from '../Button/Btns';
 
 //기능 구현 후 합칠 예정
-export const CReviewModal = ({ setReview }) => {
+export const CReviewModal = ({ setReview, fin, setFin }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const { id } = useParams();
   const body = {
     facilityId: id,
-    username: 'MinimiUser',
+    username: 'minimiUser',
     contents: value,
   };
-
-  // const getReview = async () => {
-  //   await axiosInstance.get('/review/' + id + '?page=1').then((res) => {
-  //     dispatch(getReview({ list: res.data }));
-  //   });
-  // };
 
   const getReview = async () => {
     await axiosInstance.get('/review/' + id + '?page=1').then((res) => {
@@ -38,11 +32,12 @@ export const CReviewModal = ({ setReview }) => {
       .post('/review', body)
       .then((res) => console.log(res.status));
     setOpen(false);
+    setFin(!fin);
   };
 
   useEffect(() => {
     getReview();
-  }, []);
+  }, [fin]);
 
   return (
     <>
@@ -81,7 +76,13 @@ export const CReviewModal = ({ setReview }) => {
   );
 };
 
-export const UReviewModal = ({ RVcontents, setRVContents, review }) => {
+export const UReviewModal = ({
+  RVcontents,
+  setRVContents,
+  review,
+  fin,
+  setFin,
+}) => {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
   const body = {
@@ -89,14 +90,12 @@ export const UReviewModal = ({ RVcontents, setRVContents, review }) => {
     contents: RVcontents,
   };
 
-  //콘솔로그
-  console.log(body);
-
   const editReview = async () => {
     await axiosInstance
       .patch('/review/' + id + '/' + review.reviewId, body)
       .then((res) => console.log(res.status));
     setOpen(false);
+    setFin(!fin);
   };
 
   return (
@@ -135,7 +134,7 @@ export const UReviewModal = ({ RVcontents, setRVContents, review }) => {
   );
 };
 
-export const ChoiceModal = ({ text, btn, review }) => {
+export const ChoiceModal = ({ text, btn, review, fin, setFin }) => {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
 
@@ -145,6 +144,7 @@ export const ChoiceModal = ({ text, btn, review }) => {
       .delete('/review/' + id + '/' + review.reviewId)
       .then((res) => console.log(res.status));
     setOpen(false);
+    setFin(!fin)
   };
 
   return (

@@ -26,12 +26,13 @@ import theme from '../styles/mui/theme';
 import axiosInstance from '../api/Interceptor';
 import { patchFacility } from '../redux/slices/facilitySlice';
 
-const FacilityPage = () => {
+const FacilityPage = ({ fin, setFin }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
   const [tags, setTags] = useState([]);
   const [imgs, setImgs] = useState([]);
+
   const [review, setReview] = useState({
     reviewId: 0,
     contents: '',
@@ -149,13 +150,14 @@ const FacilityPage = () => {
   // ];
 
   const postMyFacility = async () => {
-    const body ={
-      username: "MinimiUser",
-      facilityId: id
-    }
-    await axiosInstance.post('/myfacility',body).then(res=>alert(`나의 시설에 추가되었습니다`))
-    
-  }
+    const body = {
+      username: 'minimiUser',
+      facilityId: id,
+    };
+    await axiosInstance
+      .post('/myfacility', body)
+      .then((res) => alert(`나의 시설에 추가되었습니다`));
+  };
 
   return (
     <>
@@ -190,18 +192,24 @@ const FacilityPage = () => {
           </div>
           <FacilityDescGroup facility={facility} />
           <div className="btns--wrapper">
-            {/* <BigBtn marginRight="15px">찜</BigBtn> */}
             <BigBtn onClick={postMyFacility}>내 시설 등록</BigBtn>
           </div>
           <Div className="reviews--wrapper" marginTop="30px">
             {Array.isArray(review)
               ? review.map((el) => {
-                  return <ReviewCard key={el.reviewId} review={el} />;
+                  return (
+                    <ReviewCard
+                      key={el.reviewId}
+                      review={el}
+                      fin={fin}
+                      setFin={setFin}
+                    />
+                  );
                 })
               : null}
           </Div>
           <Div className="btns--wrapper" marginTop="15px">
-            <CReviewModal setReview={setReview} />
+            <CReviewModal setReview={setReview} fin={fin} setFin={setFin} />
           </Div>
         </ThemeProvider>
       </FacilityPageGlobal>

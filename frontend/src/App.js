@@ -1,5 +1,5 @@
 import './App.css';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -32,7 +32,6 @@ import { RegisterFacilityPage } from './pages/HandleFacility';
 import { EditFacilityPage } from './pages/HandleFacility';
 
 import AdminPage from './pages/Admin';
-
 import CommunityPage from './pages/Community';
 import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
@@ -42,7 +41,7 @@ import EditPostPage from './pages/EditPost';
 import CircularIndeterminate from './components/Bar/Loadingbar';
 
 function App() {
-
+  const [fin, setFin] = useState(false);
   return (
     <>
       <div className="App">
@@ -62,11 +61,11 @@ function App() {
               <Route element={<LayoutCurrentMenu />}>
                 <Route
                   path={PATH.MYPAGE}
-                  element={<MyPage type="마이 페이지" />}
+                  element={<MyPage fin={fin} setFin={setFin} type="마이 페이지" />}
                 />
                 <Route
                   path={PATH.FACILITY}
-                  element={<FacilityPage type="운동 시설" />}
+                  element={<FacilityPage fin={fin} setFin={setFin}  type="운동 시설" />}
                 />
                 <Route
                   path={PATH.REGISTERFACILITY}

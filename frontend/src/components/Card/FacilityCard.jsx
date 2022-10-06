@@ -149,7 +149,15 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
   );
 };
 
-export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
+export const FacilityDescCard = ({
+  text,
+  backGround,
+  color,
+  el,
+  show,
+  fin,
+  setFin,
+}) => {
   const checkLocation = useSelector((state) => state.location.currentLocation);
   const dailyCheck = async () => {
     const body = {
@@ -160,6 +168,7 @@ export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
     try {
       await axiosInstance.post('/dailycheck', body);
       alert(`출석 되었습니다.`);
+      setFin(!fin);
     } catch (err) {
       alert(`Location failure: 현재 위치가 해당 시설과 멀리 있습니다.`);
     }
@@ -168,7 +177,7 @@ export const FacilityDescCard = ({ text, backGround, color, el, show }) => {
   const cancelMyFac = async () => {
     await axiosInstance.delete('/myfacility/' + el.facilityId + '/minimiUser');
     alert(`나의 운동시설에서 삭제되었습니다.`);
-    window.location.reload();
+    setFin(!fin);
   };
 
   return (

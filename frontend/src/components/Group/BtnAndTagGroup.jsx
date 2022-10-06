@@ -56,6 +56,8 @@ export const TagGroup = ({
   close,
   backGround,
   margin,
+  fin,
+  setFin,
 }) => {
   const navigate = useNavigate();
   const handleRemove = (idxToRemove) => {

@@ -72,7 +72,7 @@ const AdminPage = () => {
         ) : (
           ''
         )}
-        {console.log(toggle, fin)}
+        {/* {console.log(toggle, fin)} */}
       </AdminGlobal>
     </>
   );
