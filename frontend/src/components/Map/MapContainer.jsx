@@ -46,7 +46,7 @@ const MapContainer = ({ locaForMarkers }) => {
   //   }
   // };
 
-  useEffect(() => {}, [locationState]);
+  useEffect(() => {}, [locaForMarkers]);
 
   return (
     <>

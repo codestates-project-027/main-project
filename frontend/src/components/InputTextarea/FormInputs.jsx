@@ -13,10 +13,12 @@ export const Input = ({
   value,
   onChange,
   width,
+  required,
 }) => {
   return IDPW ? (
     <NavyInputGlobal>
       <input
+        required={required}
         className="input"
         type={type}
         placeholder={placeholder}
@@ -28,6 +30,7 @@ export const Input = ({
   ) : (
     <WhiteInputGlobal>
       <input
+        required={required}
         name={name}
         className="input"
         type={type}

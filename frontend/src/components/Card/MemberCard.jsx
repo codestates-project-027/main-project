@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import axiosInstance from '../../api/Interceptor';
 import CharLogo from '../../assets/logo/minimi-char.png';
 
-export const MemberCard = ({ Flex }) => {
+export const MemberCard = ({ Flex, fin, setFin }) => {
   const [days, setDays] = useState({
     username: '',
     checkDailyList: [],
@@ -24,7 +24,7 @@ export const MemberCard = ({ Flex }) => {
 
   useEffect(() => {
     getDailyChecks();
-  }, []);
+  }, [fin]);
 
   const attended =
     days.username !== ''

@@ -14,7 +14,7 @@ import AddressUploader from '../Address/AddressUploader';
 import axiosInstance from '../../api/Interceptor';
 import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
 
-export const FacilityForm = ({ mode, setFin }) => {
+export const FacilityForm = ({ mode, fin, setFin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -43,6 +43,7 @@ export const FacilityForm = ({ mode, setFin }) => {
           facilityName: '',
           facilityPhotoList: [],
           facilityInfo: '',
+          address: '',
           address2: '',
           website: '',
           phone: '',
@@ -69,27 +70,29 @@ export const FacilityForm = ({ mode, setFin }) => {
     });
   };
 
+  //make form utils
+  const formData = new FormData();
+  const dataSet = {
+    facilityName,
+    facilityInfo,
+    address: mode==='edit'? `${facilityState.address} ${address2}` : registerFac.address,
+    website,
+    phone,
+    location: facilityState.location,
+    categoryList: tagsList,
+  };
+
+  const file = images.length === 0 ? null : images.map((el) => el.file);
+
+  formData.append(
+    'request',
+    new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
+  );
+
+  formData.append('file', !file ? null : new Blob(file));
+
+  //axios
   const postFacilityAXIOS = async () => {
-    const formData = new FormData();
-    const dataSet = {
-      facilityName,
-      facilityInfo,
-      address: `${facilityState.address} ${address2}`,
-      website,
-      phone,
-      location: facilityState.location,
-      categoryList: tagsList,
-    };
-
-    const file = images.length === 0 ? null : images.map((el) => el.file);
-
-    formData.append(
-      'request',
-      new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
-    );
-
-    formData.append('file', !file? null : new Blob(file));
-
     try {
       await axiosInstance
         .post(`/facility`, formData, {
@@ -98,39 +101,37 @@ export const FacilityForm = ({ mode, setFin }) => {
           },
         })
         .then((res) => console.log('status:', res.status));
-      setFin(true);
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }
-    console.log('dataSet:', dataSet, file);
+    // console.log('dataSet:', dataSet, file);
+  };
+
+  const postHandler = () => {
+    if (
+      dataSet.facilityName === '' ||
+      tagsList.length === 0 ||
+      !dataSet.address
+    ) {
+      alert(`시설 이름, 주소, 카테고리는 필수 항목입니다.`);
+    } else onSubmit();
+  };
+
+  const editHandler = () => {
+    if (
+      dataSet.facilityName === '' ||
+      tagsList.length === 0 ||
+      !facilityState.address
+    ) {
+      alert(`시설 이름, 주소, 카테고리는 필수 항목입니다.`);
+    } else onSubmitEdit();
   };
 
   //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
 
   const EditFacilityAXIOS = async () => {
-    const formData = new FormData();
-    const dataSet = {
-      facilityName,
-      facilityInfo,
-      address: `${facilityState.address} ${address2}`,
-      website,
-      phone,
-      location: facilityState.location,
-      categoryList: tagsList,
-    };
-
-    //새로고침해야 보임..
-    //한장만 업로드 가능,,..
-
-    formData.append(
-      'request',
-      new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
-    );
-    const file = images.length === 0 ? null : images.map((el) => el.file);
-    //img경로인 애를 file로 만들어야함..
-    formData.append('file', new Blob(file));
-
-    //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
+    //TO DO : img경로 -> file로 변환 필요 //사진을 굳이 안넣으면 원본 보존, 넣으면 변경됨
 
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
@@ -140,9 +141,8 @@ export const FacilityForm = ({ mode, setFin }) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-
         .then((res) => console.log('edit data:', res.data));
-      setFin(true);
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }
@@ -155,6 +155,7 @@ export const FacilityForm = ({ mode, setFin }) => {
       await axiosInstance
         .delete(`/facility/` + id)
         .then((res) => console.log('edit status:', res.status));
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }
@@ -194,6 +195,7 @@ export const FacilityForm = ({ mode, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="name">이름</Label>
           <Input
+            required
             name={'facilityName'}
             label={'name'}
             width="300px"
@@ -216,6 +218,7 @@ export const FacilityForm = ({ mode, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
           <Textarea
+            required
             mode="edit"
             type="facility"
             value={facilityInfo}
@@ -278,13 +281,17 @@ export const FacilityForm = ({ mode, setFin }) => {
         </div>
         <div className="btn--wrapper">
           <BigBtn
+            type="submit"
             marginRight="40px"
-            onClick={mode === 'edit' ? onSubmitEdit : onSubmit}
+            onClick={() => {
+              mode === 'edit' ? editHandler() : postHandler();
+            }}
           >
             {mode === 'edit' ? '시설 변경' : '시설 등록'}
           </BigBtn>
           {mode === 'edit' ? (
             <BigBtn
+              type="submit"
               color="red"
               hoverBg="black"
               onClick={mode === 'edit' ? onDelete : ''}

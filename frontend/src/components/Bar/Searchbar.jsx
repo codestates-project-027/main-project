@@ -29,7 +29,7 @@ export const Searchbar = ({ placeholder }) => {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState(list);
   const [selected, setSelected] = useState(-1);
-  const [code, setCode] = useState('-1');
+  const [code, setCode] = useState('000');
 
   useEffect(() => {
     if (inputValue === '') {
@@ -48,9 +48,11 @@ export const Searchbar = ({ placeholder }) => {
     const resultOptions = list.filter((option) => option.match(filterRegex));
     setOptions(resultOptions);
   };
- 
+
   const confirmCode = () => {
-    codeList.map((el) => (el.title === options.toString() ? setCode(el.code) : null));
+    codeList.map((el) =>
+      el.title === options.toString() ? setCode(el.code) : null
+    );
   };
 
   const handleDropDownClick = (clickedOption) => {
@@ -100,9 +102,13 @@ export const Searchbar = ({ placeholder }) => {
           ) : null}
 
           <IconWrapper marginRight={'13px'}>
-            <StyledLink to={`/category/${code}`}>
+            {code === '000' ? (
               <BiSearch size="20" />
-            </StyledLink>
+            ) : (
+              <StyledLink to={`/category/${code}`}>
+                <BiSearch size="20" />
+              </StyledLink>
+            )}
           </IconWrapper>
         </SearchbarGlobal>
         {hasText ? (

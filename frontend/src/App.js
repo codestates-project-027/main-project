@@ -1,5 +1,5 @@
 import './App.css';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -32,7 +32,6 @@ import { RegisterFacilityPage } from './pages/HandleFacility';
 import { EditFacilityPage } from './pages/HandleFacility';
 
 import AdminPage from './pages/Admin';
-
 import CommunityPage from './pages/Community';
 import WritingPage from './pages/AddPost';
 import PostingPage from './pages/Posting';
@@ -42,14 +41,14 @@ import EditPostPage from './pages/EditPost';
 import CircularIndeterminate from './components/Bar/Loadingbar';
 
 function App() {
-
+  const [fin, setFin] = useState(false);
   return (
     <>
       <div className="App">
         <Suspense fallback={<CircularIndeterminate />}>
           <AppPageGlobal>
             <Routes>
-              <Route element={<LayoutBase />}>
+              <Route element={<LayoutBase fin={fin} setFin={setFin} />}>
                 <Route path={PATH.TEST} element={<TestPage />} />
                 <Route path={PATH.SIGNUP} element={<SignUpPage />} />
                 <Route path={PATH.LOGIN} element={<LoginPage />} />
@@ -62,47 +61,68 @@ function App() {
               <Route element={<LayoutCurrentMenu />}>
                 <Route
                   path={PATH.MYPAGE}
-                  element={<MyPage type="마이 페이지" />}
+                  element={
+                    <MyPage fin={fin} setFin={setFin} type="마이 페이지" />
+                  }
                 />
                 <Route
                   path={PATH.FACILITY}
-                  element={<FacilityPage type="운동 시설" />}
+                  element={
+                    <FacilityPage fin={fin} setFin={setFin} type="운동 시설" />
+                  }
                 />
                 <Route
                   path={PATH.REGISTERFACILITY}
-                  element={<RegisterFacilityPage type="시설 등록" />}
+                  element={
+                    <RegisterFacilityPage
+                      fin={fin}
+                      setFin={setFin}
+                      type="시설 등록"
+                    />
+                  }
                 />
                 <Route
                   path={PATH.EDITFACILITY}
-                  element={<EditFacilityPage type="시설 변경" />}
+                  element={
+                    <EditFacilityPage
+                      fin={fin}
+                      setFin={setFin}
+                      type="시설 변경"
+                    />
+                  }
                 />
 
                 <Route
                   path={PATH.MAP}
-                  element={<MapPage type="지도로 보기" />}
+                  element={
+                    <MapPage type="지도로 보기" fin={fin} setFin={setFin} />
+                  }
                 />
                 <Route
                   path={PATH.ALARMS}
                   element={<AlarmsPage type="알림" />}
                 />
-                {/* <Route
-                  path={PATH.EDITMY}
-                  element={<EditMyFacilityPage type="내 정보 수정" />}
-                /> */}
-
-                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-                <Route
-                  path={PATH.COMMUNITIYWRITING}
-                  element={<WritingPage />}
-                />
-                <Route
-                  path={PATH.COMMUNITIYPOSTING}
-                  element={<PostingPage />}
-                />
 
                 <Route
                   path={PATH.ADMIN}
-                  element={<AdminPage type="관리자 페이지" />}
+                  element={
+                    <AdminPage fin={fin} setFin={setFin} type="관리자 페이지" />
+                  }
+                />
+              </Route>
+
+              <Route
+                element={<LayoutCurrentMenuSearch fin={fin} setFin={setFin} />}
+              >
+                <Route
+                  path={PATH.FACILITIES}
+                  element={<FacilitiesPage fin={fin} setFin={setFin} />}
+                />
+                <Route
+                  path={PATH.CATEGORY}
+                  element={
+                    <FacilitiesPage mode="category" fin={fin} setFin={setFin} />
+                  }
                 />
               </Route>
 
@@ -118,14 +138,6 @@ function App() {
                   element={<PostingPage />}
                 />
                 <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
-              </Route>
-
-              <Route element={<LayoutCurrentMenuSearch />}>
-                <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
-                <Route
-                  path={PATH.CATEGORY}
-                  element={<FacilitiesPage mode="category" />}
-                />
               </Route>
             </Routes>
           </AppPageGlobal>

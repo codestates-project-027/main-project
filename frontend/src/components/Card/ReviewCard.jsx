@@ -5,9 +5,8 @@ import { ReviewCardStyle } from '../../styles/components/CardStyle';
 import { H4 } from '../Text/Head';
 import { UReviewModal, ChoiceModal } from '../../components/Modal/ReviewModal';
 
-export const ReviewCard = ({ review }) => {
+export const ReviewCard = ({ review, fin, setFin }) => {
   const [isHover, setIsHover] = useState(false);
-  // const [RVId, setRVId] = useState(0);
   const [RVcontents, setRVContents] = useState(review.contents);
 
   return (
@@ -28,6 +27,8 @@ export const ReviewCard = ({ review }) => {
             {isHover ? (
               <div className="edit--wrapper">
                 <UReviewModal
+                  fin={fin}
+                  setFin={setFin}
                   review={review}
                   type="reviewEdit"
                   RVcontents={RVcontents}
@@ -35,6 +36,8 @@ export const ReviewCard = ({ review }) => {
                 />
                 <div style={{ marginLeft: '13px' }}>
                   <ChoiceModal
+                    fin={fin}
+                    setFin={setFin}
                     text={'삭제하시겠습니까?'}
                     btn={'✖️'}
                     review={review}

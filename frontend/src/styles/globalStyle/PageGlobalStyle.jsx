@@ -43,13 +43,14 @@ export const LoginPageGlobal = styled(PageGlobalBase)`
 `;
 
 export const SignUpPageGlobal = styled(PageGlobalBase)`
+  display: flex;
+  flex-direction: column;
   .logo {
-    width: 80px;
+    width: 10vh;
   }
   .signup-container {
     padding: 1rem;
   }
-
   .signup-info {
     display: flex;
     flex-direction: column;
@@ -57,22 +58,56 @@ export const SignUpPageGlobal = styled(PageGlobalBase)`
     width: 15rem;
     height: 15rem;
   }
-
   input {
     margin: 1rem;
     padding: 0.5rem;
     width: 20rem;
     height: 5vh;
+    text-align: start;
   }
-
+  .email-confirm-message {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 5.5rem;
+  }
+  .password-message {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 6.5rem;
+  }
+  .password-message-length {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 5rem;
+  }
+  .id-message {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 3.7rem;
+  }
+  .confirm-message {
+    color: red;
+    font-size: 10px;
+    position: relative;
+    bottom: 1vh;
+    right: 6rem;
+  }
   button {
     border: 1px solid var(--main-yellow);
     border-radius: 0.6rem;
     background-color: var(--main-yellow);
-    margin: 0.7rem;
+    position: relative;
+    top: 5rem;
     width: 7rem;
     height: 2.5rem;
-    margin-top: 60px;
   }
 `;
 

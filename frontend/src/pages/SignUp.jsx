@@ -82,9 +82,9 @@ const SignupPage = () => {
                 닉네임은 2글자 이상, 10글자 이하이여야 합니다
               </p>
             )}
-            {errors.username && errors.username.type === 'pattern' && (
+            {/* {errors.username && errors.username.type === 'pattern' && (
               <p className="confirm-message">닉네임은 공백이 없어야 합니다</p>
-            )}
+            )} */}
 
             <input
               style={{ textAlign: 'left' }}

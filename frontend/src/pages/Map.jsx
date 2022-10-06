@@ -10,7 +10,7 @@ import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 import axiosInstance from '../api/Interceptor';
 import { getFacilities } from '../redux/slices/facilityListSlice';
 
-const MapPage = () => {
+const MapPage = ({ fin, setFin }) => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [error, setError] = useState('');
@@ -38,22 +38,6 @@ const MapPage = () => {
     geolocation.getCurrentPosition(handleSuccess, handleError);
   };
 
-  //example - 시설 빠르게 지우기
-  // const getFacilityAXIOS = async () => {
-  //   //76부터 시작
-  //   await axiosInstance
-  //     .get('/facility/77')
-  //     .then((res) => console.log(res.data.facilityId, res.data));
-  //   // console.log(categoryState);
-  // };
-
-  // const deleteFacilityAXIOS = async () => {
-  //   //28
-  //   await axiosInstance
-  //     .delete('/facility/')
-  //     .then((res) => console.log(res.status));
-  // };
-
   const getFacilitiesAXIOS = async () => {
     const response = await axiosInstance.get(
       '/facility?location=' +
@@ -70,7 +54,10 @@ const MapPage = () => {
       locaForMarkers.push({
         id: el.facilityId,
         title: el.facilityName,
-        latlng:{lat:el.location.split(',')[0], lng:el.location.split(',')[1]},
+        latlng: {
+          lat: el.location.split(',')[0],
+          lng: el.location.split(',')[1],
+        },
       })
     );
   }

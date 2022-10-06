@@ -7,12 +7,12 @@ const PATH = {
   LOGIN: '/login',
   MYPAGE: '/mypage',
 
-  CATEGORY: '/category/:id',
+  CATEGORY: '/category/:id', 
 
-  FACILITY: '/facility/:id',
+  FACILITY: '/facility/:id', 
   FACILITIES: '/facility', 
 
-  REGISTERFACILITY: '/facility/register',
+  REGISTERFACILITY: '/facility/register', 
   EDITFACILITY: '/facility/edit/:id', 
 
   MAP: '/map',
