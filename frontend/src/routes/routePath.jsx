@@ -7,7 +7,7 @@ const PATH = {
   LOGIN: '/login',
   MYPAGE: '/mypage',
 
-  CATEGORY: '/category/:id', //how to
+  CATEGORY: '/category/:id', 
 
   FACILITY: '/facility/:id', 
   FACILITIES: '/facility', 

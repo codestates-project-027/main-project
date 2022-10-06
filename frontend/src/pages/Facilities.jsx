@@ -17,7 +17,7 @@ const FacilitiesPage = ({ mode, fin, setFin }) => {
 
         <div className="tags--wrapper">
           <Div className="title">인기</Div>
-          <TagGroup tags={tags} />
+          <TagGroup tags={tags} fin={fin} setFin={setFin} />
         </div>
         <FacilityCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
       </FacilitiesPageGlobal>
