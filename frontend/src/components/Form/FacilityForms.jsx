@@ -43,6 +43,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
           facilityName: '',
           facilityPhotoList: [],
           facilityInfo: '',
+          address: '',
           address2: '',
           website: '',
           phone: '',
@@ -74,7 +75,9 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   const dataSet = {
     facilityName,
     facilityInfo,
-    address: `${facilityState.address} ${address2}`,
+    // address: `${facilityState.address} ${address2}`,
+    // registerFac
+    address: mode==='edit'? `${facilityState.address} ${address2}` : registerFac.address,
     website,
     phone,
     location: facilityState.location,
@@ -108,17 +111,26 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   };
 
   const postHandler = () => {
-    if (dataSet.facilityName === '' || tagsList.length === 0) {
-      alert(`필수 항목 : 시설 이름, 카테고리`);
+    if (
+      dataSet.facilityName === '' ||
+      tagsList.length === 0 ||
+      !dataSet.address
+    ) {
+      alert(`시설 이름, 주소, 카테고리는 필수 항목입니다.`);
     } else onSubmit();
   };
 
   const editHandler = () => {
-    if (dataSet.facilityName === '' || tagsList.length === 0) {
-      alert(`필수 항목 : 시설 이름, 카테고리`);
+    if (
+      dataSet.facilityName === '' ||
+      tagsList.length === 0 ||
+      !facilityState.address
+    ) {
+      alert(`시설 이름, 주소, 카테고리는 필수 항목입니다.`);
     } else onSubmitEdit();
   };
 
+  console.log(dataSet.address);
   //////////////////
   //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
 
