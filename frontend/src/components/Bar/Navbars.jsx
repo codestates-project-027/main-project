@@ -71,7 +71,7 @@ export const BottomNavbar = ({ fin, setFin }) => {
         <Link to="/map">
           <BiMap />
         </Link>
-        <Link to="/login">
+        <Link to="/mypage">
           <BsPerson />
         </Link>
       </BottomNavIconStyle>
