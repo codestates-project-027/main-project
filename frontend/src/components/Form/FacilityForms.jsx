@@ -75,7 +75,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   const dataSet = {
     facilityName,
     facilityInfo,
-    address: mode==='edit'? `${facilityState.address} ${address2}` : registerFac.address,
+    address: `${facilityState.address} ${address2}`,
     website,
     phone,
     location: facilityState.location,
@@ -101,6 +101,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
           },
         })
         .then((res) => console.log('status:', res.status));
+      dispatch(
+        postFacility({
+          address: '',
+          location: '',
+        })
+      );
       setFin(!fin);
     } catch (err) {
       console.log(err.response);
@@ -118,11 +124,13 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     } else onSubmit();
   };
 
+  console.log('data.add', dataSet.address);
+
   const editHandler = () => {
     if (
       dataSet.facilityName === '' ||
       tagsList.length === 0 ||
-      !facilityState.address
+      dataSet.address.length === 2
     ) {
       alert(`시설 이름, 주소, 카테고리는 필수 항목입니다.`);
     } else onSubmitEdit();
@@ -142,6 +150,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
           },
         })
         .then((res) => console.log('edit data:', res.data));
+      dispatch(
+        patchFacility({
+          address: '',
+          location: '',
+        })
+      );
       setFin(!fin);
     } catch (err) {
       console.log(err.response);
@@ -163,23 +177,11 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
 
   const onSubmit = async () => {
     postFacilityAXIOS();
-    dispatch(
-      postFacility({
-        address: '',
-        location: '',
-      })
-    );
     navigate('/facility');
   };
 
   const onSubmitEdit = async () => {
     EditFacilityAXIOS();
-    dispatch(
-      patchFacility({
-        address: '',
-        location: '',
-      })
-    );
     navigate(`/facility/${id}`);
   };
 
