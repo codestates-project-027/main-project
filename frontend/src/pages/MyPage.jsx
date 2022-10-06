@@ -12,13 +12,13 @@ import { H1, H3 } from '../components/Text/Head';
 const MyPage = () => {
   const [data, setData] = useState({ username: '', facilityList: [] });
   const [days, setDays] = useState({ username: '', checkDailyList: [] });
+  const [show, setShow] = useState(false);
 
   const getMyFacility = async () => {
     const response = await axiosInstance.get('/myfacility/minimiUser');
     setData(response.data);
+    console.log(response.data);
   };
-
-  const [show, setShow] = useState(false);
 
   const getDailyChecks = async () => {
     const response = await axiosInstance.get('/dailycheck/minimiUser');
@@ -56,14 +56,16 @@ const MyPage = () => {
         <Div className="my--wrapper" marginBottom="20px">
           {data.facilityList !== undefined
             ? data.facilityList.map((el) => {
-                return (
-                  <FacilityDescCard
-                    key={el.facilityId}
-                    text={'출석'}
-                    el={el}
-                    show={show}
-                  />
-                );
+                if (el.location !== null) {
+                  return (
+                    <FacilityDescCard
+                      key={el.facilityId}
+                      text={'출석'}
+                      el={el}
+                      show={show}
+                    />
+                  );
+                }
               })
             : ''}
         </Div>
