@@ -7,7 +7,7 @@ import { FacilitiesPageGlobal } from '../styles/globalStyle/PageGlobalStyle';
 import { FacilityCard } from '../components/Card/FacilityCard';
 import { TagGroup } from '../components/Group/BtnAndTagGroup';
 
-const FacilitiesPage = ({ mode }) => {
+const FacilitiesPage = ({ mode, fin, setFin }) => {
   const tags = ['헬스', '수영', '킥복싱', '탁구']; //popular
 
   return (
@@ -19,7 +19,7 @@ const FacilitiesPage = ({ mode }) => {
           <Div className="title">인기</Div>
           <TagGroup tags={tags} />
         </div>
-        <FacilityCard Detail={'Detail'} mode={mode} />
+        <FacilityCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
       </FacilitiesPageGlobal>
     </>
   );

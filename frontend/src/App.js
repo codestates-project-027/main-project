@@ -61,19 +61,35 @@ function App() {
               <Route element={<LayoutCurrentMenu />}>
                 <Route
                   path={PATH.MYPAGE}
-                  element={<MyPage fin={fin} setFin={setFin} type="마이 페이지" />}
+                  element={
+                    <MyPage fin={fin} setFin={setFin} type="마이 페이지" />
+                  }
                 />
                 <Route
                   path={PATH.FACILITY}
-                  element={<FacilityPage fin={fin} setFin={setFin}  type="운동 시설" />}
+                  element={
+                    <FacilityPage fin={fin} setFin={setFin} type="운동 시설" />
+                  }
                 />
                 <Route
                   path={PATH.REGISTERFACILITY}
-                  element={<RegisterFacilityPage type="시설 등록" />}
+                  element={
+                    <RegisterFacilityPage
+                      fin={fin}
+                      setFin={setFin}
+                      type="시설 등록"
+                    />
+                  }
                 />
                 <Route
                   path={PATH.EDITFACILITY}
-                  element={<EditFacilityPage type="시설 변경" />}
+                  element={
+                    <EditFacilityPage
+                      fin={fin}
+                      setFin={setFin}
+                      type="시설 변경"
+                    />
+                  }
                 />
 
                 <Route
@@ -84,24 +100,25 @@ function App() {
                   path={PATH.ALARMS}
                   element={<AlarmsPage type="알림" />}
                 />
-                {/* <Route
-                  path={PATH.EDITMY}
-                  element={<EditMyFacilityPage type="내 정보 수정" />}
-                /> */}
-
-                <Route path={PATH.COMMUNITY} element={<CommunityPage />} />
-                <Route
-                  path={PATH.COMMUNITIYWRITING}
-                  element={<WritingPage />}
-                />
-                <Route
-                  path={PATH.COMMUNITIYPOSTING}
-                  element={<PostingPage />}
-                />
 
                 <Route
                   path={PATH.ADMIN}
-                  element={<AdminPage type="관리자 페이지" />}
+                  element={
+                    <AdminPage fin={fin} setFin={setFin} type="관리자 페이지" />
+                  }
+                />
+              </Route>
+
+              <Route element={<LayoutCurrentMenuSearch />}>
+                <Route
+                  path={PATH.FACILITIES}
+                  element={<FacilitiesPage fin={fin} setFin={setFin} />}
+                />
+                <Route
+                  path={PATH.CATEGORY}
+                  element={
+                    <FacilitiesPage mode="category" fin={fin} setFin={setFin} />
+                  }
                 />
               </Route>
 
@@ -117,14 +134,6 @@ function App() {
                   element={<PostingPage />}
                 />
                 <Route path={PATH.EDITCOMMUNITIY} element={<EditPostPage />} />
-              </Route>
-
-              <Route element={<LayoutCurrentMenuSearch />}>
-                <Route path={PATH.FACILITIES} element={<FacilitiesPage />} />
-                <Route
-                  path={PATH.CATEGORY}
-                  element={<FacilitiesPage mode="category" />}
-                />
               </Route>
             </Routes>
           </AppPageGlobal>

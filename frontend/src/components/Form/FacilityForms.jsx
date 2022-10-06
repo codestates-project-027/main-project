@@ -14,7 +14,7 @@ import AddressUploader from '../Address/AddressUploader';
 import axiosInstance from '../../api/Interceptor';
 import { postFacility, patchFacility } from '../../redux/slices/facilitySlice';
 
-export const FacilityForm = ({ mode, setFin }) => {
+export const FacilityForm = ({ mode, fin, setFin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -100,7 +100,7 @@ export const FacilityForm = ({ mode, setFin }) => {
           },
         })
         .then((res) => console.log('status:', res.status));
-      setFin(true);
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }
@@ -123,8 +123,7 @@ export const FacilityForm = ({ mode, setFin }) => {
   //이거 action으로 빼면 ..... 재활용 가능할듯.. 일단 form 부분만 해결하자..
 
   const EditFacilityAXIOS = async () => {
-    //img경로인 애를 file로 만들어야함..
-    //사진을 굳이 안넣으면 원본 보존/ 넣으면 변경됨...
+    //TO DO : img경로 -> file로 변환 필요 //사진을 굳이 안넣으면 원본 보존, 넣으면 변경됨
 
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
@@ -134,9 +133,8 @@ export const FacilityForm = ({ mode, setFin }) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-
         .then((res) => console.log('edit data:', res.data));
-      setFin(true);
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }
@@ -149,6 +147,7 @@ export const FacilityForm = ({ mode, setFin }) => {
       await axiosInstance
         .delete(`/facility/` + id)
         .then((res) => console.log('edit status:', res.status));
+      setFin(!fin);
     } catch (err) {
       console.log(err.response);
     }

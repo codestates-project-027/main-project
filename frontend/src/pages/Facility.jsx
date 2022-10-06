@@ -78,7 +78,7 @@ const FacilityPage = ({ fin, setFin }) => {
 
   useEffect(() => {
     getFacilityAXIOS();
-  }, []);
+  }, [fin]);
 
   const facility = [
     {

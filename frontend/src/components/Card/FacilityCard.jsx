@@ -22,7 +22,7 @@ import {
 } from '../../styles/components/CardStyle';
 import axiosInstance from '../../api/Interceptor';
 
-export const FBaseCard = ({ Detail, mode }) => {
+export const FBaseCard = ({ Detail, mode, fin, setFin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -69,14 +69,13 @@ export const FBaseCard = ({ Detail, mode }) => {
 
   useEffect(() => {
     mode === 'category' ? getCategoryAXIOS() : getFacilitiesAXIOS();
-  }, []);
+  }, [fin]);
 
   return (
     <>
       {data.map((el) => {
         return el.facilityName === '' ? null : (
           <div key={el.facilityId}>
-            {/* {el.facilityId} */}
             <div className="wrapper">
               <div className="img--wrapper">
                 <img
@@ -121,12 +120,12 @@ export const FBaseCard = ({ Detail, mode }) => {
   );
 };
 
-export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
+export const FacilityCard = ({ Flex, Detail, mode, fin, setFin }) => {
   return Flex ? (
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard setPending={setPending} />
+          <FBaseCard fin={fin} setFin={setFin} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>
@@ -134,7 +133,7 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
     <>
       <FCardFlexGlobal>
         <FCardFlexStyle>
-          <FBaseCard Detail={'Detail'} mode={mode} setPending={setPending} />
+          <FBaseCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
     </>
@@ -142,7 +141,7 @@ export const FacilityCard = ({ Flex, Detail, mode, setPending }) => {
     <>
       <FCardGlobal>
         <FCardStyle>
-          <FBaseCard />
+          <FBaseCard fin={fin} setFin={setFin} />
         </FCardStyle>
       </FCardGlobal>
     </>

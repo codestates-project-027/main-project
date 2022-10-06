@@ -9,10 +9,10 @@ const PATH = {
 
   CATEGORY: '/category/:id', //how to
 
-  FACILITY: '/facility/:id',
+  FACILITY: '/facility/:id', 
   FACILITIES: '/facility', 
 
-  REGISTERFACILITY: '/facility/register',
+  REGISTERFACILITY: '/facility/register', 
   EDITFACILITY: '/facility/edit/:id', 
 
   MAP: '/map',

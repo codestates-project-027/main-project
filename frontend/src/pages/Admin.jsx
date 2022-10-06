@@ -9,12 +9,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
 import axiosInstance from '../api/Interceptor';
 
-const AdminPage = () => {
+const AdminPage = ({fin,setFin}) => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
-  const [fin, setFin] = useState(false);
   const [toggle, setToggle]=useState(false)
 
   const getCategoryAXIOS = useCallback(async () => {
