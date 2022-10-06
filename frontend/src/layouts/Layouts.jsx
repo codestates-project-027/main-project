@@ -29,12 +29,12 @@ export const LayoutBaseForFacilities = () => {
   );
 };
 
-export const LayoutBase = () => {
+export const LayoutBase = ({ fin, setFin }) => {
   return (
     <>
       <LayoutBaseForFacilities />
       <BottomNavPosition>
-        <BottomNavbar />
+        <BottomNavbar fin={fin} setFin={setFin} />
       </BottomNavPosition>
     </>
   );
@@ -62,7 +62,7 @@ export const LayoutCurrentMenu = () => {
   );
 };
 
-export const LayoutCurrentMenuSearch = ({ type }) => {
+export const LayoutCurrentMenuSearch = ({ fin, setFin }) => {
   return (
     <>
       <TopNavPosition>
@@ -78,7 +78,7 @@ export const LayoutCurrentMenuSearch = ({ type }) => {
       </StickyBtn>
 
       <BottomNavPosition>
-        <BottomNavbar />
+        <BottomNavbar fin={fin} setFin={setFin} />
       </BottomNavPosition>
     </>
   );

@@ -48,7 +48,7 @@ function App() {
         <Suspense fallback={<CircularIndeterminate />}>
           <AppPageGlobal>
             <Routes>
-              <Route element={<LayoutBase />}>
+              <Route element={<LayoutBase fin={fin} setFin={setFin} />}>
                 <Route path={PATH.TEST} element={<TestPage />} />
                 <Route path={PATH.SIGNUP} element={<SignUpPage />} />
                 <Route path={PATH.LOGIN} element={<LoginPage />} />
@@ -94,7 +94,9 @@ function App() {
 
                 <Route
                   path={PATH.MAP}
-                  element={<MapPage type="지도로 보기" />}
+                  element={
+                    <MapPage type="지도로 보기" fin={fin} setFin={setFin} />
+                  }
                 />
                 <Route
                   path={PATH.ALARMS}
@@ -109,7 +111,9 @@ function App() {
                 />
               </Route>
 
-              <Route element={<LayoutCurrentMenuSearch />}>
+              <Route
+                element={<LayoutCurrentMenuSearch fin={fin} setFin={setFin} />}
+              >
                 <Route
                   path={PATH.FACILITIES}
                   element={<FacilitiesPage fin={fin} setFin={setFin} />}

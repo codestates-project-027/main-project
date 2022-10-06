@@ -51,7 +51,6 @@ export const FBaseCard = ({ Detail, mode, fin, setFin }) => {
           '&page=1'
       )
       .then((res) => setData(res.data.content));
-      setFin(!fin)
   };
 
   const getCategoryAXIOS = async () => {

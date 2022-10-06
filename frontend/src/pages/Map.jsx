@@ -10,7 +10,7 @@ import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 import axiosInstance from '../api/Interceptor';
 import { getFacilities } from '../redux/slices/facilityListSlice';
 
-const MapPage = () => {
+const MapPage = ({ fin, setFin }) => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [error, setError] = useState('');
