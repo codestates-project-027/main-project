@@ -1,16 +1,22 @@
 package com.minimi.backend.community.contents.service;
 
+import com.minimi.backend.auth.userdetails.MemberDetailsService;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsDTO;
 //import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.domain.ContentsRepository;
 import com.minimi.backend.community.contents.mapper.ContentsMapper;
+import com.minimi.backend.exception.BusinessLogicException;
 import com.minimi.backend.exception.ExceptionCode;
+import com.minimi.backend.member.domain.Member;
+import com.minimi.backend.member.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -25,15 +31,18 @@ import java.util.prefs.BackingStoreException;
 public class ContentsService {
 
     private  final ContentsRepository contentsRepository;
+    private  final MemberRepository memberRepository;
     private  final ContentsMapper contentsMapper;
 
     public void crateContents(ContentsDTO contentsDTO){
 
+        checkName(contentsDTO.getUsername());
         Contents contents = contentsRepository.save(
                 contentsMapper.contentsDTOToContents(contentsDTO));
     }
     public Contents patchContents(ContentsDTO.patch patch, Long contentsId){
         Contents contents = findContents(contentsId);
+        checkName(contents.getUsername());
         Optional.ofNullable(patch.getTitle())
                         .ifPresent(title -> contents.setTitle(title));
         Optional.ofNullable(patch.getContents())
@@ -42,7 +51,9 @@ public class ContentsService {
         return contentsRepository.save(contents);
     }
     public void deleteContents(Long contentsId){
-        contentsRepository.delete(findContents(contentsId));
+        Contents contents=findContents(contentsId);
+        checkName(contents.getUsername());
+        contentsRepository.delete(contents);
     }
 
     //---------------------------------------
@@ -54,7 +65,8 @@ public class ContentsService {
 //--------------------------------------------------
     public Contents findContents(Long contentsId){
         Optional<Contents> contents = contentsRepository.findById(contentsId);
-        Contents findContents = contents.orElseThrow();
+        Contents findContents = contents.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.CONTENTS_NOT_FOUND));
         return findContents;
     }
     //test용
@@ -94,4 +106,14 @@ public class ContentsService {
             updateViews(id);
         }
     }
+    public void checkName(String username){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = (String) authentication.getName();
+        Optional<Member> member = memberRepository.findByEmail(name);
+        String loginName=member.get().getUsername();
+        if(!loginName.equals(username)) {
+            throw new BusinessLogicException(ExceptionCode.NO_PERMISSIONS);
+        }
+    }
+
 }

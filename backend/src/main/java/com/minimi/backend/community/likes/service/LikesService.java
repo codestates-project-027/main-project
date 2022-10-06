@@ -1,5 +1,7 @@
 package com.minimi.backend.community.likes.service;
 
+import com.minimi.backend.exception.BusinessLogicException;
+import com.minimi.backend.exception.ExceptionCode;
 import com.minimi.backend.member.domain.Member;
 import com.minimi.backend.member.domain.MemberRepository;
 import com.minimi.backend.community.contents.domain.Contents;
@@ -21,10 +23,8 @@ public class LikesService {
     private Member member;
 
     public void createLikes(LikesDTO likesDTO) {
-        if (findLikes(likesDTO).isPresent()) {
-            System.out.println("이미 좋아요 누름");//여기 예외처리
-        } else {
-            System.out.println("좋아요 생성");
+        if (findLikes(likesDTO).isPresent()) throw new BusinessLogicException(ExceptionCode.LIKE_EXISTS);
+
             Likes likes = Likes.builder()
                     .contentsId(likesDTO.getContentsId())
                     .username(likesDTO.getUsername())
@@ -34,10 +34,10 @@ public class LikesService {
             Contents contents = contentsRepository.findById(likes.getContentsId()).orElseThrow();
             contents.setLikes(contents.getLikes() + 1);
             likesRepository.save(likes);
-        }
+
     }
     public void deleteLikes(Long likesId){
-        Likes likes = likesRepository.findById(likesId).orElseThrow();
+        Likes likes = likesRepository.findById(likesId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.LIKE_NOT_FOUND));
         likesRepository.deleteById(likesId);
         Contents contents = contentsRepository.findById(likes.getContentsId()).orElseThrow();
         contents.setLikes(contents.getLikes()-1);

@@ -4,10 +4,11 @@ import lombok.Getter;
 
 public enum ExceptionCode {
     MEMBER_NOT_FOUND(404, "Member not found"),
-    MEMBER_EXISTS(409, "Member exists"),
-    CONTENTS_NOT_FOUND(404, "Coffee not found"),
-    COMMENT_NOT_FOUND(404, "Order not found"),
-    USER_NOT_EQUAL(403,"Username Not Equal"),
+    USERNAME_EXISTS(409, "Username exists"),
+    EMAIL_EXISTS(409, "Email exists"),
+    CONTENTS_NOT_FOUND(404, "Contents not found"),
+    COMMENT_NOT_FOUND(404, "Comment not found"),
+    NO_PERMISSIONS(403,"No permissions"),
     LIKE_NOT_FOUND(404, "Like not found"),
     LIKE_EXISTS(409, "Like exists");
 

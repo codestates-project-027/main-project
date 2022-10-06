@@ -4,12 +4,16 @@ import com.minimi.backend.auth.userdetails.MemberDetailsService;
 import com.minimi.backend.community.contents.domain.Contents;
 import com.minimi.backend.community.contents.domain.ContentsDTO;
 import com.minimi.backend.community.contents.service.ContentsService;
+import com.minimi.backend.exception.BusinessLogicException;
+import com.minimi.backend.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +32,9 @@ public class ContentsController {
     public ResponseEntity<ContentsDTO.response> postContents(@Valid @RequestBody ContentsDTO contentsDTO){
 
 
-        contentsService.crateContents(contentsDTO);
+
+
+                contentsService.crateContents(contentsDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
     //patch Content
@@ -41,8 +47,9 @@ public class ContentsController {
     //get Content
     @GetMapping("/{contentsId}")
     public ResponseEntity<ContentsDTO.response> getContents(@PathVariable Long contentsId, HttpServletRequest request, HttpServletResponse response){
-        Contents contents = contentsService.findContents(contentsId);
         contentsService.viewCountUp(contentsId,request,response);
+        Contents contents = contentsService.findContents(contentsId);
+
         return new ResponseEntity(contents,HttpStatus.CREATED);
     }
     @GetMapping("/test/{contentsId}")

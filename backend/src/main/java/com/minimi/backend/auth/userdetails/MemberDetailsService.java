@@ -5,6 +5,7 @@ import com.minimi.backend.exception.BusinessLogicException;
 import com.minimi.backend.exception.ExceptionCode;
 import com.minimi.backend.member.domain.Member;
 import com.minimi.backend.member.domain.MemberRepository;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,7 +33,7 @@ public class MemberDetailsService implements UserDetailsService {
         return new MemberDetails(findMember);
     }
 
-    public class MemberDetails extends Member implements UserDetails {
+    private final class MemberDetails extends Member implements UserDetails {
         MemberDetails(Member member) {
             setMemberId(member.getMemberId());
             setEmail(member.getEmail());
@@ -50,6 +51,7 @@ public class MemberDetailsService implements UserDetailsService {
         public String getUsername() {
             return getEmail();
         }
+
         public String getUserName(){return getUsername();}
 
         @Override
