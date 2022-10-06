@@ -55,7 +55,7 @@ export const InputCategoryForm = ({ idx, type, setFin, fin }) => {
         await axiosInstance.post(`/category`, body);
         setFin(!fin);
       } catch (err) {
-        console.log(err.response);
+        // console.log(err.response);
       }
     },
     patch: async (values) => {

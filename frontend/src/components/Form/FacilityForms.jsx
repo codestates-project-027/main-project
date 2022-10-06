@@ -100,7 +100,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-        .then((res) => console.log('status:', res.status));
+        // .then((res) => console.log('status:', res.status));
       dispatch(
         postFacility({
           address: '',
@@ -109,7 +109,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
       );
       setFin(!fin);
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
     }
     // console.log('dataSet:', dataSet, file);
   };
@@ -124,7 +124,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     } else onSubmit();
   };
 
-  console.log('data.add', dataSet.address);
+  // console.log('data.add', dataSet.address);
 
   const editHandler = () => {
     if (
@@ -149,7 +149,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-        .then((res) => console.log('edit data:', res.data));
+        // .then((res) => console.log('edit data:', res.data));
       dispatch(
         patchFacility({
           address: '',
@@ -158,9 +158,9 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
       );
       setFin(!fin);
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
     }
-    console.log('edit dataSet:', dataSet, images);
+    // console.log('edit dataSet:', dataSet, images);
   };
 
   const DeleteFacilityAXIOS = async () => {
@@ -168,10 +168,10 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
       await axiosInstance
         .delete(`/facility/` + id)
-        .then((res) => console.log('edit status:', res.status));
+        // .then((res) => console.log('edit status:', res.status));
       setFin(!fin);
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
     }
   };
 

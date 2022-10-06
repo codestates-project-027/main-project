@@ -4,7 +4,7 @@ import { ImgBtn } from '../Button/Btns';
 import styled from 'styled-components';
 
 const ImageUploader = ({ images, setImages, mode }) => {
-  console.log('uploader:,', typeof images);
+  // console.log('uploader:,', typeof images);
   const maxNumber = 5;
 
   const onChange = (imageList) => {

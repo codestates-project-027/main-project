@@ -30,7 +30,7 @@ export const CReviewModal = ({ setReview, fin, setFin }) => {
   const createReview = async () => {
     await axiosInstance
       .post('/review', body)
-      .then((res) => console.log(res.status));
+      // .then((res) => console.log(res.status));
     setOpen(false);
     setFin(!fin);
   };
@@ -93,7 +93,7 @@ export const UReviewModal = ({
   const editReview = async () => {
     await axiosInstance
       .patch('/review/' + id + '/' + review.reviewId, body)
-      .then((res) => console.log(res.status));
+      // .then((res) => console.log(res.status));
     setOpen(false);
     setFin(!fin);
   };
@@ -142,7 +142,7 @@ export const ChoiceModal = ({ text, btn, review, fin, setFin }) => {
   const deleteReview = async () => {
     await axiosInstance
       .delete('/review/' + id + '/' + review.reviewId)
-      .then((res) => console.log(res.status));
+      // .then((res) => console.log(res.status));
     setOpen(false);
     setFin(!fin)
   };

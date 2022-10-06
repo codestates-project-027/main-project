@@ -83,7 +83,7 @@ const MapPage = ({ fin, setFin }) => {
         <MapContainer locaForMarkers={locaForMarkers} />
         {/* <button onClick={getFacilityAXIOS}>get</button>
         <button onClick={deleteFacilityAXIOS}>delete</button> */}
-        <FacilityCard Flex={'Flex'} />
+        <FacilityCard Flex={'Flex'} fin={fin} setFin={setFin} />
       </FacilitiesPageGlobal>
     </>
   );
