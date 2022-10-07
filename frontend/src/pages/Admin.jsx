@@ -9,33 +9,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCategory } from '../redux/slices/categorySlice';
 import axiosInstance from '../api/Interceptor';
 
-const AdminPage = () => {
+const AdminPage = ({fin,setFin}) => {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.category); //state:initialState, category:slice name, category: category reducer
   const [btnIdx, setBtnIdx] = useState(0);
   const [type, setType] = useState('');
+  const [toggle, setToggle]=useState(false)
 
   const getCategoryAXIOS = useCallback(async () => {
     await axiosInstance.get('/category?active=false').then((res) => {
       dispatch(getCategory({ list: res.data }));
     });
-  }, [categoryState]);
+  }, [dispatch]);
 
   const clickBtn = (idx) => {
     setBtnIdx(idx);
     if (idx === 0) {
-      getCategoryAXIOS();
-      console.log('categoryState:', categoryState);
-    } else if (idx === 1) {
+      setToggle(!toggle)
       setType('생성');
-    } else setType('수정');
+    } else if (idx === 1) {
+      setToggle(!toggle)
+      setType('수정');
+    }
   };
 
   useEffect(() => {
     getCategoryAXIOS();
-  }, []);
+  }, [fin]);
 
-  const btnContent = ['Read', 'Create', 'Edit'];
+  const btnContent = ['Create', 'Edit'];
 
   return (
     <>
@@ -59,7 +61,17 @@ const AdminPage = () => {
             );
           })}
         </BtnsWrapper>
-        {btnIdx !== 0 ? <InputCategoryForm type={type} idx={btnIdx} /> : ''}
+        {toggle === true ? (
+          <InputCategoryForm
+            fin={fin}
+            setFin={setFin}
+            type={type}
+            idx={btnIdx}
+          />
+        ) : (
+          ''
+        )}
+        {/* {console.log(toggle, fin)} */}
       </AdminGlobal>
     </>
   );

@@ -14,6 +14,7 @@ export const Textarea = ({
   mode,
   RVcontents,
   setRVContents,
+  required,
 }) => {
   const [count, setCount] = useState(0);
   const handleChange = (e) => {
@@ -35,22 +36,24 @@ export const Textarea = ({
     return (
       <>
         <ReviewTXTStyle
+          required={required}
           maxLength={100}
           onChange={(e) => handleChangeReview(e)}
           value={value}
         />
-        {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
+        {count === 0 ? null : <P marginBottom="20px">{count}/100</P>}
       </>
     );
   } else if (type === 'reviewEdit') {
     return (
       <>
         <ReviewTXTStyle
+          required={required}
           maxLength={100}
           onChange={(e) => handleChangeReview(e)}
           value={RVcontents}
         />
-        {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
+        {count === 0 ? null : <P marginBottom="20px">{count}/100</P>}
       </>
     );
   } else if (type === 'facility') {
@@ -58,12 +61,13 @@ export const Textarea = ({
       <>
         <Div>
           <CreateFTXTStyle
+            required={required}
             name="facilityInfo"
             maxLength={200}
             onChange={(e) => handleChange(e)}
             value={mode === 'edit' ? value : ''}
           />
-          {count===0? null:(<P marginBottom="20px">{count}/100</P>)}
+          {count === 0 ? null : <P marginBottom="20px">{count}/100</P>}
         </Div>
       </>
     );

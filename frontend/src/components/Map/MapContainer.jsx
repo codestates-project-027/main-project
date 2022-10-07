@@ -32,7 +32,7 @@ const MapContainer = ({ locaForMarkers }) => {
       lat: mouseEvent.latLng.getLat(),
       lng: mouseEvent.latLng.getLng(),
     });
-    console.log('clicked');
+    // console.log('clicked');
     //get 요청 보내기.. star 자리로부터 거리계산기
   };
 
@@ -46,7 +46,7 @@ const MapContainer = ({ locaForMarkers }) => {
   //   }
   // };
 
-  useEffect(() => {}, [locationState]);
+  useEffect(() => {}, [locaForMarkers]);
 
   return (
     <>

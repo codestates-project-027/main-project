@@ -9,16 +9,15 @@ import AttendanceCard from '../components/Card/AttendanceCard';
 import { FacilityDescCard } from '../components/Card/FacilityCard';
 import { H1, H3 } from '../components/Text/Head';
 
-const MyPage = () => {
+const MyPage = ({ fin, setFin }) => {
   const [data, setData] = useState({ username: '', facilityList: [] });
   const [days, setDays] = useState({ username: '', checkDailyList: [] });
+  const [show, setShow] = useState(false);
 
   const getMyFacility = async () => {
     const response = await axiosInstance.get('/myfacility/minimiUser');
     setData(response.data);
   };
-
-  const [show, setShow] = useState(false);
 
   const getDailyChecks = async () => {
     const response = await axiosInstance.get('/dailycheck/minimiUser');
@@ -32,14 +31,14 @@ const MyPage = () => {
   useEffect(() => {
     getMyFacility();
     getDailyChecks();
-  }, []);
+  }, [fin]);
 
   return (
     <>
       <MyPageGlobal>
         <H1>마이 페이지</H1>
         <div className="card--wrapper">
-          <MemberCard Flex={'Flex'} />
+          <MemberCard Flex={'Flex'} setFin={setFin} fin={fin} />
         </div>
         <div className="facility--wrapper">
           <H3 marginBottom="30px">사용중인 시설</H3>
@@ -56,14 +55,18 @@ const MyPage = () => {
         <Div className="my--wrapper" marginBottom="20px">
           {data.facilityList !== undefined
             ? data.facilityList.map((el) => {
-                return (
-                  <FacilityDescCard
-                    key={el.facilityId}
-                    text={'출석'}
-                    el={el}
-                    show={show}
-                  />
-                );
+                if (el.location !== null) {
+                  return (
+                    <FacilityDescCard
+                      fin={fin}
+                      setFin={setFin}
+                      key={el.facilityId}
+                      text={'출석'}
+                      el={el}
+                      show={show}
+                    />
+                  );
+                }
               })
             : ''}
         </Div>

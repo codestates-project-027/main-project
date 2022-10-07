@@ -55,7 +55,10 @@ export const CommunityTopNavbar = ({ type }) => {
   );
 };
 
-export const BottomNavbar = () => {
+export const BottomNavbar = ({ fin, setFin }) => {
+  const handleMove = () => {
+    if (setFin!==undefined){setFin(!fin)}
+  };
   return (
     <BottomNavbarGlobal>
       <BottomNavIconStyle>
@@ -63,12 +66,12 @@ export const BottomNavbar = () => {
           <HiHome />
         </Link>
         <Link to="/facility">
-          <BiBuildingHouse />
+          <BiBuildingHouse onClick={() => handleMove()} />
         </Link>
         <Link to="/map">
           <BiMap />
         </Link>
-        <Link to="/login">
+        <Link to="/mypage">
           <BsPerson />
         </Link>
       </BottomNavIconStyle>

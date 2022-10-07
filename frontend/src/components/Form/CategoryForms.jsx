@@ -43,7 +43,7 @@ export const ReadCategoryForm = ({ data }) => {
   );
 };
 
-export const InputCategoryForm = ({ idx, type }) => {
+export const InputCategoryForm = ({ idx, type, setFin, fin }) => {
   const categoryAXIOS = {
     post: async (values) => {
       const body = {
@@ -51,17 +51,27 @@ export const InputCategoryForm = ({ idx, type }) => {
         categoryTitle: values.categoryTitle,
         categoryStatus: values.categoryStatus,
       };
-      const res = await axiosInstance.post(`/category`, body);
+      try {
+        await axiosInstance.post(`/category`, body);
+        setFin(!fin);
+      } catch (err) {
+        // console.log(err.response);
+      }
     },
     patch: async (values) => {
       const body = {
         categoryTitle: values.categoryTitle,
         categoryStatus: values.categoryStatus,
       };
-      const res = await axiosInstance.patch(
-        `/category/${values.categoryCode}`,
-        body
-      );
+      try {
+        await axiosInstance.patch(
+          `/category/${values.categoryCode}`,
+          body
+        );
+        setFin(!fin);
+      } catch (err) {
+        alert(`존재하지 않는 항목을 수정합니다.`);
+      }
     },
   };
 
@@ -87,8 +97,7 @@ export const InputCategoryForm = ({ idx, type }) => {
           return errors;
         }}
         onSubmit={(values) => {
-          idx === 1 ? categoryAXIOS.post(values) : categoryAXIOS.patch(values);
-          console.log(values);
+          idx === 0 ? categoryAXIOS.post(values) : categoryAXIOS.patch(values);
         }}
       >
         <Form>
