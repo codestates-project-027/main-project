@@ -2,7 +2,7 @@
 import { Outlet } from 'react-router-dom';
 import { StyledLink } from '../styles/components/TextStyles';
 import GlobalStyle from '../styles/globalStyle/GlobalStyle';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import {
   TopNavPosition,

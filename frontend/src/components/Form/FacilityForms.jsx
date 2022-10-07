@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -54,13 +54,13 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
 
   const {
     facilityName,
-    facilityPhotoList,
+    // facilityPhotoList,
     facilityInfo,
     address2,
     website,
     phone,
-    location,
-    tags,
+    // location,
+    // tags,
   } = registerFac;
 
   const onChange = (e) => {

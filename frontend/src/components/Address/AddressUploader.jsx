@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { ModalBackdropStyle } from '../../styles/components/Modalstyle';
 import { BasicBtn } from '../Button/Btns';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postFacility } from '../../redux/slices/facilitySlice';
 
 const { kakao } = window;
 
 const AddressUploader = ({ facilityState, value, mode }) => {
-  const patchFacilityState = useSelector((state) => state.facility);
+  // const patchFacilityState = useSelector((state) => state.facility);
   const dispatch = useDispatch();
 
   const [openPostcode, setOpenPostcode] = useState(false);

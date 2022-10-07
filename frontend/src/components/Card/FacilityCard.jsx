@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { BigBtn } from '../../components/Button/Btns';
 import { H4, H4Link } from '../Text/Head';
 import { TagGroup } from '../Group/BtnAndTagGroup';
 import { useSelector } from 'react-redux';
-import { getFacilities } from '../../redux/slices/facilityListSlice';
+// import { getFacilities } from '../../redux/slices/facilityListSlice';
 import DistanceCalc from '../Calculator/DistanceCalc';
 import StarsCalc from '../Calculator/StarsCalc';
 
@@ -23,7 +23,7 @@ import {
 import axiosInstance from '../../api/Interceptor';
 
 export const FBaseCard = ({ Detail, mode, fin, setFin }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);

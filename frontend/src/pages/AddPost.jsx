@@ -16,11 +16,11 @@ const WritingPage = () => {
     // username: ''; 회원가입 후 유저아이디
   });
 
-  const url = 'http://localhost:8080/contents';
+  // const url = 'http://localhost:8080/contents';
 
-  const GET_COMMUNITY = 'GET_COMMUNITY';
-  const POST_COMMUNITY = 'POST_COMMUNITY';
-  const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
+  // const GET_COMMUNITY = 'GET_COMMUNITY';
+  // const POST_COMMUNITY = 'POST_COMMUNITY';
+  // const PATCH_COMMUNITY = 'PATCH_COMMUNITY';
 
   const handleWriting = () => {
     setValues({ title: '', contents: '' });

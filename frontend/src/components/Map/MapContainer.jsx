@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map } from 'react-kakao-maps-sdk';
 import { MAPSIZE } from '../../constants/style';
-import { data } from '../../constants/test-markers';
+// import { data } from '../../constants/test-markers';
 import MarkerContainer from './MarkerContainers';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation } from '../../redux/slices/locationSlice';
-import axiosInstance from '../../api/Interceptor';
 
 const MapContainer = ({ locaForMarkers }) => {
   const dispatch = useDispatch();

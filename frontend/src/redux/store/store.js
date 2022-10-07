@@ -1,10 +1,10 @@
 import {
   combineReducers,
   configureStore,
-  applyMiddleware,
+  // applyMiddleware,
 } from '@reduxjs/toolkit';
-import { createLogger } from 'redux-logger';
-import ReduxThunk from 'redux-thunk';
+// import { createLogger } from 'redux-logger';
+// import ReduxThunk from 'redux-thunk';
 import { categorySlice } from '../slices/categorySlice';
 
 import { communitySlice } from '../CommunitySlice/CommunitySlice';
@@ -17,7 +17,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-const logger = createLogger();
+// const logger = createLogger();
 
 const rootReducer = combineReducers({
   category: categorySlice.reducer,

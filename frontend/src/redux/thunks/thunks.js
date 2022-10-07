@@ -1,4 +1,4 @@
-import axiosInstance from '../../api/Interceptor';
+// import axiosInstance from '../../api/Interceptor';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 

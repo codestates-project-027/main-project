@@ -2,7 +2,7 @@ import { MainPageBIGroupStyle } from '../../styles/components/ComponentGroupStyl
 import { FacilityPageDescGroupStyle } from '../../styles/components/ComponentGroupStyle';
 
 import { MainQuickBtn } from '../Button/Btns';
-import { H4 } from '../../components/Text/Head';
+// import { H4 } from '../../components/Text/Head';
 
 import { TagStyle } from '../../styles/components/TagStyle';
 import styled from 'styled-components';

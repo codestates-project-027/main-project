@@ -8,7 +8,7 @@ import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
 import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 import axiosInstance from '../api/Interceptor';
-import { getFacilities } from '../redux/slices/facilityListSlice';
+// import { getFacilities } from '../redux/slices/facilityListSlice';
 
 const MapPage = ({ fin, setFin }) => {
   const dispatch = useDispatch();
