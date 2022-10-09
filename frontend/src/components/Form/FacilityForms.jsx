@@ -89,18 +89,21 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     new Blob([JSON.stringify(dataSet)], { type: 'application/json' })
   );
 
-  formData.append('file', !file ? null : new Blob(file));
+  if (file !== null) {
+    for (let i=0; i<file.length; i++){
+      formData.append('file', !file ? null : new Blob(file.slice(i,i+1)));
+    }
+  }
 
   //axios
   const postFacilityAXIOS = async () => {
     try {
-      await axiosInstance
-        .post(`/facility`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        // .then((res) => console.log('status:', res.status));
+      await axiosInstance.post(`/facility`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // .then((res) => console.log('status:', res.status));
       dispatch(
         postFacility({
           address: '',
@@ -143,13 +146,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
 
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
-      await axiosInstance
-        .patch(`/facility/${id}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        // .then((res) => console.log('edit data:', res.data));
+      await axiosInstance.patch(`/facility/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // .then((res) => console.log('edit data:', res.data));
       dispatch(
         patchFacility({
           address: '',
@@ -166,9 +168,8 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   const DeleteFacilityAXIOS = async () => {
     try {
       //edit page 접근하는 방법 :: facility 상세보기 -> 해당 글쓴이만 수정가능하게..
-      await axiosInstance
-        .delete(`/facility/` + id)
-        // .then((res) => console.log('edit status:', res.status));
+      await axiosInstance.delete(`/facility/` + id);
+      // .then((res) => console.log('edit status:', res.status));
       setFin(!fin);
     } catch (err) {
       // console.log(err.response);
