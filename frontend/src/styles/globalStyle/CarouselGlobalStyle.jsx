@@ -35,11 +35,18 @@ export const CarouselGlobal = styled.div`
   }
   @media screen and (max-width: 476px) {
     display: flex;
-    margin-left: 10px;
+    margin-left: -20px;
     width: 400px;
-    img{
-      width: 400px;
-      height: 300px;;
+    .window {
+      background: #f3f3f3;
+      width: 330px;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    img {
+      width: 300px;
+      height: 300px;
     }
   }
 `;

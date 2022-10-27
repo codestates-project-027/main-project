@@ -72,8 +72,9 @@ const MainPage = () => {
           <MemberCard />
         </Link>
         <SearchbarWBtn
-        mmargin="0 0 0 -20px"
-        width="60%"
+          mmargin="0 0 0 -10px"
+          micon="30px"
+          width="60%"
           Icon={
             <Link to="/map">
               <BiMap size="20" />
@@ -95,7 +96,7 @@ const MainPage = () => {
           </H3>
         </MainPageBtnsGroupStyle>
 
-        <FacilityCard />
+        <FacilityCard margin="0 0 0 100px" />
       </MainPageGlobal>
     </>
   );

@@ -113,12 +113,17 @@ export const SignUpPageGlobal = styled(PageGlobalBase)`
 
 export const FacilitiesPageGlobal = styled(PageGlobalBase)`
   display: flex;
+  margin: 0;
   justify-content: center;
   align-items: center;
   width: 100%;
-  .map {
-    margin-left: 70px;
+
+  @media screen and (min-width: 791px) {
+    .map {
+      margin-left: 90px;
+    }
   }
+
   .tags--wrapper {
     display: flex;
     justify-content: center;
@@ -135,9 +140,7 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
     }
 
     @media screen and (max-width: 476px) {
-      display: flex;
-      justify-content: center;
-      width: 400px;
+      width: 100%;
     }
   }
 `;
@@ -217,6 +220,7 @@ export const AlarmsPageGlobal = styled(PageGlobalBase)`
 `;
 
 export const EditMyFacilityGlobal = styled(PageGlobalBase)`
+  margin: 0;
   display: flex;
   width: 100%;
   .facility--wrapper {
@@ -229,6 +233,7 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
 `;
 
 export const FacilityGlobal = styled(PageGlobalBase)`
+  margin: 0;
   @media screen and (max-width: 790px) {
     display: flex;
     margin-left: 50px;

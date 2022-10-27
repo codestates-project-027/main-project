@@ -7,7 +7,7 @@ export const FacilityFormStyle = styled.div`
   justify-content: center;
   background-color: #f3f3f3;
   flex-direction: column;
-  width: 620px;
+  width: 100%;
   height: fit-content;
   padding: 37px;
   border-radius: 10px;
@@ -30,14 +30,10 @@ export const FacilityFormStyle = styled.div`
     justify-content: center;
     margin-top: 20px;
   }
-  @media screen and (max-width: 790px) {
-    display: flex;
-    margin-left: 50px;
-    width: 90%;
-  }
+
   @media screen and (max-width: 476px) {
     display: flex;
-    width: 90%;
+    width: 100%;
   }
 `;
 

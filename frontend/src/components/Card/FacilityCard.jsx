@@ -124,11 +124,11 @@ export const FBaseCard = ({ Detail, mode, fin, setFin }) => {
   );
 };
 
-export const FacilityCard = ({ Flex, Detail, mode, fin, setFin }) => {
+export const FacilityCard = ({ Flex, Detail, mode, fin, setFin, margin, mmargin }) => {
   return Flex ? (
     <>
-      <FCardFlexGlobal>
-        <FCardFlexStyle>
+      <FCardFlexGlobal >
+        <FCardFlexStyle margin={margin} mmargin={mmargin}>
           <FBaseCard fin={fin} setFin={setFin} />
         </FCardFlexStyle>
       </FCardFlexGlobal>
@@ -136,7 +136,7 @@ export const FacilityCard = ({ Flex, Detail, mode, fin, setFin }) => {
   ) : Detail ? (
     <>
       <FCardFlexGlobal>
-        <FCardFlexStyle>
+        <FCardFlexStyle margin={margin}>
           <FBaseCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
         </FCardFlexStyle>
       </FCardFlexGlobal>

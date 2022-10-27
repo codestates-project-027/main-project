@@ -123,9 +123,9 @@ export const Searchbar = ({ placeholder }) => {
   );
 };
 
-export const SearchbarWBtn = ({ Icon, noIcon, width, mmargin }) => {
+export const SearchbarWBtn = ({ Icon, noIcon, width, mmargin, micon}) => {
   return (
-    <SearchbarGroupStyle margin="30px 30px 30px 70px" width={width} mmargin={mmargin}>
+    <SearchbarGroupStyle margin="30px 30px 30px 70px" width={width} mmargin={mmargin} micon={micon}>
       <div className="hide">
         <StyledLink to="/">
           <Img alt="logo" src={TextLogo} />

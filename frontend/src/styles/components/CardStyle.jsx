@@ -81,6 +81,17 @@ export const FCardFlexStyle = styled(FCardStyle)`
     display: flex;
     width: 320px;
     margin-left: -25px;
+    margin: ${(props) => props.mmargin};
+    img {
+      width: 150px;
+      height: 130px;
+    }
+  }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    width: 320px;
+    margin-left: -25px;
+    margin: ${(props) => props.margin};
     img {
       width: 150px;
       height: 130px;

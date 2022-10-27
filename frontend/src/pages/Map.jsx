@@ -70,7 +70,8 @@ const MapPage = ({ fin, setFin }) => {
     <>
       <FacilitiesPageGlobal>
         <SearchbarWBtn
-          margin="0 0 0 20px"
+          micon="25px"
+          margin="0 0 0 -20px"
           Icon={
             <BiCurrentLocation
               size="20"
@@ -86,7 +87,14 @@ const MapPage = ({ fin, setFin }) => {
         </div>
         {/* <button onClick={getFacilityAXIOS}>get</button>
         <button onClick={deleteFacilityAXIOS}>delete</button> */}
-        <FacilityCard Flex={'Flex'} fin={fin} setFin={setFin} />
+
+        <FacilityCard
+          Flex={'Flex'}
+          fin={fin}
+          setFin={setFin}
+          margin="0 0 0 0px"
+          mmargin="0 0 0 40px"
+        />
       </FacilitiesPageGlobal>
     </>
   );

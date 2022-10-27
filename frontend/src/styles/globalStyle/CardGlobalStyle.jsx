@@ -20,7 +20,8 @@ export const FCardGlobal = styled.div`
 export const FCardFlexGlobal = styled(FCardGlobal)`
   @media screen and (max-width: 790px) {
     display: flex;
-    width: 250px;
+    width: 100%;
+    margin-left: 50px;
   }
 `;
 
