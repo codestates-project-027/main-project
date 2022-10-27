@@ -23,7 +23,7 @@ const DistanceCalc = ({ currentLocation, facilityLocation }) => {
   return (
     <div>
       {distance <= 0.2
-        ? `${(distance * 100).toFixed(0) * 10 + 10} m 이내`
+        ? `~ ${(distance * 100).toFixed(0) * 10 + 10} m`
         : distance >= 0.2 && distance < 1
         ? `${(distance * 1000).toFixed(0)} m`
         : `${distance.toFixed(1)} km`}

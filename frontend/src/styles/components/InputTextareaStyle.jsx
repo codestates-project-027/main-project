@@ -16,8 +16,12 @@ export const ReviewTXTStyle = styled.textarea`
 `;
 
 export const CreateFTXTStyle = styled(ReviewTXTStyle)`
-  width: 480px;
+  width: 460px;
   border: none;
   box-shadow: 3px 3px 3px lightgray;
   border-radius: 5px;
+  @media screen and (max-width: 476px) {
+    display: flex;
+    width: 400px;
+  }
 `;

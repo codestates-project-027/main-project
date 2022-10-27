@@ -40,4 +40,8 @@ export const WhiteInputGlobal = styled(NavyInputGlobal)`
   .input::placeholder {
     color: lightgray;
   }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    width: 400px;
+  }
 `;

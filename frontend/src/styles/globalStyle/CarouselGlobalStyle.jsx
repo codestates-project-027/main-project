@@ -33,4 +33,13 @@ export const CarouselGlobal = styled.div`
     object-fit: contain;
     flex: none;
   }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    margin-left: 10px;
+    width: 400px;
+    img{
+      width: 400px;
+      height: 300px;;
+    }
+  }
 `;

@@ -126,7 +126,7 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
     margin-left: 85px;
     @media screen and (max-width: 790px) {
       margin-left: 50px;
-      width: 90%;
+      width: 450px;
     }
     .title {
       margin-left: 10px;
@@ -176,7 +176,11 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
   @media screen and (max-width: 790px) {
     display: flex;
     margin-left: 50px;
-    width: 90%;
+    width: 450px;
+  }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    width: 400px;
   }
 `;
 

@@ -10,7 +10,7 @@ const ImageUploader = ({ images, setImages, mode }) => {
   const onChange = (imageList) => {
     setImages(imageList);
   };
-//patch할 때 이미지 깨짐 + img 리사이징 안함.
+  //patch할 때 이미지 깨짐 + img 리사이징 안함.
   return (
     <>
       <ImgUploaderStyle>
@@ -106,6 +106,11 @@ const ImgUploaderStyle = styled.div`
   width: 500px;
   .img--wrapper {
     display: flex;
+  }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    justify-content: center;
+    width: 400px;
   }
 `;
 

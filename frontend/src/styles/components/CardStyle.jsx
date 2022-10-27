@@ -7,7 +7,6 @@ export const FCardStyle = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-
   .wrapper {
     display: flex;
     align-items: center;
@@ -22,7 +21,7 @@ export const FCardStyle = styled.div`
     }
     .content--wrapper {
       width: 100%;
-      margin-left: 27px;
+      margin-left: 20px;
       .name--wrapper {
         display: flex;
         justify-content: space-between;
@@ -51,6 +50,29 @@ export const FCardStyle = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media screen and (max-width: 476px) {
+    .wrapper {
+      width: 400px;
+
+      .content--wrapper {
+        width: 100%;
+        margin-left: 10px;
+        .name--wrapper {
+          margin: 0px 10px 25px 0;
+        }
+        .rest--wrapper {
+          .address {
+            padding: 5px;
+            text-align: left;
+          }
+        }
+        .tags {
+          width: 100%;
+          margin-left: -5px;
+        }
+      }
+    }
+  }
 `;
 
 export const FCardFlexStyle = styled(FCardStyle)`
@@ -58,7 +80,10 @@ export const FCardFlexStyle = styled(FCardStyle)`
     display: flex;
     width: 320px;
     margin-left: -25px;
- 
+    img {
+      width: 150px;
+      height: 130px;
+    }
   }
 `;
 
