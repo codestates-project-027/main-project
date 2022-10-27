@@ -57,7 +57,7 @@ const MapContainer = ({ locaForMarkers }) => {
       </button>
       {/* <button onClick={getFacilitiesAXIOS}>GET FACILS</button>
       <button onClick={checkAXIOS}>check Facils</button> */}
-      {console.log(window.outerWidth)}
+      {/* {console.log(window.outerWidth)} */}
       <Map
         center={myLoca}
         style={{

@@ -133,7 +133,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   };
 
   // console.log('data.add', dataSet.address);
-  console.log('images', images);
+  // console.log('images', images);
   const editHandler = () => {
     if (
       dataSet.facilityName === '' ||
