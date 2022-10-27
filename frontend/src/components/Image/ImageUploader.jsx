@@ -13,7 +13,6 @@ const ImageUploader = ({ images, setImages, mode }) => {
 //patch할 때 이미지 깨짐 + img 리사이징 안함.
   return (
     <>
-      {console.log(images)}
       <ImgUploaderStyle>
         <ImageUploading
           multiple
