@@ -116,20 +116,28 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* background-color: blue; */
+  .map {
+    margin-left: 70px;
+  }
   .tags--wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 400px;
     margin: 15px;
-    margin-left: 85px;
+    margin-left: 100px;
     @media screen and (max-width: 790px) {
       margin-left: 50px;
       width: 450px;
     }
     .title {
       margin-left: 10px;
+    }
+
+    @media screen and (max-width: 476px) {
+      display: flex;
+      justify-content: center;
+      width: 400px;
     }
   }
 `;

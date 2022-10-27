@@ -13,12 +13,13 @@ const FacilitiesPage = ({ mode, fin, setFin }) => {
   return (
     <>
       <FacilitiesPageGlobal>
-        <SearchbarWBtn noIcon="noIcon" />
+        <SearchbarWBtn noIcon="noIcon" width="100%" />
 
         <div className="tags--wrapper">
           <Div className="title">인기</Div>
           <TagGroup tags={tags} fin={fin} setFin={setFin} />
         </div>
+
         <FacilityCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
       </FacilitiesPageGlobal>
     </>

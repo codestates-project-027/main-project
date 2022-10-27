@@ -70,6 +70,7 @@ const MapPage = ({ fin, setFin }) => {
     <>
       <FacilitiesPageGlobal>
         <SearchbarWBtn
+          margin="0 0 0 20px"
           Icon={
             <BiCurrentLocation
               size="20"
@@ -80,7 +81,9 @@ const MapPage = ({ fin, setFin }) => {
           }
         />
         {loading ? <CircularProgressWithLabel /> : ''}
-        <MapContainer locaForMarkers={locaForMarkers} />
+        <div className="map">
+          <MapContainer locaForMarkers={locaForMarkers} />
+        </div>
         {/* <button onClick={getFacilityAXIOS}>get</button>
         <button onClick={deleteFacilityAXIOS}>delete</button> */}
         <FacilityCard Flex={'Flex'} fin={fin} setFin={setFin} />

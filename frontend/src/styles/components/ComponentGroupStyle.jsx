@@ -4,14 +4,15 @@ import { PADDING } from '../../constants/style';
 export const SearchbarGroupStyle = styled.div`
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: ${(props) => props.width || '100%'};
   margin: ${(props) => props.margin};
   @media screen and (max-width: 790px) {
     width: 80%;
-    .hide{
-      display:none;
+    margin: ${props=>props.mmargin};
+    .hide {
+      display: none;
     }
-    .icon{
+    .icon {
       margin-left: 15px;
     }
   }

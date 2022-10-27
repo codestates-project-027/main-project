@@ -7,6 +7,7 @@ export const FCardStyle = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-left: 20px;
   .wrapper {
     display: flex;
     align-items: center;

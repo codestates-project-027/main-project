@@ -72,6 +72,8 @@ const MainPage = () => {
           <MemberCard />
         </Link>
         <SearchbarWBtn
+        mmargin="0 0 0 -20px"
+        width="60%"
           Icon={
             <Link to="/map">
               <BiMap size="20" />

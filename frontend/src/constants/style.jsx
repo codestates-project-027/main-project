@@ -9,6 +9,6 @@ export const PADDING = {
 };
 
 export const MAPSIZE = {
-  WIDTH: '500px',
+  WIDTH: '400px',
   HEIGHT: '400px',
 };

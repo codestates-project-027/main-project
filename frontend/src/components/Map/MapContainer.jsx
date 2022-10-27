@@ -12,6 +12,7 @@ const MapContainer = ({ locaForMarkers }) => {
   const [main, setMain] = useState(true);
   const [custom, setCustom] = useState(true);
   const [customMarker, setCustomMarker] = useState({ lat: 0, lng: 0 });
+  const [mapsize, setMapsize] = useState('500px');
 
   const myLoca = {
     lat: locationState.currentLocation.latitude,
@@ -45,20 +46,22 @@ const MapContainer = ({ locaForMarkers }) => {
   //   }
   // };
 
-  useEffect(() => {}, [locaForMarkers]);
+  useEffect(() => {
+   
+  }, [locaForMarkers]);
 
   return (
     <>
       <button style={{ marginBottom: '20px' }} onClick={resetLoca}>
-        RESET
+        EXAMPLE
       </button>
       {/* <button onClick={getFacilitiesAXIOS}>GET FACILS</button>
       <button onClick={checkAXIOS}>check Facils</button> */}
-
+      {console.log(window.outerWidth)}
       <Map
         center={myLoca}
         style={{
-          width: MAPSIZE.WIDTH,
+          width: window.outerWidth > 476 ? '500px' : MAPSIZE.WIDTH,
           height: MAPSIZE.HEIGHT,
           marginBottom: '20px',
         }}

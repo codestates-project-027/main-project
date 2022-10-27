@@ -30,6 +30,13 @@ export const SearchbarGlobal = styled.div`
   .delete {
     cursor: pointer;
   }
+  @media screen and (max-width: 476px) {
+    display: flex;
+    justify-content: center;
+    /* margin-left: ${(props) => props.marginLeft || '-15px'}; */
+    /* width: ${(props) => props.width || '350px'}; */
+    width: 99%;
+  }
 `;
 
 export const BottomNavbarGlobal = styled.div`
