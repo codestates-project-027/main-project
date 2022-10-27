@@ -143,12 +143,6 @@ const FacilityPage = ({ fin, setFin }) => {
     },
   ];
 
-  // const imgs = [
-  //   //tags, imgs
-  //   `https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black`,
-  //   `https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white`,
-  // ];
-
   const postMyFacility = async () => {
     const body = {
       username: 'minimiUser',

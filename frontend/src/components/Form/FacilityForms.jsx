@@ -82,7 +82,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
     categoryList: tagsList,
   };
 
-  const file = images.length === 0 ? null : images.map((el) => el.file);
+  const file =
+    typeof images[0] === 'string'
+      ? images.length===0? null : ''
+      : images.length === 0
+      ? null
+      : images.map((el) => el.file);
 
   formData.append(
     'request',
@@ -90,8 +95,8 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   );
 
   if (file !== null) {
-    for (let i=0; i<file.length; i++){
-      formData.append('file', !file ? null : new Blob(file.slice(i,i+1)));
+    for (let i = 0; i < file.length; i++) {
+      formData.append('file', !file ? null : new Blob(file.slice(i, i + 1)));
     }
   }
 
@@ -128,7 +133,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   };
 
   // console.log('data.add', dataSet.address);
-
+  console.log('images', images);
   const editHandler = () => {
     if (
       dataSet.facilityName === '' ||
@@ -194,11 +199,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
   return (
     <>
       <FacilityFormStyle>
+        {/* {console.log(typeof images[0])} */}
         <H2>{mode === 'edit' ? '시설 변경하기' : '시설 등록하기'}</H2>
         <div className="input--wrapper">
           <Label htmlFor="name">이름</Label>
           <Input
-          placeholder={'시설 이름'}
+            placeholder={'시설 이름'}
             required
             name={'facilityName'}
             label={'name'}
@@ -222,7 +228,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
           <Textarea
-          placeholder={'시설 설명'}
+            placeholder={'시설 설명'}
             required
             mode="edit"
             type="facility"
@@ -252,7 +258,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="website">web</Label>
           <Input
-          placeholder={'website'}
+            placeholder={'website'}
             label={'website'}
             name="website"
             value={website}
@@ -262,7 +268,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="phone">전화</Label>
           <Input
-          placeholder={'phone'}
+            placeholder={'phone'}
             label={'phone'}
             name="phone"
             value={phone}
@@ -316,8 +322,7 @@ const Label = styled.label`
   margin-right: 15px;
   @media screen and (max-width: 790px) {
     display: none;
-    ::placeholder{
-      
+    ::placeholder {
     }
   }
 `;
