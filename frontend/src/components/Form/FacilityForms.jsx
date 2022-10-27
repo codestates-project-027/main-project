@@ -198,6 +198,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="name">이름</Label>
           <Input
+          placeholder={'시설 이름'}
             required
             name={'facilityName'}
             label={'name'}
@@ -221,6 +222,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="desc">설명</Label>
           <Textarea
+          placeholder={'시설 설명'}
             required
             mode="edit"
             type="facility"
@@ -250,6 +252,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="website">web</Label>
           <Input
+          placeholder={'website'}
             label={'website'}
             name="website"
             value={website}
@@ -259,6 +262,7 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
         <div className="input--wrapper">
           <Label htmlFor="phone">전화</Label>
           <Input
+          placeholder={'phone'}
             label={'phone'}
             name="phone"
             value={phone}
@@ -310,6 +314,12 @@ export const FacilityForm = ({ mode, fin, setFin }) => {
 
 const Label = styled.label`
   margin-right: 15px;
+  @media screen and (max-width: 790px) {
+    display: none;
+    ::placeholder{
+      
+    }
+  }
 `;
 
 const AddressWrapper = styled.div`

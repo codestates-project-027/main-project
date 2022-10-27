@@ -7,6 +7,9 @@ export const ReviewTXTStyle = styled.textarea`
   margin-bottom: 20px;
   padding: 15px;
   text-align: left;
+  ::placeholder{
+    color:lightgray;
+  }
   &:focus {
     outline: transparent;
   }

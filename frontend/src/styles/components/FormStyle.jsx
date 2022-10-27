@@ -30,6 +30,11 @@ export const FacilityFormStyle = styled.div`
     justify-content: center;
     margin-top: 20px;
   }
+  @media screen and (max-width: 790px) {
+    display: flex;
+    margin-left: 50px;
+    width: 90%;
+  }
 `;
 
 export const FacilityFormWrapper = styled.div`

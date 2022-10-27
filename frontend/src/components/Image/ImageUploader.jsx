@@ -10,9 +10,10 @@ const ImageUploader = ({ images, setImages, mode }) => {
   const onChange = (imageList) => {
     setImages(imageList);
   };
-
+//patch할 때 이미지 깨짐 + img 리사이징 안함.
   return (
     <>
+      {console.log(images)}
       <ImgUploaderStyle>
         <ImageUploading
           multiple
@@ -40,7 +41,6 @@ const ImageUploader = ({ images, setImages, mode }) => {
                 </ImgBtn>
                 <div className="img--wrapper">
                   {imageList.map((image, index) => (
-                    
                     <div key={index} className="image-item">
                       {index === 0 ? (
                         <>
@@ -56,7 +56,7 @@ const ImageUploader = ({ images, setImages, mode }) => {
                           >
                             x
                           </BtnClose>
-                        
+
                           <BtnUpdate
                             className="update"
                             onClick={() => onImageUpdate(index)}
@@ -65,7 +65,7 @@ const ImageUploader = ({ images, setImages, mode }) => {
                           </BtnUpdate>
                         </>
                       ) : (
-                        <>{console.log(image)}
+                        <>
                           <Img
                             src={image['data_url'] ? image['data_url'] : image}
                             alt=""

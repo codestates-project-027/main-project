@@ -6,6 +6,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 export const Textarea = ({
+  placeholder,
   type,
   registerFac,
   setRegisterFac,
@@ -36,6 +37,7 @@ export const Textarea = ({
     return (
       <>
         <ReviewTXTStyle
+          placeholder="시설 설명"
           required={required}
           maxLength={100}
           onChange={(e) => handleChangeReview(e)}
@@ -61,6 +63,7 @@ export const Textarea = ({
       <>
         <Div>
           <CreateFTXTStyle
+            placeholder="시설 설명"
             required={required}
             name="facilityInfo"
             maxLength={200}

@@ -8,6 +8,12 @@ export const SearchbarGroupStyle = styled.div`
   margin: ${(props) => props.margin};
   @media screen and (max-width: 790px) {
     width: 80%;
+    .hide{
+      display:none;
+    }
+    .icon{
+      margin-left: 15px;
+    }
   }
 `;
 

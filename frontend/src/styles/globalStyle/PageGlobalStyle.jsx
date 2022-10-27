@@ -112,10 +112,11 @@ export const SignUpPageGlobal = styled(PageGlobalBase)`
 `;
 
 export const FacilitiesPageGlobal = styled(PageGlobalBase)`
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-
+  width: 100%;
+  /* background-color: blue; */
   .tags--wrapper {
     display: flex;
     justify-content: flex-start;
@@ -125,7 +126,7 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
     margin-left: 85px;
     @media screen and (max-width: 790px) {
       margin-left: 50px;
-      width: 400px;
+      width: 90%;
     }
     .title {
       margin-left: 10px;
@@ -134,6 +135,7 @@ export const FacilitiesPageGlobal = styled(PageGlobalBase)`
 `;
 
 export const FacilityPageGlobal = styled(PageGlobalBase)`
+  display: flex;
   background-color: #f3f3f3; //#fffdb9
   border-radius: 10px;
   box-shadow: 2px 2px 2px lightgray;
@@ -171,6 +173,11 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
     display: flex;
     flex-direction: column;
   }
+  @media screen and (max-width: 790px) {
+    display: flex;
+    margin-left: 50px;
+    width: 90%;
+  }
 `;
 
 export const MyPageGlobal = styled(PageGlobalBase)`
@@ -203,11 +210,27 @@ export const EditMyFacilityGlobal = styled(PageGlobalBase)`
   .facility--wrapper {
     width: 400px;
   }
+  @media screen and (max-width: 790px) {
+    margin-left: 50px;
+    width: 90%;
+  }
 `;
 
-export const FacilityGlobal = styled(PageGlobalBase)``;
+export const FacilityGlobal = styled(PageGlobalBase)`
+  @media screen and (max-width: 790px) {
+    display: flex;
+    margin-left: 50px;
+    width: 90%;
+  }
+`;
 
-export const AdminGlobal = styled(PageGlobalBase)``;
+export const AdminGlobal = styled(PageGlobalBase)`
+  @media screen and (max-width: 790px) {
+    display: flex;
+    margin-left: 50px;
+    width: 90%;
+  }
+`;
 
 // export const RegisterFacGlobal = styled(PageGlobalBase)``;
 

@@ -126,11 +126,15 @@ export const Searchbar = ({ placeholder }) => {
 export const SearchbarWBtn = ({ Icon, noIcon }) => {
   return (
     <SearchbarGroupStyle margin="30px">
-      <StyledLink to="/">
-        <Img alt="logo" src={TextLogo} />
-      </StyledLink>
+      <div className="hide">
+        <StyledLink to="/">
+          <Img alt="logo" src={TextLogo} />
+        </StyledLink>
+      </div>
       <Searchbar />
-      {noIcon ? null : <SquareBtn>{Icon}</SquareBtn>}
+      <div className="icon">
+        {noIcon ? null : <SquareBtn>{Icon}</SquareBtn>}
+      </div>
     </SearchbarGroupStyle>
   );
 };

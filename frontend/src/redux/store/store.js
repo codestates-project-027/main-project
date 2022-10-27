@@ -6,7 +6,6 @@ import {
 // import { createLogger } from 'redux-logger';
 // import ReduxThunk from 'redux-thunk';
 import { categorySlice } from '../slices/categorySlice';
-
 import { communitySlice } from '../CommunitySlice/CommunitySlice';
 import { facilitySlice } from '../slices/facilitySlice';
 import { locationSlice } from '../slices/locationSlice';
