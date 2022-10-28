@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io';
+// import { IoIosArrowDown } from 'react-icons/io';
 
 import {
   CommunityTopNavbarGlobal,
@@ -23,9 +23,9 @@ export const TopNavbar = ({ type }) => {
       <TopNavbarGlobal>
         <div className="tab--wrapper">
           {type}
-          <IconWrapper marginLeft={'10px'}>
+          {/* <IconWrapper marginLeft={'10px'}>
             <IoIosArrowDown size="23" />
-          </IconWrapper>
+          </IconWrapper> */}
         </div>
         <div className="icon--wrapper">
           <Link to="alarms">
@@ -43,9 +43,9 @@ export const CommunityTopNavbar = ({ type }) => {
       <CommunityTopNavbarGlobal>
         <div className="tab--wrapper">
           {type}
-          <IconWrapper marginLeft={'10px'}>
+          {/* <IconWrapper marginLeft={'10px'}>
             <IoIosArrowDown size="23" />
-          </IconWrapper>
+          </IconWrapper> */}
         </div>
         <div className="icon--wrapper">
           <BiBell size="23" />
@@ -57,7 +57,9 @@ export const CommunityTopNavbar = ({ type }) => {
 
 export const BottomNavbar = ({ fin, setFin }) => {
   const handleMove = () => {
-    if (setFin!==undefined){setFin(!fin)}
+    if (setFin !== undefined) {
+      setFin(!fin);
+    }
   };
   return (
     <BottomNavbarGlobal>

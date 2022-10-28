@@ -26,7 +26,7 @@ import theme from '../styles/mui/theme';
 import axiosInstance from '../api/Interceptor';
 import { patchFacility } from '../redux/slices/facilitySlice';
 
-const FacilityPage = ({ fin, setFin }) => {
+const FacilityPage = ({ fin, setFin, data, setData }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const locationState = useSelector((state) => state.location);
@@ -39,20 +39,20 @@ const FacilityPage = ({ fin, setFin }) => {
     createdAt: '',
     username: '',
   });
-  const [data, setData] = useState([
-    {
-      facilityId: 0,
-      facilityName: '',
-      facilityPhotoList: [],
-      facilityInfo: '',
-      address: '',
-      website: '',
-      phone: '',
-      starRate: 0,
-      location: '',
-      categoryList: [],
-    },
-  ]);
+  // const [data, setData] = useState([
+  //   {
+  //     facilityId: 0,
+  //     facilityName: '',
+  //     facilityPhotoList: [],
+  //     facilityInfo: '',
+  //     address: '',
+  //     website: '',
+  //     phone: '',
+  //     starRate: 0,
+  //     location: '',
+  //     categoryList: [],
+  //   },
+  // ]);
 
   const handleData = (res) => {
     setData(res.data);

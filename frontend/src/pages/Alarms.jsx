@@ -12,7 +12,6 @@ const AlarmsPage = () => {
         <H1>알람</H1>
         <div className="card--wrapper">
           <AlarmCard />
-          <AlarmCard />
         </div>
       </AlarmsPageGlobal>
     </>

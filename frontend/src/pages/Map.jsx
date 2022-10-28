@@ -8,9 +8,9 @@ import { getLocation } from '../redux/slices/locationSlice';
 import { useState, useEffect } from 'react';
 import CircularProgressWithLabel from '../components/Bar/Loadingbar';
 import axiosInstance from '../api/Interceptor';
-// import { getFacilities } from '../redux/slices/facilityListSlice';
+import Geocode from 'react-geocode';
 
-const MapPage = ({ fin, setFin }) => {
+const MapPage = ({ fin, setFin, setCity, city }) => {
   const dispatch = useDispatch();
   const locationState = useSelector((state) => state.location);
   const [error, setError] = useState('');
@@ -18,6 +18,23 @@ const MapPage = ({ fin, setFin }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ content: [] });
   const locaForMarkers = [];
+  //나의 동네 설정
+
+  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+  Geocode.fromLatLng(
+    locationState.currentLocation.latitude,
+    locationState.currentLocation.longitude
+  ).then((res) => {
+    for (let i = 0; i < res.results[0].address_components.length; i++) {
+      for (
+        let j = 0;
+        j < res.results[0].address_components[i].types.length;
+        j++
+      ) {
+        setCity(res.results[0].address_components[1].long_name);
+      }
+    }
+  });
 
   const handleSuccess = (pos) => {
     const { latitude, longitude } = pos.coords;

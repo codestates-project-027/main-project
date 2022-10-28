@@ -157,6 +157,10 @@ export const AlarmCardStyle = styled.div`
     display: flex;
     color: wheat;
     padding: ${PADDING.BASIC};
+    .msg {
+      color: wheat;
+      margin-left: 15px;
+    }
   }
   .date {
     color: wheat;

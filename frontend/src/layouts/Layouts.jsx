@@ -1,8 +1,10 @@
 //기능 구현 후 합칠 예정
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { StyledLink } from '../styles/components/TextStyles';
 import GlobalStyle from '../styles/globalStyle/GlobalStyle';
-// import { useSelector } from 'react-redux';
+import { CurrentPath } from '../routes/routePath';
+import PATH from '../routes/routePath';
+import { useState } from 'react';
 
 import {
   TopNavPosition,
@@ -17,6 +19,7 @@ import {
 } from '../components/Bar/Navbars';
 
 import { StickyBtn } from '../components/Button/Btns';
+import { useEffect } from 'react';
 
 export const LayoutBaseForFacilities = () => {
   return (
@@ -40,22 +43,47 @@ export const LayoutBase = ({ fin, setFin }) => {
   );
 };
 
-export const LayoutMain = () => {
+export const LayoutMain = ({ city }) => {
+  useEffect(() => {}, [city]);
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type={'현재 주소'} />
+        <TopNavbar type={city === '' ? '주소를 설정하세요' : city} />
       </TopNavPosition>
       <LayoutBase />
     </>
   );
 };
 
-export const LayoutCurrentMenu = () => {
+export const LayoutCurrentMenu = ({ type, data }) => {
+  const [cmenu, setCmenu] = useState('Minimi');
+  const { id } = useParams();
+  const cpath = window.location.pathname;
+  const CurrentPath = () => {
+    if (cpath === PATH.MYPAGE) {
+      return '나의 정보';
+    } else if (cpath === `/facility/${id}`) {
+      return data.facilityName;
+    } else if (cpath === PATH.REGISTERFACILITY) {
+      return '시설 등록';
+    } else if (cpath === `/facility/edit/${id}`) {
+      return '시설 변경';
+    } else if (cpath === PATH.MAP) {
+      return '지도로 보기';
+    } else if (cpath === PATH.ALARMS) {
+      return '알람';
+    } else if (cpath === PATH.ADMIN) {
+      return '관리자 페이지';
+    }
+  };
+
+  useEffect(() => {
+    setCmenu(CurrentPath());
+  }, [cpath,data]);
   return (
     <>
       <TopNavPosition>
-        <TopNavbar type="현재 메뉴" />
+        <TopNavbar type={cmenu} />
       </TopNavPosition>
       <LayoutBase />
     </>

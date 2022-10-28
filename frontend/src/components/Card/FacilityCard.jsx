@@ -136,7 +136,7 @@ export const FacilityCard = ({ Flex, Detail, mode, fin, setFin, margin, mmargin 
   ) : Detail ? (
     <>
       <FCardFlexGlobal>
-        <FCardFlexStyle margin={margin}>
+        <FCardFlexStyle margin={margin} mmargin={mmargin}>
           <FBaseCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} />
         </FCardFlexStyle>
       </FCardFlexGlobal>

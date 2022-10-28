@@ -20,7 +20,14 @@ const FacilitiesPage = ({ mode, fin, setFin }) => {
           <TagGroup tags={tags} fin={fin} setFin={setFin} />
         </div>
 
-        <FacilityCard Detail={'Detail'} mode={mode} fin={fin} setFin={setFin} margin='0 0 0 10px' />
+        <FacilityCard
+          Detail={'Detail'}
+          mode={mode}
+          fin={fin}
+          setFin={setFin}
+          margin="0 0 0 10px"
+          mmargin="0 0 0 80px"
+        />
       </FacilitiesPageGlobal>
     </>
   );

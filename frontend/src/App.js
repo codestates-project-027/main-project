@@ -1,5 +1,5 @@
 import './App.css';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Routes
@@ -42,6 +42,23 @@ import CircularIndeterminate from './components/Bar/Loadingbar';
 
 function App() {
   const [fin, setFin] = useState(false);
+  const [city, setCity] = useState('');
+  //facility
+  const [data, setData] = useState([
+    {
+      facilityId: 0,
+      facilityName: '',
+      facilityPhotoList: [],
+      facilityInfo: '',
+      address: '',
+      website: '',
+      phone: '',
+      starRate: 0,
+      location: '',
+      categoryList: [],
+    },
+  ]);
+
   return (
     <>
       <div className="App">
@@ -54,60 +71,44 @@ function App() {
                 <Route path={PATH.LOGIN} element={<LoginPage />} />
               </Route>
 
-              <Route element={<LayoutMain />}>
+              <Route element={<LayoutMain city={city} />}>
                 <Route path={PATH.MAIN} element={<MainPage />} />
               </Route>
 
-              <Route element={<LayoutCurrentMenu />}>
+              <Route element={<LayoutCurrentMenu data={data}/>}>
                 <Route
                   path={PATH.MYPAGE}
-                  element={
-                    <MyPage fin={fin} setFin={setFin} type="마이 페이지" />
-                  }
+                  element={<MyPage fin={fin} setFin={setFin} />}
                 />
                 <Route
                   path={PATH.FACILITY}
-                  element={
-                    <FacilityPage fin={fin} setFin={setFin} type="운동 시설" />
-                  }
+                  element={<FacilityPage fin={fin} setFin={setFin} data={data} setData={setData} />}
                 />
                 <Route
                   path={PATH.REGISTERFACILITY}
-                  element={
-                    <RegisterFacilityPage
-                      fin={fin}
-                      setFin={setFin}
-                      type="시설 등록"
-                    />
-                  }
+                  element={<RegisterFacilityPage fin={fin} setFin={setFin} />}
                 />
                 <Route
                   path={PATH.EDITFACILITY}
-                  element={
-                    <EditFacilityPage
-                      fin={fin}
-                      setFin={setFin}
-                      type="시설 변경"
-                    />
-                  }
+                  element={<EditFacilityPage fin={fin} setFin={setFin} />}
                 />
 
                 <Route
                   path={PATH.MAP}
                   element={
-                    <MapPage type="지도로 보기" fin={fin} setFin={setFin} />
+                    <MapPage
+                      fin={fin}
+                      setFin={setFin}
+                      setCity={setCity}
+                      city={city}
+                    />
                   }
                 />
-                <Route
-                  path={PATH.ALARMS}
-                  element={<AlarmsPage type="알림" />}
-                />
+                <Route path={PATH.ALARMS} element={<AlarmsPage />} />
 
                 <Route
                   path={PATH.ADMIN}
-                  element={
-                    <AdminPage fin={fin} setFin={setFin} type="관리자 페이지" />
-                  }
+                  element={<AdminPage fin={fin} setFin={setFin} />}
                 />
               </Route>
 
