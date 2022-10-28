@@ -21,7 +21,7 @@ export const FCardFlexGlobal = styled(FCardGlobal)`
   @media screen and (max-width: 790px) {
     display: flex;
     width: 100%;
-    margin-left: 50px;
+    margin: ${(props) => props.cmargin};
   }
 `;
 
@@ -40,39 +40,39 @@ export const MCardGlobal = styled.div`
     //429px
     display: flex;
     div {
-    color: wheat;
-    color: var(--main-yellow);
-  }
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 30px;
-    .img--wrapper {
-      width: 30%;
-      img {
-        border: 5px solid #454546;
-        border-radius: 8px;
-      }
+      color: wheat;
+      color: var(--main-yellow);
     }
-    .content--wrapper {
+    .wrapper {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      width: 60%;
-      text-align: left;
-      div:nth-child(1) {
-        margin-bottom: 20px;
-        font-weight: bold;
-        font-size: 1.2rem;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 30px;
+      .img--wrapper {
+        width: 30%;
+        img {
+          border: 5px solid #454546;
+          border-radius: 8px;
+        }
       }
-      div:nth-child(2) {
-        margin-bottom: 20px;
+      .content--wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        width: 60%;
+        text-align: left;
+        div:nth-child(1) {
+          margin-bottom: 20px;
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+        div:nth-child(2) {
+          margin-bottom: 20px;
+        }
       }
     }
-  }
   }
 `;
 

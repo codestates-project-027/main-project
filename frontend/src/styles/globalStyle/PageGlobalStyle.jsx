@@ -186,7 +186,6 @@ export const FacilityPageGlobal = styled(PageGlobalBase)`
   }
   @media screen and (max-width: 790px) {
     display: flex;
-    margin-left: 50px;
     width: 450px;
   }
   @media screen and (max-width: 476px) {

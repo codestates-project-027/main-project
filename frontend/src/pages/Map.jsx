@@ -109,6 +109,7 @@ const MapPage = ({ fin, setFin, setCity, city }) => {
           Flex={'Flex'}
           fin={fin}
           setFin={setFin}
+          cmargin="0 0 0 65px"
           margin="0 0 0 0px"
           mmargin="0 0 0 40px"
         />

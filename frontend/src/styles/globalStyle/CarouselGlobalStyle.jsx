@@ -33,6 +33,21 @@ export const CarouselGlobal = styled.div`
     object-fit: contain;
     flex: none;
   }
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    width: 100%;
+    .window {
+      background: #f3f3f3;
+      width: 80%;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    img {
+      width: 100%;
+      height: 300px;
+    }
+  }
   @media screen and (max-width: 476px) {
     display: flex;
     margin-left: -20px;
