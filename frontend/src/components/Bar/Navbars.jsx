@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // import { IoIosArrowDown } from 'react-icons/io';
 
 import {
@@ -12,9 +12,12 @@ import {
   IconWrapper,
 } from '../../styles/components/IconStyles';
 
+import PATH from '../../routes/routePath';
+
 import { BiBell, BiBuildingHouse, BiMap } from 'react-icons/bi';
-import { HiHome } from 'react-icons/hi'; //HiOutlineHome
-import { BsPerson } from 'react-icons/bs'; //BsFillPeopleFill, BsFillPersonFill
+import { HiHome, HiOutlineHome } from 'react-icons/hi';
+import { RiBuildingFill, RiMapPin2Fill } from 'react-icons/ri';
+import { BsPerson, BsFillPersonFill } from 'react-icons/bs';
 // import { AiOutlineHeart } from 'react-icons/ai'; //AiFillHeart
 
 export const TopNavbar = ({ type }) => {
@@ -56,25 +59,31 @@ export const CommunityTopNavbar = ({ type }) => {
 };
 
 export const BottomNavbar = ({ fin, setFin }) => {
+  const cpath = window.location.pathname;
   const handleMove = () => {
     if (setFin !== undefined) {
       setFin(!fin);
     }
   };
+
   return (
     <BottomNavbarGlobal>
       <BottomNavIconStyle>
-        <Link to="/">
-          <HiHome />
+        <Link to={PATH.MAIN}>
+          {cpath === PATH.MAIN ? <HiHome /> : <HiOutlineHome />}
         </Link>
-        <Link to="/facility">
-          <BiBuildingHouse onClick={() => handleMove()} />
+        <Link to={PATH.FACILITIES}>
+          {cpath === PATH.FACILITIES ? (
+            <RiBuildingFill onClick={() => handleMove()} />
+          ) : (
+            <BiBuildingHouse onClick={() => handleMove()} />
+          )}
         </Link>
         <Link to="/map">
-          <BiMap />
+          {cpath === PATH.MAP ? <RiMapPin2Fill /> : <BiMap />}
         </Link>
         <Link to="/mypage">
-          <BsPerson />
+          {cpath === PATH.MYPAGE ? <BsFillPersonFill /> : <BsPerson />}
         </Link>
       </BottomNavIconStyle>
     </BottomNavbarGlobal>
