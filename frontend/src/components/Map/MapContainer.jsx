@@ -22,7 +22,7 @@ const MapContainer = ({ locaForMarkers }) => {
   const resetLoca = () => {
     dispatch(
       getLocation({
-        currentLocation: { latitude: 37.478147, longitude: 126.86058 },
+        currentLocation: { latitude: 37.4784, longitude: 126.8608 },
       })
     );
   };

@@ -2,7 +2,8 @@ import axios from 'axios';
 
 //axios intercepter
 const axiosInstance = axios.create({
-  baseURL: `https://minimi-place.duckdns.org`,
+  // baseURL: `https://minimi-place.duckdns.org`,
+  baseURL: `http://54.180.155.237:8080`,
   // timeout: 1000,
 });
 
